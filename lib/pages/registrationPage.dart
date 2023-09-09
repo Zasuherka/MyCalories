@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app1/pages/authorizationPage.dart';
 // import 'package:app1/controllers/auth.dart' as auth;
+import 'package:app1/service/registration.dart';
+
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -11,20 +13,23 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  String myString = "Регистрация";
+  String response = "Регистрация";
   String email = '';
   String name = '';
   String country = '';
   String password1 = '';
   String password2 = '';
-  // void registration(String email, String name, String country, String password1, String password2) async
-  // {
-  //   print(email);
-  //   final response = await auth.register(email, name, country, password1, password2);
-  //   setState(() {
-  //     my_string = response;
-  //   });
-  // }
+
+
+
+  Future<void> registration(String email, String password1, String password2) async
+  {
+    final response = await register(email, password1, password2);
+    setState(() {
+      this.response = response;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -46,7 +51,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 )
             ),
             Padding(padding: EdgeInsets.only(top: screenHeight/27)),
-            Text(myString,
+            Text(response,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: screenHeight/29,
@@ -170,7 +175,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black, width: 1),
                   ),
-                  contentPadding: EdgeInsets.only(bottom: -10),
+                  contentPadding: const EdgeInsets.only(bottom: -10),
                   border: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black, width: 1),
                   ),
@@ -212,7 +217,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ElevatedButton(
                 onPressed:
                     () {
-                  // registration(email, name, country, password1, password2);
+                  registration(email, password1, password2);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.85),
@@ -264,10 +269,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                 )
-
               ],
             ),
-
           ],
         )
     );

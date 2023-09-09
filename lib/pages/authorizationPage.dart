@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app1/pages/registrationPage.dart';
+import 'package:app1/service/auth.dart';
 
 
 class AuthorizationPage extends StatefulWidget {
@@ -11,6 +12,17 @@ class AuthorizationPage extends StatefulWidget {
 }
 
 class _AuthorizationPageState extends State<AuthorizationPage> {
+  String response = "Добро пожаловать!";
+  String email = '';
+  String password = '';
+
+  Future<void> singIn(String email, String password) async
+  {
+    final response = await authorization(email,password);
+    setState(() {
+      this.response = response;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -32,7 +44,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             )
           ),
           Padding(padding: EdgeInsets.only(top: screenHeight/27)),
-          Text('Добро пожаловать!',
+          Text(response,
           style: TextStyle(
             fontSize: screenHeight/29,
             fontFamily: 'Comfortaa',
@@ -43,7 +55,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             width: screenWidth * 0.76,
             child: TextFormField(
               onChanged: (String value){
-                //password = value;
+                email = value;
               },
               style: TextStyle(
                   fontSize: screenHeight/40,
@@ -75,7 +87,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             child: TextFormField(
 
               onChanged: (String value){
-                //password = value;
+                password = value;
               },
               style: TextStyle(
                   fontSize: screenHeight/40,
@@ -102,7 +114,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           ),
           Padding(padding: EdgeInsets.only(top: screenHeight/30)),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                singIn(email, password);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(0, 0, 0, 0.85),
                 foregroundColor: const Color.fromRGBO(0, 0, 0, 0.85),
