@@ -14,7 +14,12 @@ Future<String> register(String email, String password1, password2) async {
           email: email,
           password: password1
       );
-      response = 'Регистрация прошла успешно';
+      User? user = userCredential.user;
+      if (user!= null && !user.emailVerified) {
+        await user.sendEmailVerification();
+        await FirebaseAuth.instance.signOut();
+      }
+      response = 'Регистрация прошла успешно!\nВам на почту отправленно письмо,\nподтвердите регистрацию.';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         response = 'The password provided is too weak.';

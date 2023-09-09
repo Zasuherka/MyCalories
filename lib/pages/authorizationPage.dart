@@ -1,3 +1,4 @@
+import 'package:app1/pages/firstPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app1/pages/registrationPage.dart';
@@ -22,7 +23,15 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     setState(() {
       this.response = response;
     });
+    if (response == 'Вход выполнен') {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const FirstPage(),
+        ),
+      );
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;

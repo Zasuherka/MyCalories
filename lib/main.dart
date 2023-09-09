@@ -1,21 +1,17 @@
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/registrationPage.dart';
+import 'package:app1/pages/startPage.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/pages/firstPage.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-
-void initFireBase() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-}
+///TODO: ИСПРАВИТЬ ВЁРСТКУ | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ
 
 void main() {
-  initFireBase();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/authorizationPage',
+    initialRoute: '/',
     routes: {
+      '/': (context) => StartPage(),
       '/startPage': (context) => const FirstPage(),
       '/authorizationPage': (context) => const AuthorizationPage(),
       '/registrationPage': (context) => const RegistrationPage(),

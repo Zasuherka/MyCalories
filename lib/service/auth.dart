@@ -19,6 +19,11 @@ Future<String> authorization(String email, String password) async {
         password: password
     );
     response = 'Вход выполнен';
+    User? user = userCredential.user;
+    if (user!= null && !user.emailVerified) {
+      response = 'Ваша учётная запись не подтверждена';
+      await FirebaseAuth.instance.signOut();
+    }
   }
   on FirebaseAuthException catch (e)
   {
