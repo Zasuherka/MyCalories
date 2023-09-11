@@ -67,7 +67,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           Padding(padding: EdgeInsets.only(top: screenHeight/60)),
           SizedBox(
             width: screenWidth * 0.76,
-            child: TextFormField(
+            child: TextField(
               onChanged: (String value){
                 email = value;
               },
@@ -98,8 +98,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           Padding(padding: EdgeInsets.only(top: screenHeight/60)),
           SizedBox(
             width: screenWidth * 0.76,
-            child: TextFormField(
-
+            child: TextField(
               onChanged: (String value){
                 password = value;
               },

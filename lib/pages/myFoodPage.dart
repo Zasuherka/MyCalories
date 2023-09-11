@@ -1,3 +1,4 @@
+import 'package:app1/widgets/newFood.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -41,7 +42,7 @@ class MyFoodPage extends StatelessWidget {
         actions: [
           ElevatedButton(
             onPressed: () {
-
+              showDialog(context: context, builder: (BuildContext context) => const NewFood());
             },
             style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.all(0),
