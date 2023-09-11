@@ -6,7 +6,7 @@ Future<String> register(String email, String password1, password2) async {
   email = normalField(email);
   password1 = normalField(password1);
   password2 = normalField(password2);
-  String response = 'Registration error';
+  String response = 'Ошибка регистрации';
 
   if(password1 == password2) {
     try {
@@ -22,9 +22,9 @@ Future<String> register(String email, String password1, password2) async {
       response = 'Регистрация прошла успешно!\nВам на почту отправленно письмо,\nподтвердите регистрацию.';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        response = 'The password provided is too weak.';
+        response = 'Пароль ненадёжный';
       } else if (e.code == 'email-already-in-use') {
-        response = 'The account already exists for that email.';
+        response = 'Данная электронная почта уже используется';
       }
     } catch (e) {
       print(e);

@@ -18,10 +18,10 @@ Future<String> authorization(String email, String password) async {
         email: email,
         password: password
     );
-    response = 'Вход выполнен';
+    response = 'Вход выполнен.';
     User? user = userCredential.user;
     if (user!= null && !user.emailVerified) {
-      response = 'Ваша учётная запись не подтверждена';
+      response = 'Ваша учётная запись не подтверждена.';
       await FirebaseAuth.instance.signOut();
     }
   }
@@ -29,10 +29,10 @@ Future<String> authorization(String email, String password) async {
   {
     if (e.code == 'user-not-found')
     {
-      response = 'Юзер с этой почтой не найден';
+      response = 'Пользователь с этой почтой не найден.';
     } else if (e.code == 'wrong-password')
     {
-      response = 'Неверный пароль';
+      response = 'Неверный пароль.';
     }
   }
 

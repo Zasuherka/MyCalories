@@ -23,7 +23,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     setState(() {
       this.response = response;
     });
-    if (response == 'Вход выполнен') {
+    if (response == 'Вход выполнен.') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const FirstPage(),
@@ -53,12 +53,17 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             )
           ),
           Padding(padding: EdgeInsets.only(top: screenHeight/27)),
-          Text(response,
-          style: TextStyle(
-            fontSize: screenHeight/29,
-            fontFamily: 'Comfortaa',
-            color: Colors.black,
-          ),),
+          SizedBox(
+            height: screenHeight/12,
+            width: screenWidth,
+            child: Text(response,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: screenHeight/29,
+                fontFamily: 'Comfortaa',
+                color: Colors.black,
+              ),),
+          ),
           Padding(padding: EdgeInsets.only(top: screenHeight/60)),
           SizedBox(
             width: screenWidth * 0.76,
@@ -179,7 +184,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
             ],
           ),
-          Padding(padding: EdgeInsets.only(top: screenWidth/1.8)),
+          Padding(padding: EdgeInsets.only(top: screenWidth/2.2)),
           Text('MyCalories',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -188,7 +193,6 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                 color: Colors.black
             ),
           ),
-
         ],
       )
     );

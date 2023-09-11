@@ -13,7 +13,7 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  String response = "Регистрация";
+  String response = "Для регистрации, заполните все поля.";
   String email = '';
   String name = '';
   String country = '';
@@ -51,13 +51,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 )
             ),
             Padding(padding: EdgeInsets.only(top: screenHeight/27)),
-            Text(response,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: screenHeight/29,
-                fontFamily: 'Comfortaa',
-                color: Colors.black,
-              ),),
+            SizedBox(
+              height: screenHeight/15,
+              width: screenWidth,
+              child: Text(response,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: screenHeight/50,
+                  fontFamily: 'Comfortaa',
+                  color: Colors.black,
+                ),),
+            ),
             Padding(padding: EdgeInsets.only(top: screenHeight/30)),
             SizedBox(
               width: screenWidth * 0.76,

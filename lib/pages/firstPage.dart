@@ -1,10 +1,11 @@
 import 'package:app1/pages/authorizationPage.dart';
+import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/widgets/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
+///TODO убрать из комментов User user
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -15,7 +16,7 @@ class FirstPage extends StatefulWidget {
 
 
 class _FirstPageState extends State<FirstPage> {
-  User? user;
+  //User? user;
   List<Widget> pages = [const Profile(),const Profile2(),const Profile()];
   int pageIndex = 1;
   int _selectedIndex = 1;
@@ -61,7 +62,7 @@ class _FirstPageState extends State<FirstPage> {
     SystemChrome.setPreferredOrientations([ //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
       DeviceOrientation.portraitUp,
     ]);
-    user = FirebaseAuth.instance.currentUser;
+    //user = FirebaseAuth.instance.currentUser;
   }
 
   @override
@@ -88,6 +89,12 @@ class _FirstPageState extends State<FirstPage> {
         selectedItemColor: const Color.fromRGBO(16, 240, 12, 1.0),
         onTap: _onItemTapped,
       ),
-      body: Text(user.toString()),
+      body: Center(child: ElevatedButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const MyFoodPage()));
+        },
+        child: const Text("Button"),
+      ))
+      /// TODO getPage(pageIndex),
     );
   }}
