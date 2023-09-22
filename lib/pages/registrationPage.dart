@@ -1,8 +1,8 @@
+import 'package:app1/pages/authorizationPage.dart';
+import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:app1/pages/authorizationPage.dart';
-// import 'package:app1/controllers/auth.dart' as auth;
-import 'package:app1/service/registration.dart';
+
 
 
 class RegistrationPage extends StatefulWidget {
@@ -22,9 +22,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
 
 
-  Future<void> registration(String email, String password1, String password2) async
+  Future<void> registration(String email, String name, String password1, String password2) async
   {
-    final response = await register(email, password1, password2);
+    final response = await register(email, name,  password1, password2);
     setState(() {
       this.response = response;
     });
@@ -125,36 +125,36 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
             Padding(padding: EdgeInsets.only(top: screenHeight/60)),
-            SizedBox(
-              width: screenWidth * 0.76,
-              child: TextField(
-
-                onChanged: (String value){
-                  country = value;
-                },
-                style: TextStyle(
-                    fontSize: screenHeight/40,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black
-                ),
-                decoration: InputDecoration(   hoverColor: Colors.orange,
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  hintText: 'Страна',
-                  hintStyle: TextStyle(
-                      fontSize: screenHeight/40,
-                      fontFamily: 'Comfortaa',
-                      color: const Color.fromRGBO(0, 0, 0, 0.1)
-                  ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                  ),
-                  contentPadding: const EdgeInsets.only(bottom: -10),
-                  border: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                  ),
-                ),
-              ),
-            ),
+            // SizedBox(
+            //   width: screenWidth * 0.76,
+            //   child: TextField(
+            //
+            //     onChanged: (String value){
+            //       country = value;
+            //     },
+            //     style: TextStyle(
+            //         fontSize: screenHeight/40,
+            //         fontFamily: 'Comfortaa',
+            //         color: Colors.black
+            //     ),
+            //     decoration: InputDecoration(   hoverColor: Colors.orange,
+            //       floatingLabelBehavior: FloatingLabelBehavior.never,
+            //       hintText: 'Страна',
+            //       hintStyle: TextStyle(
+            //           fontSize: screenHeight/40,
+            //           fontFamily: 'Comfortaa',
+            //           color: const Color.fromRGBO(0, 0, 0, 0.1)
+            //       ),
+            //       focusedBorder: const UnderlineInputBorder(
+            //         borderSide: BorderSide(color: Colors.black, width: 1),
+            //       ),
+            //       contentPadding: const EdgeInsets.only(bottom: -10),
+            //       border: const UnderlineInputBorder(
+            //         borderSide: BorderSide(color: Colors.black, width: 1),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Padding(padding: EdgeInsets.only(top: screenHeight/60)),
             SizedBox(
               width: screenWidth * 0.76,
@@ -221,7 +221,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ElevatedButton(
                 onPressed:
                     () {
-                  registration(email, password1, password2);
+                  registration(email, name, password1, password2);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.85),

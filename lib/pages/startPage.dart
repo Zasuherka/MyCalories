@@ -1,7 +1,4 @@
-import 'package:app1/pages/authorizationPage.dart';
-import 'package:app1/pages/firstPage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,20 +10,10 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  Future<FirebaseApp> isNullUser() async
+  Future<void> isNullUser() async
   {
-    WidgetsFlutterBinding.ensureInitialized();
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null)
-    {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const FirstPage()));
-    }
-    else
-    {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const  AuthorizationPage()));
-    }
-    return firebaseApp;
+    Widget startPage = await getPage();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => startPage));
   }
   @override
   Widget build(BuildContext context) {

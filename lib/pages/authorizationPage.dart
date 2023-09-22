@@ -1,9 +1,8 @@
 import 'package:app1/pages/firstPage.dart';
+import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app1/pages/registrationPage.dart';
-import 'package:app1/service/auth.dart';
-
 
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({Key? key}) : super(key: key);

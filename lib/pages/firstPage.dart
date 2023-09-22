@@ -1,5 +1,8 @@
+import 'package:app1/objects/user.dart';
 import 'package:app1/pages/myFoodPage.dart';
+import 'package:app1/service/UserSirvice.dart';
 import 'package:app1/widgets/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,14 +17,24 @@ class FirstPage extends StatefulWidget {
 
 
 class _FirstPageState extends State<FirstPage> {
-  //User? user;
   List<Widget> pages = [const Profile(),const Profile2(),const Profile()];
   int pageIndex = 1;
   int _selectedIndex = 1;
-  String text = 'Как дела';
   Icon iconProfile = const Icon(Icons.person_outline);
   Icon iconFood = const Icon(Icons.food_bank_outlined);
   Icon iconHome = const Icon(Icons.home_outlined);
+  String name = '';
+  AppUser? user;
+
+
+  Future<void> getUser() async
+  {
+    user = await getAppUser();
+    setState(() {
+      name = user!.name!;
+    });
+  }
+
   Widget getPage(int index)
   {
     return pages[index];
@@ -60,7 +73,7 @@ class _FirstPageState extends State<FirstPage> {
     SystemChrome.setPreferredOrientations([ //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
       DeviceOrientation.portraitUp,
     ]);
-    //user = FirebaseAuth.instance.currentUser;
+    getUser();
   }
 
   @override
@@ -91,7 +104,7 @@ class _FirstPageState extends State<FirstPage> {
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context) => const MyFoodPage()));
         },
-        child: const Text("Button"),
+        child: Text(name),
       ))
       /// TODO getPage(pageIndex),
     );

@@ -2,23 +2,23 @@ import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/pages/registrationPage.dart';
 import 'package:app1/pages/startPage.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/pages/firstPage.dart';
 
-///TODO: ИСПРАВИТЬ ВЁРСТКУ | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ
+///TODO | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ | Сделать валидацию при регистрации |
 
-Future<void> initialization() async
-{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-}
+// Future<void> initialization() async
+// {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   FirebaseDatabase.instance;
+// }
 
 void main() {
-  initialization();
+  //initialization();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/firstPage',
+    initialRoute: '/startPage',
     routes: {
       '/myFoodPage': (context) => const MyFoodPage(),
       '/startPage': (context) => const StartPage(), ///TODO это начальный загрузочный экран, поэтому его в конце поставить как initialRoute
