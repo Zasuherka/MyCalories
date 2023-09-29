@@ -13,6 +13,7 @@ class _StartPageState extends State<StartPage> {
   Future<void> isNullUser() async
   {
     Widget startPage = await getPage();
+    await getAppUser();
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => startPage));
   }
   @override

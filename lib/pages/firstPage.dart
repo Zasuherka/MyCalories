@@ -23,17 +23,17 @@ class _FirstPageState extends State<FirstPage> {
   Icon iconProfile = const Icon(Icons.person_outline);
   Icon iconFood = const Icon(Icons.food_bank_outlined);
   Icon iconHome = const Icon(Icons.home_outlined);
-  String name = '';
-  AppUser? user;
+  //String name = '';
+  //AppUser? user;
 
 
-  Future<void> getUser() async
-  {
-    user = await getAppUser();
-    setState(() {
-      name = user!.name!;
-    });
-  }
+  // Future<void> getUser() async
+  // {
+  //   user = await getAppUser();
+  //   setState(() {
+  //     name = user!.name!;
+  //   });
+  // }
 
   Widget getPage(int index)
   {
@@ -73,7 +73,7 @@ class _FirstPageState extends State<FirstPage> {
     SystemChrome.setPreferredOrientations([ //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
       DeviceOrientation.portraitUp,
     ]);
-    getUser();
+    //getUser();
   }
 
   @override
@@ -104,7 +104,7 @@ class _FirstPageState extends State<FirstPage> {
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context) => const MyFoodPage()));
         },
-        child: Text(name),
+        child: Text(localUser.name.toString()),
       ))
       /// TODO getPage(pageIndex),
     );

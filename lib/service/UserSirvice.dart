@@ -15,6 +15,8 @@ class UserService
   //User? user = FirebaseAuth.instance.currentUser;
 }
 
+late AppUser localUser;
+
 // Future<String> getName() async
 // {
 //   final ref = FirebaseDatabase.instance.ref();
@@ -23,15 +25,15 @@ class UserService
 //   return snapshot.value.toString();
 // }
 
-Future<AppUser> getAppUser() async
+Future<void> getAppUser() async
 {
   final ref = FirebaseDatabase.instance.ref();
   User user = FirebaseAuth.instance.currentUser!;
   final userName = await ref.child('/users/${user.uid}/name').get();
   String email = user.email!;
   final myResults = await ref.child('/users/${user.uid}/myResults').get();
-  final myFoods = await ref.child('foods/${user.uid}/').get();
-  return AppUser(user.uid,userName.value.toString(),email);
+  ///final myFoods = await ref.child('foods/${user.uid}/myFoods').get(); МБ не пригодится
+  localUser = AppUser(user.uid,userName.value.toString(),email);
 }
 
 Future<String> authorization(String email, String password) async {

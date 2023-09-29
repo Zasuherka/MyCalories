@@ -5,17 +5,11 @@ import 'package:app1/pages/startPage.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/pages/firstPage.dart';
 
-///TODO | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ | Сделать валидацию при регистрации |
-
-// Future<void> initialization() async
-// {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   FirebaseDatabase.instance;
-// }
+///TODO | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ | Сделать валидацию при регистрации
+///TODO | Переписать код получения юзера(Чтобы получить его один раз и передавать на другие экраны, а не каждый раз запрашивать заново)
+///TODO ОБЯЗАТЕЛЬНО!!! Сделать проверку на то, существует ли в БД авторизированный пользователь. Вдруг в БД его нет, но он в КЭШе телефона авторизация осталась
 
 void main() {
-  //initialization();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: '/startPage',

@@ -1,4 +1,3 @@
-import 'package:app1/objects/food.dart';
 import 'package:app1/validation/foodValidator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +14,7 @@ class NewFood extends StatefulWidget {
 }
 
 class _NewFoodState extends State<NewFood> {
+  bool activeTap = true;
   String title = '';
   String calories = '';
   String protein = '';
@@ -28,7 +28,7 @@ class _NewFoodState extends State<NewFood> {
 
     Future<void> newFood() async
     {
-      await addNewFood(title, protein, fats, carbohydrates, calories);
+      await createFood(title, protein, fats, carbohydrates, calories);
     }
 
 
@@ -366,15 +366,17 @@ class _NewFoodState extends State<NewFood> {
                   height: screenHeight/25,
                   width: screenWidth/2.5,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       setState(() {
                         notification = foodValidator(protein,fats,carbohydrates,calories);
                       });
-                      if (_formKey.currentState != null)
+                      if (_formKey.currentState != null && activeTap)
                         {
                           if (_formKey.currentState!.validate() && notification == '') {
-                            newFood();
-                            Navigator.pop(context);
+                            activeTap = false;
+                            print('sdfsdfsdfsddsf');
+                            Navigator.pop(context, await createFood(title, protein, fats, carbohydrates, calories));
+                            print('sdfsdfsdfsddsf');
                           }
                         }
                     },
@@ -394,7 +396,7 @@ class _NewFoodState extends State<NewFood> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           )

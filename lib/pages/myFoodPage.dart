@@ -1,7 +1,7 @@
 import 'package:app1/objects/food.dart';
 import 'package:app1/service/foodService.dart';
 import 'package:app1/widgets/newFood.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:app1/widgets/updateFood.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -50,7 +50,9 @@ class _MyFoodPageState extends State<MyFoodPage> {
         actions: [
           ElevatedButton(
             onPressed: () {
-              showDialog(context: context, builder: (BuildContext context) => const NewFood());
+              setState(() {
+                showDialog(context: context, builder: (BuildContext context) => const NewFood());
+              });
             },
             style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.all(0),
@@ -72,69 +74,86 @@ class _MyFoodPageState extends State<MyFoodPage> {
           stream: getUserFoods(),
           builder: (BuildContext context, AsyncSnapshot<List<Food>> snapshot) {
             if (snapshot.data == null || snapshot.data!.isEmpty) return const Text('Вы не добавили ни одного продукта');
+            //final listFood = snapshot.data!;
             return ListView.builder(
+                shrinkWrap: true,
                 padding: EdgeInsets.only(top: screenHeight/300),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index)
                 {
-                  return
-                    Padding(padding: EdgeInsets.only(top: screenHeight/300),
-                        child:
-                        ///TODO Дописать действие для кнопки продукта
-                        GestureDetector(
-                          onTap: (){
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: const Color.fromRGBO(16, 240, 12, 1.0),
-                                      width: 4
-                                  ),
-                                  borderRadius: BorderRadius.circular(20.0)
-                              ),
-                              width: screenWidth,
-                              height: screenHeight/10,
-                              child: Padding(padding: EdgeInsets.only(left: screenWidth/30),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(padding: EdgeInsets.only(left: screenWidth/60)),
-                                    Text(
-                                      snapshot.data!.elementAt(index).title,
-                                      style: TextStyle(
-                                        fontSize: screenHeight/30,
-                                        fontFamily: 'Comfortaa',
-                                        color: const Color.fromRGBO(16, 240, 12, 1.0),
-                                      ),
+                  int elementIndex = snapshot.data!.length - 1 - index;
+                  return Padding(padding: EdgeInsets.only(top: screenHeight/300),
+                      child:
+                      ///TODO Дописать действие для кнопки продукта
+                      GestureDetector(
+                        onTap: () async {
+                          bool deleteFood = await showDialog(context: context, builder: (BuildContext context) => UpdateFood(food: snapshot.data!.elementAt(elementIndex)));
+                          //snapshot.data.
+                          if (deleteFood){
+                            setState(() {
+                              snapshot.data!.remove(snapshot.data!.elementAt(elementIndex));
+                            });
+                          }
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: const Color.fromRGBO(16, 240, 12, 1.0),
+                                    width: 4
+                                ),
+                                borderRadius: BorderRadius.circular(20.0)
+                            ),
+                            width: screenWidth,
+                            height: screenHeight/10,
+                            child: Padding(padding: EdgeInsets.only(left: screenWidth/20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(padding: EdgeInsets.only(left: screenWidth/60)),
+                                  Text(
+                                    snapshot.data!.elementAt(elementIndex).title,
+                                    style: TextStyle(
+                                      fontSize: screenHeight/32,
+                                      fontFamily: 'Comfortaa',
+                                      color: const Color.fromRGBO(16, 240, 12, 1.0),
                                     ),
-                                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: screenWidth/3,
-                                          child: Text('${snapshot.data!.elementAt(index).calories.toString()}ккал.',style: TextStyle(
-                                            fontSize: screenHeight/50,
-                                            fontFamily: 'Comfortaa',
-                                            color: const Color.fromRGBO(16, 240, 12, 1.0),
-                                          ),
-                                          ),
-                                        ),
-                                        Text('${snapshot.data!.elementAt(index).proteins.toString()}|'
-                                            '${snapshot.data!.elementAt(index).fats.toString()}|'
-                                            '${snapshot.data!.elementAt(index).carbohydrates.toString()}',style: TextStyle(
+                                  ),
+                                  Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: screenWidth/3,
+                                        child: Text('${snapshot.data!.elementAt(elementIndex).calories.toString()}ккал.',style: TextStyle(
                                           fontSize: screenHeight/50,
                                           fontFamily: 'Comfortaa',
                                           color: const Color.fromRGBO(16, 240, 12, 1.0),
                                         ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                          ),
-                        )
-                    );
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: screenWidth/2.5,
+                                        child:
+                                        Text('${snapshot.data!.elementAt(elementIndex).protein.toString()}|'
+                                            '${snapshot.data!.elementAt(elementIndex).fats.toString()}|'
+                                            '${snapshot.data!.elementAt(elementIndex).carbohydrates.toString()}',
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontSize: screenHeight/50,
+                                            fontFamily: 'Comfortaa',
+                                            color: const Color.fromRGBO(16, 240, 12, 1.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                        ),
+                      )
+                  );
+
                 }
             );
           },

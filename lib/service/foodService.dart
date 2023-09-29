@@ -6,14 +6,50 @@ import 'package:flutter/material.dart';
 
 
 ///TODO разобраться почему не все данные подгружаются
-Future<void> addNewFood(String title, String protein, String fats, String carbohydrates, String calories) async
+Future createFood(String title, String protein, String fats, String carbohydrates, String calories) async
 {
-  AppUser user = await getAppUser();
-  final ref = FirebaseDatabase.instance.ref("/foods");
+  DatabaseReference ref = FirebaseDatabase.instance.ref("/foods");
   try {
-    ///TODO дописать правильную запись данных при регистрации
-    await ref.push().set({
-      "authorId": user.userId,
+    final food = ref.push();
+    await food.set({
+      "authorEmail": localUser.email,
+      "title": title,
+      "protein": double.parse(protein).toStringAsFixed(2),
+      "fats": double.parse(fats).toStringAsFixed(2),
+      "carbohydrates":double.parse(carbohydrates).toStringAsFixed(2),
+      "calories": double.parse(calories).toStringAsFixed(2)
+    });
+
+    ref = FirebaseDatabase.instance.ref("/users/${localUser.userId}");
+
+    DataSnapshot listFoods = await ref.child('myFoods').get();
+
+    if(listFoods.value == null){
+      await ref.update({
+        "myFoods": [food.key]
+      });
+    }
+    else{
+      List newListFood = [];
+      listFoods.children.forEach((food) {
+        newListFood.add(food.value.toString());
+      });
+      newListFood.add(food.key);
+      await ref.update({
+        "myFoods": newListFood
+      });
+    }
+  }
+  catch (e) {
+    print("Ошибка" + e.toString());
+  }
+}
+
+Future<void> updateFood(String idFood, String title, String protein, String fats, String carbohydrates, String calories) async
+{
+  final ref = FirebaseDatabase.instance.ref("/foods/$idFood");
+  try {
+    await ref.update({
       "title": title,
       "protein": double.parse(protein).toStringAsFixed(2),
       "fats": double.parse(fats).toStringAsFixed(2),
@@ -24,30 +60,22 @@ Future<void> addNewFood(String title, String protein, String fats, String carboh
   catch (e) {
     print("Ошибка" + e.toString());
   }
-
 }
 
+/// TODO обновить способ получения продуктов пользователя. Сделать с помощью списка айдишников еды
 Stream<List<Food>> getUserFoods() async*
 {
   List<Food> userFoods = [];
-  AppUser user = await getAppUser();
-  String title = '';
-  String protein = '';
-  String fats = '';
-  String carbohydrates = '';
-  String calories = '';
   try
   {
-    DatabaseReference ref = FirebaseDatabase.instance.ref('foods');
-    DataSnapshot foods = await ref.orderByChild('authorId').equalTo(user.userId).get();
-    foods.children.forEach((food) {
-      title = food.child('title').value.toString();
-      protein = food.child('protein').value.toString();
-      fats = food.child('fats').value.toString();
-      carbohydrates = food.child('carbohydrates').value.toString();
-      calories = food.child('calories').value.toString();
-      userFoods.add(Food(title,protein,fats,carbohydrates, calories));
-    });
+    DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser.userId}/myFoods');
+    DataSnapshot listFoods = await ref.get();
+    for(DataSnapshot food in listFoods.children){
+      ref = FirebaseDatabase.instance.ref('foods/${food.value}');
+      DataSnapshot getFood = await ref.get();
+      userFoods.add(Food(food.value.toString(),getFood.child('title').value.toString(),getFood.child('protein').value.toString(),
+          getFood.child('fats').value.toString(),getFood.child('carbohydrates').value.toString(), getFood.child('calories').value.toString()));
+    }
   }
   catch(e)
   {
@@ -56,7 +84,16 @@ Stream<List<Food>> getUserFoods() async*
   yield userFoods;
 }
 
-// Future<void> addNewFood2(String foodTitle, String protien, String fats, String carbohydrates) async
-// {
-//
-// }
+Future<void> deleteFood(String foodId) async
+{
+  DatabaseReference ref = FirebaseDatabase.instance.ref("/users/${localUser.userId}");
+  DataSnapshot listFoods = await ref.child('myFoods').get();
+  List newListFood = [];
+  listFoods.children.forEach((food) {
+    newListFood.add(food.value.toString());
+  });
+  newListFood.remove(foodId);
+  await ref.update({
+    "myFoods": newListFood
+  });
+}
