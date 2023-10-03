@@ -1,8 +1,6 @@
 import 'package:app1/objects/food.dart';
-import 'package:app1/objects/user.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
 
 
 ///TODO разобраться почему не все данные подгружаются
@@ -12,7 +10,7 @@ Future createFood(String title, String protein, String fats, String carbohydrate
   try {
     final food = ref.push();
     await food.set({
-      "authorEmail": localUser.email,
+      "authorEmail": localUser!.email,
       "title": title,
       "protein": double.parse(protein).toStringAsFixed(2),
       "fats": double.parse(fats).toStringAsFixed(2),
@@ -20,7 +18,7 @@ Future createFood(String title, String protein, String fats, String carbohydrate
       "calories": double.parse(calories).toStringAsFixed(2)
     });
 
-    ref = FirebaseDatabase.instance.ref("/users/${localUser.userId}");
+    ref = FirebaseDatabase.instance.ref("/users/${localUser!.userId}");
 
     DataSnapshot listFoods = await ref.child('myFoods').get();
 
@@ -62,19 +60,21 @@ Future<void> updateFood(String idFood, String title, String protein, String fats
   }
 }
 
-/// TODO обновить способ получения продуктов пользователя. Сделать с помощью списка айдишников еды
+///TODO попробоавать добавлять элементы в список еды localUser и этот список вставить в экран myFoodPage
 Stream<List<Food>> getUserFoods() async*
 {
   List<Food> userFoods = [];
   try
   {
-    DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser.userId}/myFoods');
+    DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser!.userId}/myFoods');
     DataSnapshot listFoods = await ref.get();
     for(DataSnapshot food in listFoods.children){
       ref = FirebaseDatabase.instance.ref('foods/${food.value}');
       DataSnapshot getFood = await ref.get();
       userFoods.add(Food(food.value.toString(),getFood.child('title').value.toString(),getFood.child('protein').value.toString(),
           getFood.child('fats').value.toString(),getFood.child('carbohydrates').value.toString(), getFood.child('calories').value.toString()));
+      // localUser!.myFoods.add(Food(food.value.toString(),getFood.child('title').value.toString(),getFood.child('protein').value.toString(),
+      //     getFood.child('fats').value.toString(),getFood.child('carbohydrates').value.toString(), getFood.child('calories').value.toString()));
     }
   }
   catch(e)
@@ -86,7 +86,7 @@ Stream<List<Food>> getUserFoods() async*
 
 Future<void> deleteFood(String foodId) async
 {
-  DatabaseReference ref = FirebaseDatabase.instance.ref("/users/${localUser.userId}");
+  DatabaseReference ref = FirebaseDatabase.instance.ref("/users/${localUser!.userId}");
   DataSnapshot listFoods = await ref.child('myFoods').get();
   List newListFood = [];
   listFoods.children.forEach((food) {

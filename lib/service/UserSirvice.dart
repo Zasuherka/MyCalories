@@ -1,39 +1,67 @@
+import 'dart:convert';
 import 'package:app1/objects/user.dart';
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/firstPage.dart';
 
 FirebaseAuth auth =  FirebaseAuth.instance;
 
-class UserService
+AppUser? localUser;
+
+Future<AppUser?> getAppUser() async
 {
-  late AppUser appUser;
-  late String idUser;
-  //User? user = FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
+  if(user == null) {
+    print(1);
+    return null;
+  }
+  user.reload();
+  user = FirebaseAuth.instance.currentUser;
+  AppUser? userInfo = await getUserInfo();
+  if (userInfo == null) {
+    final userName = await ref.child('/users/${user!.uid}/name').get();
+    ///final myResults = await ref.child('/users/${user.uid}/myResults').get();
+    ///final myFoods = await ref.child('foods/${user.uid}/myFoods').get(); МБ не пригодится
+    userInfo = AppUser(userId: user.uid, name: userName.value.toString(), email: user.email!);
+    setUserInfo(userInfo);
+    print(2);
+    return userInfo;
+  }
+  else{
+    if(userInfo.userId == user!.uid){
+      print(3);
+      return userInfo;
+    }
+    print(4);
+    await exitUser();
+    print(5);
+    return null;
+  }
 }
 
-late AppUser localUser;
-
-// Future<String> getName() async
-// {
-//   final ref = FirebaseDatabase.instance.ref();
-//   User user = FirebaseAuth.instance.currentUser!;
-//   final snapshot = await ref.child('/users/${user.uid}/userName').get();
-//   return snapshot.value.toString();
-// }
-
-Future<void> getAppUser() async
+Future<AppUser?> getUserInfo() async
 {
-  final ref = FirebaseDatabase.instance.ref();
-  User user = FirebaseAuth.instance.currentUser!;
-  final userName = await ref.child('/users/${user.uid}/name').get();
-  String email = user.email!;
-  final myResults = await ref.child('/users/${user.uid}/myResults').get();
-  ///final myFoods = await ref.child('foods/${user.uid}/myFoods').get(); МБ не пригодится
-  localUser = AppUser(user.uid,userName.value.toString(),email);
+  final prefs = await SharedPreferences.getInstance();
+  final userInfo = prefs.getString('userInfo');
+  if (userInfo == null){
+    return null;
+  }
+  return AppUser.fromJson(json.decode(userInfo));
+}
+
+Future<void> setUserInfo(AppUser userInfo) async
+{
+  final prefs = await SharedPreferences.getInstance();
+  print(userInfo.name);
+  prefs.setString('userInfo', json.encode({
+    'name' : userInfo.name,
+    'email': userInfo.email,
+    'userId': userInfo.userId
+  }));
 }
 
 Future<String> authorization(String email, String password) async {
@@ -62,6 +90,8 @@ Future<String> authorization(String email, String password) async {
         response = 'Ваша учётная запись не подтверждена.';
         await FirebaseAuth.instance.signOut();
       }///Возможно будет ещё логика
+      else{
+      }
     }
   }
 
@@ -151,9 +181,8 @@ Future<Widget> getPage() async
 {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseDatabase.instance;
-  User? user = FirebaseAuth.instance.currentUser;
-  if (user != null)
+  localUser = await getAppUser();
+  if (localUser != null)
   {
     return const FirstPage();
   }
@@ -161,4 +190,12 @@ Future<Widget> getPage() async
   {
     return const AuthorizationPage();
   }
+}
+
+
+Future<void> exitUser() async{
+  final prefs = await SharedPreferences.getInstance();
+  prefs.remove('userInfo');
+  localUser = null;
+  await FirebaseAuth.instance.signOut();
 }

@@ -20,8 +20,9 @@ class _MyFoodPageState extends State<MyFoodPage> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
       appBar: AppBar(
+        elevation: 2,
         backgroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
         shadowColor: Colors.transparent,
         title: Text("Моя еда", textAlign: TextAlign.center, style: TextStyle(
@@ -69,6 +70,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
           ),
         ],
       ),
+      ///TODO изменить дизайн моей еды подобно дизайну главного экрана, который с диаграммами
       body: SizedBox(
         child: StreamBuilder(
           stream: getUserFoods(),
@@ -82,9 +84,8 @@ class _MyFoodPageState extends State<MyFoodPage> {
                 itemBuilder: (BuildContext context, int index)
                 {
                   int elementIndex = snapshot.data!.length - 1 - index;
-                  return Padding(padding: EdgeInsets.only(top: screenHeight/300),
+                  return Padding(padding: EdgeInsets.only(top: screenHeight/200, left: screenWidth/100, right: screenWidth/100),
                       child:
-                      ///TODO Дописать действие для кнопки продукта
                       GestureDetector(
                         onTap: () async {
                           bool deleteFood = await showDialog(context: context, builder: (BuildContext context) => UpdateFood(food: snapshot.data!.elementAt(elementIndex)));
@@ -96,11 +97,21 @@ class _MyFoodPageState extends State<MyFoodPage> {
                           }
                         },
                         child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: const Color.fromRGBO(16, 240, 12, 1.0),
-                                    width: 4
+                            decoration:
+                            BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 5,
+                                  blurRadius: 13,
+                                  offset: Offset(0, 3),
                                 ),
-                                borderRadius: BorderRadius.circular(20.0)
+                              ],
+                                // border: Border.all(color: const Color.fromRGBO(16, 240, 12, 1.0),
+                                //     width: 4
+                                // ),
+                                borderRadius: BorderRadius.circular(15.0)
                             ),
                             width: screenWidth,
                             height: screenHeight/10,
@@ -119,7 +130,6 @@ class _MyFoodPageState extends State<MyFoodPage> {
                                     ),
                                   ),
                                   Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-
                                   Row(
                                     children: [
                                       SizedBox(

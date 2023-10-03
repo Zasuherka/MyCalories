@@ -1,4 +1,5 @@
 import 'package:app1/pages/firstPage.dart';
+import 'package:app1/pages/startPage.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +26,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     if (response == 'Вход выполнен.') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const FirstPage(),
+          builder: (context) => const StartPage(),
         ),
       );
     }

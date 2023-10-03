@@ -2,12 +2,12 @@ import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/pages/registrationPage.dart';
 import 'package:app1/pages/startPage.dart';
+import 'package:app1/widgets/myCalories.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/pages/firstPage.dart';
 
 ///TODO | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ | Сделать валидацию при регистрации
 ///TODO | Переписать код получения юзера(Чтобы получить его один раз и передавать на другие экраны, а не каждый раз запрашивать заново)
-///TODO ОБЯЗАТЕЛЬНО!!! Сделать проверку на то, существует ли в БД авторизированный пользователь. Вдруг в БД его нет, но он в КЭШе телефона авторизация осталась
 
 void main() {
   runApp(MaterialApp(

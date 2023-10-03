@@ -9,36 +9,19 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
   late String userId;
   String? name;
   String? email;
-  List<int> myFoods = [];
+  List<Food> myFoods = [];
   List<Result> myResults = [];
   //late String urlPhoto;
-  AppUser(this.userId, this.name, this.email);
+  AppUser({required this.userId, required this.name, required this.email});
 
-  void addMyResults(int weight)
-  {
+  AppUser.fromJson(Map<String, dynamic> json) :
+        name = json['name'],
+        email = json['email'],
+        userId = json['userId'];
 
-  }
-
-
-  void getInfoUser()
-  {
-    getMyFoods();
-    getMyResults();
-  }
-
-  void getMyFoods()
-  {
-    ///TODO Реализовать запрос в БД, который будет выдавать список продуктов, у которых authorId = userId
-    print(ref.child('/users/$userId/userName').get());
-    //myFoods = foods;
-  }
-
-  void getMyResults()
-  {
-
-  }
-
-
-
-
+  Map<String, dynamic> toJson() => {
+    'name' : name,
+    'email': email,
+    'userId': userId
+  };
 }

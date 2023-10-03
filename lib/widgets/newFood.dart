@@ -374,9 +374,9 @@ class _NewFoodState extends State<NewFood> {
                         {
                           if (_formKey.currentState!.validate() && notification == '') {
                             activeTap = false;
-                            print('sdfsdfsdfsddsf');
+                            //print('sdfsdfsdfsddsf');
                             Navigator.pop(context, await createFood(title, protein, fats, carbohydrates, calories));
-                            print('sdfsdfsdfsddsf');
+                            //print('sdfsdfsdfsddsf');
                           }
                         }
                     },
