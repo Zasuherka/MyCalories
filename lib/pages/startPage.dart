@@ -1,3 +1,5 @@
+import 'package:app1/pages/authorizationPage.dart';
+import 'package:app1/pages/firstPage.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,12 +14,22 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   Future<void> isNullUser() async
   {
-    Widget startPage = await getPage();
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => startPage));
+    bool startPage = await getPage();
+    if(startPage){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const FirstPage()));
+    }
+    else{
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const AuthorizationPage()));
+    }
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isNullUser();
   }
   @override
   Widget build(BuildContext context) {
-    isNullUser();
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,

@@ -50,14 +50,15 @@ class _UpdateFoodState extends State<UpdateFood> {
   Widget build(BuildContext context) {
 
 
-    Future<void> update() async
+    Future<bool> update() async
     {
-      await updateFood(food.idFood ,title, protein, fats, carbohydrates, calories);
+      await updateFood(food, food.idFood ,title, protein, fats, carbohydrates, calories);
+      return false;
     }
 
     Future<void> delete() async
     {
-      await deleteFood(food.idFood);
+      await deleteFood(food, food.idFood);
     }
     bool activeTap = true;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -410,8 +411,7 @@ class _UpdateFoodState extends State<UpdateFood> {
                             if (_formKey.currentState != null)
                             {
                               if (_formKey.currentState!.validate() && notification == '') {
-                                update();
-                                Navigator.pop(context);
+                                Navigator.pop(context,update());
                               }
                             }
                           },
@@ -439,7 +439,8 @@ class _UpdateFoodState extends State<UpdateFood> {
                             if (activeTap)
                               {
                                 activeTap = false;
-                                await deleteFood(food.idFood);
+                                //await deleteFood(food, food.idFood);
+                                delete();
                                 Navigator.pop(context, true);
                               }
                           },

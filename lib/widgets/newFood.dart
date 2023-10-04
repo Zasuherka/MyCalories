@@ -366,7 +366,7 @@ class _NewFoodState extends State<NewFood> {
                   height: screenHeight/25,
                   width: screenWidth/2.5,
                   child: ElevatedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       setState(() {
                         notification = foodValidator(protein,fats,carbohydrates,calories);
                       });
@@ -374,9 +374,7 @@ class _NewFoodState extends State<NewFood> {
                         {
                           if (_formKey.currentState!.validate() && notification == '') {
                             activeTap = false;
-                            //print('sdfsdfsdfsddsf');
-                            Navigator.pop(context, await createFood(title, protein, fats, carbohydrates, calories));
-                            //print('sdfsdfsdfsddsf');
+                            Navigator.pop(context, newFood());
                           }
                         }
                     },

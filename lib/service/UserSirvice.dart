@@ -1,26 +1,23 @@
 import 'dart:convert';
 import 'package:app1/objects/user.dart';
-import 'package:app1/pages/authorizationPage.dart';
+import 'package:app1/service/foodService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../pages/firstPage.dart';
-
-FirebaseAuth auth =  FirebaseAuth.instance;
 
 AppUser? localUser;
 
+final FirebaseAuth auth = FirebaseAuth.instance;
+
 Future<AppUser?> getAppUser() async
 {
-  User? user = FirebaseAuth.instance.currentUser;
+  User? user = auth.currentUser;
   if(user == null) {
     print(1);
     return null;
   }
-  user.reload();
-  user = FirebaseAuth.instance.currentUser;
+  await user.reload();
+  user = auth.currentUser;
   AppUser? userInfo = await getUserInfo();
   if (userInfo == null) {
     final userName = await ref.child('/users/${user!.uid}/name').get();
@@ -50,13 +47,12 @@ Future<AppUser?> getUserInfo() async
   if (userInfo == null){
     return null;
   }
-  return AppUser.fromJson(json.decode(userInfo));
+  return AppUser.fromJson(await json.decode(userInfo));
 }
 
 Future<void> setUserInfo(AppUser userInfo) async
 {
   final prefs = await SharedPreferences.getInstance();
-  print(userInfo.name);
   prefs.setString('userInfo', json.encode({
     'name' : userInfo.name,
     'email': userInfo.email,
@@ -77,7 +73,7 @@ Future<String> authorization(String email, String password) async {
   /// Попытка зайти в профиль
   try
   {
-    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+    UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email,
         password: password
     );
@@ -88,7 +84,7 @@ Future<String> authorization(String email, String password) async {
       if(!user.emailVerified)
       {
         response = 'Ваша учётная запись не подтверждена.';
-        await FirebaseAuth.instance.signOut();
+        await auth.signOut();
       }///Возможно будет ещё логика
       else{
       }
@@ -99,6 +95,7 @@ Future<String> authorization(String email, String password) async {
   /// Ответ в случае ошибки
   on FirebaseAuthException catch (e)
   {
+    print('ERROR   ' + e.toString());
     if (e.code == 'user-not-found')
     {
       response = 'Пользователь с этой почтой не найден.';
@@ -122,7 +119,7 @@ Future<String> register(String email, String name, String password1, password2) 
   if(password1 == password2) {
     /// Попытка зарегистрироваться
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email,
           password: password1
       );
@@ -133,7 +130,7 @@ Future<String> register(String email, String name, String password1, password2) 
         if (!user.emailVerified)
         {
           await user.sendEmailVerification();
-          await FirebaseAuth.instance.signOut();
+          await auth.signOut();
         }
       }
       response = 'Регистрация прошла успешно!\nВам на почту отправленно письмо,\nподтвердите регистрацию.';
@@ -164,7 +161,6 @@ String normalField(String field)
 
 Future<void> newUser(String userId, String userName) async
 {
-  FirebaseAuth.instance;
   DatabaseReference ref = FirebaseDatabase.instance.ref('/users');
 
   try {
@@ -177,25 +173,24 @@ Future<void> newUser(String userId, String userName) async
 
 
 
-Future<Widget> getPage() async
+Future<bool> getPage() async
 {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   localUser = await getAppUser();
   if (localUser != null)
   {
-    return const FirstPage();
+    await getUserFoods();
+    return true;
   }
   else
   {
-    return const AuthorizationPage();
+    return false;
   }
 }
 
 
 Future<void> exitUser() async{
   final prefs = await SharedPreferences.getInstance();
-  prefs.remove('userInfo');
+  await prefs.remove('userInfo');
   localUser = null;
-  await FirebaseAuth.instance.signOut();
+  await auth.signOut();
 }

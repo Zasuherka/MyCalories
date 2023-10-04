@@ -2,6 +2,7 @@ import 'package:app1/objects/user.dart';
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/service/UserSirvice.dart';
+import 'package:app1/service/foodService.dart';
 import 'package:app1/widgets/myCalories.dart';
 import 'package:app1/widgets/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -75,7 +76,6 @@ class _FirstPageState extends State<FirstPage> {
     SystemChrome.setPreferredOrientations([ //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
       DeviceOrientation.portraitUp,
     ]);
-    //getUser();
   }
 
   @override

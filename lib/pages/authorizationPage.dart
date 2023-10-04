@@ -17,12 +17,10 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   String email = '';
   String password = '';
 
-  Future<void> singIn(String email, String password) async
+  Future<void> singIn(String email, String password, BuildContext context) async
   {
     final response = await authorization(email,password);
-    setState(() {
-      this.response = response;
-    });
+    this.response = response;
     if (response == 'Вход выполнен.') {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -128,7 +126,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           Padding(padding: EdgeInsets.only(top: screenHeight/30)),
           ElevatedButton(
               onPressed: () {
-                singIn(email, password);
+                singIn(email, password, context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(0, 0, 0, 0.85),
