@@ -4,43 +4,72 @@ import 'package:app1/service/foodService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 AppUser? localUser;
 
 final FirebaseAuth auth = FirebaseAuth.instance;
+late bool isUserConnected;
 
+
+/// Получение информации о пользователе и запись в localUser
 Future<AppUser?> getAppUser() async
 {
-  User? user = auth.currentUser;
-  if(user == null) {
-    print(1);
-    return null;
-  }
-  await user.reload();
-  user = auth.currentUser;
-  AppUser? userInfo = await getUserInfo();
-  if (userInfo == null) {
-    final userName = await ref.child('/users/${user!.uid}/name').get();
-    ///final myResults = await ref.child('/users/${user.uid}/myResults').get();
-    ///final myFoods = await ref.child('foods/${user.uid}/myFoods').get(); МБ не пригодится
-    userInfo = AppUser(userId: user.uid, name: userName.value.toString(), email: user.email!);
-    setUserInfo(userInfo);
-    print(2);
-    return userInfo;
-  }
-  else{
-    if(userInfo.userId == user!.uid){
-      print(3);
-      return userInfo;
+  if(await isConnected()){
+    try
+    {
+      User? user = auth.currentUser;
+      if(user == null) {
+        print(1);
+        return null;
+      }
+      await user.reload();
+      user = auth.currentUser;
+      final userName = await ref.child('/users/${user!.uid}/name').get();
+      ///final myResults = await ref.child('/users/${user.uid}/myResults').get();
+      ///final myFoods = await ref.child('foods/${user.uid}/myFoods').get(); МБ не пригодится
+      _setUserInfo(AppUser(userId: user.uid, name: userName.value.toString(), email: user.email!));
+      return AppUser(userId: user.uid, name: userName.value.toString(), email: user.email!);
     }
-    print(4);
+    on FirebaseAuthException catch (e)
+    {
+      if(e.code == 'network-request-failed'){
+        return await _userIsNotConnected();
+      }
+    }
+  }
+  return await _userIsNotConnected();
+}
+
+///Проверка на подключение
+Future<bool> isConnected() async {
+  var connectivityResult = await Connectivity().checkConnectivity();
+  if (connectivityResult == ConnectivityResult.mobile) {
+    return true;
+  } else if (connectivityResult == ConnectivityResult.wifi) {
+    return true;
+  }
+  return false;
+}
+
+///Получение данных о пользователе в случае если нет подключения к интернету
+Future<AppUser?> _userIsNotConnected() async
+{
+  AppUser? userInfo = await _getUserInfo();
+  if (userInfo == null)
+  {
     await exitUser();
-    print(5);
     return null;
+  }
+  else
+  {
+    return userInfo;
   }
 }
 
-Future<AppUser?> getUserInfo() async
+
+///Получение данных из КЭШа
+Future<AppUser?> _getUserInfo() async
 {
   final prefs = await SharedPreferences.getInstance();
   final userInfo = prefs.getString('userInfo');
@@ -50,7 +79,9 @@ Future<AppUser?> getUserInfo() async
   return AppUser.fromJson(await json.decode(userInfo));
 }
 
-Future<void> setUserInfo(AppUser userInfo) async
+
+///Запись данных в КЭШ
+Future<void> _setUserInfo(AppUser userInfo) async
 {
   final prefs = await SharedPreferences.getInstance();
   prefs.setString('userInfo', json.encode({
@@ -60,6 +91,7 @@ Future<void> setUserInfo(AppUser userInfo) async
   }));
 }
 
+///Авторизация пользователя
 Future<String> authorization(String email, String password) async {
   /// Переменная отвечающая за ответ фронту
   String response = 'Ошибка входа';
@@ -90,12 +122,13 @@ Future<String> authorization(String email, String password) async {
       }
     }
   }
-
-
   /// Ответ в случае ошибки
   on FirebaseAuthException catch (e)
   {
-    print('ERROR   ' + e.toString());
+    if (e.code == 'network-request-failed')
+    {
+      response = 'Ошибка подключения';
+    }
     if (e.code == 'user-not-found')
     {
       response = 'Пользователь с этой почтой не найден.';
@@ -108,6 +141,7 @@ Future<String> authorization(String email, String password) async {
   return response;
 }
 
+///Регистрацаия пользователя
 Future<String> register(String email, String name, String password1, password2) async {
   email = normalField(email);
   password1 = normalField(password1);
@@ -126,7 +160,7 @@ Future<String> register(String email, String name, String password1, password2) 
       User? user = userCredential.user;
 
       if (user!= null) {
-        newUser(user.uid, name);
+        await _newUser(user.uid, name);
         if (!user.emailVerified)
         {
           await user.sendEmailVerification();
@@ -142,24 +176,17 @@ Future<String> register(String email, String name, String password1, password2) 
         response = 'Пароль ненадёжный';
       } else if (e.code == 'email-already-in-use') {
         response = 'Данная электронная почта уже используется';
+      } else if (e.code == 'network-request-failed')
+      {
+        response = 'Ошибка подключения';
       }
-    } catch (e) {
-      print(e);
     }
   }
   return response;
 }
 
-String normalField(String field)
-{
-  while (field[field.length - 1] == ' ')
-  {
-    field = field.substring(0, field.length - 1);
-  }
-  return field;
-}
-
-Future<void> newUser(String userId, String userName) async
+///Сохранение пользователя в БД при регистрации
+Future<void> _newUser(String userId, String userName) async
 {
   DatabaseReference ref = FirebaseDatabase.instance.ref('/users');
 
@@ -171,8 +198,7 @@ Future<void> newUser(String userId, String userName) async
   }
 }
 
-
-
+///Получение информации о запускаемой странице
 Future<bool> getPage() async
 {
   localUser = await getAppUser();
@@ -187,10 +213,22 @@ Future<bool> getPage() async
   }
 }
 
-
+/// Выход юзера из профиля
 Future<void> exitUser() async{
   final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('foodInfo');
   await prefs.remove('userInfo');
   localUser = null;
   await auth.signOut();
+}
+
+
+///Метод для удаления лишних пробелов в конце строки
+String normalField(String field)
+{
+  while (field[field.length - 1] == ' ')
+  {
+    field = field.substring(0, field.length - 1);
+  }
+  return field;
 }

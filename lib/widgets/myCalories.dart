@@ -1,7 +1,6 @@
 import 'package:app1/widgets/caloriesChart.dart';
 import 'package:app1/widgets/pfcChart.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 class MyCalories extends StatefulWidget {
   const MyCalories({super.key});
@@ -41,7 +40,8 @@ class _MyCaloriesState extends State<MyCalories> {
                   ],
                 ),
                 Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                CaloriesChart(value: '35', goalValue: '100')
+                CaloriesChart(value: '35', goalValue: '100'),
+                
               ],
             )
           )

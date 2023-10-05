@@ -78,7 +78,7 @@ class _CaloriesChartState extends State<CaloriesChart> {
               child: LinearProgressIndicator(
                 value: value / 100, // Здесь вычисляем процент заполнения
                 backgroundColor: const Color.fromRGBO(255, 0, 13, 1.0), // Цвет фона
-                valueColor: AlwaysStoppedAnimation<Color>(const Color.fromRGBO(16, 240, 12, 1.0)),
+                valueColor: const AlwaysStoppedAnimation<Color>(Color.fromRGBO(16, 240, 12, 1.0)),
                 // Цвет заполнения
               ),
             )

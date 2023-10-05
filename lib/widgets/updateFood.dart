@@ -113,7 +113,7 @@ class _UpdateFoodState extends State<UpdateFood> {
                             }
                             return null;
                           },
-                          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я ]'))],
+                          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.% ]'))],
                           onChanged: (String value){
                             title = value;
                           },

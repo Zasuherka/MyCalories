@@ -1,4 +1,5 @@
 import 'package:app1/validation/foodValidator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -83,7 +84,7 @@ class _NewFoodState extends State<NewFood> {
                           }
                           return null;
                         },
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я ]'))],
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.% ]'))],
                         onChanged: (String value){
                           title = value;
                         },

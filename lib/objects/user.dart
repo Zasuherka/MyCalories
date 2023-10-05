@@ -14,14 +14,16 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
   //late String urlPhoto;
   AppUser({required this.userId, required this.name, required this.email});
 
-  AppUser.fromJson(Map<String, dynamic> json) :
+  AppUser.fromJson(Map<String, dynamic> json):
         name = json['name'],
         email = json['email'],
         userId = json['userId'];
 
-  Map<String, dynamic> toJson() => {
-    'name' : name,
-    'email': email,
-    'userId': userId
-  };
+  Map<String, dynamic> toJson() {
+    return {
+      'name' : name,
+      'email': email,
+      'userId': userId
+    };
+  }
 }

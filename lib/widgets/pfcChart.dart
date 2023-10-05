@@ -52,7 +52,7 @@ class _PFCChartState extends State<PFCChart> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: screenWidth * 0.16,
               height: screenWidth * 0.160,
               child:
