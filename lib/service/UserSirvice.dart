@@ -205,6 +205,7 @@ Future<bool> getPage() async
   if (localUser != null)
   {
     await getUserFoods();
+    await getCount();
     return true;
   }
   else

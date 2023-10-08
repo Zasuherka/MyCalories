@@ -4,6 +4,7 @@ import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:app1/service/foodService.dart';
 import 'package:app1/widgets/myCalories.dart';
+import 'package:app1/widgets/newFood.dart';
 import 'package:app1/widgets/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -103,27 +104,27 @@ class _FirstPageState extends State<FirstPage> {
         onTap: _onItemTapped,
       ),
       body:
-      //getPage(pageIndex),
-      Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ElevatedButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyFoodPage()));
-            },
-            child: Text(localUser!.name.toString()),
-          ),
-          const Padding(padding: EdgeInsets.only(top: 20)),
-          ElevatedButton(
-            onPressed: () async {
-              await exitUser();
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
-            },
-            child: const Text('Выход'),
-          )
-        ],
-      )
-      )
+      getPage(pageIndex),
+      // Center(
+      //     child: Column(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: <Widget>[
+      //     ElevatedButton(
+      //       onPressed: (){
+      //         Navigator.push(context, MaterialPageRoute(builder: (context) => const MyFoodPage(isUpdatePage: true)));
+      //       },
+      //       child: Text(localUser!.name.toString()),
+      //     ),
+      //     const Padding(padding: EdgeInsets.only(top: 20)),
+      //     ElevatedButton(
+      //       onPressed: () async {
+      //         await exitUser();
+      //         Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
+      //       },
+      //       child: const Text('Выход'),
+      //     )
+      //   ],
+      // )
+      // )
     );
   }}

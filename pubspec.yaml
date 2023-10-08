@@ -72,7 +72,9 @@ flutter:
     - images/icon.png
     - images/icon.jpg
     - images/plus.svg
+    - images/plus2.svg
     - images/arrow.svg
+    - images/weight.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

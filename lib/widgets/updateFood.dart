@@ -106,6 +106,7 @@ class _UpdateFoodState extends State<UpdateFood> {
                         width: screenWidth/1.5,
                         height: screenHeight/14,
                         child: TextFormField(
+                          maxLength: 20,
                           controller: _controllerTitle,
                           validator: (value) {
                             if (value == ''){

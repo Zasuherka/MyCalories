@@ -25,7 +25,7 @@ class _CaloriesChartState extends State<CaloriesChart> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       width: screenWidth * 0.95,
-      height: screenHeight * 0.1,
+      height: screenHeight * 0.09,
       decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -36,38 +36,29 @@ class _CaloriesChartState extends State<CaloriesChart> {
               offset: const Offset(10, 10),
             ),
           ],
-          // border: Border.all(color: const Color.fromRGBO(16, 240, 12, 1.0),
-          //     width: 4
-          // ),
           borderRadius: BorderRadius.circular(25.0)
       ),
       child:
       Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'КАЛОРИИ',
-            style: TextStyle(
-              fontSize: screenHeight/50,
-              fontFamily: 'Comfortaa',
-              color: Colors.black,
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(top: screenHeight/200),
-            child:
-            Text(
-              '${value.toInt()}/${goalValue.toInt()}',
-              style: TextStyle(
-                fontSize: screenHeight/60,
-                fontFamily: 'Comfortaa',
-                color: Colors.black,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(padding: EdgeInsets.only(left: screenWidth * 0.075)),
+              Text(
+                'КАЛОРИИ: ${value.toInt()}/${goalValue.toInt()}',
+                style: TextStyle(
+                  fontSize: screenHeight/50,
+                  fontFamily: 'Comfortaa',
+                  color: Colors.black,
+                ),
               ),
-            ),
+            ],
           ),
-          Padding(padding: EdgeInsets.only(top: screenHeight/200)),
           Container(
-            width: screenWidth * 0.8,
+            width: screenWidth * 0.85,
             height: screenHeight * 0.03,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0)

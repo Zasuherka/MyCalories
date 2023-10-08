@@ -78,6 +78,7 @@ class _NewFoodState extends State<NewFood> {
                       width: screenWidth/1.5,
                       height: screenHeight/14,
                       child: TextFormField(
+                        maxLength: 20,
                         validator: (value) {
                           if (value == ''){
                             return 'Поле должно быть заполнено';

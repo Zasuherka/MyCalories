@@ -1,12 +1,11 @@
 import 'dart:convert';
-
 import 'package:app1/objects/food.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-
+String? isFood;
 ///Создание Еды, запись в БД, запись в список еды пользователя
 Future createFood(String title, String protein, String fats, String carbohydrates, String calories) async
 {
@@ -132,4 +131,81 @@ Future<void> deleteFood(Food food, String foodId) async
     });
     await setFoodInfo();
   }
+}
+
+Future<void> getCount() async {
+  localUser!.eatingValue['КАЛОРИИ'] = caloriesCounter();
+  localUser!.eatingValue['БЕЛКИ'] = proteinCounter();
+  localUser!.eatingValue['ЖИРЫ'] = fatsCounter();
+  localUser!.eatingValue['УГЛЕВОДЫ'] = carbohydratesCounter();
+}
+
+double caloriesCounter() {
+  double counter = 0;
+  localUser!.eatingBreakfast.forEach((food) {
+    counter += double.parse(food.calories) / 100 * food.weight;
+  });
+  localUser!.eatingLunch.forEach((food) {
+    counter += double.parse(food.calories) / 100 * food.weight;
+  });
+  localUser!.eatingDinner.forEach((food) {
+    counter += double.parse(food.calories) / 100 * food.weight;
+  });
+  localUser!.eatingAnother.forEach((food) {
+    counter += double.parse(food.calories) / 100 * food.weight;
+  });
+  return counter;
+}
+
+
+double proteinCounter() {
+  double counter = 0;
+  localUser!.eatingBreakfast.forEach((food) {
+    counter += double.parse(food.protein) / 100 * food.weight;
+  });
+  localUser!.eatingLunch.forEach((food) {
+    counter += double.parse(food.protein) / 100 * food.weight;
+  });
+  localUser!.eatingDinner.forEach((food) {
+    counter += double.parse(food.protein) / 100 * food.weight;
+  });
+  localUser!.eatingAnother.forEach((food) {
+    counter += double.parse(food.protein) / 100 * food.weight;
+  });
+  return counter;
+}
+
+double fatsCounter() {
+  double counter = 0;
+  localUser!.eatingBreakfast.forEach((food) {
+    counter += double.parse(food.fats) / 100 * food.weight;
+  });
+  localUser!.eatingLunch.forEach((food) {
+    counter += double.parse(food.fats) / 100 * food.weight;
+  });
+  localUser!.eatingDinner.forEach((food) {
+    counter += double.parse(food.fats) / 100 * food.weight;
+  });
+  localUser!.eatingAnother.forEach((food) {
+    counter += double.parse(food.fats) / 100 * food.weight;
+  });
+  return counter;
+}
+
+
+double carbohydratesCounter() {
+  double counter = 0;
+  localUser!.eatingBreakfast.forEach((food) {
+    counter += double.parse(food.carbohydrates) / 100 * food.weight;
+  });
+  localUser!.eatingLunch.forEach((food) {
+    counter += double.parse(food.carbohydrates) / 100 * food.weight;
+  });
+  localUser!.eatingDinner.forEach((food) {
+    counter += double.parse(food.carbohydrates) / 100 * food.weight;
+  });
+  localUser!.eatingAnother.forEach((food) {
+    counter += double.parse(food.carbohydrates) / 100 * food.weight;
+  });
+  return counter;
 }

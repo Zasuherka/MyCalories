@@ -1,12 +1,13 @@
+import 'package:app1/service/UserSirvice.dart';
+import 'package:app1/service/foodService.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class PFCChart extends StatefulWidget {
 
-  final String goalValue;
-  final String value;
+  final double goalValue;
   final String title;
-  const PFCChart({super.key, required this.value, required this.goalValue, required this.title});
+  const PFCChart({super.key, required this.goalValue, required this.title});
 
   @override
   State<PFCChart> createState() => _PFCChartState();
@@ -14,17 +15,15 @@ class PFCChart extends StatefulWidget {
 
 class _PFCChartState extends State<PFCChart> {
   late String title;
-  late double value;
   late double goalValue;
-  late int percent;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     title = widget.title;
-    value = double.parse(widget.value);
-    goalValue = double.parse(widget.goalValue);
-    percent = value ~/ (goalValue / 100);
+    goalValue = widget.goalValue;
+    getCount();
   }
 
   @override
@@ -73,14 +72,14 @@ class _PFCChartState extends State<PFCChart> {
                                 (
                                   title: '',
                                   radius: screenWidth * 0.03,
-                                  value: value,
+                                  value: localUser!.eatingValue[title]!,
                                   color: const Color.fromRGBO(16, 240, 12, 1.0)
                               ),
                               PieChartSectionData
                                 (
                                   title: '',
                                   radius: screenWidth * 0.03,
-                                  value: goalValue - value,
+                                  value: goalValue - localUser!.eatingValue[title]!,
                                   color: const Color.fromRGBO(255, 0, 13, 1.0)
                               ),
 
@@ -91,7 +90,7 @@ class _PFCChartState extends State<PFCChart> {
                   Center(
                     child:
                     Text(
-                      '$percent%',
+                      '${localUser!.eatingValue[title]! ~/ (goalValue / 100)}%',
                       style: TextStyle(
                         fontSize: screenHeight/77,
                         fontFamily: 'Comfortaa',
@@ -115,7 +114,7 @@ class _PFCChartState extends State<PFCChart> {
             Padding(padding: EdgeInsets.only(top: screenHeight/160),
               child:
               Text(
-                '${value.toInt()}/${goalValue.toInt()}',
+                '${localUser!.eatingValue[title]!.toInt()}/${goalValue.toInt()}',
                 style: TextStyle(
                   fontSize: screenHeight/60,
                   fontFamily: 'Comfortaa',

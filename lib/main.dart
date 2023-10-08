@@ -1,6 +1,7 @@
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/pages/registrationPage.dart';
+import 'package:app1/pages/startPage.dart';
 import 'package:app1/widgets/myCalories.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,7 @@ void main() async{
     debugShowCheckedModeBanner: false,
     initialRoute: '/startPage',
     routes: {
-      '/myFoodPage': (context) => const MyFoodPage(),
-      '/startPage': (context) => const MyCalories(), ///TODO это начальный загрузочный экран, поэтому его в конце поставить как initialRoute
+      '/startPage': (context) => const StartPage(), ///TODO это начальный загрузочный экран, поэтому его в конце поставить как initialRoute
       '/firstPage': (context) => const FirstPage(),
       '/authorizationPage': (context) => const AuthorizationPage(),
       '/registrationPage': (context) => const RegistrationPage(),
