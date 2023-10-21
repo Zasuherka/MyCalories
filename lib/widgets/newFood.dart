@@ -1,7 +1,9 @@
+import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/validation/foodValidator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../service/foodService.dart';
 
@@ -370,30 +372,29 @@ class _NewFoodState extends State<NewFood> {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        notification = foodValidator(protein,fats,carbohydrates,calories);
+                        notification = foodValidator(
+                            protein, fats, carbohydrates, calories);
                       });
-                      if (_formKey.currentState != null && activeTap)
-                        {
-                          if (_formKey.currentState!.validate() && notification == '') {
-                            activeTap = false;
-                            Navigator.pop(context, newFood());
-                          }
+                      if (_formKey.currentState != null && activeTap) {
+                        if (_formKey.currentState!.validate() &&
+                            notification == '') {
+                          activeTap = false;
+                          BlocProvider.of<FoodBloc>(context).add(CreateFoodEvent(title, protein, fats, carbohydrates, calories));
+                          Navigator.pop(context);
                         }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
+                        backgroundColor:
+                        const Color.fromRGBO(16, 240, 12, 1.0),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(36)
-                        )
-                    ),
+                            borderRadius: BorderRadius.circular(36))),
                     child: Text(
                       "Добавить",
-                      style:
-                      TextStyle(
-                          fontSize: screenHeight/40,
+                      style: TextStyle(
+                          fontSize: screenHeight / 40,
                           fontFamily: 'Comfortaa',
-                          color: Colors.white
-                      ),
+                          color: Colors.white),
                     ),
                   ),
                 ),

@@ -1,11 +1,11 @@
 class Food
 {
-  late String idFood;
-  late String title;
-  late String protein;
-  late String fats;
-  late String carbohydrates;
-  late String calories;
+  final String idFood;
+  final String title;
+  final double protein;
+  final double fats;
+  final double carbohydrates;
+  final double calories;
   Food(this.idFood,this.title, this.protein, this.fats, this.carbohydrates, this.calories);
 
   Food.fromJson(Map<String, dynamic> json):

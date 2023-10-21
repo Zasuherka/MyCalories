@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" width="1080" height="520" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 520">
+  <defs>
+    <linearGradient id="_Безымянный_градиент_707" data-name="Безымянный градиент 707" x1="787.58" y1="688.83" x2="292.42" y2="-168.83" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#32c4e2"/>
+      <stop offset=".09" stop-color="#3ac3e2"/>
+      <stop offset=".24" stop-color="#52c3e4"/>
+      <stop offset=".43" stop-color="#79c3e6"/>
+      <stop offset=".5" stop-color="#89c3e8"/>
+      <stop offset=".57" stop-color="#8fc1e8"/>
+      <stop offset=".67" stop-color="#a1bdea"/>
+      <stop offset=".79" stop-color="#bfb5ed"/>
+      <stop offset=".91" stop-color="#e8acf1"/>
+    </linearGradient>
+    <linearGradient id="_Безымянный_градиент_573" data-name="Безымянный градиент 573" x1="961.69" y1="724.92" x2="142.57" y2="252" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#76d6e9"/>
+      <stop offset=".22" stop-color="#80d3ec"/>
+      <stop offset=".57" stop-color="#8ad0f0"/>
+      <stop offset="1" stop-color="#8ed0f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="520" fill="url(#_Безымянный_градиент_707)" stroke-width="0"/>
+  <path d="m0,498.94s88.27-58.38,124-82.76c57-38.91,79.18-15.1,118,2,69,30.39,79,56.87,116,44.21,37-12.66,122-97.35,182-102.17s120,68.62,241,93.3c121,24.69,170-83.56,224-53.81,54,29.75,75,54.63,75,54.63v65.64H0v-21.06Z" fill="url(#_Безымянный_градиент_573)" stroke-width="0"/>
+</svg>

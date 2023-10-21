@@ -1,9 +1,10 @@
+import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/objects/food.dart';
 import 'package:app1/validation/foodValidator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../service/foodService.dart';
 
 
 
@@ -36,30 +37,30 @@ class _UpdateFoodState extends State<UpdateFood> {
     food = widget.food;
     _controllerTitle = TextEditingController(text: food.title);
     title = food.title;
-    _controllerProtein = TextEditingController(text: food.protein);
-    protein = food.protein;
-    _controllerFats = TextEditingController(text: food.fats);
-    fats = food.fats;
-    _controllerCarbohydrates = TextEditingController(text: food.carbohydrates);
-    carbohydrates = food.carbohydrates;
-    _controllerCalories = TextEditingController(text: food.calories);
-    calories = food.calories;
+    _controllerProtein = TextEditingController(text: food.protein.toString());
+    protein = food.protein.toString();
+    _controllerFats = TextEditingController(text: food.fats.toString());
+    fats = food.fats.toString();
+    _controllerCarbohydrates = TextEditingController(text: food.carbohydrates.toString());
+    carbohydrates = food.carbohydrates.toString();
+    _controllerCalories = TextEditingController(text: food.calories.toString());
+    calories = food.calories.toString();
   }
 
   @override
   Widget build(BuildContext context) {
 
 
-    Future<bool> update() async
-    {
-      await updateFood(food, food.idFood ,title, protein, fats, carbohydrates, calories);
-      return false;
-    }
-
-    Future<void> delete() async
-    {
-      await deleteFood(food, food.idFood);
-    }
+    // Future<bool> update() async
+    // {
+    //   await updateFood(food, food.idFood ,title, protein, fats, carbohydrates, calories);
+    //   return false;
+    // }
+    //
+    // Future<void> delete() async
+    // {
+    //   await deleteFood(food, food.idFood);
+    // }
     bool activeTap = true;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -407,29 +408,28 @@ class _UpdateFoodState extends State<UpdateFood> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              notification = foodValidator(protein,fats,carbohydrates,calories);
+                              notification = foodValidator(
+                                  protein, fats, carbohydrates, calories);
                             });
-                            if (_formKey.currentState != null)
-                            {
-                              if (_formKey.currentState!.validate() && notification == '') {
-                                Navigator.pop(context,update());
+                            if (_formKey.currentState != null) {
+                              if (_formKey.currentState!.validate() &&
+                                  notification == '') {
+                                BlocProvider.of<FoodBloc>(context).add(UpdateFoodEvent(food, title, protein, fats, carbohydrates, calories));
+                                Navigator.pop(context);
                               }
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
+                              backgroundColor:
+                              const Color.fromRGBO(16, 240, 12, 1.0),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(36)
-                              )
-                          ),
+                                  borderRadius: BorderRadius.circular(36))),
                           child: Text(
                             "Изменить",
-                            style:
-                            TextStyle(
-                                fontSize: screenHeight/40,
+                            style: TextStyle(
+                                fontSize: screenHeight / 40,
                                 fontFamily: 'Comfortaa',
-                                color: Colors.white
-                            ),
+                                color: Colors.white),
                           ),
                         ),
                       ),
@@ -437,21 +437,17 @@ class _UpdateFoodState extends State<UpdateFood> {
                       ///TODO Доделать функцию удаления | сделать свою иконку удаления
                       GestureDetector(
                           onTap: () async {
-                            if (activeTap)
-                              {
-                                activeTap = false;
-                                //await deleteFood(food, food.idFood);
-                                delete();
-                                Navigator.pop(context, true);
-                              }
+                            if (activeTap) {
+                              activeTap = false;
+                              BlocProvider.of<FoodBloc>(context).add(DeleteFoodEvent(food));
+                              Navigator.pop(context, true);
+                            }
                           },
-                          child:
-                          Icon(
+                          child: Icon(
                             Icons.delete,
                             color: Colors.red[600],
-                            size: screenHeight/25,
-                      )
-                      )
+                            size: screenHeight / 25,
+                          )),
                     ],
                   )
                 ],

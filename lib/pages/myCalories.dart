@@ -1,9 +1,12 @@
+import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/pages/authorizationPage.dart';
+import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/service/UserSirvice.dart';
-import 'package:app1/service/foodService.dart';
 import 'package:app1/widgets/caloriesChart.dart';
 import 'package:app1/widgets/eatingWidget.dart';
 import 'package:app1/widgets/pfcChart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyCalories extends StatefulWidget {
   const MyCalories({super.key});
@@ -39,30 +42,43 @@ class _MyCaloriesState extends State<MyCalories> {
                     Row(
                       children: [
                         Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: PFCChart(goalValue: 210, title: 'БЕЛКИ')
+                            child: const PFCChart(goalValue: 210, title: 'БЕЛКИ')
                         ),
                         Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: PFCChart(goalValue: 100, title: 'ЖИРЫ')
+                            child: const PFCChart(goalValue: 100, title: 'ЖИРЫ')
                         ),
                         Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: PFCChart(goalValue: 80, title: 'УГЛЕВОДЫ')
+                            child: const PFCChart(goalValue: 80, title: 'УГЛЕВОДЫ')
                         )
                       ],
                     ),
                     Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                    CaloriesChart(value: '35', goalValue: '100'),
+                    const CaloriesChart(),
                     Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                    EatingWidget(title: 'Завтрак', calories: 75, list: localUser!.eatingBreakfast,),
+                    const EatingWidget(title: 'Завтрак'),
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
                     ///TODO изменить значение lenghtList
-                    EatingWidget(title: 'Обед', calories: 75, list: localUser!.eatingLunch),
+                    const EatingWidget(title: 'Обед'),
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
                     ///TODO изменить значение lenghtList
-                    EatingWidget(title: 'Ужин', calories: 7005, list: localUser!.eatingDinner),
+                    const EatingWidget(title: 'Ужин'),
                     ///TODO изменить значение lenghtList
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    EatingWidget(title: 'Другое', calories: 75, list: localUser!.eatingAnother),
+                    const EatingWidget(title: 'Другое'),
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                    ElevatedButton(
+                        onPressed: () {
+                          BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
+                          Navigator.push(context,MaterialPageRoute(builder: (context) =>const MyFoodPage(isUpdatePage: true)));
+                        },
+                        child: Text(localUser!.name.toString())),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await exitUser();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
+                      },
+                      child: const Text('Выход'),
+                    )
 
                   ],
                 )

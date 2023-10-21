@@ -33,10 +33,13 @@ dependencies:
   flutter_svg:
   firebase_core:
   firebase_auth:
+  firebase_storage:
   email_validator:
   intl:
   shared_preferences:
   connectivity_plus:
+  flutter_bloc:
+  image_picker:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -75,6 +78,7 @@ flutter:
     - images/plus2.svg
     - images/arrow.svg
     - images/weight.svg
+    - images/wawes.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

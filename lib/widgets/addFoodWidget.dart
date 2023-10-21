@@ -1,10 +1,9 @@
-import 'package:app1/objects/eatingFood.dart';
+import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/objects/food.dart';
-import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../service/foodService.dart';
 
 
 
@@ -20,20 +19,6 @@ class _AddFoodState extends State<AddFood> {
   final _formKey = GlobalKey<FormState>();
   late Food food;
   late String weight;
-  Future<void> addEatingFoodList() async {
-    if (isFood == 'Завтрак'){
-      localUser!.eatingBreakfast.add(EatingFood(food.idFood,food.title,food.protein,food.fats,food.carbohydrates,food.calories,int.parse(weight)));
-    }
-    if (isFood == 'Обед'){
-      localUser!.eatingLunch.add(EatingFood(food.idFood,food.title,food.protein,food.fats,food.carbohydrates,food.calories,int.parse(weight)));
-    }
-    if (isFood == 'Ужин'){
-      localUser!.eatingDinner.add(EatingFood(food.idFood,food.title,food.protein,food.fats,food.carbohydrates,food.calories,int.parse(weight)));
-    }
-    if (isFood == 'Другое'){
-      localUser!.eatingAnother.add(EatingFood(food.idFood,food.title,food.protein,food.fats,food.carbohydrates,food.calories,int.parse(weight)));
-    }
-  }
 
   @override
   void initState() {
@@ -189,7 +174,7 @@ class _AddFoodState extends State<AddFood> {
                                         height: screenHeight/30,
                                         child: Center(
                                           child: Text(
-                                            food.protein,
+                                            food.protein.toStringAsFixed(2),
                                             style: TextStyle(
                                                 fontSize: screenHeight/50,
                                                 fontFamily: 'Comfortaa',
@@ -209,7 +194,7 @@ class _AddFoodState extends State<AddFood> {
                                         height: screenHeight/30,
                                         child: Center(
                                           child: Text(
-                                            food.fats,
+                                            food.fats.toStringAsFixed(2),
                                             style: TextStyle(
                                                 fontSize: screenHeight/50,
                                                 fontFamily: 'Comfortaa',
@@ -228,7 +213,7 @@ class _AddFoodState extends State<AddFood> {
                                         height: screenHeight/30,
                                         child: Center(
                                           child: Text(
-                                            food.carbohydrates,
+                                            food.carbohydrates.toStringAsFixed(2),
                                             style: TextStyle(
                                                 fontSize: screenHeight/50,
                                                 fontFamily: 'Comfortaa',
@@ -248,7 +233,7 @@ class _AddFoodState extends State<AddFood> {
                                         child: Center(
                                           child:
                                             Text(
-                                              food.calories,
+                                              food.calories.toStringAsFixed(2),
                                               style: TextStyle(
                                                       fontSize: screenHeight/50,
                                                       fontFamily: 'Comfortaa',
@@ -296,7 +281,7 @@ class _AddFoodState extends State<AddFood> {
                                   keyboardType: const TextInputType.numberWithOptions(decimal: true), // Разрешить ввод чисел с плавающей точкой
                                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
                                   onChanged: (String value){
-                                    weight = value.toString();
+                                    weight = value;
                                   },
                                   style: TextStyle(
                                       fontSize: screenHeight/40,
@@ -337,7 +322,7 @@ class _AddFoodState extends State<AddFood> {
                         if (_formKey.currentState != null)
                         {
                           if (_formKey.currentState!.validate()) {
-                            addEatingFoodList();
+                            BlocProvider.of<EatingFoodBloc>(context).add(AddEatingFoodListEvent(food.idFood, food.title, food.protein, food.fats, food.carbohydrates, food.calories, int.parse(weight)));
                             Navigator.pop(context, true);
                           }
                         }

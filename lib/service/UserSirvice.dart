@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:app1/bloc/authorization/authorization_bloc.dart';
+import 'package:app1/bloc/registration/registration_state.dart';
 import 'package:app1/objects/user.dart';
 import 'package:app1/service/foodService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,7 +45,7 @@ Future<AppUser?> getAppUser() async
 
 ///Проверка на подключение
 Future<bool> isConnected() async {
-  var connectivityResult = await Connectivity().checkConnectivity();
+  ConnectivityResult connectivityResult = await Connectivity().checkConnectivity();
   if (connectivityResult == ConnectivityResult.mobile) {
     return true;
   } else if (connectivityResult == ConnectivityResult.wifi) {
@@ -92,16 +94,13 @@ Future<void> _setUserInfo(AppUser userInfo) async
 }
 
 ///Авторизация пользователя
-Future<String> authorization(String email, String password) async {
+Future<AuthorizationState> authorization(String email, String password) async {
   /// Переменная отвечающая за ответ фронту
-  String response = 'Ошибка входа';
 
   if ((email.isEmpty) && (password.isEmpty)){
-    return 'Не все поля заполнены';
+    return AuthorizationError(error: 'Не все поля заполнены');
   }
 
-  email = normalField(email);
-  password = normalField(password);
   /// Попытка зайти в профиль
   try
   {
@@ -109,47 +108,41 @@ Future<String> authorization(String email, String password) async {
         email: email,
         password: password
     );
-    response = 'Вход выполнен.';
     User? user = userCredential.user;
 
     if (user != null) {
       if(!user.emailVerified)
       {
-        response = 'Ваша учётная запись не подтверждена.';
         await auth.signOut();
+        return AuthorizationError(error: 'Ваша учётная запись не подтверждена');
       }///Возможно будет ещё логика
       else{
+        return AuthorizationSuccessful();
       }
     }
   }
   /// Ответ в случае ошибки
   on FirebaseAuthException catch (e)
   {
+    print(e.toString());
     if (e.code == 'network-request-failed')
     {
-      response = 'Ошибка подключения';
+      return AuthorizationError(error: 'Ошибка подключения');
     }
     if (e.code == 'user-not-found')
     {
-      response = 'Пользователь с этой почтой не найден.';
+      return AuthorizationError(error: 'Пользователь с этой почтой не найден');
     } else if (e.code == 'wrong-password')
     {
-      response = 'Неверный пароль.';
+      return AuthorizationError(error: 'Неверный пароль');
     }
   }
 
-  return response;
+  return AuthorizationSuccessful();
 }
 
 ///Регистрацаия пользователя
-Future<String> register(String email, String name, String password1, password2) async {
-  email = normalField(email);
-  password1 = normalField(password1);
-  password2 = normalField(password2);
-  name = normalField(name);
-  /// Перменная отвечающая за ответ фронту
-  String response = 'Ошибка регистрации';
-
+Future<RegistrationState> register(String email, String name, String password1, password2) async {
   if(password1 == password2) {
     /// Попытка зарегистрироваться
     try {
@@ -167,22 +160,23 @@ Future<String> register(String email, String name, String password1, password2) 
           await auth.signOut();
         }
       }
-      response = 'Регистрация прошла успешно!\nВам на почту отправленно письмо,\nподтвердите регистрацию.';
+      return RegistrationSuccessful();
     }
 
     /// Обработка ошибок
     on FirebaseAuthException catch (e) {
+      print(e.toString());
       if (e.code == 'weak-password') {
-        response = 'Пароль ненадёжный';
+        return RegistrationError(error: 'Пароль ненадёжный');
       } else if (e.code == 'email-already-in-use') {
-        response = 'Данная электронная почта уже используется';
+        return RegistrationError(error: 'Данная электронная почта уже используется');
       } else if (e.code == 'network-request-failed')
       {
-        response = 'Ошибка подключения';
+        return RegistrationError(error: 'Ошибка подключения');
       }
     }
   }
-  return response;
+  return RegistrationError(error: 'Пароли не совпадают');
 }
 
 ///Сохранение пользователя в БД при регистрации
@@ -219,17 +213,11 @@ Future<void> exitUser() async{
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('foodInfo');
   await prefs.remove('userInfo');
+  await prefs.remove('eatingBreakfastInfo');
+  await prefs.remove('eatingLunchInfo');
+  await prefs.remove('eatingDinnerInfo');
+  await prefs.remove('eatingAnotherInfo');
   localUser = null;
   await auth.signOut();
 }
 
-
-///Метод для удаления лишних пробелов в конце строки
-String normalField(String field)
-{
-  while (field[field.length - 1] == ' ')
-  {
-    field = field.substring(0, field.length - 1);
-  }
-  return field;
-}

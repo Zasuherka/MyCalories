@@ -17,7 +17,7 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
   List<EatingFood> eatingDinner = [];
   List<EatingFood> eatingAnother = [];
   List<Result> myResults = [];
-  Map<String, double> eatingValue = {
+  Map<String, double> eatingValues = {
     'КАЛОРИИ': 0,
     'БЕЛКИ': 0,
     'ЖИРЫ': 0,
