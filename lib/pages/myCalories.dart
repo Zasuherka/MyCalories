@@ -57,12 +57,9 @@ class _MyCaloriesState extends State<MyCalories> {
                     Padding(padding: EdgeInsets.only(top: screenHeight/75)),
                     const EatingWidget(title: 'Завтрак'),
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    ///TODO изменить значение lenghtList
                     const EatingWidget(title: 'Обед'),
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    ///TODO изменить значение lenghtList
                     const EatingWidget(title: 'Ужин'),
-                    ///TODO изменить значение lenghtList
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),
                     const EatingWidget(title: 'Другое'),
                     Padding(padding: EdgeInsets.only(top: screenHeight/100)),

@@ -1,6 +1,9 @@
+import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:app1/service/foodService.dart';
+import 'package:app1/service/imageService.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'get_page_event.dart';
 part 'get_page_state.dart';
@@ -19,6 +22,7 @@ class GetPageBloc extends Bloc<PageEvent, PageState> {
       await getUserFoods();
       await getEatingFoodInfo();
       await getCount();
+      downloadImage();
       emitter(GetPageAnotherState());
     }
   }

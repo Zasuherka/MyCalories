@@ -1,12 +1,10 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/validation/foodValidator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../service/foodService.dart';
-
 
 
 class NewFood extends StatefulWidget {

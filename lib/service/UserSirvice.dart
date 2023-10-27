@@ -27,11 +27,20 @@ Future<AppUser?> getAppUser() async
       }
       await user.reload();
       user = auth.currentUser;
-      final userName = await ref.child('/users/${user!.uid}/name').get();
-      ///final myResults = await ref.child('/users/${user.uid}/myResults').get();
-      ///final myFoods = await ref.child('foods/${user.uid}/myFoods').get(); МБ не пригодится
-      _setUserInfo(AppUser(userId: user.uid, name: userName.value.toString(), email: user.email!));
-      return AppUser(userId: user.uid, name: userName.value.toString(), email: user.email!);
+
+      final DatabaseReference ref = FirebaseDatabase.instance.ref();
+      final DataSnapshot userData = await ref.child('/users/${user!.uid}').get();
+      final String userName = userData.child('name').value.toString();
+      final String urlAvatar = userData.child('urlAvatar').value.toString();
+      final double? weightNow = double.tryParse(userData.child('weightNow').value.toString());
+      final double? weightDream = double.tryParse(userData.child('weightDream').value.toString());
+      final int? height = int.tryParse(userData.child('height').value.toString());
+      final DateTime? birthday = DateTime.tryParse(userData.child('birthday').value.toString());
+      AppUser appUser = AppUser(userId: user.uid, name: userName, email: user.email!,
+          weightNow: weightNow, weightDream: weightDream, height: height,
+          birthday: birthday, urlAvatar: urlAvatar);
+      setUserInfo(appUser);
+      return appUser;
     }
     on FirebaseAuthException catch (e)
     {
@@ -57,7 +66,7 @@ Future<bool> isConnected() async {
 ///Получение данных о пользователе в случае если нет подключения к интернету
 Future<AppUser?> _userIsNotConnected() async
 {
-  AppUser? userInfo = await _getUserInfo();
+  AppUser? userInfo = await getUserInfo();
   if (userInfo == null)
   {
     await exitUser();
@@ -71,7 +80,7 @@ Future<AppUser?> _userIsNotConnected() async
 
 
 ///Получение данных из КЭШа
-Future<AppUser?> _getUserInfo() async
+Future<AppUser?> getUserInfo() async
 {
   final prefs = await SharedPreferences.getInstance();
   final userInfo = prefs.getString('userInfo');
@@ -83,14 +92,10 @@ Future<AppUser?> _getUserInfo() async
 
 
 ///Запись данных в КЭШ
-Future<void> _setUserInfo(AppUser userInfo) async
+Future<void> setUserInfo(AppUser userInfo) async
 {
   final prefs = await SharedPreferences.getInstance();
-  prefs.setString('userInfo', json.encode({
-    'name' : userInfo.name,
-    'email': userInfo.email,
-    'userId': userInfo.userId
-  }));
+  prefs.setString('userInfo', json.encode(userInfo.toJson()));
 }
 
 ///Авторизация пользователя
@@ -192,7 +197,50 @@ Future<void> _newUser(String userId, String userName) async
   }
 }
 
+
+Future updateUserInfo(String? email, String? name, double? weightNow, double? weightDream, int? height, DateTime? birthday) async{
+  if (localUser != null){
+    localUser!.email = email ?? localUser!.email;
+    localUser!.name = name ?? localUser!.name;
+    localUser!.weightNow = weightNow ?? localUser!.weightNow;
+    localUser!.weightDream = weightDream ?? localUser!.weightDream;
+    localUser!.height = height ?? localUser!.height;
+    localUser!.birthday = birthday ?? localUser!.birthday;bool emailIsNew = false;
+    if (email != null && email != localUser!.email) {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? user = auth.currentUser;
+      if(user != null){
+        user.updateEmail(email).then((_)
+        {
+          emailIsNew = true;
+        }
+        ).catchError((onError) {
+          emailIsNew = false;
+        });
+      }
+    }
+
+    if (emailIsNew) {
+      final DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser!.userId}');
+      ref.update({
+        "name": name ?? localUser!.name,
+        "weightNow": weightNow,
+        "weightDream": weightDream,
+        "height": height,
+        "birthday": birthday,
+      }).then((_){
+      }).catchError((onError){
+        throw onError;
+      });
+    }
+  }
+}
+
+
+
 ///Получение информации о запускаемой странице
+///Реализуется в этом файле, так как [localUser] напрямую влияет на действие
+///приложения
 Future<bool> getPage() async
 {
   localUser = await getAppUser();

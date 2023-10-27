@@ -1,9 +1,6 @@
-import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/pages/authorizationPage.dart';
-import 'package:app1/pages/myFoodPage.dart';
-import 'package:app1/service/UserSirvice.dart';
+import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/pages/myCalories.dart';
-import 'package:app1/widgets/profile.dart';
+import 'package:app1/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +44,7 @@ class _FirstPageState extends State<FirstPage> {
           iconFood = const Icon(Icons.food_bank_outlined);
           iconHome = const Icon(Icons.home);
         case 2:
+          BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
           pageIndex = 2;
           iconProfile = const Icon(Icons.person);
           iconFood = const Icon(Icons.food_bank_outlined);

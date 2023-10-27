@@ -1,4 +1,9 @@
 part of 'user_image_bloc.dart';
 
-@immutable
 abstract class UserImageEvent {}
+
+class SelectAndUploadImageEvent extends UserImageEvent {}
+
+class LoadImageEvent extends UserImageEvent {}
+
+class DeleteImageEvent extends UserImageEvent {}

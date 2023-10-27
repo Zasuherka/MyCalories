@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
-
+///TODO Убрать связь с Food
 class UpdateFood extends StatefulWidget {
   final Food food;
   const UpdateFood({super.key, required this.food});
@@ -30,9 +30,20 @@ class _UpdateFoodState extends State<UpdateFood> {
   TextEditingController _controllerFats = TextEditingController();
   TextEditingController _controllerCarbohydrates = TextEditingController();
   TextEditingController _controllerCalories = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerTitle.dispose();
+    _controllerProtein.dispose();
+    _controllerFats.dispose();
+    _controllerCarbohydrates.dispose();
+    _controllerCalories.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     food = widget.food;
     _controllerTitle = TextEditingController(text: food.title);
@@ -271,7 +282,7 @@ class _UpdateFoodState extends State<UpdateFood> {
                                         child: Center(
                                           child: TextField(
                                             controller: _controllerFats,
-                                            /// TODO Дописать валидацию
+                                            ///TODO Дописать валидацию
                                             maxLength: 5,
                                             keyboardType: const TextInputType.numberWithOptions(decimal: true), // Разрешить ввод чисел с плавающей точкой
                                             inputFormatters: [

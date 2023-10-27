@@ -1,7 +1,5 @@
 import 'package:app1/bloc/authorization/authorization_bloc.dart';
-import 'package:app1/pages/firstPage.dart';
 import 'package:app1/pages/startPage.dart';
-import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

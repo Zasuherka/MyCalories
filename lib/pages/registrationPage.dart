@@ -2,7 +2,6 @@ import 'package:app1/bloc/registration/registration_bloc.dart';
 import 'package:app1/bloc/registration/registration_event.dart';
 import 'package:app1/bloc/registration/registration_state.dart';
 import 'package:app1/pages/authorizationPage.dart';
-import 'package:app1/service/UserSirvice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,13 +20,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   String password1 = '';
   String password2 = '';
 
-  // Future<void> registration(String email, String name, String password1, String password2) async
-  // {
-  //   final response = await register(email, name,  password1, password2);
-  //   setState(() {
-  //     this.response = response;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +110,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     name = value;
                   },
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9. ]'))],
-
+                  maxLength: 20,
                   style: TextStyle(
                       fontSize: screenHeight / 40,
                       fontFamily: 'Comfortaa',
