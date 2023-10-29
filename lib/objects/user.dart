@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'eatingFood.dart';
 
 ///Класс юзера
+///Вся работа с юзером происходит в UserService
 /// [userId] - id Пользователя
 /// [name] - имя Пользователя
 /// [email] - почта Пользователя
@@ -50,7 +51,11 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
   //late String urlPhoto;
   AppUser({required this.userId, required this.name, required this.email,
     required this.weightNow, required this.weightDream, required this.height,
-    required this.birthday, required this.urlAvatar});
+    required this.birthday, required this.urlAvatar})
+  {
+    print(birthday.toString());
+    _countAge();
+  }
 
   AppUser.fromJson(Map<String?, dynamic> json):
         name = json['name'],
@@ -62,16 +67,8 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
         height = json['height'],
         birthday = DateTime.parse(json['birthday'])
   {
-    if(birthday != null){
-      int ageCounter = DateTime.now().year - birthday!.year;
-      if(DateTime.now().month - birthday!.month >= 0 && DateTime.now().day - birthday!.day >= 0){
-        ageCounter += 1;
-      }
-      age = ageCounter;
-    }
-    else{
-      age = null;
-    }
+    print(birthday.toString());
+    _countAge();
   }
 
   ///Превращаем в json
@@ -86,5 +83,19 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
       'height': height,
       'birthday': birthday.toString()
     };
+  }
+
+  void _countAge(){
+    if(birthday != null){
+      birthday = DateTime(birthday!.year,birthday!.month,birthday!.day);
+      int ageCounter = DateTime.now().year - birthday!.year - 1;
+      if(DateTime.now().month - birthday!.month >= 0 && DateTime.now().day - birthday!.day >= 0){
+        ageCounter += 1;
+      }
+      age = ageCounter;
+    }
+    else{
+      age = null;
+    }
   }
 }

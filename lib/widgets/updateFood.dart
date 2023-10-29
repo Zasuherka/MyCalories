@@ -16,7 +16,7 @@ class UpdateFood extends StatefulWidget {
   State<UpdateFood> createState() => _UpdateFoodState();
 }
 
-class _UpdateFoodState extends State<UpdateFood> {
+class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
   String title = '';
   String calories = '';
   String protein = '';

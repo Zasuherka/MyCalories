@@ -80,9 +80,10 @@ flutter:
     - images/plus2.svg
     - images/arrow.svg
     - images/weight.svg
-    - images/wawes.svg
+    - images/waves.svg
     - images/people.svg
     - images/editing.svg
+    - images/mark.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

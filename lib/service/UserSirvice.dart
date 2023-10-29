@@ -205,7 +205,8 @@ Future updateUserInfo(String? email, String? name, double? weightNow, double? we
     localUser!.weightNow = weightNow ?? localUser!.weightNow;
     localUser!.weightDream = weightDream ?? localUser!.weightDream;
     localUser!.height = height ?? localUser!.height;
-    localUser!.birthday = birthday ?? localUser!.birthday;bool emailIsNew = false;
+    localUser!.birthday = birthday ?? localUser!.birthday;
+    bool emailIsNew = false;
     if (email != null && email != localUser!.email) {
       FirebaseAuth auth = FirebaseAuth.instance;
       User? user = auth.currentUser;
@@ -220,19 +221,21 @@ Future updateUserInfo(String? email, String? name, double? weightNow, double? we
       }
     }
 
-    if (emailIsNew) {
-      final DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser!.userId}');
-      ref.update({
-        "name": name ?? localUser!.name,
-        "weightNow": weightNow,
-        "weightDream": weightDream,
-        "height": height,
-        "birthday": birthday,
-      }).then((_){
-      }).catchError((onError){
-        throw onError;
-      });
+    if (!emailIsNew && email != localUser!.email) {
+      throw 'emailError';
     }
+    final DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser!.userId}');
+    ref.update({
+      "name": name ?? localUser!.name,
+      "email": email ?? localUser!.email,
+      "weightNow": weightNow,
+      "weightDream": weightDream,
+      "height": height,
+      "birthday": birthday.toString(),
+    }).then((_){
+    }).catchError((onError){
+      throw onError;
+    });
   }
 }
 

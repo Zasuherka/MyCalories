@@ -12,7 +12,14 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   }
 
   Future _editingUserInfo(UserEditingInfoEvent event, Emitter<UserInfoState> emitter) async {
-    await updateUserInfo(event.email, event.name, event.weightNow, event.weightDream,  event.height, event.birthday);
+    try{
+      await updateUserInfo(event.email, event.name, event.weightNow, event.weightDream,  event.height, event.birthday);
+    }
+    catch(e){
+      if(e.toString() == 'emailError'){
+        emitter(UserInfoErrorState('Данная почта уже занята'));
+      }
+    }
   }
 
   Future _localUserInfo(LocalUserInfoEvent event, Emitter<UserInfoState> emitter) async{

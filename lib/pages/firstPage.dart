@@ -1,3 +1,4 @@
+import 'package:app1/bloc/userImage/user_image_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/pages/myCalories.dart';
 import 'package:app1/pages/profile.dart';
@@ -45,6 +46,7 @@ class _FirstPageState extends State<FirstPage> {
           iconHome = const Icon(Icons.home);
         case 2:
           BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
+          BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
           pageIndex = 2;
           iconProfile = const Icon(Icons.person);
           iconFood = const Icon(Icons.food_bank_outlined);

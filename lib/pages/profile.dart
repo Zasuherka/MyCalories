@@ -48,7 +48,7 @@ class Profile extends StatelessWidget {
                       width: screenWidth,
                       height: screenWidth / 27  * 13,
                       child: SvgPicture.asset(
-                        'images/wawes.svg',
+                        'images/waves.svg',
                         colorFilter: const ColorFilter.mode(
                             Colors.transparent, BlendMode.color),
                         // Применение прозрачного фильтра

@@ -22,8 +22,8 @@ class GetPageBloc extends Bloc<PageEvent, PageState> {
       await getUserFoods();
       await getEatingFoodInfo();
       await getCount();
-      downloadImage();
       emitter(GetPageAnotherState());
+      await downloadImage();
     }
   }
 }

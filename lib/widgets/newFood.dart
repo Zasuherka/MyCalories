@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../service/foodService.dart';
 
 
 class NewFood extends StatefulWidget {
@@ -14,7 +13,7 @@ class NewFood extends StatefulWidget {
   State<NewFood> createState() => _NewFoodState();
 }
 
-class _NewFoodState extends State<NewFood> {
+class _NewFoodState extends State<NewFood> with FoodValidationMixin{
   bool activeTap = true;
   String title = '';
   String calories = '';
@@ -25,12 +24,6 @@ class _NewFoodState extends State<NewFood> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
-
-    Future<void> newFood() async
-    {
-      await createFood(title, protein, fats, carbohydrates, calories);
-    }
 
 
     double screenWidth = MediaQuery.of(context).size.width;
