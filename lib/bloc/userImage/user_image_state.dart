@@ -8,15 +8,15 @@ class UserImageInitial extends UserImageState {}
 class UserEditingInfoState extends UserImageState {}
 
 class LoadImageState extends UserImageState {
-  final Image image;
+  final File image;
 
   LoadImageState(this.image);
 }
 
-class UserImageErrorState extends UserImageState {
+class UserImageNullState extends UserImageState {
   final String error;
 
-  UserImageErrorState(this.error);
+  UserImageNullState(this.error);
 }
 
 class DeleteImageState extends UserImageState {}

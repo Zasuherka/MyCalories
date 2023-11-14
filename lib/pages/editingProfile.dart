@@ -136,13 +136,14 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
               Padding(padding: EdgeInsets.only(right: screenWidth/20),
                 child: GestureDetector(
                 onTap: () {
+                  validate = true;
                   if (selectedDate == null){
                     setState(() {
                       _birthdayTextFieldColor = errorColor;
-                      if(validate){
-                        validate = false;
-                      }
                     });
+                    if(validate){
+                      validate = false;
+                    }
                   }
                   else {
                     setState(() {
@@ -155,7 +156,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                           UserEditingInfoEvent(name: name, email: email, 
                               weightNow: double.parse(weight), weightDream: 
                               double.parse(weightDream), 
-                              birthday: DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day), 
+                              birthday: DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day),
                               height: int.parse(height)));
                     }
                   }
@@ -191,6 +192,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                     weightDream = state.appUser.weightDream?.toString() ?? '';
                     height = state.appUser.height?.toString() ?? '';
                     birthday = state.appUser.birthday != null ? DateFormat('dd.MM.yyyy').format(state.appUser.birthday!) : '';
+                    selectedDate = state.appUser.birthday;
                     _controllerName = TextEditingController(text: name);
                     _controllerEmail = TextEditingController(text: email);
                     _controllerWeight = TextEditingController(text: weight);
@@ -226,12 +228,15 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                   validator: (value) {
                                     if(isNameValid(value)){
                                       setState(() {
-                                        assignDefaultColor();
-                                      });
-                                      setState(() {
-                                        _nameTextFieldColor = errorColor;
+                                        _nameTextFieldColor = defaultColor;
                                       });
                                       return null;
+                                    }
+                                    setState(() {
+                                      _nameTextFieldColor = errorColor;
+                                    });
+                                    if(validate){
+                                      validate = false;
                                     }
                                     return 'Имя должно содержать от 6 до 20 символов';
                                   },
@@ -289,7 +294,17 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                 child:
                                 TextFormField(
                                   validator: (value){
-                                    return isEmailValid(value);
+                                    if(isEmailValid(value) != null)
+                                    {
+                                      setState(() {
+                                        _emailTextFieldColor = errorColor;
+                                      });
+                                      return isEmailValid(value);
+                                    }
+                                    else{
+                                      _emailTextFieldColor = defaultColor;
+                                      return null;
+                                    }
                                   },
                                   controller: _controllerEmail,
                                   style: TextStyle(
@@ -350,16 +365,13 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                         validator: (value){
                                           if(isWeightValid(value)){
                                             setState(() {
-                                              assignDefaultColor();
+                                              _weightTextFieldColor = defaultColor;
                                             });
                                           }
                                           else{
                                             setState(() {
                                               _weightTextFieldColor = errorColor;
                                             });
-                                            if(validate){
-                                              validate = false;
-                                            }
                                           }
                                           return null;
                                         },
@@ -416,7 +428,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                         validator: (value){
                                           if(isWeightValid(value)){
                                             setState(() {
-                                              assignDefaultColor();
+                                              _weightDreamTextFieldColor = defaultColor;
                                             });
                                           }
                                           else{
@@ -493,7 +505,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                         validator: (value){
                                           if(isHeightValid(value)){
                                             setState(() {
-                                              assignDefaultColor();
+                                              _heightTextFieldColor = defaultColor;
                                             });
                                           }
                                           else{

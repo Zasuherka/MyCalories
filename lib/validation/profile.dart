@@ -26,7 +26,7 @@ mixin ProfileValidationMixin {
   }
 
   bool isNameValid(String? name) => name != null && (name.length >= 6 && name.length <= 20);
-  bool isWeightValid(String? weight) => weight != null && (weight.isNotEmpty && weight.length <= 3);
+  bool isWeightValid(String? weight) => weight != null && (weight.isNotEmpty && double.parse(weight) > 1.0 && double.parse(weight) < 500.0);
   bool isHeightValid(String? height) => height != null && (height.length >= 2 || height.length <= 3);
   bool isDateValid(DateTime? date) => date != null;
 }

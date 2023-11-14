@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AvatarWrap extends StatelessWidget {
-  const AvatarWrap({super.key});
+  final bool avatarIsNotNull;
+  const AvatarWrap({super.key, required this.avatarIsNotNull});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class AvatarWrap extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     return Wrap(
       children: [
-        Container(
+        SizedBox(
           height: screenHeight/20,
           child: ListTile(
             title: Row(
@@ -32,7 +33,7 @@ class AvatarWrap extends StatelessWidget {
             },
           ),
         ),
-        Container(
+        avatarIsNotNull ? SizedBox(
           height: screenHeight/20,
           child: ListTile(
             title: Row(
@@ -52,8 +53,8 @@ class AvatarWrap extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-        ),
-        Container(
+        ) : Container(),
+        SizedBox(
           height: screenHeight/20,
           child: ListTile(
             title: Row(

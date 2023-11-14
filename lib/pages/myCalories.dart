@@ -31,57 +31,52 @@ class _MyCaloriesState extends State<MyCalories> {
       backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
       body:
       SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(padding: EdgeInsets.only(top: screenHeight/20),
-                child:
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+        child:Padding(padding: EdgeInsets.only(top: screenHeight/20),
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: const PFCChart(goalValue: 210, title: 'БЕЛКИ')
-                        ),
-                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: const PFCChart(goalValue: 100, title: 'ЖИРЫ')
-                        ),
-                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: const PFCChart(goalValue: 80, title: 'УГЛЕВОДЫ')
-                        )
-                      ],
+                    Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
+                        child: const PFCChart(goalValue: 210, title: 'БЕЛКИ')
                     ),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                    const CaloriesChart(),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                    const EatingWidget(title: 'Завтрак'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    const EatingWidget(title: 'Обед'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    const EatingWidget(title: 'Ужин'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    const EatingWidget(title: 'Другое'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    ElevatedButton(
-                        onPressed: () {
-                          BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-                          Navigator.push(context,MaterialPageRoute(builder: (context) =>const MyFoodPage(isUpdatePage: true)));
-                        },
-                        child: Text(localUser!.name.toString())),
-                    ElevatedButton(
-                      onPressed: () async {
-                        await exitUser();
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
-                      },
-                      child: const Text('Выход'),
+                    Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
+                        child: const PFCChart(goalValue: 100, title: 'ЖИРЫ')
+                    ),
+                    Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
+                        child: const PFCChart(goalValue: 80, title: 'УГЛЕВОДЫ')
                     )
-
                   ],
+                ),
+                Padding(padding: EdgeInsets.only(top: screenHeight/75)),
+                const CaloriesChart(),
+                Padding(padding: EdgeInsets.only(top: screenHeight/75)),
+                const EatingWidget(title: 'Завтрак'),
+                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                const EatingWidget(title: 'Обед'),
+                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                const EatingWidget(title: 'Ужин'),
+                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                const EatingWidget(title: 'Другое'),
+                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => const MyFoodPage(isUpdatePage: true)));
+                    },
+                    child: Text(localUser!.name.toString())),
+                ElevatedButton(
+                  onPressed: () async {
+                    await exitUser();
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
+                  },
+                  child: const Text('Выход'),
                 )
+
+              ],
             )
-          ],
-        ),
+        )
       )
     );
   }

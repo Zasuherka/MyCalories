@@ -6,6 +6,12 @@ class FoodInitialEvent extends FoodEvent {}
 
 class GetListFoodEvent extends FoodEvent{}
 
+class FindFoodEvent extends FoodEvent{
+  final String searchText;
+
+  FindFoodEvent(this.searchText);
+}
+
 class CreateFoodEvent extends FoodEvent{
   final String title;
   final String protein;

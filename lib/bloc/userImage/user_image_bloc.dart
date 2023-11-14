@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:app1/service/UserSirvice.dart';
 import 'package:app1/service/imageService.dart';
@@ -7,6 +8,10 @@ import 'package:flutter/material.dart';
 part 'user_image_event.dart';
 part 'user_image_state.dart';
 
+
+///TODO после успешного получения изображения, отправить состояние, которое
+///TODO сообщит о том, что изображение загружено во view и можно не обновлять состояние |
+///TODO Сделать, чтобы не было кнопки удаления изображения, когда у юзера не аватарки
 class UserImageBloc extends Bloc<UserImageEvent, UserImageState> {
   UserImageBloc() : super(UserImageInitial()) {
     on<SelectAndUploadImageEvent>(_onSelectAndUploadImage);
@@ -14,21 +19,25 @@ class UserImageBloc extends Bloc<UserImageEvent, UserImageState> {
     on<DeleteImageEvent>(_onDeleteImage);
   }
   Future _onSelectAndUploadImage(SelectAndUploadImageEvent event, Emitter<UserImageState> emitter) async {
-    await selectAndUploadImage();
-    if (localUser!.avatar == null){
-      emitter(UserImageErrorState('Изображение не выбрано'));
+    emitter(UserImageNullState(''));
+    File? newAvatar = await selectAndUploadImage();
+    if (newAvatar == null){
+      emitter(UserImageNullState('Изображение не выбрано'));
     }
     else{
-      emitter(LoadImageState(localUser!.avatar!));
+      emitter(LoadImageState(newAvatar));
     }
   }
 
   Future _onLoadImage(LoadImageEvent event, Emitter<UserImageState> emitter) async {
+    emitter(UserImageNullState(''));
     if (localUser!.avatar != null){
+      emitter(LoadImageState(localUser!.avatar!));
+      await downloadImage();
       emitter(LoadImageState(localUser!.avatar!));
     }
     else{
-      emitter(UserImageErrorState('Изображение не найдено'));
+      emitter(UserImageNullState('Изображение не найдено'));
     }
   }
   Future _onDeleteImage(DeleteImageEvent event, Emitter<UserImageState> emitter) async {

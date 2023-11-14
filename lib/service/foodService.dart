@@ -78,6 +78,26 @@ Future<Food?> updateFood(Food food, String title, String protein, String fats, S
   return null;
 }
 
+Future<List<Food>> findFood(String searchText) async {
+  if (localUser == null){
+    throw 'User is null';
+  }
+  if (localUser!.myFoods.isEmpty) {
+    return [];
+  }
+  if (searchText == ' ') {
+    return [];
+  }
+  List<Food> findFoodList = [];
+  for (var food in localUser!.myFoods) {
+    if (food.title.toLowerCase().contains(searchText.toLowerCase())){
+      findFoodList.add(food);
+    }
+  }
+  return findFoodList;
+}
+
+
 ///Получение еды в локальный список пользователя
 Future<void> getUserFoods() async
 {
@@ -242,70 +262,70 @@ Future<void> getCount() async {
 
 double caloriesCounter() {
   double counter = 0;
-  localUser!.eatingBreakfast.forEach((food) {
+  for (var food in localUser!.eatingBreakfast) {
     counter += food.calories;
-  });
-  localUser!.eatingLunch.forEach((food) {
+  }
+  for (var food in localUser!.eatingLunch) {
     counter += food.calories;
-  });
-  localUser!.eatingDinner.forEach((food) {
+  }
+  for (var food in localUser!.eatingDinner) {
     counter += food.calories;
-  });
-  localUser!.eatingAnother.forEach((food) {
+  }
+  for (var food in localUser!.eatingAnother) {
     counter += food.calories;
-  });
+  }
   return counter;
 }
 
 
 double proteinCounter() {
   double counter = 0;
-  localUser!.eatingBreakfast.forEach((food) {
+  for (var food in localUser!.eatingBreakfast) {
     counter += food.protein;
-  });
-  localUser!.eatingLunch.forEach((food) {
+  }
+  for (var food in localUser!.eatingLunch) {
     counter += food.protein;
-  });
-  localUser!.eatingDinner.forEach((food) {
+  }
+  for (var food in localUser!.eatingDinner) {
     counter += food.protein;
-  });
-  localUser!.eatingAnother.forEach((food) {
+  }
+  for (var food in localUser!.eatingAnother) {
     counter += food.protein;
-  });
+  }
   return counter;
 }
 
 double fatsCounter() {
   double counter = 0;
-  localUser!.eatingBreakfast.forEach((food) {
+  for (var food in localUser!.eatingBreakfast) {
     counter += food.fats;
-  });
-  localUser!.eatingLunch.forEach((food) {
+  }
+  for (var food in localUser!.eatingLunch) {
     counter += food.fats;
-  });
-  localUser!.eatingDinner.forEach((food) {
+  }
+  for (var food in localUser!.eatingDinner) {
     counter += food.fats;
-  });
-  localUser!.eatingAnother.forEach((food) {
+  }
+  for (var food in localUser!.eatingAnother) {
     counter += food.fats;
-  });
+  }
   return counter;
 }
 
 
 double carbohydratesCounter() {
   double counter = 0;
-  localUser!.eatingBreakfast.forEach((food) {
+  for (var food in localUser!.eatingBreakfast) {
     counter += food.carbohydrates;
-  });
-  localUser!.eatingLunch.forEach((food) {
+  }
+  for (var food in localUser!.eatingLunch) {
     counter += food.carbohydrates;
-  });
-  localUser!.eatingDinner.forEach((food) {
+  }
+  for (var food in localUser!.eatingDinner) {
     counter += food.carbohydrates;
-  });
-  localUser!.eatingAnother.forEach((food) {
+  }
+  for (var food in localUser!.eatingAnother) {
     counter += food.carbohydrates;
-  });
+  }
   return counter;
 }

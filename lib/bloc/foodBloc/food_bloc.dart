@@ -11,15 +11,16 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
   FoodBloc() : super(FoodInitialState()) {
     on<CreateFoodEvent>(_onCreateFood);
     on<UpdateFoodEvent>(_onUpdateFood);
-    on<GetListFoodEvent>(_onGetFoodList);
+    //on<GetListFoodEvent>(_onGetFoodList);
     on<DeleteFoodEvent>(_onDeleteFood);
+    on<FindFoodEvent>(_onFindFood);
     on<FoodInitialEvent>(_onFoodList);
   }
 
   Future<void> _onCreateFood(CreateFoodEvent event, Emitter<FoodState> emitter) async{
     final Food? food = await createFood(event.title, event.protein, event.fats, event.carbohydrates, event.calories);
     if(food == null){
-      emitter(ErrorFoodState());
+      emitter(ErrorFoodState('Ошибка при создании еды'));
     }
     else{
       emitter(GetFoodListState(localUser!.myFoods));
@@ -29,7 +30,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
   Future<void> _onUpdateFood(UpdateFoodEvent event, Emitter<FoodState> emitter) async{
     final Food? food = await updateFood(event.food, event.title, event.protein, event.fats, event.carbohydrates, event.calories);
     if (food == null){
-      emitter(ErrorFoodState());
+      emitter(ErrorFoodState('Ошибка при обновлении еды'));
     }
     else{
       emitter(GetFoodListState(localUser!.myFoods));
@@ -41,7 +42,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
       emitter(GetFoodListState(localUser!.myFoods));
     }
     else{
-      emitter(ErrorFoodState());
+      emitter(ErrorFoodState('Ошибка при удалении еды'));
     }
   }
 
@@ -49,8 +50,15 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
     emitter(GetFoodListState(localUser!.myFoods));
   }
 
-  Future<void> _onGetFoodList(GetListFoodEvent event, Emitter<FoodState> emitter)async{
-    await getUserFoods();
-    emitter(GetFoodListState(localUser!.myFoods));
+  Future<void> _onFindFood(FindFoodEvent event, Emitter<FoodState> emitter)async{
+    try {
+      List<Food> findFoodList = await findFood(event.searchText);
+      emitter(GetFoodListState(findFoodList));
+    } on Exception catch (e) {
+      emitter(ErrorFoodState(e.toString()));
+    }
   }
+  // Future<void> _onGetFoodList(GetListFoodEvent event, Emitter<FoodState> emitter)async{
+  //   emitter(GetFoodListState(localUser!.myFoods));
+  // }
 }

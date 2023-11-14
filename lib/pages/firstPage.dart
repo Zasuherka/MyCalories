@@ -1,6 +1,8 @@
+import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/bloc/userImage/user_image_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/pages/myCalories.dart';
+import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +18,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  List<Widget> pages = [const Profile(), const MyCalories(), const Profile()];
+  List<Widget> pages = [const MyFoodPage(isUpdatePage: false), const MyCalories(), const Profile()];
   int pageIndex = 1;
   int _selectedIndex = 1;
   Icon iconProfile = const Icon(Icons.person_outline);
@@ -35,6 +37,7 @@ class _FirstPageState extends State<FirstPage> {
       iconHome = const Icon(Icons.home_outlined);
       switch (index) {
         case 0:
+          BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
           pageIndex = 0;
           iconProfile = const Icon(Icons.person_outline);
           iconFood = const Icon(Icons.food_bank);

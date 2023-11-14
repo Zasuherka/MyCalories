@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:app1/service/UserSirvice.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -6,38 +8,33 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
-///Выгрузка фотографии в FireBase + обращение к [downloadImage()]
+///Выгрузка фотографии в FireBase + обращение к [downloadImage]
 ///В слуае ошибки, а она может проозийти исключительно при остутствии интернета, мы будем использовать уже имеющуюся фотографию
 ///используя [loadImage()]
 //TODO Обязательно допилить, чтобы вовсе нельзя было использовать при выключенном интернете
-Future selectAndUploadImage() async {
+Future<File?> selectAndUploadImage() async {
   try{
     ///Выбор файла
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
-      final File imageFile = File(image.path);
+      final File imageFile = await cropImage(image);
       final String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      ///Сохранение фото в storage
       final Reference imageRef = FirebaseStorage.instance.ref().child('images/$fileName');
       final UploadTask uploadTask = imageRef.putFile(imageFile);
       final TaskSnapshot storageTaskSnapshot = await uploadTask.whenComplete(() => null);
       final String imageUrl = await storageTaskSnapshot.ref.getDownloadURL();
-
-      final documentDirectory = await getApplicationDocumentsDirectory() ;
-      File file = File('${documentDirectory.path}/avatar.jpg');
-      file.writeAsBytesSync(await image.readAsBytes(), flush: true);
-      localUser!.avatar = Image.file(file);
-
+      localUser!.avatar = imageFile;
       localUser!.urlAvatar = imageUrl;
-      localUser?.avatar = Image.file(imageFile);
       saveChanges();
     }
   }
   catch(e){
-    await loadImage();
+      print('Error: ${e.toString()}');
   }
+  return localUser!.avatar;
 }
 
 ///Используем для получения аватарки при включенном интернете.
@@ -50,7 +47,7 @@ Future downloadImage() async {
         final documentDirectory = await getApplicationDocumentsDirectory() ;
         File file = File('${documentDirectory.path}/avatar.jpg');
         file.writeAsBytesSync(response.bodyBytes, flush: true);
-        localUser!.avatar = Image.file(file);
+        localUser!.avatar = file;
       }
       catch(e){
         print(e.toString());
@@ -72,7 +69,7 @@ Future loadImage() async {
   if(localUser!.urlAvatar != null){
     final documentDirectory = await getApplicationDocumentsDirectory();
     File file = File('${documentDirectory.path}/avatar.jpg');
-    localUser!.avatar = Image.file(file);
+    localUser!.avatar = file;
   }
   else{
     localUser!.avatar = null;
@@ -102,4 +99,22 @@ Future saveChanges() async {
     "urlAvatar": localUser!.urlAvatar
   });
   await setUserInfo(localUser!);
+}
+
+Future<File> cropImage(XFile file) async {
+  final File imageFile = File(file.path.toString());
+  var decodedImage = await decodeImageFromList(imageFile.readAsBytesSync());
+  final int maxSize = decodedImage.width > decodedImage.height ? decodedImage.width : decodedImage.height;
+
+  final documentDirectory = await getApplicationDocumentsDirectory() ;
+  final Uint8List resultImage = await FlutterImageCompress.compressWithList(
+      await file.readAsBytes(),
+    minHeight: decodedImage.height.toInt(),
+    minWidth: decodedImage.width.toInt(),
+    quality: (100 * 1000/maxSize).round()
+  );
+
+  final File compressedFile = File('${documentDirectory.path}/avatar.jpg');
+  await compressedFile.writeAsBytes(resultImage);
+  return compressedFile;
 }

@@ -18,7 +18,7 @@ class Profile extends StatelessWidget {
     String weightDream = '';
     String height = '';
     String age = '';
-
+    late bool avatarIsNotNull = false;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     Image avatar = Image.asset('images/icon.jpg');
@@ -62,14 +62,16 @@ class Profile extends StatelessWidget {
                           BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
                         }
                         if(state is LoadImageState){
-                          avatar = state.image;
+                          avatar = Image.file(state.image);
+                          avatarIsNotNull = true;
                         }
-                        if(state is UserImageErrorState || state is DeleteImageState){
+                        if(state is UserImageNullState || state is DeleteImageState){
+                          avatarIsNotNull = false;
                           avatar = Image.asset('images/icon.jpg');
                         }
                         return GestureDetector(
                           onTap: (){
-                            showModalBottomSheet(context: context, builder: (BuildContext context) => const AvatarWrap());
+                            showModalBottomSheet(context: context, builder: (BuildContext context) => AvatarWrap(avatarIsNotNull: avatarIsNotNull));
                           },
                           child: Container(
                             height: screenHeight/7,

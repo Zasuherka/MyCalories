@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app1/objects/food.dart';
 import 'package:app1/objects/result.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +37,7 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
   DateTime? birthday;
   int? age;
   String? urlAvatar;
-  Image? avatar;
+  File? avatar;
   List<Food> myFoods = [];
   List<EatingFood> eatingBreakfast = [];
   List<EatingFood> eatingLunch = [];
