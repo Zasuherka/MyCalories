@@ -71,7 +71,8 @@ class Profile extends StatelessWidget {
                         }
                         return GestureDetector(
                           onTap: (){
-                            showModalBottomSheet(context: context, builder: (BuildContext context) => AvatarWrap(avatarIsNotNull: avatarIsNotNull));
+                            showModalBottomSheet(context: context, builder:
+                                (BuildContext context) => AvatarWrap(avatarIsNotNull: avatarIsNotNull));
                           },
                           child: Container(
                             height: screenHeight/7,

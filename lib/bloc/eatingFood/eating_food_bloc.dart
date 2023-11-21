@@ -31,7 +31,6 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
   }
 
   Future<void> _updateList(Emitter<EatingFoodState> emitter) async {
-    print('object');
     await setEatingFoodInfo();
     final (List<EatingFood>, String) breakfast = getEatingList('Завтрак');
     final (List<EatingFood>, String) lunch = getEatingList('Обед');

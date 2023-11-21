@@ -3,7 +3,7 @@ import 'package:app1/objects/food.dart';
 class EatingFood extends Food
 {
   late int weight;
-  EatingFood(super.idFood, super.title, super.protein, super.fats, super.carbohydrates, super.calories, this.weight);
+  EatingFood(super.idFood, super.authorEmail, super.title, super.protein, super.fats, super.carbohydrates, super.calories, this.weight);
 
   EatingFood.fromJson(Map<String, dynamic> json):
         weight = json['weight'],
@@ -13,6 +13,7 @@ class EatingFood extends Food
   Map<String, dynamic> toJson() {
     return {
       'idFood': idFood,
+      'authorEmail': authorEmail,
       'title': title,
       'protein': protein,
       'fats': fats,

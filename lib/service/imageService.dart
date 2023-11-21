@@ -59,14 +59,13 @@ Future downloadImage() async {
     }
   }
   else{
-    print('Не прошли проверку на подключение');
     loadImage();
   }
 }
 
 ///Используем для получения аватарки при выключенном интернете
 Future loadImage() async {
-  if(localUser!.urlAvatar != null){
+  if(localUser!.urlAvatar != null && localUser!.urlAvatar != 'null'){
     final documentDirectory = await getApplicationDocumentsDirectory();
     File file = File('${documentDirectory.path}/avatar.jpg');
     localUser!.avatar = file;
@@ -117,4 +116,13 @@ Future<File> cropImage(XFile file) async {
   final File compressedFile = File('${documentDirectory.path}/avatar.jpg');
   await compressedFile.writeAsBytes(resultImage);
   return compressedFile;
+}
+
+
+Future signOut() async{
+ if(localUser != null && localUser!.avatar != null){
+   final documentDirectory = await getApplicationDocumentsDirectory();
+   File file = File('${documentDirectory.path}/avatar.jpg');
+   file.deleteSync();
+ }
 }

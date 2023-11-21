@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:app1/bloc/authorization/authorization_bloc.dart';
-import 'package:app1/bloc/registration/registration_state.dart';
+import 'package:app1/enums/authorizationStatus.dart';
+import 'package:app1/enums/registrationStatus.dart';
 import 'package:app1/objects/user.dart';
 import 'package:app1/service/foodService.dart';
+import 'package:app1/service/imageService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +23,6 @@ Future<AppUser?> getAppUser() async
     {
       User? user = auth.currentUser;
       if(user == null) {
-        print(1);
         return null;
       }
       await user.reload();
@@ -99,11 +99,11 @@ Future<void> setUserInfo(AppUser userInfo) async
 }
 
 ///Авторизация пользователя
-Future<AuthorizationState> authorization(String email, String password) async {
+Future<AuthorizationStatus> authorization(String email, String password) async {
   /// Переменная отвечающая за ответ фронту
 
   if ((email.isEmpty) && (password.isEmpty)){
-    return AuthorizationError(error: 'Не все поля заполнены');
+    return AuthorizationStatus.errorFields;
   }
 
   /// Попытка зайти в профиль
@@ -119,35 +119,36 @@ Future<AuthorizationState> authorization(String email, String password) async {
       if(!user.emailVerified)
       {
         await auth.signOut();
-        return AuthorizationError(error: 'Ваша учётная запись не подтверждена');
+        return AuthorizationStatus.errorVerified;
       }///Возможно будет ещё логика
       else{
-        return AuthorizationSuccessful();
+        return AuthorizationStatus.successful;
       }
     }
   }
   /// Ответ в случае ошибки
   on FirebaseAuthException catch (e)
   {
-    print(e.toString());
     if (e.code == 'network-request-failed')
     {
-      return AuthorizationError(error: 'Ошибка подключения');
+      return AuthorizationStatus.networkRequestFailed;
     }
     if (e.code == 'user-not-found')
     {
-      return AuthorizationError(error: 'Пользователь с этой почтой не найден');
+      return AuthorizationStatus.userNotFound;
     } else if (e.code == 'wrong-password')
     {
-      return AuthorizationError(error: 'Неверный пароль');
+      return AuthorizationStatus.wrongPassword;
+    }
+    else{
+      AuthorizationStatus.error;
     }
   }
-
-  return AuthorizationSuccessful();
+  return AuthorizationStatus.successful;
 }
 
 ///Регистрацаия пользователя
-Future<RegistrationState> register(String email, String name, String password1, password2) async {
+Future<RegistrationStatus> register(String email, String name, String password1, password2) async {
   if(password1 == password2) {
     /// Попытка зарегистрироваться
     try {
@@ -158,39 +159,43 @@ Future<RegistrationState> register(String email, String name, String password1, 
       User? user = userCredential.user;
 
       if (user!= null) {
-        await _newUser(user.uid, name);
+        await _newUser(user, name);
         if (!user.emailVerified)
         {
           await user.sendEmailVerification();
           await auth.signOut();
         }
       }
-      return RegistrationSuccessful();
+      return RegistrationStatus.successful;
     }
 
     /// Обработка ошибок
     on FirebaseAuthException catch (e) {
-      print(e.toString());
       if (e.code == 'weak-password') {
-        return RegistrationError(error: 'Пароль ненадёжный');
+        return RegistrationStatus.weakPassword;
       } else if (e.code == 'email-already-in-use') {
-        return RegistrationError(error: 'Данная электронная почта уже используется');
+        return RegistrationStatus.emailAlreadyInUs;
       } else if (e.code == 'network-request-failed')
       {
-        return RegistrationError(error: 'Ошибка подключения');
+        return RegistrationStatus.networkRequestFailed;
+      } else{
+        RegistrationStatus.error;
       }
     }
   }
-  return RegistrationError(error: 'Пароли не совпадают');
+  return RegistrationStatus.errorPassword;
 }
 
 ///Сохранение пользователя в БД при регистрации
-Future<void> _newUser(String userId, String userName) async
+Future<void> _newUser(User user, String name) async
 {
-  DatabaseReference ref = FirebaseDatabase.instance.ref('/users');
+  DatabaseReference ref = FirebaseDatabase.instance.ref('/users/${user.uid}');
 
   try {
-    ref.child(userId).child('name').set(userName);
+    ref.set({
+      "name": name,
+      "email": user.email
+    });
   }
   catch (e) {
     print("Ошибка" + e.toString());
@@ -270,5 +275,6 @@ Future<void> exitUser() async{
   await prefs.remove('eatingAnotherInfo');
   localUser = null;
   await auth.signOut();
+  await signOut();
 }
 

@@ -55,7 +55,6 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
     required this.weightNow, required this.weightDream, required this.height,
     required this.birthday, required this.urlAvatar})
   {
-    print(birthday.toString());
     _countAge();
   }
 
@@ -69,7 +68,6 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
         height = json['height'],
         birthday = DateTime.parse(json['birthday'])
   {
-    print(birthday.toString());
     _countAge();
   }
 

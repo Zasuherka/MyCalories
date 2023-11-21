@@ -10,6 +10,13 @@ class GetFoodListState extends FoodState {
   GetFoodListState(this.list);
 }
 
+class FindFoodListState extends FoodState {
+  final List<Food> userFoodList;
+  final List<Food> globalFoodList;
+
+  FindFoodListState(this.userFoodList, this.globalFoodList);
+}
+
 class ErrorFoodState extends FoodState{
   final String errorText;
 

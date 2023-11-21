@@ -1,3 +1,4 @@
+import 'package:app1/enums/authorizationStatus.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,7 +15,14 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
 
   Future<void> _onAuthorization(AuthorizationEvent event, Emitter<AuthorizationState> emitter) async{
     emitter(AuthorizationLoading());
-    final AuthorizationState state = await authorization(event.email, event.password);
-    emitter(state);
+    final AuthorizationStatus status = await authorization(event.email, event.password);
+    switch (status){
+      case AuthorizationStatus.successful:
+        emitter(AuthorizationSuccessful());
+        break;
+      default:
+        emitter(AuthorizationError(error: status.registrationStatus));
+        break;
+    }
   }
 }
