@@ -1,4 +1,5 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/validation/foodValidator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -64,7 +65,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                         'images/arrow.svg',
                         width: screenHeight/27,
                         height: screenHeight/27,
-                        colorFilter: const ColorFilter.mode(Color.fromRGBO(16, 240, 12, 1.0), BlendMode.srcIn),
+                        colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn),
                       ),
                     ),
                     SizedBox(
@@ -113,7 +114,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                   child:
                   Table(
                     border: TableBorder.all(
-                        color: const Color.fromRGBO(16, 240, 12, 1.0),
+                        color: AppColors.green,
                         //width: 1.3
                     ),
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
@@ -377,7 +378,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                        const Color.fromRGBO(16, 240, 12, 1.0),
+                        AppColors.green,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(36))),
                     child: Text(

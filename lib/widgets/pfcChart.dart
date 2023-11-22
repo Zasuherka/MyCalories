@@ -1,4 +1,5 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,14 +82,14 @@ class _PFCChartState extends State<PFCChart> {
                                       title: '',
                                       radius: screenWidth * 0.03,
                                       value: value,
-                                      color: const Color.fromRGBO(16, 240, 12, 1.0)
+                                      color: AppColors.green
                                   ),
                                   PieChartSectionData
                                     (
                                       title: '',
                                       radius: screenWidth * 0.03,
                                       value: counter,
-                                      color: const Color.fromRGBO(255, 0, 13, 1.0)
+                                      color: AppColors.red
                                   ),
 
                                 ]

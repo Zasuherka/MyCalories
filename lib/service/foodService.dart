@@ -212,7 +212,7 @@ Future<void> getUserFoods() async
         else{
           newFood.isUserFood = false;
         }
-        newFood.isThisFoodOnTheMyFoodList = false;
+        newFood.isThisFoodOnTheMyFoodList = true;
         if(!localUser!.myFoods.contains(newFood)){
           localUser!.myFoods.add(newFood);
         }
@@ -262,7 +262,6 @@ Future<void> getEatingFoodInfo() async {
     localUser!.eatingDinner = eatingDinnerJsonList.map((food) => EatingFood.fromJson(json.decode(food))).toList();
     localUser!.eatingAnother = eatingAnotherJsonList.map((food) => EatingFood.fromJson(json.decode(food))).toList();
   }
-
 }
 
 Future<void> setEatingFoodInfo() async {

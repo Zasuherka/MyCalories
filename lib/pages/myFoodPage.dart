@@ -1,6 +1,7 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/objects/food.dart';
-import 'package:app1/widgets/FoodListView.dart';
+import 'package:app1/widgets/foodListView.dart';
 import 'package:app1/widgets/newFood.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -47,12 +48,12 @@ class _MyFoodPageState extends State<MyFoodPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-          backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
+          backgroundColor: AppColors.backGroundColor,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(screenHeight/17),
             child: Container(
               height: screenHeight/10,
-              color: const Color.fromRGBO(16, 240, 12, 1.0),
+              color: AppColors.green,
               child: Padding(
                 padding: EdgeInsets.only(bottom: screenHeight/200),
                 child: Row(
@@ -65,8 +66,8 @@ class _MyFoodPageState extends State<MyFoodPage> {
                       },
                       style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(0),
-                          backgroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
-                          foregroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
+                          backgroundColor: AppColors.green,
+                          foregroundColor: AppColors.green,
                           shadowColor: Colors.transparent),
                       child: SvgPicture.asset(
                         'images/arrow.svg',
@@ -81,7 +82,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                       height: screenHeight/20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: const Color.fromRGBO(238, 238, 238, 1.0),
+                        color: AppColors.backGroundColor,
                       ),
                       child: BlocBuilder<FoodBloc, FoodState>(
                         builder: (context, state) {
@@ -129,8 +130,8 @@ class _MyFoodPageState extends State<MyFoodPage> {
                       },
                       style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(0),
-                          backgroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
-                          foregroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
+                          backgroundColor: AppColors.green,
+                          foregroundColor: AppColors.green,
                           shadowColor: Colors.transparent),
                       child: SvgPicture.asset(
                         'images/plus.svg',

@@ -1,4 +1,5 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,8 +72,8 @@ class _CaloriesChartState extends State<CaloriesChart> {
                   borderRadius: BorderRadius.circular(4.0),
                   child: LinearProgressIndicator(
                     value: value / goalValue, // Здесь вычисляем процент заполнения
-                    backgroundColor: const Color.fromRGBO(255, 0, 13, 1.0), // Цвет фона
-                    valueColor: const AlwaysStoppedAnimation<Color>(Color.fromRGBO(16, 240, 12, 1.0)),
+                    backgroundColor: AppColors.red, // Цвет фона
+                    valueColor: const AlwaysStoppedAnimation<Color>(AppColors.green),
                     // Цвет заполнения
                   ),
                 )

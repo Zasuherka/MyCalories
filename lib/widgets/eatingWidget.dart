@@ -1,5 +1,6 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -112,7 +113,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                             'images/plus2.svg',
                             width: screenHeight/27,
                             height: screenHeight/27,
-                            colorFilter: const ColorFilter.mode(Color.fromRGBO(16, 240, 12, 1.0), BlendMode.srcIn),
+                            colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn),
                           ),
                         ),
                       ),

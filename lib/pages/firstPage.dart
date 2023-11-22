@@ -1,6 +1,7 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/bloc/userImage/user_image_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/pages/myCalories.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/pages/profile.dart';
@@ -79,7 +80,7 @@ class _FirstPageState extends State<FirstPage> {
             BottomNavigationBarItem(icon: iconProfile, label: 'Profile'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: const Color.fromRGBO(16, 240, 12, 1.0),
+          selectedItemColor: AppColors.green,
           onTap: _onItemTapped,
         ),
         body:

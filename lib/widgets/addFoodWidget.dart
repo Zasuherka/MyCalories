@@ -1,4 +1,5 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/objects/food.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -68,7 +69,7 @@ class _AddFoodState extends State<AddFood> {
                           'images/arrow.svg',
                           width: screenHeight/27,
                           height: screenHeight/27,
-                          colorFilter: const ColorFilter.mode(Color.fromRGBO(16, 240, 12, 1.0), BlendMode.srcIn),
+                          colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn),
                         ),
                       ),
                       SizedBox(
@@ -95,7 +96,7 @@ class _AddFoodState extends State<AddFood> {
                     child:
                     Table(
                       border: TableBorder.all(
-                        color: const Color.fromRGBO(16, 240, 12, 1.0),
+                        color: AppColors.green,
                       ),
                       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                       children: [
@@ -328,7 +329,7 @@ class _AddFoodState extends State<AddFood> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(16, 240, 12, 1.0),
+                          backgroundColor: AppColors.green,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(36)
                           )

@@ -1,10 +1,7 @@
-import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/objects/food.dart';
-import 'package:app1/widgets/addFoodWidget.dart';
 import 'package:app1/widgets/foodWrap.dart';
-import 'package:app1/widgets/updateFood.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoodListView extends StatelessWidget {
   final List<Food> listFood;
@@ -63,8 +60,7 @@ class FoodListView extends StatelessWidget {
                             style: TextStyle(
                               fontSize: screenHeight / 32,
                               fontFamily: 'Comfortaa',
-                              color: const Color.fromRGBO(
-                                  16, 240, 12, 1.0),
+                              color: AppColors.green,
                             ),
                           ),
                         ),
@@ -79,8 +75,7 @@ class FoodListView extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: screenHeight / 50,
                                   fontFamily: 'Comfortaa',
-                                  color: const Color.fromRGBO(
-                                      16, 240, 12, 1.0),
+                                  color: AppColors.green,
                                 ),
                               ),
                             ),
@@ -94,8 +89,7 @@ class FoodListView extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: screenHeight / 50,
                                   fontFamily: 'Comfortaa',
-                                  color: const Color.fromRGBO(
-                                      16, 240, 12, 1.0),
+                                  color: AppColors.green,
                                 ),
                               ),
                             ),

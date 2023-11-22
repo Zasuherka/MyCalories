@@ -86,12 +86,12 @@ class FoodWrap extends StatelessWidget {
                 )
               ],
             ),
-            onTap: (){
-              showDialog(
+            onTap: () async {
+              Navigator.pop(context);
+              await showDialog(
                   context: context,
                   builder: (BuildContext context) => UpdateFood(
                       food: food));
-              Navigator.pop(context);
             },
           ),
         )

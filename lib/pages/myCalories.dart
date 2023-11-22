@@ -1,4 +1,5 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/service/UserSirvice.dart';
@@ -28,7 +29,7 @@ class _MyCaloriesState extends State<MyCalories> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
+      backgroundColor: AppColors.backGroundColor,
       body:
       SingleChildScrollView(
         child:Padding(padding: EdgeInsets.only(top: screenHeight/20),

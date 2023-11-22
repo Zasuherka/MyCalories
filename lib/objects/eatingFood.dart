@@ -19,7 +19,8 @@ class EatingFood extends Food
       'fats': fats,
       'carbohydrates': carbohydrates,
       'calories': calories,
-      'weight' : weight
+      'weight' : weight,
+      'isUserFood': isUserFood.toString()
     };
   }
 

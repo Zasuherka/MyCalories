@@ -1,4 +1,5 @@
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
+import 'package:app1/colors/colors.dart';
 import 'package:app1/validation/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -110,9 +111,9 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-          backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
+          backgroundColor: AppColors.backGroundColor,
           appBar: AppBar(
-            backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
+            backgroundColor: AppColors.backGroundColor,
             shadowColor: Colors.black,
             leading: ElevatedButton(
               onPressed: () {
@@ -121,8 +122,8 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
               },
               style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(0),
-                  backgroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
-                  foregroundColor: const Color.fromRGBO(238, 238, 238, 1.0),
+                  backgroundColor: AppColors.backGroundColor,
+                  foregroundColor: AppColors.backGroundColor,
                   shadowColor: Colors.transparent),
               child: SvgPicture.asset(
                 'images/arrow.svg',
