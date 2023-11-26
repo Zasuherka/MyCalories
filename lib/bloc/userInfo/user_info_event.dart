@@ -10,13 +10,18 @@ class UserEditingInfoEvent extends UserInfoEvent {
   final String? name;
   final String? email;
   final double? weightNow;
-  final double? weightDream;
+  final double? weightGoal;
   final DateTime? birthday;
   final int? height;
+  final int? caloriesGoal;
+  final int? fatsGoal;
+  final int? carbohydratesGoal;
+  final int? proteinGoal;
 
   UserEditingInfoEvent(
-      {required this.name, required this.email, required this.weightNow,
-        required this.weightDream, required this.birthday, required this.height});
+      {this.name, this.email, this.weightNow, this.weightGoal, this.birthday,
+        this.height, this.caloriesGoal, this.fatsGoal,
+        this.carbohydratesGoal, this.proteinGoal,});
 }
 
 ///Получение актуального [localUser]

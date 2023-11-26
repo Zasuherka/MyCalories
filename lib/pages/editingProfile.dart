@@ -23,20 +23,20 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
   String name = '';
   String email = '';
   String weight = '';
-  String weightDream = '';
+  String weightGoal = '';
   String height = '';
   String birthday = '';
   String error = '';
   late Color _nameTextFieldColor;
   late Color _emailTextFieldColor;
   late Color _weightTextFieldColor;
-  late Color _weightDreamTextFieldColor;
+  late Color _weightGoalTextFieldColor;
   late Color _heightTextFieldColor;
   late Color _birthdayTextFieldColor;
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerWeight = TextEditingController();
-  TextEditingController _controllerWeightDream = TextEditingController();
+  TextEditingController _controllerWeightGoal = TextEditingController();
   TextEditingController _controllerBirthday = TextEditingController();
   TextEditingController _controllerHeight = TextEditingController();
 
@@ -48,7 +48,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
     _nameTextFieldColor = defaultColor;
     _emailTextFieldColor = defaultColor;
     _weightTextFieldColor = defaultColor;
-    _weightDreamTextFieldColor = defaultColor;
+    _weightGoalTextFieldColor = defaultColor;
     _heightTextFieldColor = defaultColor;
     _birthdayTextFieldColor = defaultColor;
   }
@@ -84,7 +84,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
     _controllerName.dispose();
     _controllerEmail.dispose();
     _controllerWeight.dispose();
-    _controllerWeightDream.dispose();
+    _controllerWeightGoal.dispose();
     _controllerHeight.dispose();
     _controllerBirthday.dispose();
     super.dispose();
@@ -155,8 +155,8 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                     if(_formKey.currentState!.validate() && validate){
                       BlocProvider.of<UserInfoBloc>(context).add(
                           UserEditingInfoEvent(name: name, email: email, 
-                              weightNow: double.parse(weight), weightDream: 
-                              double.parse(weightDream), 
+                              weightNow: double.parse(weight), weightGoal:
+                              double.parse(weightGoal),
                               birthday: DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day),
                               height: int.parse(height)));
                     }
@@ -190,14 +190,14 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                     name = state.appUser.name;
                     email = state.appUser.email;
                     weight = state.appUser.weightNow?.toString() ?? '';
-                    weightDream = state.appUser.weightDream?.toString() ?? '';
+                    weightGoal = state.appUser.weightGoal?.toString() ?? '';
                     height = state.appUser.height?.toString() ?? '';
                     birthday = state.appUser.birthday != null ? DateFormat('dd.MM.yyyy').format(state.appUser.birthday!) : '';
                     selectedDate = state.appUser.birthday;
                     _controllerName = TextEditingController(text: name);
                     _controllerEmail = TextEditingController(text: email);
                     _controllerWeight = TextEditingController(text: weight);
-                    _controllerWeightDream = TextEditingController(text: weightDream);
+                    _controllerWeightGoal = TextEditingController(text: weightGoal);
                     _controllerHeight = TextEditingController(text: height);
                     _controllerBirthday = TextEditingController(text: birthday);
                     BlocProvider.of<UserInfoBloc>(context).add(StopBuildUserInfoEvent());
@@ -418,7 +418,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
                                         border: Border.all(
-                                            color: _weightDreamTextFieldColor,
+                                            color: _weightGoalTextFieldColor,
                                             width: 2
                                         )
                                     ),
@@ -429,12 +429,12 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                         validator: (value){
                                           if(isWeightValid(value)){
                                             setState(() {
-                                              _weightDreamTextFieldColor = defaultColor;
+                                              _weightGoalTextFieldColor = defaultColor;
                                             });
                                           }
                                           else{
                                             setState(() {
-                                              _weightDreamTextFieldColor = errorColor;
+                                              _weightGoalTextFieldColor = errorColor;
                                             });
                                             if(validate){
                                               validate = false;
@@ -442,7 +442,7 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                           }
                                           return null;
                                         },
-                                        controller: _controllerWeightDream,
+                                        controller: _controllerWeightGoal,
                                         style: TextStyle(
                                           fontSize: screenHeight / 40,
                                           fontFamily: 'Comfortaa',
@@ -453,12 +453,12 @@ class _EditingProfileState extends State<EditingProfile> with ProfileValidationM
                                         textAlign: TextAlign.start,
                                         textAlignVertical: TextAlignVertical.bottom,
                                         onChanged: (String value){
-                                          weightDream = value;
+                                          weightGoal = value;
                                         },
                                         onTap: (){
                                           setState(() {
                                             assignDefaultColor();
-                                            _weightDreamTextFieldColor = activeColor;
+                                            _weightGoalTextFieldColor = activeColor;
                                           });
                                         },
                                         decoration: InputDecoration(

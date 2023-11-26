@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:app1/enums/authorizationStatus.dart';
 import 'package:app1/enums/registrationStatus.dart';
 import 'package:app1/objects/user.dart';
@@ -6,6 +5,7 @@ import 'package:app1/service/foodService.dart';
 import 'package:app1/service/imageService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
@@ -33,12 +33,17 @@ Future<AppUser?> getAppUser() async
       final String userName = userData.child('name').value.toString();
       final String urlAvatar = userData.child('urlAvatar').value.toString();
       final double? weightNow = double.tryParse(userData.child('weightNow').value.toString());
-      final double? weightDream = double.tryParse(userData.child('weightDream').value.toString());
+      final double? weightGoal = double.tryParse(userData.child('weightGoal').value.toString());
       final int? height = int.tryParse(userData.child('height').value.toString());
       final DateTime? birthday = DateTime.tryParse(userData.child('birthday').value.toString());
+      final int? caloriesGoal = int.tryParse(userData.child('caloriesGoal').value.toString());
+      final int? fatsGoal = int.tryParse(userData.child('fatsGoal').value.toString());
+      final int? carbohydratesGoal = int.tryParse(userData.child('carbohydratesGoal').value.toString());
+      final int? proteinGoal = int.tryParse(userData.child('proteinGoal').value.toString());
       AppUser appUser = AppUser(userId: user.uid, name: userName, email: user.email!,
-          weightNow: weightNow, weightDream: weightDream, height: height,
-          birthday: birthday, urlAvatar: urlAvatar);
+          weightNow: weightNow, weightGoal: weightGoal, height: height,
+          birthday: birthday, urlAvatar: urlAvatar, caloriesGoal: caloriesGoal,
+          carbohydratesGoal: carbohydratesGoal, proteinGoal: proteinGoal, fatsGoal: fatsGoal);
       setUserInfo(appUser);
       return appUser;
     }
@@ -79,23 +84,23 @@ Future<AppUser?> _userIsNotConnected() async
 }
 
 
-///Получение данных из КЭШа
+///Получение данных из Hive
 Future<AppUser?> getUserInfo() async
 {
-  final prefs = await SharedPreferences.getInstance();
-  final userInfo = prefs.getString('userInfo');
-  if (userInfo == null){
+  final Box<AppUser> userBox = Hive.box('appUser');
+  if(!userBox.isNotEmpty){
     return null;
   }
-  return AppUser.fromJson(await json.decode(userInfo));
+  final AppUser? appUser = userBox.get('appUser');
+  return appUser;
 }
 
 
-///Запись данных в КЭШ
-Future<void> setUserInfo(AppUser userInfo) async
+///Запись данных в Hive
+Future setUserInfo(AppUser userInfo) async
 {
-  final prefs = await SharedPreferences.getInstance();
-  prefs.setString('userInfo', json.encode(userInfo.toJson()));
+  final Box<AppUser> box = Hive.box<AppUser>('appUser');
+  await box.put('appUser', userInfo);
 }
 
 ///Авторизация пользователя
@@ -203,47 +208,58 @@ Future<void> _newUser(User user, String name) async
 }
 
 
-Future updateUserInfo(String? email, String? name, double? weightNow, double? weightDream, int? height, DateTime? birthday) async{
-  if (localUser != null){
-    localUser!.email = email ?? localUser!.email;
-    localUser!.name = name ?? localUser!.name;
-    localUser!.weightNow = weightNow ?? localUser!.weightNow;
-    localUser!.weightDream = weightDream ?? localUser!.weightDream;
-    localUser!.height = height ?? localUser!.height;
-    localUser!.birthday = birthday ?? localUser!.birthday;
-    bool emailIsNew = false;
-    if (email != null && email != localUser!.email) {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      User? user = auth.currentUser;
-      if(user != null){
-        user.updateEmail(email).then((_)
-        {
-          emailIsNew = true;
-        }
-        ).catchError((onError) {
-          emailIsNew = false;
-        });
-      }
-    }
-
-    if (!emailIsNew && email != localUser!.email) {
-      throw 'emailError';
-    }
-    final DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser!.userId}');
-    ref.update({
-      "name": name ?? localUser!.name,
-      "email": email ?? localUser!.email,
-      "weightNow": weightNow,
-      "weightDream": weightDream,
-      "height": height,
-      "birthday": birthday.toString(),
-    }).then((_){
-    }).catchError((onError){
-      throw onError;
-    });
+Future updateUserInfo({String? email, String? name, double? weightNow, double? weightGoal,
+  int? height, DateTime? birthday, int? caloriesGoal, int? proteinGoal, int? fatsGoal, int? carbohydratesGoal}) async{
+  if (localUser == null){
+    throw 'localUser равен нулю';
   }
-}
+  localUser!.email = email ?? localUser!.email;
+  localUser!.name = name ?? localUser!.name;
+  localUser!.weightNow = weightNow ?? localUser!.weightNow;
+  localUser!.weightGoal = weightGoal ?? localUser!.weightGoal;
+  localUser!.height = height ?? localUser!.height;
+  localUser!.birthday = birthday ?? localUser!.birthday;
+  localUser!.proteinGoal = caloriesGoal ?? localUser!.proteinGoal;
+  localUser!.fatsGoal = caloriesGoal ?? localUser!.fatsGoal;
+  localUser!.carbohydratesGoal = caloriesGoal ?? localUser!.carbohydratesGoal;
+  localUser!.caloriesGoal = caloriesGoal ?? localUser!.caloriesGoal;
+  bool emailIsNew = false;
+  if (email != null && email != localUser!.email) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+    if(user != null){
+      user.updateEmail(email).then((_)
+      {
+        emailIsNew = true;
+      }
+      ).catchError((onError) {
+        emailIsNew = false;
+      });
+    }
+  }
 
+  if (!emailIsNew && email != localUser!.email) {
+    throw 'emailError';
+  }
+  final DatabaseReference ref = FirebaseDatabase.instance.ref('users/${localUser!.userId}');
+  ref.update({
+    "name": name ?? localUser!.name,
+    "email": email ?? localUser!.email,
+    "weightNow": localUser!.weightNow,
+    "weightGoal": localUser!.weightGoal,
+    "height": localUser!.height,
+    "birthday": localUser!.birthday.toString(),
+    "proteinGoal": localUser!.proteinGoal.toString(),
+    "carbohydratesGoal": localUser!.carbohydratesGoal.toString(),
+    "fatsGoal": localUser!.fatsGoal.toString(),
+    "caloriesGoal": localUser!.caloriesGoal.toString(),
+
+
+  }).then((_){
+  }).catchError((onError){
+    throw onError;
+  });
+}
 
 
 ///Получение информации о запускаемой странице
@@ -265,7 +281,11 @@ Future<bool> getPage() async
 }
 
 /// Выход юзера из профиля
-Future<void> exitUser() async{
+Future exitUser() async{
+  final Box<AppUser> box = Hive.box<AppUser>('appUser');
+  if (box.isNotEmpty){
+    box.clear();
+  }
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('foodInfo');
   await prefs.remove('userInfo');

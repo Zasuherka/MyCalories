@@ -13,7 +13,11 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
   Future _editingUserInfo(UserEditingInfoEvent event, Emitter<UserInfoState> emitter) async {
     try{
-      await updateUserInfo(event.email, event.name, event.weightNow, event.weightDream,  event.height, event.birthday);
+      await updateUserInfo(email: event.email, name: event.name, weightNow: event.weightNow,
+          weightGoal: event.weightGoal,  height: event.height, birthday: event.birthday,
+          carbohydratesGoal: event.carbohydratesGoal, caloriesGoal: event.caloriesGoal,
+          proteinGoal: event.proteinGoal, fatsGoal: event.fatsGoal,
+      );
     }
     catch(e){
       if(e.toString() == 'emailError'){
@@ -28,7 +32,6 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
     }
     else{
       emitter(UserInfoErrorState('localUser is null'));
-      throw 'localUser is null';
     }
   }
 }

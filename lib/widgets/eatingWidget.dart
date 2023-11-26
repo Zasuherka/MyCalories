@@ -2,6 +2,8 @@ import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/colors/colors.dart';
 import 'package:app1/pages/myFoodPage.dart';
+import 'package:app1/widgets/addFoodWidget.dart';
+import 'package:app1/widgets/eatingFoodWrap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,6 +22,7 @@ class _EatingWidgetState extends State<EatingWidget> {
   late String title;
   String calories = '0.00';
   late List<EatingFood> list = [];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -38,9 +41,6 @@ class _EatingWidgetState extends State<EatingWidget> {
           }
           if(state is GetEatingFoodListState){
             if(title == state.nameEating){
-              if(title == 'Ужин'){
-                print(state.eatingFoodList.length);
-              }
               list = state.eatingFoodList;
               calories = state.eatingCalories;
             }
@@ -107,7 +107,8 @@ class _EatingWidgetState extends State<EatingWidget> {
                           onTap: () async {
                             BlocProvider.of<EatingFoodBloc>(context).add(GetIsFoodEvent(title));
                             BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-                            await Navigator.push(context, MaterialPageRoute(builder: (context) => const MyFoodPage(isUpdatePage: false)));
+                            await Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const MyFoodPage(isAddEatingFood: false)));
                           },
                           child: SvgPicture.asset(
                             'images/plus2.svg',
@@ -129,71 +130,81 @@ class _EatingWidgetState extends State<EatingWidget> {
                       padding: EdgeInsets.zero,
                       itemCount: list.length,
                       itemBuilder: (BuildContext context, int index){
-                        return Container(
-                            width: screenWidth * 0.95,
-                            height: screenHeight * 0.07,
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    top: BorderSide(
-                                        width: 1.0,
-                                        color: Color.fromRGBO(164, 164, 164, 1.0)
-                                    )
-                                )
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(padding: EdgeInsets.only(left: screenWidth * 0.05),
-                                  child:
-                                  SizedBox(
-                                    width: screenWidth * 0.55,
-                                    child: Text(list[index].title,
-                                      style: TextStyle(
-                                        fontSize: screenHeight/40,
-                                        fontFamily: 'Comfortaa',
-                                        color: Colors.black,
+                        return GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<EatingFoodBloc>(context).add(
+                                GetEatingFoodInfoEvent(list[index], index, title));
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) => const EatingFoodWrap()
+                            );
+                          },
+                          child: Container(
+                              width: screenWidth * 0.95,
+                              height: screenHeight * 0.07,
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      top: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(164, 164, 164, 1.0)
+                                      )
+                                  )
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(padding: EdgeInsets.only(left: screenWidth * 0.05),
+                                    child:
+                                    SizedBox(
+                                      width: screenWidth * 0.55,
+                                      child: Text(list[index].title,
+                                        style: TextStyle(
+                                          fontSize: screenHeight/40,
+                                          fontFamily: 'Comfortaa',
+                                          color: Colors.black,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(padding: EdgeInsets.only(left: screenWidth * 0.012),
-                                  child:
-                                  SizedBox(
-                                    width: screenWidth * 0.288,
+                                  Padding(padding: EdgeInsets.only(left: screenWidth * 0.012),
                                     child:
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: screenHeight/51,
-                                            child: Text('${list[index].calories.toStringAsFixed(2)}ккал.',
+                                    SizedBox(
+                                      width: screenWidth * 0.288,
+                                      child:
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(height: screenHeight/51,
+                                              child: Text('${list[index].calories.toStringAsFixed(2)}ккал.',
+                                                style: TextStyle(
+                                                  fontSize: screenHeight/50,
+                                                  fontFamily: 'Comfortaa',
+                                                  color: Colors.black,
+                                                ),
+                                                textAlign: TextAlign.right,
+                                              )
+                                          ),
+                                          Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                                          SizedBox(
+                                            height: screenHeight/61,
+                                            child:
+                                            Text('${list[index].weight.toString()}г.',
                                               style: TextStyle(
-                                                fontSize: screenHeight/50,
+                                                fontSize: screenHeight/60,
                                                 fontFamily: 'Comfortaa',
                                                 color: Colors.black,
                                               ),
-                                              textAlign: TextAlign.right,
-                                            )
-                                        ),
-                                        Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                                        SizedBox(
-                                          height: screenHeight/61,
-                                          child:
-                                          Text('${list[index].weight.toString()}г.',
-                                            style: TextStyle(
-                                              fontSize: screenHeight/60,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black,
                                             ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                  ,)
-                              ],
-                            )
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                    ,)
+                                ],
+                              )
+                          ),
                         );
                       }),
                 ),

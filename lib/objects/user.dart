@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:app1/objects/food.dart';
 import 'package:app1/objects/result.dart';
-import 'package:flutter/material.dart';
-
+import 'package:hive/hive.dart';
 import 'eatingFood.dart';
+part 'user.g.dart';
 
 ///Класс юзера
 ///Вся работа с юзером происходит в UserService
@@ -12,7 +11,7 @@ import 'eatingFood.dart';
 /// [name] - имя Пользователя
 /// [email] - почта Пользователя
 /// [weightNow] - вес пользователя на данный момент
-/// [weightDream] - вес, к которому стремишься
+/// [weightGoal] - вес, к которому стремишься
 /// [height] - рост
 /// [birthday] - дата рождения
 /// [age] - возраст(высчитывается)
@@ -26,47 +25,100 @@ import 'eatingFood.dart';
 /// [eatingValues] - показатели съеденных БЖУ и каллорий
 ///
 /// Разные конструкторы(обычный [AppUser], получение из json[AppUser.fromJson])
-class AppUser // Назвал не User, а AppUser чтобы не было путаницы с классом из библиотеки firebase_database.dart
+@HiveType(typeId: 0)
+class AppUser /// Назвал не User, а AppUser чтобы не было путаницы с классом из библиотеки firebase_database.dart
 {
-  late String userId;
+  @HiveField(0)
+  final String userId;
+
+  @HiveField(1)
   late String name;
+
+  @HiveField(2)
   late String email;
+
+  @HiveField(3)
   double? weightNow;
-  double? weightDream;
+
+  @HiveField(4)
+  double? weightGoal;
+
+  @HiveField(5)
   int? height;
+
+  @HiveField(6)
   DateTime? birthday;
+
+  @HiveField(7)
   int? age;
+
+  @HiveField(8)
   String? urlAvatar;
+
+  @HiveField(9)
+  int? caloriesGoal;
+
+  @HiveField(10)
+  int? fatsGoal;
+
+  @HiveField(11)
+  int? carbohydratesGoal;
+
+  @HiveField(12)
+  int? proteinGoal;
+
+  ///Берём как файл с телефона
   File? avatar;
+
+  ///Подгружаем из FireBase или из [await Hive.openBox('foodBox')]
   List<Food> myFoods = [];
+
+  ///Подгружаем из [await Hive.openBox('eatingBox')]
   List<EatingFood> eatingBreakfast = [];
+
+  ///Подгружаем из [await Hive.openBox('eatingBox')]
   List<EatingFood> eatingLunch = [];
+
+  ///Подгружаем из [await Hive.openBox('eatingBox')]
   List<EatingFood> eatingDinner = [];
+
+  ///Подгружаем из [await Hive.openBox('eatingBox')]
   List<EatingFood> eatingAnother = [];
+
+  ///Пока не используется
   List<Result> myResults = [];
+
+  ///Считаем с помощью [await getCount()]
   Map<String, double> eatingValues = {
     'КАЛОРИИ': 0,
     'БЕЛКИ': 0,
     'ЖИРЫ': 0,
     'УГЛЕВОДЫ': 0
   };
-  //late String urlPhoto;
+
+  ///Сам возраст не передаём, только [birthday]. От этого посчитаем возраст
   AppUser({required this.userId, required this.name, required this.email,
-    required this.weightNow, required this.weightDream, required this.height,
-    required this.birthday, required this.urlAvatar})
+    required this.weightNow, required this.weightGoal, required this.height,
+    required this.birthday, required this.urlAvatar, this.caloriesGoal, this.fatsGoal,
+    this.proteinGoal, this.carbohydratesGoal})
   {
     _countAge();
   }
 
+  ///Получаем данные из json
   AppUser.fromJson(Map<String?, dynamic> json):
         name = json['name'],
         email = json['email'],
         userId = json['userId'],
         urlAvatar = json['urlAvatar'],
         weightNow = json['weightNow'],
-        weightDream = json['weightDream'],
+        weightGoal = json['weightGoal'],
         height = json['height'],
-        birthday = DateTime.parse(json['birthday'])
+        birthday = DateTime.tryParse(json['birthday']),
+        proteinGoal = int.tryParse(json['proteinGoal']),
+        carbohydratesGoal = int.tryParse(json['carbohydratesGoal']),
+        fatsGoal = int.tryParse(json['fatsGoal']),
+        caloriesGoal = int.tryParse(json['caloriesGoal'])
   {
     _countAge();
   }
@@ -79,12 +131,17 @@ class AppUser // Назвал не User, а AppUser чтобы не было п�
       'userId': userId,
       'urlAvatar': urlAvatar,
       'weightNow': weightNow,
-      'weightDream': weightDream,
+      'weightGoal': weightGoal,
       'height': height,
-      'birthday': birthday.toString()
+      'birthday': birthday,
+      "proteinGoal": proteinGoal,
+      "carbohydratesGoal": carbohydratesGoal,
+      "fatsGoal": fatsGoal,
+      "caloriesGoal": caloriesGoal
     };
   }
 
+  ///Считаем количество полных лет. Юзаем только в дефолтном конструкторе
   void _countAge(){
     if(birthday != null){
       birthday = DateTime(birthday!.year,birthday!.month,birthday!.day);

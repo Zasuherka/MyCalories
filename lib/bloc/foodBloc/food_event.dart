@@ -44,3 +44,9 @@ class DeleteFoodEvent extends FoodEvent{
 
   DeleteFoodEvent(this.food);
 }
+
+class GetFoodInfoEvent extends FoodEvent {
+  final Food food;
+
+  GetFoodInfoEvent(this.food);
+}

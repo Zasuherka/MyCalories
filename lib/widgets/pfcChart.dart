@@ -1,4 +1,5 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
+import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -33,13 +34,26 @@ class _PFCChartState extends State<PFCChart> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return BlocBuilder<EatingFoodBloc, EatingFoodState>(
-      builder: (context, state) {
-        if(state is GetEatingFoodListState || state is EatingFoodInitialState){
-          value = state.eatingValues[title]!;
+    return Builder(
+      builder: (context) {
+        final EatingFoodState eatingFoodState = context.watch<EatingFoodBloc>().state;
+        final UserInfoState userInfoState = context.watch<UserInfoBloc>().state;
+        if(eatingFoodState is GetEatingFoodListState || eatingFoodState is EatingFoodInitialState){
+          value = eatingFoodState.eatingValues[title]!;
           counter = goalValue - value;
           if (counter <= 0){
             counter = 0;
+          }
+        }
+        if(userInfoState is LocalUserInfoState){
+          if (title == 'БЕЛКИ'){
+            goalValue = userInfoState.appUser.proteinGoal?.toDouble() ?? 100;
+          }
+          if (title == 'ЖИРЫ'){
+            goalValue = userInfoState.appUser.fatsGoal?.toDouble() ?? 100;
+          }
+          if (title == 'УГЛЕВОДЫ'){
+            goalValue = userInfoState.appUser.carbohydratesGoal?.toDouble() ?? 100;
           }
         }
         return Container(

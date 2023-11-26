@@ -19,7 +19,7 @@ class _StartPageState extends State<StartPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getPageBloc.add(GetPageEvent());
+    getPageBloc.add(AuthenticationEvent());
   }
 
   @override

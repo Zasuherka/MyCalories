@@ -1,12 +1,15 @@
+import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
+import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/colors/colors.dart';
 import 'package:app1/objects/food.dart';
 import 'package:app1/widgets/foodWrap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoodListView extends StatelessWidget {
   final List<Food> listFood;
-  final bool isUpdatePage;
-  const FoodListView({super.key, required this.listFood, required this.isUpdatePage});
+  final bool isAddEatingFood;
+  const FoodListView({super.key, required this.listFood, required this.isAddEatingFood});
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -26,9 +29,10 @@ class FoodListView extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 FocusScope.of(context).unfocus();
+                BlocProvider.of<FoodBloc>(context).add(GetFoodInfoEvent(listFood[elementIndex]));
                 showModalBottomSheet(context: context, builder:
                     (BuildContext context) =>
-                        FoodWrap(food: listFood[elementIndex], isUpdatePage: isUpdatePage));
+                        FoodWrap(food: listFood[elementIndex], isAddEatingFood: isAddEatingFood));
               },
               child: Container(
                   decoration: BoxDecoration(

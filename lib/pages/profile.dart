@@ -15,7 +15,7 @@ class Profile extends StatelessWidget {
     String name = '';
     String email = '';
     String weightNow = '';
-    String weightDream = '';
+    String weightGoal = '';
     String height = '';
     String age = '';
     late bool avatarIsNotNull = false;
@@ -170,7 +170,7 @@ class Profile extends StatelessWidget {
                 child: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state){
                   if (state is LocalUserInfoState){
                     weightNow = state.appUser.weightNow?.toString() ?? '—';
-                    weightDream = state.appUser.weightDream?.toString() ?? '—';
+                    weightGoal = state.appUser.weightGoal?.toString() ?? '—';
                     height = state.appUser.height?.toString() ?? '—';
                     age = state.appUser.age?.toString() ?? '—';
                   }
@@ -227,7 +227,7 @@ class Profile extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    weightDream,
+                                    weightGoal,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontSize: screenHeight / 40,

@@ -10,6 +10,8 @@ part 'eating_food_state.dart';
 
 class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
   static DateTime date = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  static String? nameEating;
+  static int? eatingFoodIndex;
 
   EatingFoodBloc() : super(EatingFoodInitialState({
     'Завтрак': localUser!.eatingBreakfast,
@@ -25,13 +27,26 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
       'Другое': getCalories(localUser!.eatingAnother),
     },
   )) {
-    on<AddEatingFoodListEvent>(_onAddEatingFoodList);
-    on<GetIsFoodEvent>(_onGetIsFood);
+    on<AddEatingFoodEvent>(_onAddEatingFood);
     on<GetEatingFoodListEvent>(_onGetEatingFoodList);
+    on<DeleteEatingFoodEvent>(_onDeleteEatingFood);
+    on<GetIsFoodEvent>(_onGetIsFood);
+    on<GetEatingFoodInfoEvent>(_onGetEatingFoodInfo);
+    on<UpdateEatingFoodEvent>(_onUpdateEatingFood);
+  }
+
+  Future _onGetIsFood(GetIsFoodEvent event, Emitter<EatingFoodState> emitter) async {
+    nameEating = event.nameEating;
+  }
+
+  Future _onGetEatingFoodInfo(GetEatingFoodInfoEvent event, Emitter<EatingFoodState> emitter) async {
+    eatingFoodIndex = event.index;
+    nameEating = event.nameEating;
+    emitter(GetEatingFoodInfoState(event.eatingFood, event.index, event.nameEating));
   }
 
   Future<void> _updateList(Emitter<EatingFoodState> emitter) async {
-    await setEatingFoodInfo();
+    await getEatingFoodInfoNow();
     final (List<EatingFood>, String) breakfast = getEatingList('Завтрак');
     final (List<EatingFood>, String) lunch = getEatingList('Обед');
     final (List<EatingFood>, String) dinner = getEatingList('Ужин');
@@ -47,24 +62,59 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
     await Future.delayed(const Duration(milliseconds: 20));
   }
 
-  Future<void> _onGetEatingFoodList(GetEatingFoodListEvent event, Emitter<EatingFoodState> emitter) async {
+  Future _onGetEatingFoodList(GetEatingFoodListEvent event, Emitter<EatingFoodState> emitter) async {
     final (List<EatingFood>, String) listAndCalories = getEatingList(event.nameEating);
     await getCount();
     emitter(GetEatingFoodListState(listAndCalories.$1, event.nameEating, listAndCalories.$2, localUser!.eatingValues));
   }
 
-  Future<void> _onGetIsFood(GetIsFoodEvent event, Emitter<EatingFoodState> emitter) async {
-    isFood = event.nameEating;
-  }
-
-  Future<void> _onAddEatingFoodList(AddEatingFoodListEvent event, Emitter<EatingFoodState> emitter) async {
+  Future _onAddEatingFood(AddEatingFoodEvent event, Emitter<EatingFoodState> emitter) async {
     if(date != DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)){
       await _updateList(emitter);
       date = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     }
-    final (List<EatingFood>, String) listAndCalories = addFoodEatingList(event.idFood, event.title, event.protein, event.fats, event.carbohydrates, event.calories, event.weight);
-    await setEatingFoodInfo();
-    await getCount();
-    emitter(GetEatingFoodListState(listAndCalories.$1, isFood!, listAndCalories.$2, localUser!.eatingValues));
+    try{
+      final (List<EatingFood>, String) listAndCalories = addFoodEatingList(nameEating!, event.idFood, event.title, event.protein, event.fats, event.carbohydrates, event.calories, event.weight);
+      await setEatingFoodInfoNow();
+      await getCount();
+      emitter(GetEatingFoodListState(listAndCalories.$1, nameEating!, listAndCalories.$2, localUser!.eatingValues));
+    }
+    catch (error){
+      emitter(ErrorEatingFoodState(error.toString()));
+    }
+  }
+
+  Future _onUpdateEatingFood(UpdateEatingFoodEvent event, Emitter<EatingFoodState> emitter) async {
+    if(date != DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)){
+      await _updateList(emitter);
+      date = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    }
+    try{
+      final (List<EatingFood>, String) listAndCalories = await updateFoodInEatingList(
+          nameEating!, eatingFoodIndex!, event.weight);
+      await setEatingFoodInfoNow();
+      await getCount();
+      emitter(GetEatingFoodListState(listAndCalories.$1, nameEating!, listAndCalories.$2, localUser!.eatingValues));
+    }
+    catch (error){
+      emitter(ErrorEatingFoodState(error.toString()));
+    }
+  }
+
+  Future _onDeleteEatingFood(DeleteEatingFoodEvent event, Emitter<EatingFoodState> emitter) async {
+    if(date != DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)){
+      await _updateList(emitter);
+      date = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    }
+    try
+    {
+      final (List<EatingFood>, String) listAndCalories = deleteFoodInEatingList(nameEating!, eatingFoodIndex!);
+      await setEatingFoodInfoNow();
+      await getCount();
+      emitter(GetEatingFoodListState(listAndCalories.$1, nameEating!, listAndCalories.$2, localUser!.eatingValues));
+    }
+    catch (error){
+      emitter(ErrorEatingFoodState(error.toString()));
+    }
   }
 }

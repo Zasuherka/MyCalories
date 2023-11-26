@@ -19,7 +19,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  List<Widget> pages = [const MyFoodPage(isUpdatePage: true), const MyCalories(), const Profile()];
+  List<Widget> pages = [const MyFoodPage(isAddEatingFood: true), const MyCalories(), const Profile()];
   int pageIndex = 1;
   int _selectedIndex = 1;
   Icon iconProfile = const Icon(Icons.person_outline);

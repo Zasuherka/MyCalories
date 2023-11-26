@@ -9,27 +9,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MyFoodPage extends StatefulWidget {
-  final bool isUpdatePage;
-  const MyFoodPage({super.key, required this.isUpdatePage});
+  final bool isAddEatingFood;
+  const MyFoodPage({super.key, required this.isAddEatingFood});
 
   @override
   State<MyFoodPage> createState() => _MyFoodPageState();
 }
 
 class _MyFoodPageState extends State<MyFoodPage> {
-  late bool isUpdatePage;
+  late bool isAddEatingFood;
   List<Food> userFoodList = [];
   List<Food> globalFoodList = [];
   TextEditingController searchTextController = TextEditingController();
   String searchText = '';
-  void _searchListener() {
+  _searchListener() {
     searchText = searchTextController.text;
     BlocProvider.of<FoodBloc>(context).add(FindFoodEvent(searchText));
   }
   @override
   void initState() {
     super.initState();
-    isUpdatePage = widget.isUpdatePage;
+    isAddEatingFood = widget.isAddEatingFood;
     searchTextController.addListener(_searchListener);
   }
 
@@ -166,7 +166,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                         userFoodList.isNotEmpty ? SizedBox(
                           height: (screenHeight / 200 + screenHeight/10) * userFoodList.length + screenHeight/50,
                           width: screenWidth,
-                          child: FoodListView(listFood: userFoodList, isUpdatePage: isUpdatePage)
+                          child: FoodListView(listFood: userFoodList, isAddEatingFood: isAddEatingFood)
                         ) : Container(),
                         globalFoodList.isNotEmpty ? SizedBox(
                             height: screenHeight / 45,
@@ -187,7 +187,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                         globalFoodList.isNotEmpty ? SizedBox(
                             height: (screenHeight / 200 + screenHeight/10) * globalFoodList.length + screenHeight/8,
                             width: screenWidth,
-                            child: FoodListView(listFood: globalFoodList, isUpdatePage: isUpdatePage)
+                            child: FoodListView(listFood: globalFoodList, isAddEatingFood: isAddEatingFood)
                         ) : Container(),
                       ],
                     );

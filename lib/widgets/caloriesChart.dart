@@ -1,4 +1,6 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
+import 'package:app1/bloc/userImage/user_image_bloc.dart';
+import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +14,7 @@ class CaloriesChart extends StatefulWidget {
 
 class _CaloriesChartState extends State<CaloriesChart> {
   double value = 0;
-  double goalValue = 2500;
+  double goalValue = 1000;
   @override
   void initState() {
     super.initState();
@@ -22,11 +24,16 @@ class _CaloriesChartState extends State<CaloriesChart> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return BlocBuilder<EatingFoodBloc, EatingFoodState>(builder: (context, state){
-      if(state is GetEatingFoodListState || state is EatingFoodInitialState){
-        value = state.eatingValues['КАЛОРИИ']!;
-
-      }
+    return Builder(
+        builder: (context){
+          final EatingFoodState stateEatingFood = context.watch<EatingFoodBloc>().state;
+          final UserInfoState stateUserInfo = context.watch<UserInfoBloc>().state;
+          if(stateEatingFood is GetEatingFoodListState || stateEatingFood is EatingFoodInitialState){
+            value = stateEatingFood.eatingValues['КАЛОРИИ']!;
+          }
+          if(stateUserInfo is LocalUserInfoState){
+            goalValue = stateUserInfo.appUser.caloriesGoal?.toDouble() ?? 1000;
+          }
       return Container(
         width: screenWidth * 0.95,
         height: screenHeight * 0.09,

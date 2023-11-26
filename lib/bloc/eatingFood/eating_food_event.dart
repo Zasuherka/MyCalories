@@ -16,7 +16,16 @@ class GetIsFoodEvent extends EatingFoodEvent{
   GetIsFoodEvent(this.nameEating);
 }
 
-class AddEatingFoodListEvent extends EatingFoodEvent{
+class DeleteEatingFoodEvent extends EatingFoodEvent{}
+
+class UpdateEatingFoodEvent extends EatingFoodEvent{
+  final int index;
+  final int weight;
+
+  UpdateEatingFoodEvent(this.index, this.weight);
+}
+
+class AddEatingFoodEvent extends EatingFoodEvent{
   final String idFood;
   final String title;
   final double protein;
@@ -25,5 +34,13 @@ class AddEatingFoodListEvent extends EatingFoodEvent{
   final double calories;
   final int weight;
 
-  AddEatingFoodListEvent(this.idFood, this.title, this.protein, this.fats, this.carbohydrates, this.calories, this.weight);
+  AddEatingFoodEvent(this.idFood, this.title, this.protein, this.fats, this.carbohydrates, this.calories, this.weight);
+}
+
+class GetEatingFoodInfoEvent extends EatingFoodEvent {
+  final EatingFood eatingFood;
+  final int index;
+  final String nameEating;
+
+  GetEatingFoodInfoEvent(this.eatingFood, this.index, this.nameEating);
 }

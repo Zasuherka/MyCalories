@@ -12,7 +12,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
   FoodBloc() : super(FoodInitialState()) {
     on<CreateFoodEvent>(_onCreateFood);
     on<UpdateFoodEvent>(_onUpdateFood);
-    //on<GetListFoodEvent>(_onGetFoodList);
+    on<GetFoodInfoEvent>(_onGetFoodInfo);
     on<DeleteFoodEvent>(_onDeleteFood);
     on<FindFoodEvent>(_onFindFood, transformer: restartable());
     on<FoodInitialEvent>(_onFoodList);
@@ -21,7 +21,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
 
 
   ///Создание еды
-  Future<void> _onCreateFood(CreateFoodEvent event, Emitter<FoodState> emitter) async{
+  Future _onCreateFood(CreateFoodEvent event, Emitter<FoodState> emitter) async{
     final List<Food>? listFood = await createFood(event.title, event.protein, event.fats, event.carbohydrates, event.calories);
     if(listFood == null){
       emitter(ErrorFoodState('Ошибка при создании еды'));
@@ -32,7 +32,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
   }
 
   ///Обновление данных о еде
-  Future<void> _onUpdateFood(UpdateFoodEvent event, Emitter<FoodState> emitter) async{
+  Future _onUpdateFood(UpdateFoodEvent event, Emitter<FoodState> emitter) async{
     await updateFood(event.food, event.title, event.protein,
         event.fats, event.carbohydrates, event.calories).then((List<Food>? listFood) {
       if (listFood == null){
@@ -48,7 +48,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
   }
 
   ///Удалеие еды(удаляет idFood из списка еды пользователя)
-  Future<void> _onDeleteFood(DeleteFoodEvent event, Emitter<FoodState> emitter) async{
+  Future _onDeleteFood(DeleteFoodEvent event, Emitter<FoodState> emitter) async{
     if(await deleteFood(event.food)){
       emitter(GetFoodListState(localUser!.myFoods));
     }
@@ -89,6 +89,10 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
     catch (error){
       emitter(ErrorFoodState(error.toString()));
     }
+  }
+
+  Future _onGetFoodInfo(GetFoodInfoEvent event, Emitter<FoodState> emitter) async {
+    emitter(GetFoodInfoState(event.food));
   }
   // Future<void> _onGetFoodList(GetListFoodEvent event, Emitter<FoodState> emitter)async{
   //   emitter(GetFoodListState(localUser!.myFoods));

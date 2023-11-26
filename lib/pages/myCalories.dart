@@ -1,4 +1,5 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
+import 'package:app1/bloc/userInfo/user_info_bloc.dart';
 import 'package:app1/colors/colors.dart';
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/myFoodPage.dart';
@@ -22,6 +23,7 @@ class _MyCaloriesState extends State<MyCalories> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
   }
 
   @override
@@ -64,7 +66,7 @@ class _MyCaloriesState extends State<MyCalories> {
                 ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => const MyFoodPage(isUpdatePage: true)));
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => const MyFoodPage(isAddEatingFood: true)));
                     },
                     child: Text(localUser!.name.toString())),
                 ElevatedButton(

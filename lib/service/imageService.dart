@@ -39,40 +39,48 @@ Future<File?> selectAndUploadImage() async {
 
 ///Используем для получения аватарки при включенном интернете.
 ///В случае какой-нибудь ошибки, а вероятнее всего только остутствие подключения, будет использован метод [loadImage()]
-Future downloadImage() async {
-  if(await isConnected()){
+Future<File?> downloadImage() async {
+  if(localUser != null){
+    if(await isConnected()){
+      if(localUser!.urlAvatar != null && localUser!.urlAvatar != 'null'){
+        try{
+          final http.Response response = await http.get(Uri.parse(localUser!.urlAvatar!));
+          final documentDirectory = await getApplicationDocumentsDirectory() ;
+          File file = File('${documentDirectory.path}/avatar.jpg');
+          file.writeAsBytesSync(response.bodyBytes, flush: true);
+          localUser!.avatar = file;
+          return localUser!.avatar;
+        }
+        catch(e){
+          print(e.toString());
+          return loadImage();
+        }
+      }
+      else{
+        localUser!.avatar = null;
+      }
+    }
+    else{
+      return loadImage();
+    }
+  }
+  throw 'localUser равен нулю';
+}
+
+///Используем для получения аватарки при выключенном интернете
+Future<File?> loadImage() async {
+  if(localUser != null){
     if(localUser!.urlAvatar != null && localUser!.urlAvatar != 'null'){
-      try{
-        final http.Response response = await http.get(Uri.parse(localUser!.urlAvatar!));
-        final documentDirectory = await getApplicationDocumentsDirectory() ;
-        File file = File('${documentDirectory.path}/avatar.jpg');
-        file.writeAsBytesSync(response.bodyBytes, flush: true);
-        localUser!.avatar = file;
-      }
-      catch(e){
-        print(e.toString());
-        loadImage();
-      }
+      final documentDirectory = await getApplicationDocumentsDirectory();
+      File file = File('${documentDirectory.path}/avatar.jpg');
+      localUser!.avatar = file;
     }
     else{
       localUser!.avatar = null;
     }
+    return localUser!.avatar;
   }
-  else{
-    loadImage();
-  }
-}
-
-///Используем для получения аватарки при выключенном интернете
-Future loadImage() async {
-  if(localUser!.urlAvatar != null && localUser!.urlAvatar != 'null'){
-    final documentDirectory = await getApplicationDocumentsDirectory();
-    File file = File('${documentDirectory.path}/avatar.jpg');
-    localUser!.avatar = file;
-  }
-  else{
-    localUser!.avatar = null;
-  }
+  throw 'localUser равен нулю';
 }
 
 Future deleteImage() async {

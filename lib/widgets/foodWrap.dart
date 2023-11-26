@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoodWrap extends StatelessWidget {
   final Food food;
-  final bool isUpdatePage;
-  const FoodWrap({super.key, required this.food, required this.isUpdatePage});
+  final bool isAddEatingFood;
+  const FoodWrap({super.key, required this.food, required this.isAddEatingFood});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class FoodWrap extends StatelessWidget {
     return Wrap(
       children: [
         ///Добавить в съеденное
-        !isUpdatePage ? SizedBox(
+        !isAddEatingFood ? SizedBox(
           height: screenHeight/20,
           child: ListTile(
             title: Row(
@@ -36,13 +36,12 @@ class FoodWrap extends StatelessWidget {
                 )
               ],
             ),
-            onTap: () async{
-              bool response = await showDialog(
+            onTap: (){
+              Navigator.pop(context);
+              showDialog(
                   context: context,
-                  builder: (BuildContext context) => AddFood(food: food));
-              if (response) {
-                Navigator.pop(context);
-              }
+                  builder: (BuildContext context) => AddEatingFood(
+                      bloc: BlocProvider.of<FoodBloc>(context)));
             },
           ),
         ) : Container(),
@@ -88,10 +87,10 @@ class FoodWrap extends StatelessWidget {
             ),
             onTap: () async {
               Navigator.pop(context);
+              BlocProvider.of<FoodBloc>(context).add(GetFoodInfoEvent(food));
               await showDialog(
                   context: context,
-                  builder: (BuildContext context) => UpdateFood(
-                      food: food));
+                  builder: (BuildContext context) => const UpdateFood());
             },
           ),
         )

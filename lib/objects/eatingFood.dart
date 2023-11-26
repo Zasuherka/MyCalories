@@ -1,7 +1,12 @@
 import 'package:app1/objects/food.dart';
+import 'package:hive/hive.dart';
 
+part 'eatingFood.g.dart';
+
+@HiveType(typeId: 2)
 class EatingFood extends Food
 {
+  @HiveField(9)
   late int weight;
   EatingFood(super.idFood, super.authorEmail, super.title, super.protein, super.fats, super.carbohydrates, super.calories, this.weight);
 
@@ -23,5 +28,4 @@ class EatingFood extends Food
       'isUserFood': isUserFood.toString()
     };
   }
-
 }

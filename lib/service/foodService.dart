@@ -1,14 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:app1/objects/food.dart';
-import 'package:app1/objects/user.dart';
 import 'package:app1/service/UserSirvice.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 import 'package:app1/objects/eatingFood.dart';
 
 
-String? isFood;
 ///Создание Еды, запись в БД, запись в список еды пользователя
 Future<List<Food>?> createFood(String title, String protein, String fats, String carbohydrates, String calories) async
 {
@@ -230,57 +227,77 @@ Future<void> getUserFoods() async
 
 }
 
-Future<void> getFoodInfo() async {
-  final prefs = await SharedPreferences.getInstance();
-  final List<String> foodJsonList = prefs.getStringList('foodInfo') ?? [];
-  localUser!.myFoods = foodJsonList.map((food) => Food.fromJson(json.decode(food))).toList();
-}
 
-Future<void> setFoodInfo() async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setStringList('foodInfo', localUser!.myFoods.map((food) => jsonEncode(food)).toList());
-}
-
-Future<void> getEatingFoodInfo() async {
-  DateTime now = DateTime.now();
-  DateTime dateNow = DateTime(now.year, now.month, now.day);
-  final prefs = await SharedPreferences.getInstance();
-  String? getDateInfo = prefs.getString('dateInfo');
-  if(getDateInfo == null || DateTime.parse(getDateInfo) != dateNow){
-    localUser!.eatingBreakfast = [];
-    localUser!.eatingLunch = [];
-    localUser!.eatingDinner = [];
-    localUser!.eatingAnother = [];
-    setEatingFoodInfo();
-  } else{
-    final List<String> eatingBreakfastJsonList = prefs.getStringList('eatingBreakfastInfo') ?? [];
-    final List<String> eatingLunchJsonList = prefs.getStringList('eatingLunchInfo') ?? [];
-    final List<String> eatingDinnerJsonList = prefs.getStringList('eatingDinnerInfo') ?? [];
-    final List<String> eatingAnotherJsonList = prefs.getStringList('eatingAnotherInfo') ?? [];
-    localUser!.eatingBreakfast = eatingBreakfastJsonList.map((food) => EatingFood.fromJson(json.decode(food))).toList();
-    localUser!.eatingLunch = eatingLunchJsonList.map((food) => EatingFood.fromJson(json.decode(food))).toList();
-    localUser!.eatingDinner = eatingDinnerJsonList.map((food) => EatingFood.fromJson(json.decode(food))).toList();
-    localUser!.eatingAnother = eatingAnotherJsonList.map((food) => EatingFood.fromJson(json.decode(food))).toList();
+///Получаем [localUser] из Hive
+Future getFoodInfo() async {
+  if(localUser != null){
+    final Box<List> foodBox = await Hive.openBox<List>('foodBox');
+    if(foodBox.isEmpty){
+      localUser!.myFoods = [];
+      return;
+    }
+    final List<Food> foodList = foodBox.get('foodList')?.cast<Food>() ?? [];
+    localUser!.myFoods = foodList;
+    await foodBox.close();
   }
 }
 
-Future<void> setEatingFoodInfo() async {
+///Записываем [localUser] в Hive
+Future setFoodInfo() async {
+  if(localUser != null){
+    final Box<List<Food>> foodBox = await Hive.openBox<List<Food>>('foodBox');
+    await foodBox.put('foodList', localUser!.myFoods);
+    await foodBox.close();
+  }
+}
+
+Future<(List<EatingFood>,List<EatingFood>,List<EatingFood>,List<EatingFood>)> getEatingFoodListsByDate(DateTime dateTime) async{
+  dateTime = DateTime(dateTime.year,dateTime.month,dateTime.day);
+  final Box<List> eatingBox = await Hive.openBox<List>('eatingBox');
+  if(eatingBox.isEmpty){
+    return ([],[],[],[]) as (List<EatingFood>,List<EatingFood>,List<EatingFood>,List<EatingFood>);
+  }
+
+  final List<EatingFood> breakfast = eatingBox.get('breakfast${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  final List<EatingFood> lunch = eatingBox.get('lunch${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  final List<EatingFood> dinner = eatingBox.get('dinner${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  final List<EatingFood> another = eatingBox.get('another${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  await eatingBox.close();
+  return (breakfast,lunch,dinner,another);
+}
+
+
+///Ещё не начинал переписывать
+Future<void> getEatingFoodInfoNow() async {
+  final DateTime now = DateTime.now();
+  final DateTime dateNow = DateTime(now.year, now.month, now.day);
+  final (List<EatingFood>,List<EatingFood>,List<EatingFood>,List<EatingFood>) eatingFoodLists = await getEatingFoodListsByDate(dateNow);
+  localUser!.eatingBreakfast = eatingFoodLists.$1;
+  localUser!.eatingLunch = eatingFoodLists.$2;
+  localUser!.eatingDinner = eatingFoodLists.$3;
+  localUser!.eatingAnother = eatingFoodLists.$4;
+}
+
+///Пока что будет способ сохранения только на текущую дату
+Future<void> setEatingFoodInfoNow() async {
+
+  ///Логика тут ломает ум, поэтому комментарии исключительно для меня
+
+  ///Получаем данные о текущей дате
   DateTime now = DateTime.now();
   DateTime dateNow = DateTime(now.year, now.month, now.day);
-  final prefs = await SharedPreferences.getInstance();
-  String? getDateInfo = prefs.getString('dateInfo');
-  if(getDateInfo == null || DateTime.parse(getDateInfo) != dateNow){
-    localUser!.eatingBreakfast = [];
-    localUser!.eatingLunch = [];
-    localUser!.eatingDinner = [];
-    localUser!.eatingAnother = [];
-  }
-  await prefs.setString('dateInfo', dateNow.toString());
-  await prefs.setStringList('eatingBreakfastInfo', localUser!.eatingBreakfast.map((food) => jsonEncode(food)).toList());
-  await prefs.setStringList('eatingLunchInfo', localUser!.eatingLunch.map((food) => jsonEncode(food)).toList());
-  await prefs.setStringList('eatingDinnerInfo', localUser!.eatingDinner.map((food) => jsonEncode(food)).toList());
-  await prefs.setStringList('eatingAnotherInfo', localUser!.eatingAnother.map((food) => jsonEncode(food)).toList());
+  ///Открываем [eatingBox]
+  final Box<List<EatingFood>> eatingBox = await Hive.openBox<List<EatingFood>>('eatingBox');
+
+  ///Сохраняем списки со съеденной едой по ключу в формате ["название приёма пищи + дата"]
+  await eatingBox.put('breakfast${dateNow.toString()}', localUser!.eatingBreakfast);
+  await eatingBox.put('lunch${dateNow.toString()}', localUser!.eatingLunch);
+  await eatingBox.put('dinner${dateNow.toString()}', localUser!.eatingDinner);
+  await eatingBox.put('another${dateNow.toString()}', localUser!.eatingAnother);
+
+  await eatingBox.close();
 }
+
 
 ///Удаление еды из списка юзера, НО не из БД
 Future<bool> deleteFood(Food food) async
@@ -310,26 +327,86 @@ Future<bool> deleteFood(Food food) async
 }
 
 
-(List<EatingFood>, String) addFoodEatingList(String idFood,   String title,   double protein,   double fats,   double carbohydrates,   double calories,   int weight){
+(List<EatingFood>, String) addFoodEatingList(String nameEating, String idFood,   String title,   double protein,   double fats,   double carbohydrates,   double calories,   int weight){
   if(localUser != null){
     protein = (protein / 100 * weight);
     fats = fats / 100 * weight;
     carbohydrates = carbohydrates / 100 * weight;
     calories = calories / 100 * weight;
     final EatingFood eatingFood = EatingFood(idFood, localUser!.email, title,protein,fats,carbohydrates,calories,weight);
-    if (isFood == 'Завтрак'){
+    if (nameEating == 'Завтрак'){
       localUser!.eatingBreakfast.add(eatingFood);
       return (localUser!.eatingBreakfast, getCalories(localUser!.eatingBreakfast));
     }
-    if (isFood == 'Обед'){
+    if (nameEating == 'Обед'){
       localUser!.eatingLunch.add(eatingFood);
       return (localUser!.eatingLunch, getCalories(localUser!.eatingLunch));
     }
-    if (isFood == 'Ужин'){
+    if (nameEating == 'Ужин'){
       localUser!.eatingDinner.add(eatingFood);
       return (localUser!.eatingDinner, getCalories(localUser!.eatingDinner));
     }
     localUser!.eatingAnother.add(eatingFood);
+    return (localUser!.eatingAnother, getCalories(localUser!.eatingAnother));
+  }
+  throw 'localUser равен нулю';
+}
+
+Future<(List<EatingFood>, String)> updateFoodInEatingList(String nameEating, int index, int weight) async {
+  if(localUser == null){
+    throw 'localUser равен нулю';
+  }
+  if (nameEating == 'Завтрак'){
+    final int oldWeight = localUser!.eatingBreakfast[index].weight;
+    localUser!.eatingBreakfast[index].weight = weight;
+    localUser!.eatingBreakfast[index].protein = localUser!.eatingBreakfast[index].protein / oldWeight * weight;
+    localUser!.eatingBreakfast[index].fats = localUser!.eatingBreakfast[index].fats / oldWeight * weight;
+    localUser!.eatingBreakfast[index].carbohydrates = localUser!.eatingBreakfast[index].carbohydrates / oldWeight * weight;
+    localUser!.eatingBreakfast[index].calories = localUser!.eatingBreakfast[index].calories / oldWeight * weight;
+    return (localUser!.eatingBreakfast, getCalories(localUser!.eatingBreakfast));
+  }
+  if (nameEating == 'Обед'){
+    final int oldWeight = localUser!.eatingLunch[index].weight;
+    localUser!.eatingLunch[index].weight = weight;
+    localUser!.eatingLunch[index].protein = localUser!.eatingLunch[index].protein / oldWeight * weight;
+    localUser!.eatingLunch[index].fats = localUser!.eatingLunch[index].fats / oldWeight * weight;
+    localUser!.eatingLunch[index].carbohydrates = localUser!.eatingLunch[index].carbohydrates / oldWeight * weight;
+    localUser!.eatingLunch[index].calories = localUser!.eatingLunch[index].calories / oldWeight * weight;
+    return (localUser!.eatingLunch, getCalories(localUser!.eatingLunch));
+  }
+  if (nameEating == 'Ужин'){
+    final int oldWeight = localUser!.eatingLunch[index].weight;
+    localUser!.eatingDinner[index].weight = weight;
+    localUser!.eatingDinner[index].protein = localUser!.eatingDinner[index].protein / oldWeight * weight;
+    localUser!.eatingDinner[index].fats = localUser!.eatingDinner[index].fats / oldWeight * weight;
+    localUser!.eatingDinner[index].carbohydrates = localUser!.eatingDinner[index].carbohydrates / oldWeight * weight;
+    localUser!.eatingDinner[index].calories = localUser!.eatingDinner[index].calories / oldWeight * weight;
+    return (localUser!.eatingDinner, getCalories(localUser!.eatingDinner));
+  }
+  final int oldWeight = localUser!.eatingLunch[index].weight;
+  localUser!.eatingAnother[index].weight = weight;
+  localUser!.eatingAnother[index].protein = localUser!.eatingAnother[index].protein / oldWeight * weight;
+  localUser!.eatingAnother[index].fats = localUser!.eatingAnother[index].fats / oldWeight * weight;
+  localUser!.eatingAnother[index].carbohydrates = localUser!.eatingAnother[index].carbohydrates / oldWeight * weight;
+  localUser!.eatingAnother[index].calories = localUser!.eatingAnother[index].calories / oldWeight * weight;
+  return (localUser!.eatingAnother, getCalories(localUser!.eatingAnother));
+}
+
+(List<EatingFood>, String) deleteFoodInEatingList(String nameEating, int index) {
+  if(localUser != null){
+    if (nameEating == 'Завтрак'){
+      localUser!.eatingBreakfast.removeAt(index);
+      return (localUser!.eatingBreakfast, getCalories(localUser!.eatingBreakfast));
+    }
+    if (nameEating == 'Обед'){
+      localUser!.eatingLunch.removeAt(index);
+      return (localUser!.eatingLunch, getCalories(localUser!.eatingLunch));
+    }
+    if (nameEating == 'Ужин'){
+      localUser!.eatingDinner.removeAt(index);
+      return (localUser!.eatingDinner, getCalories(localUser!.eatingDinner));
+    }
+    localUser!.eatingAnother.removeAt(index);
     return (localUser!.eatingAnother, getCalories(localUser!.eatingAnother));
   }
   throw 'localUser равен нулю';
