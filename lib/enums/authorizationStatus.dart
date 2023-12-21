@@ -8,7 +8,7 @@ enum AuthorizationStatus{
   error('Неизвестная ошибка');
 
 
-  final String registrationStatus;
+  final String authorizationStatus;
 
-  const AuthorizationStatus(this.registrationStatus);
+  const AuthorizationStatus(this.authorizationStatus);
 }

@@ -1,7 +1,7 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/userImage/user_image_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,8 +22,7 @@ class _CaloriesChartState extends State<CaloriesChart> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+     
     return Builder(
         builder: (context){
           final EatingFoodState stateEatingFood = context.watch<EatingFoodBloc>().state;
@@ -36,7 +35,7 @@ class _CaloriesChartState extends State<CaloriesChart> {
           }
       return Container(
         width: screenWidth * 0.95,
-        height: screenHeight * 0.09,
+        height: screenHeight * 0.08,
         decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -60,11 +59,7 @@ class _CaloriesChartState extends State<CaloriesChart> {
                 Padding(padding: EdgeInsets.only(left: screenWidth * 0.075)),
                 Text(
                   'КАЛОРИИ: ${value.toInt()}/${goalValue.toInt()}',
-                  style: TextStyle(
-                    fontSize: screenHeight/50,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             ),
@@ -72,11 +67,11 @@ class _CaloriesChartState extends State<CaloriesChart> {
                 width: screenWidth * 0.85,
                 height: screenHeight * 0.03,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0)
+                    borderRadius: BorderRadius.circular(10)
                 ),
                 child:
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(4.0),
+                  borderRadius: BorderRadius.circular(10),
                   child: LinearProgressIndicator(
                     value: value / goalValue, // Здесь вычисляем процент заполнения
                     backgroundColor: AppColors.red, // Цвет фона

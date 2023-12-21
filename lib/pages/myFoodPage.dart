@@ -1,5 +1,5 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/objects/food.dart';
 import 'package:app1/widgets/foodListView.dart';
 import 'package:app1/widgets/newFood.dart';
@@ -41,34 +41,27 @@ class _MyFoodPageState extends State<MyFoodPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+     
     return GestureDetector(
       onTap: (){
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-          backgroundColor: AppColors.backGroundColor,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(screenHeight/17),
             child: Container(
               height: screenHeight/10,
               color: AppColors.green,
               child: Padding(
-                padding: EdgeInsets.only(bottom: screenHeight/200),
+                padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
+                    GestureDetector(
+                      onTap: () {
                         Navigator.pop(context);
                       },
-                      style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(0),
-                          backgroundColor: AppColors.green,
-                          foregroundColor: AppColors.green,
-                          shadowColor: Colors.transparent),
                       child: SvgPicture.asset(
                         'images/arrow.svg',
                         width: screenHeight / 27,
@@ -99,22 +92,18 @@ class _MyFoodPageState extends State<MyFoodPage> {
                             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.% ]'))],
                             onChanged: (String value){
                             },
-                            style: TextStyle(
-                                fontSize: screenHeight/40,
-                                fontFamily: 'Comfortaa',
-                                color: Colors.black
-                            ),
+                            style: Theme.of(context).textTheme.titleMedium,
                             decoration: InputDecoration(
                                 counterText: '',
                                 hoverColor: Colors.orange,
                                 floatingLabelBehavior: FloatingLabelBehavior.never,
                                 hintText: 'Поиск',
-                                hintStyle: TextStyle(
-                                    fontSize: screenHeight/40,
-                                    fontFamily: 'Comfortaa',
-                                    color: const Color.fromRGBO(0, 0, 0, 0.2)
+                                hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: AppColors.colorForHintText
                                 ),
-                                contentPadding: EdgeInsets.only(left: screenWidth * 0.05, right: screenWidth * 0.025),
+                                contentPadding: EdgeInsets.only(
+                                    left: screenWidth * 0.05, right: screenWidth * 0.025,
+                                    bottom: screenHeight/200),
                                 border: InputBorder.none
                             ),
                           );
@@ -167,7 +156,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                           height: (screenHeight / 200 + screenHeight/10) * userFoodList.length + screenHeight/50,
                           width: screenWidth,
                           child: FoodListView(listFood: userFoodList, isAddEatingFood: isAddEatingFood)
-                        ) : Container(),
+                        ) : const SizedBox(),
                         globalFoodList.isNotEmpty ? SizedBox(
                             height: screenHeight / 45,
                             width: screenWidth,
@@ -176,19 +165,15 @@ class _MyFoodPageState extends State<MyFoodPage> {
                               child: Text(
                                 'Глобальный поиск',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: screenHeight / 50,
-                                  fontFamily: 'Comfortaa',
-                                  color: const Color(0xff2D2D2D),
-                                ),
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                             )
-                        ) : Container(),
+                        ) : const SizedBox(),
                         globalFoodList.isNotEmpty ? SizedBox(
                             height: (screenHeight / 200 + screenHeight/10) * globalFoodList.length + screenHeight/8,
                             width: screenWidth,
                             child: FoodListView(listFood: globalFoodList, isAddEatingFood: isAddEatingFood)
-                        ) : Container(),
+                        ) : const SizedBox(),
                       ],
                     );
                   },

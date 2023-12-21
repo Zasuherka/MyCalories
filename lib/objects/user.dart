@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:app1/objects/food.dart';
 import 'package:app1/objects/result.dart';
 import 'package:hive/hive.dart';
+import '../enums/sex.dart';
 import 'eatingFood.dart';
 part 'user.g.dart';
 
@@ -67,6 +68,9 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
   @HiveField(12)
   int? proteinGoal;
 
+  @HiveField(13)
+  Sex? sex;
+
   ///Берём как файл с телефона
   File? avatar;
 
@@ -97,10 +101,21 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
   };
 
   ///Сам возраст не передаём, только [birthday]. От этого посчитаем возраст
-  AppUser({required this.userId, required this.name, required this.email,
-    required this.weightNow, required this.weightGoal, required this.height,
-    required this.birthday, required this.urlAvatar, this.caloriesGoal, this.fatsGoal,
-    this.proteinGoal, this.carbohydratesGoal})
+  AppUser(
+      {
+        required this.userId,
+        required this.name,
+        required this.email,
+        required this.weightNow,
+        required this.weightGoal,
+        required this.height,
+        required this.birthday,
+        required this.urlAvatar,
+        this.caloriesGoal,
+        this.fatsGoal,
+        this.proteinGoal, this.carbohydratesGoal
+      }
+      )
   {
     _countAge();
   }
@@ -111,14 +126,21 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
         email = json['email'],
         userId = json['userId'],
         urlAvatar = json['urlAvatar'],
-        weightNow = json['weightNow'],
-        weightGoal = json['weightGoal'],
+        ///Если вдруг придёт int, а не double
+        weightNow = json['weightNow'].runtimeType == double
+            ? json['weightNow']
+            : double.tryParse(json['weightNow'].toString()),
+        ///Если вдруг придёт int, а не double
+        weightGoal = json['weightGoal'].runtimeType == double
+            ? json['weightGoal']
+            : double.tryParse(json['weightGoal'].toString()),
         height = json['height'],
-        birthday = DateTime.tryParse(json['birthday']),
-        proteinGoal = int.tryParse(json['proteinGoal']),
-        carbohydratesGoal = int.tryParse(json['carbohydratesGoal']),
-        fatsGoal = int.tryParse(json['fatsGoal']),
-        caloriesGoal = int.tryParse(json['caloriesGoal'])
+        birthday = DateTime.tryParse(json['birthday'] ?? '') ,
+        proteinGoal = int.tryParse(json['proteinGoal'] ?? ''),
+        carbohydratesGoal = int.tryParse(json['carbohydratesGoal'] ?? ''),
+        fatsGoal = int.tryParse(json['fatsGoal'] ?? ''),
+        caloriesGoal = int.tryParse(json['caloriesGoal'] ?? ''),
+        sex = getSex(json['sex'])
   {
     _countAge();
   }
@@ -137,7 +159,8 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
       "proteinGoal": proteinGoal,
       "carbohydratesGoal": carbohydratesGoal,
       "fatsGoal": fatsGoal,
-      "caloriesGoal": caloriesGoal
+      "caloriesGoal": caloriesGoal,
+      "sex": sex?.sex
     };
   }
 

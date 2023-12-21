@@ -3,6 +3,7 @@ enum RegistrationStatus{
   weakPassword('Пароль ненадёжный'),
   emailAlreadyInUs('Данная электронная почта уже используется'),
   errorPassword('Пароли не совпадают'),
+  errorFields('Не все поля заполнены'),
   networkRequestFailed('Ошибка подключения'),
   error('Неизвестная ошибка');
 

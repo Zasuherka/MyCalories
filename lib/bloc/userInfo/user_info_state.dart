@@ -4,6 +4,8 @@ abstract class UserInfoState {}
 
 class UserInfoInitial extends UserInfoState {}
 
+class UserInfoSuccessfulState extends UserInfoState {}
+
 class StopBuildUserInfoState extends UserInfoState {}
 
 class LocalUserInfoState extends UserInfoState {

@@ -1,6 +1,6 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/objects/food.dart';
 import 'package:app1/widgets/foodWrap.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +12,7 @@ class FoodListView extends StatelessWidget {
   const FoodListView({super.key, required this.listFood, required this.isAddEatingFood});
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+     
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.only(top: screenHeight / 300),
@@ -61,10 +60,8 @@ class FoodListView extends StatelessWidget {
                           height: screenHeight / 29,
                           child: Text(
                             listFood.elementAt(elementIndex).title,
-                            style: TextStyle(
-                              fontSize: screenHeight / 32,
-                              fontFamily: 'Comfortaa',
-                              color: AppColors.green,
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              color: AppColors.green
                             ),
                           ),
                         ),
@@ -76,10 +73,8 @@ class FoodListView extends StatelessWidget {
                               width: screenWidth / 3,
                               child: Text(
                                 '${listFood.elementAt(elementIndex).calories.toString()}ккал.',
-                                style: TextStyle(
-                                  fontSize: screenHeight / 50,
-                                  fontFamily: 'Comfortaa',
-                                  color: AppColors.green,
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: AppColors.green
                                 ),
                               ),
                             ),
@@ -90,10 +85,8 @@ class FoodListView extends StatelessWidget {
                                     '${listFood.elementAt(elementIndex).fats.toStringAsFixed(2)}|'
                                     '${listFood.elementAt(elementIndex).carbohydrates.toStringAsFixed(2)}',
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontSize: screenHeight / 50,
-                                  fontFamily: 'Comfortaa',
-                                  color: AppColors.green,
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: AppColors.green
                                 ),
                               ),
                             ),

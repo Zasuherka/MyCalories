@@ -254,14 +254,18 @@ Future setFoodInfo() async {
 Future<(List<EatingFood>,List<EatingFood>,List<EatingFood>,List<EatingFood>)> getEatingFoodListsByDate(DateTime dateTime) async{
   dateTime = DateTime(dateTime.year,dateTime.month,dateTime.day);
   final Box<List> eatingBox = await Hive.openBox<List>('eatingBox');
+  List<EatingFood> breakfast = [];
+  List<EatingFood> lunch = [];
+  List<EatingFood> dinner = [];
+  List<EatingFood> another = [];
   if(eatingBox.isEmpty){
-    return ([],[],[],[]) as (List<EatingFood>,List<EatingFood>,List<EatingFood>,List<EatingFood>);
+    return (breakfast,lunch,dinner,another);
   }
 
-  final List<EatingFood> breakfast = eatingBox.get('breakfast${dateTime.toString()}')?.cast<EatingFood>() ?? [];
-  final List<EatingFood> lunch = eatingBox.get('lunch${dateTime.toString()}')?.cast<EatingFood>() ?? [];
-  final List<EatingFood> dinner = eatingBox.get('dinner${dateTime.toString()}')?.cast<EatingFood>() ?? [];
-  final List<EatingFood> another = eatingBox.get('another${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  breakfast = eatingBox.get('breakfast${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  lunch = eatingBox.get('lunch${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  dinner = eatingBox.get('dinner${dateTime.toString()}')?.cast<EatingFood>() ?? [];
+  another = eatingBox.get('another${dateTime.toString()}')?.cast<EatingFood>() ?? [];
   await eatingBox.close();
   return (breakfast,lunch,dinner,another);
 }
@@ -287,7 +291,7 @@ Future<void> setEatingFoodInfoNow() async {
   DateTime now = DateTime.now();
   DateTime dateNow = DateTime(now.year, now.month, now.day);
   ///Открываем [eatingBox]
-  final Box<List<EatingFood>> eatingBox = await Hive.openBox<List<EatingFood>>('eatingBox');
+  final Box<List> eatingBox = await Hive.openBox<List>('eatingBox');
 
   ///Сохраняем списки со съеденной едой по ключу в формате ["название приёма пищи + дата"]
   await eatingBox.put('breakfast${dateNow.toString()}', localUser!.eatingBreakfast);
@@ -356,6 +360,7 @@ Future<(List<EatingFood>, String)> updateFoodInEatingList(String nameEating, int
   if(localUser == null){
     throw 'localUser равен нулю';
   }
+  print(nameEating);
   if (nameEating == 'Завтрак'){
     final int oldWeight = localUser!.eatingBreakfast[index].weight;
     localUser!.eatingBreakfast[index].weight = weight;
@@ -375,7 +380,7 @@ Future<(List<EatingFood>, String)> updateFoodInEatingList(String nameEating, int
     return (localUser!.eatingLunch, getCalories(localUser!.eatingLunch));
   }
   if (nameEating == 'Ужин'){
-    final int oldWeight = localUser!.eatingLunch[index].weight;
+    final int oldWeight = localUser!.eatingDinner[index].weight;
     localUser!.eatingDinner[index].weight = weight;
     localUser!.eatingDinner[index].protein = localUser!.eatingDinner[index].protein / oldWeight * weight;
     localUser!.eatingDinner[index].fats = localUser!.eatingDinner[index].fats / oldWeight * weight;
@@ -383,7 +388,7 @@ Future<(List<EatingFood>, String)> updateFoodInEatingList(String nameEating, int
     localUser!.eatingDinner[index].calories = localUser!.eatingDinner[index].calories / oldWeight * weight;
     return (localUser!.eatingDinner, getCalories(localUser!.eatingDinner));
   }
-  final int oldWeight = localUser!.eatingLunch[index].weight;
+  final int oldWeight = localUser!.eatingAnother[index].weight;
   localUser!.eatingAnother[index].weight = weight;
   localUser!.eatingAnother[index].protein = localUser!.eatingAnother[index].protein / oldWeight * weight;
   localUser!.eatingAnother[index].fats = localUser!.eatingAnother[index].fats / oldWeight * weight;

@@ -33,10 +33,28 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
     on<GetIsFoodEvent>(_onGetIsFood);
     on<GetEatingFoodInfoEvent>(_onGetEatingFoodInfo);
     on<UpdateEatingFoodEvent>(_onUpdateEatingFood);
+    on<GetAllEatingFoodListEvent>(_onGetAllEatingFoodListEvent);
   }
 
   Future _onGetIsFood(GetIsFoodEvent event, Emitter<EatingFoodState> emitter) async {
     nameEating = event.nameEating;
+  }
+
+  Future _onGetAllEatingFoodListEvent(GetAllEatingFoodListEvent event, Emitter<EatingFoodState> emitter) async {
+    emitter(EatingFoodInitialState({
+      'Завтрак': localUser!.eatingBreakfast,
+      'Обед': localUser!.eatingLunch,
+      'Ужин': localUser!.eatingDinner,
+      'Другое': localUser!.eatingAnother,
+    },
+      localUser!.eatingValues,
+      {
+        'Завтрак': getCalories(localUser!.eatingBreakfast),
+        'Обед': getCalories(localUser!.eatingLunch),
+        'Ужин': getCalories(localUser!.eatingDinner),
+        'Другое': getCalories(localUser!.eatingAnother),
+      },
+    ));
   }
 
   Future _onGetEatingFoodInfo(GetEatingFoodInfoEvent event, Emitter<EatingFoodState> emitter) async {
@@ -77,9 +95,11 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
       final (List<EatingFood>, String) listAndCalories = addFoodEatingList(nameEating!, event.idFood, event.title, event.protein, event.fats, event.carbohydrates, event.calories, event.weight);
       await setEatingFoodInfoNow();
       await getCount();
+      listAndCalories.$1.forEach((element) {print(element.toString());});
       emitter(GetEatingFoodListState(listAndCalories.$1, nameEating!, listAndCalories.$2, localUser!.eatingValues));
     }
     catch (error){
+      print(error.toString());
       emitter(ErrorEatingFoodState(error.toString()));
     }
   }

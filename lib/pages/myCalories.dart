@@ -1,9 +1,5 @@
-import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
-import 'package:app1/colors/colors.dart';
-import 'package:app1/pages/authorizationPage.dart';
-import 'package:app1/pages/myFoodPage.dart';
-import 'package:app1/service/UserSirvice.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/widgets/caloriesChart.dart';
 import 'package:app1/widgets/eatingWidget.dart';
 import 'package:app1/widgets/pfcChart.dart';
@@ -28,13 +24,12 @@ class _MyCaloriesState extends State<MyCalories> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+     
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
       body:
       SingleChildScrollView(
-        child:Padding(padding: EdgeInsets.only(top: screenHeight/20),
+        child:Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + screenHeight/200),
             child:
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,13 +37,13 @@ class _MyCaloriesState extends State<MyCalories> {
                 Row(
                   children: [
                     Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                        child: const PFCChart(goalValue: 210, title: 'БЕЛКИ')
+                        child: const PFCChart(title: 'БЕЛКИ')
                     ),
                     Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                        child: const PFCChart(goalValue: 100, title: 'ЖИРЫ')
+                        child: const PFCChart(title: 'ЖИРЫ')
                     ),
                     Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                        child: const PFCChart(goalValue: 80, title: 'УГЛЕВОДЫ')
+                        child: const PFCChart(title: 'УГЛЕВОДЫ')
                     )
                   ],
                 ),
@@ -63,20 +58,6 @@ class _MyCaloriesState extends State<MyCalories> {
                 Padding(padding: EdgeInsets.only(top: screenHeight/100)),
                 const EatingWidget(title: 'Другое'),
                 Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => const MyFoodPage(isAddEatingFood: true)));
-                    },
-                    child: Text(localUser!.name.toString())),
-                ElevatedButton(
-                  onPressed: () async {
-                    await exitUser();
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
-                  },
-                  child: const Text('Выход'),
-                )
-
               ],
             )
         )

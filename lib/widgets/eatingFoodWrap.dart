@@ -17,18 +17,7 @@ class EatingFoodWrap extends StatelessWidget {
         SizedBox(
           height: screenHeight/20,
           child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Изменить',
-                  style: TextStyle(
-                    fontSize: screenHeight/55,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
+            title: const Text('Изменить', textAlign: TextAlign.center),
             onTap: (){
               Navigator.pop(context);
               showDialog(context: context, builder: (BuildContext context) =>
@@ -39,18 +28,7 @@ class EatingFoodWrap extends StatelessWidget {
         SizedBox(
           height: screenHeight/20,
           child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Удалить из списка',
-                  style: TextStyle(
-                    fontSize: screenHeight/55,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
+            title: const Text('Удалить из списка', textAlign: TextAlign.center),
             onTap: (){
               Navigator.pop(context);
               BlocProvider.of<EatingFoodBloc>(context).add(DeleteEatingFoodEvent());
@@ -60,18 +38,7 @@ class EatingFoodWrap extends StatelessWidget {
         SizedBox(
           height: screenHeight/20,
           child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Отмена',
-                  style: TextStyle(
-                    fontSize: screenHeight/55,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
+            title: const Text('Отмена', textAlign: TextAlign.center),
             onTap: (){
               Navigator.pop(context);
             },

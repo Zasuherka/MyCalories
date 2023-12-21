@@ -10,6 +10,8 @@ class GetEatingFoodListEvent extends EatingFoodEvent{
   GetEatingFoodListEvent(this.nameEating);
 }
 
+class GetAllEatingFoodListEvent extends EatingFoodEvent {}
+
 class GetIsFoodEvent extends EatingFoodEvent{
   final String nameEating;
 

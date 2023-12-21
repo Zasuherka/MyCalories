@@ -1,15 +1,14 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PFCChart extends StatefulWidget {
 
-  final double goalValue;
   final String title;
-  const PFCChart({super.key, required this.goalValue, required this.title});
+  const PFCChart({super.key, required this.title});
 
   @override
   State<PFCChart> createState() => _PFCChartState();
@@ -17,7 +16,7 @@ class PFCChart extends StatefulWidget {
 
 class _PFCChartState extends State<PFCChart> {
   late String title;
-  late double goalValue;
+  double goalValue = 100;
   double value = 0;
   double counter = 0;
 
@@ -26,14 +25,12 @@ class _PFCChartState extends State<PFCChart> {
     // TODO: implement initState
     super.initState();
     title = widget.title;
-    goalValue = widget.goalValue;
-
+    //goalValue = widget.goalValue;
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+     
     return Builder(
       builder: (context) {
         final EatingFoodState eatingFoodState = context.watch<EatingFoodBloc>().state;
@@ -114,11 +111,7 @@ class _PFCChartState extends State<PFCChart> {
                         child:
                         Text(
                           '${value ~/ (goalValue / 100)}%',
-                          style: TextStyle(
-                            fontSize: screenHeight/77,
-                            fontFamily: 'Comfortaa',
-                            color: Colors.black,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     ],
@@ -127,22 +120,14 @@ class _PFCChartState extends State<PFCChart> {
                 Padding(padding: EdgeInsets.only(top: screenHeight/60),
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: screenHeight/50,
-                      fontFamily: 'Comfortaa',
-                      color: Colors.black,
-                    ),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(top: screenHeight/160),
                   child:
                   Text(
                     '${value.toInt()}/${goalValue.toInt()}',
-                    style: TextStyle(
-                      fontSize: screenHeight/60,
-                      fontFamily: 'Comfortaa',
-                      color: Colors.black,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 )
               ],

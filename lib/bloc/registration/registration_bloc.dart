@@ -13,6 +13,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState>
 
   Future<void> _onRegistration(RegistrationEvent event, Emitter<RegistrationState> emitter) async {
     emitter(RegistrationLoading());
+    print(event.password1);
     final RegistrationStatus status = await register(event.email, event.name, event.password1, event.password2);
     switch (status){
       case RegistrationStatus.successful:

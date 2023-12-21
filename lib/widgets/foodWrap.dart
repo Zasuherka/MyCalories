@@ -21,7 +21,7 @@ class FoodWrap extends StatelessWidget {
     return Wrap(
       children: [
         ///Добавить в съеденное
-        !isAddEatingFood ? SizedBox(
+        isAddEatingFood ? SizedBox(
           height: screenHeight/20,
           child: ListTile(
             title: Row(
@@ -44,7 +44,7 @@ class FoodWrap extends StatelessWidget {
                       bloc: BlocProvider.of<FoodBloc>(context)));
             },
           ),
-        ) : Container(),
+        ) : const SizedBox(),
         ///Удалить из своей/добавить в свою
         SizedBox(
           height: screenHeight/20,
@@ -94,7 +94,7 @@ class FoodWrap extends StatelessWidget {
             },
           ),
         )
-        : Container(),
+        : const SizedBox(),
         SizedBox(
           height: screenHeight/20,
           child: ListTile(

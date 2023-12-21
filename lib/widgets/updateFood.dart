@@ -1,5 +1,5 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/validation/foodValidator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,11 +22,11 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
   String carbohydrates = '';
   String notification = '';
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _controllerTitle = TextEditingController();
-  TextEditingController _controllerProtein = TextEditingController();
-  TextEditingController _controllerFats = TextEditingController();
-  TextEditingController _controllerCarbohydrates = TextEditingController();
-  TextEditingController _controllerCalories = TextEditingController();
+  final TextEditingController _controllerTitle = TextEditingController();
+  final TextEditingController _controllerProtein = TextEditingController();
+  final TextEditingController _controllerFats = TextEditingController();
+  final TextEditingController _controllerCarbohydrates = TextEditingController();
+  final TextEditingController _controllerCalories = TextEditingController();
 
   @override
   void dispose() {
@@ -40,7 +40,6 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
 
   @override
   Widget build(BuildContext context) {
-    bool activeTap = true;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -48,16 +47,16 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
       body: BlocBuilder<FoodBloc,FoodState>(
         builder: (context, state) {
           if (state is GetFoodInfoState && state.food != null){
-            _controllerTitle = TextEditingController(text: state.food!.title);
             title = state.food!.title;
-            _controllerProtein = TextEditingController(text: state.food!.protein.toString());
+            _controllerTitle.text = title;
             protein = state.food!.protein.toString();
-            _controllerFats = TextEditingController(text: state.food!.fats.toString());
+            _controllerProtein.text = protein;
             fats = state.food!.fats.toString();
-            _controllerCarbohydrates = TextEditingController(text: state.food!.carbohydrates.toString());
+            _controllerFats.text = fats;
             carbohydrates = state.food!.carbohydrates.toString();
-            _controllerCalories = TextEditingController(text: state.food!.calories.toString());
+            _controllerCarbohydrates.text = carbohydrates;
             calories = state.food!.calories.toString();
+            _controllerCalories.text = calories;
           }
           return Center(
             child:
@@ -66,8 +65,8 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30)
                 ),
-                width: screenWidth/1.1,
-                height: screenHeight/3.1,
+                width: screenWidth/1.05,
+                height: screenHeight/3,
                 child:
                 Form(
                   key: _formKey,
@@ -75,20 +74,15 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                      SizedBox(height: screenHeight/100),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
+                          SizedBox(width: screenWidth/25),
+                          GestureDetector(
+                            onTap: () {
                               Navigator.pop(context, false);
                             },
-                            style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(0),
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.white,
-                                shadowColor: Colors.transparent
-                            ),
                             child: SvgPicture.asset(
                               'images/arrow.svg',
                               width: screenHeight/27,
@@ -96,6 +90,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                               colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn),
                             ),
                           ),
+                          SizedBox(width: screenWidth/25),
                           SizedBox(
                             width: screenWidth/1.5,
                             height: screenHeight/14,
@@ -108,7 +103,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                 }
                                 return null;
                               },
-                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.% ]'))],
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[ёЁa-zA-Zа-яА-Я0-9.% ]'))],
                               onChanged: (String value){
                                 title = value;
                               },
@@ -117,7 +112,9 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                   fontFamily: 'Comfortaa',
                                   color: Colors.black
                               ),
-                              decoration: InputDecoration(hoverColor: Colors.orange,
+                              decoration: InputDecoration(
+                                counterText: '',
+                                hoverColor: Colors.orange,
                                 floatingLabelBehavior: FloatingLabelBehavior.never,
                                 hintText: 'Название',
                                 hintStyle: TextStyle(
@@ -128,7 +125,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                 focusedBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black, width: 1),
                                 ),
-                                contentPadding: const EdgeInsets.only(bottom: -10),
+                                contentPadding: EdgeInsets.only(bottom: screenHeight/200),
                                 border: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black, width: 1),
                                 ),
@@ -139,7 +136,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                       ),
                       Padding(padding: EdgeInsets.only(top: screenHeight/60)),
                       SizedBox(
-                        width: screenWidth/1.2,
+                        width: screenWidth/1.1,
                         child:
                         Table(
                           border: TableBorder.all(
@@ -156,11 +153,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text("Белки",
-                                          style: TextStyle(
-                                              fontSize: screenHeight/70,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.bodySmall,
                                           textAlign: TextAlign.center,),
                                       )
                                   ),
@@ -171,12 +164,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                         padding: const EdgeInsets.all(8.0),
                                         child:
                                         Text("Жиры",
-                                            style:
-                                            TextStyle(
-                                                fontSize: screenHeight/70,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black
-                                            ),
+                                            style: Theme.of(context).textTheme.bodySmall,
                                             textAlign: TextAlign.center),
                                       )
                                   ),
@@ -186,12 +174,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text("Углеводы",
-                                            style:
-                                            TextStyle(
-                                                fontSize: screenHeight/70,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black
-                                            ),
+                                            style: Theme.of(context).textTheme.bodySmall,
                                             textAlign: TextAlign.center),
                                       )
                                   ),
@@ -201,12 +184,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text("ккал",
-                                            style:
-                                            TextStyle(
-                                                fontSize: screenHeight/70,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black
-                                            ),
+                                            style: Theme.of(context).textTheme.bodySmall,
                                             textAlign: TextAlign.center),
                                       )
                                   ),
@@ -232,11 +210,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                                 onChanged: (String value){
                                                   protein = value;
                                                 },
-                                                style: TextStyle(
-                                                    fontSize: screenHeight/50,
-                                                    fontFamily: 'Comfortaa',
-                                                    color: Colors.black
-                                                ),
+                                                style: Theme.of(context).textTheme.bodyLarge,
                                                 textAlign: TextAlign.center,
                                                 decoration: const InputDecoration(hoverColor: Colors.orange,
                                                   counterText: '',
@@ -273,11 +247,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                                 onChanged: (String value){
                                                   fats = value;
                                                 },
-                                                style: TextStyle(
-                                                    fontSize: screenHeight/50,
-                                                    fontFamily: 'Comfortaa',
-                                                    color: Colors.black
-                                                ),
+                                                style: Theme.of(context).textTheme.bodyLarge,
                                                 textAlign: TextAlign.center,
                                                 decoration: const InputDecoration(hoverColor: Colors.orange,
                                                   counterText: '',
@@ -312,11 +282,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                                 onChanged: (String value){
                                                   carbohydrates = value;
                                                 },
-                                                style: TextStyle(
-                                                    fontSize: screenHeight/50,
-                                                    fontFamily: 'Comfortaa',
-                                                    color: Colors.black
-                                                ),
+                                                style: Theme.of(context).textTheme.bodyLarge,
                                                 textAlign: TextAlign.center,
                                                 decoration: const InputDecoration(hoverColor: Colors.orange,
                                                   counterText: '',
@@ -351,11 +317,7 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                                                 onChanged: (String value){
                                                   calories = value;
                                                 },
-                                                style: TextStyle(
-                                                    fontSize: screenHeight/50,
-                                                    fontFamily: 'Comfortaa',
-                                                    color: Colors.black
-                                                ),
+                                                style: Theme.of(context).textTheme.bodyLarge,
                                                 textAlign: TextAlign.center,
                                                 decoration: const InputDecoration(hoverColor: Colors.orange,
                                                   counterText: '',
@@ -381,70 +343,45 @@ class _UpdateFoodState extends State<UpdateFood> with FoodValidationMixin{
                       Padding(padding: EdgeInsets.only(top: screenHeight/80)),
                       SizedBox(
                         height: screenHeight/25,
-                        width: screenWidth/1.4,
+                        width: screenWidth/1.5,
                         child: Text(
                           notification,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.red[900]
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.red
                           ),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: screenHeight/60)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(padding: EdgeInsets.only(left: screenHeight/17.5 + screenHeight/25)),
-                          SizedBox(
-                            height: screenHeight/25,
-                            width: screenWidth/2.5,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  notification = foodValidator(
-                                      protein, fats, carbohydrates, calories);
-                                });
-                                if (_formKey.currentState != null) {
-                                  if (_formKey.currentState!.validate() &&
-                                      notification == '') {
-                                      if (state.food != null){
-                                        BlocProvider.of<FoodBloc>(context).add(UpdateFoodEvent(state.food!, title, protein, fats, carbohydrates, calories));
-                                      }
-                                    Navigator.pop(context);
-                                  }
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                  AppColors.green,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(36))),
-                              child: Text(
-                                "Изменить",
-                                style: TextStyle(
-                                    fontSize: screenHeight / 40,
-                                    fontFamily: 'Comfortaa',
-                                    color: Colors.white),
-                              ),
-                            ),
+                      Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            notification = foodValidator(
+                                protein, fats, carbohydrates, calories);
+                          });
+                          if (_formKey.currentState != null) {
+                            if (_formKey.currentState!.validate() &&
+                                notification == '') {
+                              if (state.food != null){
+                                BlocProvider.of<FoodBloc>(context).add(UpdateFoodEvent(state.food!, title, protein, fats, carbohydrates, calories));
+                              }
+                              Navigator.pop(context);
+                            }
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(screenWidth / 2, screenHeight / 23),
+                            backgroundColor:
+                            AppColors.green,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(36))),
+                        child: Text(
+                          "Изменить",
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: AppColors.white
                           ),
-                          Padding(padding: EdgeInsets.only(left: screenHeight/17.5)),
-                          ///TODO Доделать функцию удаления | сделать свою иконку удаления
-                          GestureDetector(
-                              onTap: () async {
-                                if (activeTap) {
-                                  activeTap = false;
-                                  //BlocProvider.of<FoodBloc>(context).add(DeleteFoodEvent(food));
-                                  Navigator.pop(context, true);
-                                }
-                              },
-                              child: Icon(
-                                Icons.delete,
-                                color: Colors.red[600],
-                                size: screenHeight / 25,
-                              )),
-                        ],
-                      )
+                        ),
+                      ),
                     ],
                   ),
                 )

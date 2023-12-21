@@ -25,18 +25,19 @@ class AppUserAdapter extends TypeAdapter<AppUser> {
       height: fields[5] as int?,
       birthday: fields[6] as DateTime?,
       urlAvatar: fields[8] as String?,
+      caloriesGoal: fields[9] as int?,
+      fatsGoal: fields[10] as int?,
+      proteinGoal: fields[12] as int?,
+      carbohydratesGoal: fields[11] as int?,
     )
       ..age = fields[7] as int?
-      ..caloriesGoal = fields[9] as int?
-      ..fatsGoal = fields[10] as int?
-      ..carbohydratesGoal = fields[11] as int?
-      ..proteinGoal = fields[12] as int?;
+      ..sex = fields[13] as Sex?;
   }
 
   @override
   void write(BinaryWriter writer, AppUser obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.userId)
       ..writeByte(1)
@@ -62,7 +63,9 @@ class AppUserAdapter extends TypeAdapter<AppUser> {
       ..writeByte(11)
       ..write(obj.carbohydratesGoal)
       ..writeByte(12)
-      ..write(obj.proteinGoal);
+      ..write(obj.proteinGoal)
+      ..writeByte(13)
+      ..write(obj.sex);
   }
 
   @override

@@ -89,6 +89,10 @@ flutter:
     - images/people.svg
     - images/editing.svg
     - images/mark.svg
+    - images/foodImage.jpg
+    - images/collectionFood.jpg
+    - images/PFCC.jpg
+    - images/recipes.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

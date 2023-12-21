@@ -1,6 +1,6 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/widgets/addFoodWidget.dart';
 import 'package:app1/widgets/eatingFoodWrap.dart';
@@ -31,8 +31,7 @@ class _EatingWidgetState extends State<EatingWidget> {
   }
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+     
     return BlocBuilder<EatingFoodBloc, EatingFoodState>(
         builder: (context, state) {
           if(state is EatingFoodInitialState){
@@ -45,7 +44,7 @@ class _EatingWidgetState extends State<EatingWidget> {
               calories = state.eatingCalories;
             }
           }
-          heightWidget = screenHeight * (list.length + 1) * 0.07;
+          heightWidget = screenHeight * list.length * 0.06 + screenHeight * 0.07;
           return Container(
             width: screenWidth * 0.95,
             height: heightWidget,
@@ -81,11 +80,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                             child: Text(
                               title,
                               textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: screenHeight/40,
-                                fontFamily: 'Comfortaa',
-                                color: Colors.black,
-                              ),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                           )
                       ),
@@ -94,11 +89,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                           width: screenWidth * 0.2,
                           child: Text('$calories ккал',
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                              fontSize: screenHeight/60,
-                              fontFamily: 'Comfortaa',
-                              color: Colors.black,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                       ),
@@ -107,8 +98,8 @@ class _EatingWidgetState extends State<EatingWidget> {
                           onTap: () async {
                             BlocProvider.of<EatingFoodBloc>(context).add(GetIsFoodEvent(title));
                             BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-                            await Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const MyFoodPage(isAddEatingFood: false)));
+                            await Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => const MyFoodPage(isAddEatingFood: true)));
                           },
                           child: SvgPicture.asset(
                             'images/plus2.svg',
@@ -123,7 +114,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                 ),
                 SizedBox(
                   width: screenWidth * 0.95,
-                  height: screenHeight * 0.07 * list.length,
+                  height: screenHeight * 0.06 * list.length,
                   child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),//Чтобы не скролился
                       addSemanticIndexes: false,
@@ -141,7 +132,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                           },
                           child: Container(
                               width: screenWidth * 0.95,
-                              height: screenHeight * 0.07,
+                              height: screenHeight * 0.06,
                               decoration: const BoxDecoration(
                                   border: Border(
                                       top: BorderSide(
@@ -159,11 +150,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                                     SizedBox(
                                       width: screenWidth * 0.55,
                                       child: Text(list[index].title,
-                                        style: TextStyle(
-                                          fontSize: screenHeight/40,
-                                          fontFamily: 'Comfortaa',
-                                          color: Colors.black,
-                                        ),
+                                        style: Theme.of(context).textTheme.titleMedium,
                                       ),
                                     ),
                                   ),
@@ -178,11 +165,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                                         children: [
                                           SizedBox(height: screenHeight/51,
                                               child: Text('${list[index].calories.toStringAsFixed(2)}ккал.',
-                                                style: TextStyle(
-                                                  fontSize: screenHeight/50,
-                                                  fontFamily: 'Comfortaa',
-                                                  color: Colors.black,
-                                                ),
+                                                style: Theme.of(context).textTheme.bodyMedium,
                                                 textAlign: TextAlign.right,
                                               )
                                           ),
@@ -191,11 +174,7 @@ class _EatingWidgetState extends State<EatingWidget> {
                                             height: screenHeight/61,
                                             child:
                                             Text('${list[index].weight.toString()}г.',
-                                              style: TextStyle(
-                                                fontSize: screenHeight/60,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black,
-                                              ),
+                                              style: Theme.of(context).textTheme.bodyMedium,
                                             ),
                                           )
                                         ],

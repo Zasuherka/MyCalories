@@ -15,19 +15,9 @@ class AvatarWrap extends StatelessWidget {
         SizedBox(
           height: screenHeight/20,
           child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Изменить фотографию',
-                  style: TextStyle(
-                    fontSize: screenHeight/55,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
-            onTap: (){
+            title: const Text('Изменить фотографию', textAlign: TextAlign.center),
+
+              onTap: (){
               BlocProvider.of<UserImageBloc>(context).add(SelectAndUploadImageEvent());
               Navigator.pop(context);
             },
@@ -36,39 +26,18 @@ class AvatarWrap extends StatelessWidget {
         avatarIsNotNull ? SizedBox(
           height: screenHeight/20,
           child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Удалить фотографию',
-                  style: TextStyle(
-                    fontSize: screenHeight/55,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
+            leadingAndTrailingTextStyle: Theme.of(context).listTileTheme.leadingAndTrailingTextStyle,
+            title: const Text('Удалить фотографию', textAlign: TextAlign.center),
             onTap: (){
               BlocProvider.of<UserImageBloc>(context).add(DeleteImageEvent());
               Navigator.pop(context);
             },
           ),
-        ) : Container(),
+        ) : const SizedBox(),
         SizedBox(
           height: screenHeight/20,
           child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Отмена',
-                  style: TextStyle(
-                    fontSize: screenHeight/55,
-                    fontFamily: 'Comfortaa',
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
+            title: const Text('Отмена', textAlign: TextAlign.center),
             onTap: (){
               Navigator.pop(context);
             },

@@ -1,7 +1,6 @@
 import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/colors/colors.dart';
-import 'package:app1/objects/eatingFood.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/objects/food.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +24,12 @@ class _AddEatingFoodState extends State<AddEatingFood> {
   final TextEditingController _weightController = TextEditingController();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _weightController.dispose();
+    super.dispose();
+  }
+  @override
   void initState() {
     super.initState();
   }
@@ -43,8 +48,8 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30)
             ),
-            width: screenWidth/1.1,
-            height: screenHeight/3,
+            width: screenWidth/1.05,
+            height: screenHeight/2.9,
             child:
             Form(
               key: _formKey,
@@ -73,20 +78,15 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                      SizedBox(height: screenHeight/50),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
+                          SizedBox(width: screenWidth/25),
+                          GestureDetector(
+                            onTap: () {
                               Navigator.pop(context, false);
                             },
-                            style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(0),
-                                backgroundColor: Colors.transparent,
-                                foregroundColor: Colors.white,
-                                shadowColor: Colors.transparent
-                            ),
                             child: SvgPicture.asset(
                               'images/arrow.svg',
                               width: screenHeight/27,
@@ -94,17 +94,14 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                               colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn),
                             ),
                           ),
+                          SizedBox(width: screenWidth/25),
                           SizedBox(
                               width: screenWidth/1.5,
                               //height: screenHeight/,
                               child:
                               Text(
                                 food.title,
-                                style: TextStyle(
-                                    fontSize: screenHeight/40,
-                                    fontFamily: 'Comfortaa',
-                                    color: Colors.black
-                                ),
+                                style: Theme.of(context).textTheme.titleMedium,
                                 textAlign: TextAlign.left,
                               )
                           ),
@@ -113,7 +110,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                       ),
                       Padding(padding: EdgeInsets.only(top: screenHeight/60)),
                       SizedBox(
-                        width: screenWidth/1.2,
+                        width: screenWidth/1.1,
                         height: screenHeight/12,
                         child:
                         Table(
@@ -130,11 +127,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text("Белки",
-                                          style: TextStyle(
-                                              fontSize: screenHeight/70,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.bodySmall,
                                           textAlign: TextAlign.center,),
                                       )
                                   ),
@@ -146,11 +139,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                         child:
                                         Text("Жиры",
                                             style:
-                                            TextStyle(
-                                                fontSize: screenHeight/70,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black
-                                            ),
+                                            Theme.of(context).textTheme.bodySmall,
                                             textAlign: TextAlign.center),
                                       )
                                   ),
@@ -161,11 +150,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text("Углеводы",
                                             style:
-                                            TextStyle(
-                                                fontSize: screenHeight/70,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black
-                                            ),
+                                            Theme.of(context).textTheme.bodySmall,
                                             textAlign: TextAlign.center),
                                       )
                                   ),
@@ -176,11 +161,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text("ккал",
                                             style:
-                                            TextStyle(
-                                                fontSize: screenHeight/70,
-                                                fontFamily: 'Comfortaa',
-                                                color: Colors.black
-                                            ),
+                                            Theme.of(context).textTheme.bodySmall,
                                             textAlign: TextAlign.center),
                                       )
                                   ),
@@ -198,11 +179,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             child: Center(
                                                 child: Text(
                                                   food.protein.toStringAsFixed(2),
-                                                  style: TextStyle(
-                                                      fontSize: screenHeight/50,
-                                                      fontFamily: 'Comfortaa',
-                                                      color: Colors.black
-                                                  ),
+                                                  style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
                                         ),
@@ -218,11 +195,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             child: Center(
                                                 child: Text(
                                                   food.fats.toStringAsFixed(2),
-                                                  style: TextStyle(
-                                                      fontSize: screenHeight/50,
-                                                      fontFamily: 'Comfortaa',
-                                                      color: Colors.black
-                                                  ),
+                                                  style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
                                         ),
@@ -237,11 +210,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             child: Center(
                                                 child: Text(
                                                   food.carbohydrates.toStringAsFixed(2),
-                                                  style: TextStyle(
-                                                      fontSize: screenHeight/50,
-                                                      fontFamily: 'Comfortaa',
-                                                      color: Colors.black
-                                                  ),
+                                                  style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
                                         ),
@@ -257,11 +226,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                                 child:
                                                 Text(
                                                   food.calories.toStringAsFixed(2),
-                                                  style: TextStyle(
-                                                      fontSize: screenHeight/50,
-                                                      fontFamily: 'Comfortaa',
-                                                      color: Colors.black
-                                                  ),
+                                                  style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
                                         ),
@@ -272,14 +237,17 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                           ],
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: screenHeight/200)),
+                      SizedBox(height: screenHeight/100),
                       SizedBox(
-                          width: screenWidth * 0.83,
-                          height: screenHeight/12,
+                          width: screenWidth * 0.9,
+                          height: screenHeight/11,
                           child:
                           Row(
                             children: [
-                              Padding(padding: EdgeInsets.only(bottom: screenHeight/100),
+                              Container(
+                                height: screenHeight/20,
+                                alignment: Alignment.topCenter,
+                                padding: EdgeInsets.only(bottom: screenHeight/200),
                                 child: SvgPicture.asset(
                                   'images/weight.svg',
                                   width: screenHeight/27,
@@ -307,17 +275,11 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                           onChanged: (String value){
                                             weight = value;
                                           },
-                                          style: TextStyle(
-                                              fontSize: screenHeight/40,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.titleMedium,
                                           decoration: InputDecoration(
                                             hintText: 'гр/мл',
-                                            hintStyle: TextStyle(
-                                                fontSize: screenHeight/40,
-                                                fontFamily: 'Comfortaa',
-                                                color: const Color.fromRGBO(0, 0, 0, 0.3)
+                                            hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                              color: AppColors.colorForHintText
                                             ),
                                             hoverColor: Colors.orange,
                                             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -362,10 +324,8 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                           child: Text(
                             buttonTitle,
                             style:
-                            TextStyle(
-                                fontSize: screenHeight/40,
-                                fontFamily: 'Comfortaa',
-                                color: Colors.white
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: AppColors.white
                             ),
                           ),
                         ),

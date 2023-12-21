@@ -1,5 +1,5 @@
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/validation/foodValidator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +22,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
   String fats = '';
   String carbohydrates = '';
   String notification = '';
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
 
@@ -38,8 +38,8 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
               color: Colors.white,
               borderRadius: BorderRadius.circular(30)
           ),
-          width: screenWidth/1.1,
-          height: screenHeight/3.1,
+          width: screenWidth/1.05,
+          height: screenHeight/3,
           child:
           Form(
             key: _formKey,
@@ -51,16 +51,11 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
+                    SizedBox(width: screenWidth/25),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context, false);
                       },
-                      style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(0),
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.white,
-                          shadowColor: Colors.transparent
-                      ),
                       child: SvgPicture.asset(
                         'images/arrow.svg',
                         width: screenHeight/27,
@@ -68,6 +63,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                         colorFilter: const ColorFilter.mode(AppColors.green, BlendMode.srcIn),
                       ),
                     ),
+                    SizedBox(width: screenWidth/25),
                     SizedBox(
                       width: screenWidth/1.5,
                       height: screenHeight/14,
@@ -79,27 +75,22 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                           }
                           return null;
                         },
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.% ]'))],
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[ёЁa-zA-Zа-яА-Я0-9.% ]'))],
                         onChanged: (String value){
                           title = value;
                         },
-                        style: TextStyle(
-                            fontSize: screenHeight/40,
-                            fontFamily: 'Comfortaa',
-                            color: Colors.black
-                        ),
-                        decoration: InputDecoration(   hoverColor: Colors.orange,
+                        style: Theme.of(context).textTheme.titleLarge,
+                        decoration: InputDecoration(hoverColor: Colors.orange,
+                          counterText: '',
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                           hintText: 'Название',
-                          hintStyle: TextStyle(
-                              fontSize: screenHeight/40,
-                              fontFamily: 'Comfortaa',
-                              color: const Color.fromRGBO(0, 0, 0, 0.1)
+                          hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: AppColors.colorForHintText
                           ),
                           focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black, width: 1),
                           ),
-                          contentPadding: const EdgeInsets.only(bottom: -10),
+                          contentPadding: EdgeInsets.only(top: screenHeight/200),
                           border: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black, width: 1),
                           ),
@@ -108,9 +99,9 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                     ),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/60)),
+                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
                 SizedBox(
-                  width: screenWidth/1.2,
+                  width: screenWidth/1.1,
                   child:
                   Table(
                     border: TableBorder.all(
@@ -127,11 +118,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Белки",
-                                    style: TextStyle(
-                                        fontSize: screenHeight/70,
-                                        fontFamily: 'Comfortaa',
-                                        color: Colors.black
-                                    ),
+                                    style: Theme.of(context).textTheme.bodySmall,
                                     textAlign: TextAlign.center,),
                                 )
                             ),
@@ -142,12 +129,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                   padding: const EdgeInsets.all(8.0),
                                   child:
                                   Text("Жиры",
-                                      style:
-                                      TextStyle(
-                                          fontSize: screenHeight/70,
-                                          fontFamily: 'Comfortaa',
-                                          color: Colors.black
-                                      ),
+                                      style: Theme.of(context).textTheme.bodySmall,
                                       textAlign: TextAlign.center),
                                 )
                             ),
@@ -157,12 +139,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Углеводы",
-                                      style:
-                                      TextStyle(
-                                          fontSize: screenHeight/70,
-                                          fontFamily: 'Comfortaa',
-                                          color: Colors.black
-                                      ),
+                                      style: Theme.of(context).textTheme.bodySmall,
                                       textAlign: TextAlign.center),
                                 )
                             ),
@@ -172,12 +149,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("ккал",
-                                      style:
-                                      TextStyle(
-                                          fontSize: screenHeight/70,
-                                          fontFamily: 'Comfortaa',
-                                          color: Colors.black
-                                      ),
+                                      style: Theme.of(context).textTheme.bodySmall,
                                       textAlign: TextAlign.center),
                                 )
                             ),
@@ -202,11 +174,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                           onChanged: (String value){
                                             protein = value;
                                           },
-                                          style: TextStyle(
-                                              fontSize: screenHeight/50,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                           textAlign: TextAlign.center,
                                           decoration: const InputDecoration(hoverColor: Colors.orange,
                                             counterText: '',
@@ -242,11 +210,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                           onChanged: (String value){
                                             fats = value;
                                           },
-                                          style: TextStyle(
-                                              fontSize: screenHeight/50,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                           textAlign: TextAlign.center,
                                           decoration: const InputDecoration(hoverColor: Colors.orange,
                                             counterText: '',
@@ -280,11 +244,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                           onChanged: (String value){
                                             carbohydrates = value;
                                           },
-                                          style: TextStyle(
-                                              fontSize: screenHeight/50,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                           textAlign: TextAlign.center,
                                           decoration: const InputDecoration(hoverColor: Colors.orange,
                                             counterText: '',
@@ -318,11 +278,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                           onChanged: (String value){
                                             calories = value;
                                           },
-                                          style: TextStyle(
-                                              fontSize: screenHeight/50,
-                                              fontFamily: 'Comfortaa',
-                                              color: Colors.black
-                                          ),
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                           textAlign: TextAlign.center,
                                           decoration: const InputDecoration(hoverColor: Colors.orange,
                                             counterText: '',
@@ -352,42 +308,40 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                   child: Text(
                     notification,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.red[900]
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.red
                     ),
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(top: screenHeight/60)),
-                SizedBox(
-                  height: screenHeight/25,
-                  width: screenWidth/2.5,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        notification = foodValidator(
-                            protein, fats, carbohydrates, calories);
-                      });
-                      if (_formKey.currentState != null && activeTap) {
-                        if (_formKey.currentState!.validate() &&
-                            notification == '') {
-                          activeTap = false;
-                          BlocProvider.of<FoodBloc>(context).add(CreateFoodEvent(title, protein, fats, carbohydrates, calories));
-                          Navigator.pop(context);
-                        }
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      notification = foodValidator(
+                          protein, fats, carbohydrates, calories);
+                    });
+                    if (_formKey.currentState != null && activeTap) {
+                      if (_formKey.currentState!.validate() &&
+                          notification == '') {
+                        activeTap = false;
+                        BlocProvider.of<FoodBloc>(context).add(CreateFoodEvent(title, protein, fats, carbohydrates, calories));
+                        Navigator.pop(context);
                       }
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                        AppColors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(36))),
-                    child: Text(
-                      "Добавить",
-                      style: TextStyle(
-                          fontSize: screenHeight / 40,
-                          fontFamily: 'Comfortaa',
-                          color: Colors.white),
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(screenWidth / 2, screenHeight / 23),
+                      alignment: Alignment.center,
+                      backgroundColor:
+                      AppColors.green,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(36))),
+                  child: Text(
+                    "Добавить",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: AppColors.white
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

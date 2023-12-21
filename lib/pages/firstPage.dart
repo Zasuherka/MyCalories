@@ -1,7 +1,9 @@
+import 'package:app1/bloc/eatingFood/eating_food_bloc.dart';
 import 'package:app1/bloc/foodBloc/food_bloc.dart';
 import 'package:app1/bloc/userImage/user_image_bloc.dart';
 import 'package:app1/bloc/userInfo/user_info_bloc.dart';
-import 'package:app1/colors/colors.dart';
+import 'package:app1/constants.dart';
+import 'package:app1/pages/menuPage.dart';
 import 'package:app1/pages/myCalories.dart';
 import 'package:app1/pages/myFoodPage.dart';
 import 'package:app1/pages/profile.dart';
@@ -19,7 +21,8 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  List<Widget> pages = [const MyFoodPage(isAddEatingFood: true), const MyCalories(), const Profile()];
+  List<Widget> pages = [const Menu(), const MyCalories(), const Profile()];
+  //List<Widget> pages = [const MyFoodPage(isAddEatingFood: false), const MyCalories(), const Profile()];
   int pageIndex = 1;
   int _selectedIndex = 1;
   Icon iconProfile = const Icon(Icons.person_outline);
@@ -38,12 +41,12 @@ class _FirstPageState extends State<FirstPage> {
       iconHome = const Icon(Icons.home_outlined);
       switch (index) {
         case 0:
-          BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
           pageIndex = 0;
           iconProfile = const Icon(Icons.person_outline);
           iconFood = const Icon(Icons.food_bank);
           iconHome = const Icon(Icons.home_outlined);
         case 1:
+          BlocProvider.of<EatingFoodBloc>(context).add((GetAllEatingFoodListEvent()));
           pageIndex = 1;
           iconProfile = const Icon(Icons.person_outline);
           iconFood = const Icon(Icons.food_bank_outlined);
@@ -75,9 +78,9 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: iconFood, label: 'My Food'),
-            BottomNavigationBarItem(icon: iconHome, label: 'Home'),
-            BottomNavigationBarItem(icon: iconProfile, label: 'Profile'),
+            BottomNavigationBarItem(icon: iconFood, label: 'Меню'),
+            BottomNavigationBarItem(icon: iconHome, label: 'Дневник'),
+            BottomNavigationBarItem(icon: iconProfile, label: 'Профиль'),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: AppColors.green,
@@ -92,7 +95,7 @@ class _FirstPageState extends State<FirstPage> {
             //         ElevatedButton(
             //         onPressed: () {
             //           BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-            //           Navigator.push(context,MaterialPageRoute(builder: (context) =>const MyFoodPage(isUpdatePage: true)));
+            //           Navigator.of(context).push(context,MaterialPageRoute(builder: (context) =>const MyFoodPage(isUpdatePage: true)));
             //           },
             //           child: Text(localUser!.name.toString())),
             //         const Padding(padding: EdgeInsets.only(top: 20)),

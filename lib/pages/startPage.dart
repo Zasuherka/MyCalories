@@ -1,4 +1,5 @@
 import 'package:app1/bloc/getPage/get_page_bloc.dart';
+import 'package:app1/pages/authPage.dart';
 import 'package:app1/pages/authorizationPage.dart';
 import 'package:app1/pages/firstPage.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _StartPageState extends State<StartPage> {
           if (state is GetPageAuthState) {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(
-                    builder: (context) => const AuthorizationPage()));
+                    builder: (context) => const AuthPage()));
           }
           if (state is GetPageAnotherState){
             Navigator.pushReplacement(context,
