@@ -1,4 +1,4 @@
-import 'package:app1/bloc/userInfo/user_info_bloc.dart';
+import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/validation/cpfc_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,7 +31,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
   int _carbohydrates = 0;
 
   final Color _defaultColor = AppColors.dark;
-  final Color _activeColor = AppColors.green;
+  final Color _activeColor = AppColors.turquoise ;
   final Color _errorColor = AppColors.red;
 
   late Color _caloriesTextFieldColor;
@@ -356,7 +356,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
                     width: screenWidth/1.4,
                     height: screenHeight/23,
                     decoration: BoxDecoration(
-                      color: AppColors.green,
+                      color: AppColors.turquoise ,
                       boxShadow: <BoxShadow>[
                         BoxShadow(
                             color: AppColors.black.withOpacity(0.2),

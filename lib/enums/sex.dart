@@ -10,7 +10,7 @@ enum Sex
   @HiveField(1)
   female('Женский');
 
-  @HiveField(2)
+  //W@HiveField(2)
   final String sex;
 
   const Sex(this.sex);

@@ -17,8 +17,6 @@ class SexAdapter extends TypeAdapter<Sex> {
         return Sex.male;
       case 1:
         return Sex.female;
-      // case 2:
-      //   return Sex.sex;
       default:
         return Sex.male;
     }
@@ -33,9 +31,6 @@ class SexAdapter extends TypeAdapter<Sex> {
       case Sex.female:
         writer.writeByte(1);
         break;
-      // case Sex.sex:
-      //   writer.writeByte(2);
-      //   break;
     }
   }
 

@@ -17,7 +17,7 @@ class TitleForGoalPage extends StatelessWidget {
           height: screenHeight/50,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: color ?? AppColors.green
+              color: color ?? AppColors.turquoise 
           ),
         ),
         SizedBox(width: screenWidth/20),

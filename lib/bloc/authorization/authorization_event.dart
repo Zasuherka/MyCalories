@@ -1,16 +1,10 @@
-part of 'authorization_bloc.dart';
+part of 'authorisation_bloc.dart';
 
-@immutable
-abstract class AuthorizationState {}
+class AuthorizationEvent {}
 
-class AuthorizationInitial implements AuthorizationState {}
+class AuthorizationUser extends AuthorizationEvent {
+  final String email;
+  final String password;
 
-class AuthorizationSuccessful implements AuthorizationState {}
-
-class AuthorizationLoading implements AuthorizationState {}
-
-class AuthorizationError implements AuthorizationState {
-  final String error;
-
-  AuthorizationError({required this.error});
+  AuthorizationUser(this.email, this.password);
 }

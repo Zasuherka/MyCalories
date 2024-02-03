@@ -50,7 +50,7 @@ class _SingUpFormState extends State<SingUpForm> {
                       title,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.backGroundColor
+                        color: AppColors.white
                       ),
                     ),
                   );
@@ -65,14 +65,14 @@ class _SingUpFormState extends State<SingUpForm> {
                   },
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.@]'))],
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.backGroundColor
+                      color: AppColors.white
                   ),
                   decoration: InputDecoration(
                     hoverColor: Colors.orange,
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     hintText: 'Почта',
                     hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.backGroundColor.withOpacity(0.3)
+                        color: AppColors.white.withOpacity(0.8)
                     ),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 1),
@@ -94,14 +94,15 @@ class _SingUpFormState extends State<SingUpForm> {
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9. ]'))],
                   maxLength: 20,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.backGroundColor
+                      color: AppColors.white
                   ),
                   decoration: InputDecoration(
+                    counterText: '',
                     hoverColor: Colors.orange,
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     hintText: 'Имя',
                     hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.backGroundColor.withOpacity(0.3)
+                        color: AppColors.white.withOpacity(0.8)
                     ),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 1),
@@ -123,14 +124,14 @@ class _SingUpFormState extends State<SingUpForm> {
                   },
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9]'))],
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.backGroundColor
+                      color: AppColors.white
                   ),
                   decoration: InputDecoration(
                     hoverColor: Colors.orange,
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     hintText: 'Пароль',
                     hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.backGroundColor.withOpacity(0.3)
+                        color: AppColors.white.withOpacity(0.8)
                     ),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 1),
@@ -152,14 +153,14 @@ class _SingUpFormState extends State<SingUpForm> {
                   },
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9]'))],
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.backGroundColor
+                      color: AppColors.white
                   ),
                   decoration: InputDecoration(
                     hoverColor: Colors.orange,
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     hintText: 'Повторите пароль',
                     hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.backGroundColor.withOpacity(0.3)
+                        color: AppColors.white.withOpacity(0.8)
                     ),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 1),
@@ -176,10 +177,10 @@ class _SingUpFormState extends State<SingUpForm> {
                   builder: (context, state) {
                     late Color color;
                     if (state is RegistrationLoading || state is RegistrationSuccessful){
-                      color = AppColors.backGroundColor.withOpacity(0.65);
+                      color = AppColors.white.withOpacity(0.65);
                     }
                     else {
-                      color = AppColors.backGroundColor;
+                      color = AppColors.white;
                     }
                     return ElevatedButton(
                         onPressed: () {
@@ -201,7 +202,6 @@ class _SingUpFormState extends State<SingUpForm> {
                           width: screenWidth * 0.76,
                           child: Text(
                             'Регистрация',
-                            textAlign: TextAlign.justify,
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 color: AppColors.dark
                             ),

@@ -46,7 +46,7 @@ class _ActivitySliderState extends State<ActivitySlider> {
               min: 0,
               max: 4,
               divisions: 4,
-              activeColor: AppColors.green,
+              activeColor: AppColors.turquoise ,
               onChanged: (value){
                 setState(() {
                   _currentSliderValue = value;

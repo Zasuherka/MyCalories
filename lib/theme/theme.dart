@@ -1,5 +1,5 @@
 import 'package:app1/constants.dart';
-import 'package:app1/theme/textStyles.dart';
+import 'package:app1/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
 
@@ -41,9 +41,12 @@ ThemeData createTheme() {
       ///screenHeight/49
       titleTextStyle: TextStyles.comfortaa(size: screenHeight/49).textStyle,
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedLabelStyle: TextStyles.comfortaa(size: screenHeight/65).textStyle,
+    ),
     scaffoldBackgroundColor: AppColors.backGroundColor,
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.green,
+      backgroundColor: AppColors.turquoise ,
       titleTextStyle: TextStyles.comfortaa(size: screenHeight/40, color: AppColors.white).textStyle,
     ),
     menuTheme: const MenuThemeData(
