@@ -1,7 +1,6 @@
 import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/bloc/food_bloc/food_bloc.dart';
 import 'package:app1/bloc/user_image_bloc/user_image_bloc.dart';
-import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/constants.dart';
 import 'package:app1/pages/goal_page.dart';
 import 'package:app1/pages/my_calories.dart';
@@ -50,18 +49,18 @@ class _FirstPageState extends State<FirstPage> {
       temporary = const Icon(Icons.bar_chart);
       switch (index) {
         case 0:
-          BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
+          BlocProvider.of<FoodBloc>(context).add(const FoodEvent.getFoodList());
           iconProfile = const Icon(Icons.person_outline);
           iconFood = const Icon(Icons.food_bank);
           iconHome = const Icon(Icons.home_outlined);
         case 1:
-          //BlocProvider.of<EatingFoodBloc>(context).add((GetAllEatingFoodListEvent()));
+          BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
           iconProfile = const Icon(Icons.person_outline);
           iconFood = const Icon(Icons.food_bank_outlined);
           iconHome = const Icon(Icons.home);
         case 2:
           //BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
-          BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
+          BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.loadImage());
           iconProfile = const Icon(Icons.person);
           iconFood = const Icon(Icons.food_bank_outlined);
           iconHome = const Icon(Icons.home_outlined);
@@ -81,6 +80,7 @@ class _FirstPageState extends State<FirstPage> {
       //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
       DeviceOrientation.portraitUp,
     ]);
+    BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
   }
 
   @override
@@ -105,40 +105,7 @@ class _FirstPageState extends State<FirstPage> {
           onTap: _onItemTapped,
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(icon: iconFood, label: 'Меню'),
-      //     BottomNavigationBarItem(icon: iconHome, label: 'Дневник'),
-      //     BottomNavigationBarItem(icon: iconProfile, label: 'Профиль'),
-      //     BottomNavigationBarItem(icon: temporary, label: 'КБЖУ'),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: AppColors.turquoise ,
-      //   unselectedItemColor: AppColors.dark,
-      //   onTap: _onItemTapped,
-      // ),
       body: getPage(_selectedIndex),
-      // Center(
-      //     child: Column(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: <Widget>[
-      //         ElevatedButton(
-      //         onPressed: () {
-      //           BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
-      //           Navigator.of(context).push(context,MaterialPageRoute(builder: (context) =>const MyFoodPage(isUpdatePage: true)));
-      //           },
-      //           child: Text(localUser!.name.toString())),
-      //         const Padding(padding: EdgeInsets.only(top: 20)),
-      //         ElevatedButton(
-      //           onPressed: () async {
-      //             await exitUser();
-      //             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthorizationPage()));
-      //             },
-      //           child: const Text('Выход'),
-      //         )
-      //       ],
-      //     )
-      // )
     );
   }
 }

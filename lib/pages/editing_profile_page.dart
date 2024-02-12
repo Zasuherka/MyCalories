@@ -80,6 +80,8 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
 
   BoxDecoration _getContainerDecoration(Color color) {
     return BoxDecoration(
+        color: activeColor,
+
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
             color: color,
@@ -92,6 +94,26 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
   void initState() {
     super.initState();
     assignDefaultColor();
+    final localUser = context.read<UserInfoBloc>().localUser;
+    if(localUser != null){
+      name = localUser.name;
+      email = localUser.email;
+      weight = localUser.weightNow?.toString() ?? '';
+      weightGoal = localUser.weightGoal?.toString() ?? '';
+      height = localUser.height?.toString() ?? '';
+      birthday = localUser.birthday != null ? DateFormat('dd.MM.yyyy').format(localUser.birthday!) : '';
+      selectedDate = localUser.birthday;
+      sexValue = localUser.sex?.sex ?? sexValue;
+      _controllerName.text = name;
+      _controllerEmail.text = email;
+      _controllerWeight.text = weight;
+      _controllerWeightGoal.text = weightGoal;
+      _controllerHeight.text = height;
+      _controllerBirthday.text = birthday;
+      if(sexValue != 'Не выбран'){
+        sexList.remove('Не выбран');
+      }
+    }
   }
 
   ///Очищаем память
@@ -106,20 +128,8 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
     super.dispose();
   }
 
-  // ///Перед тем, как закрыть, нам нужно вновь отстроить [Profile]
-  // ///Но Profile для постройки ждёт состояния [LocalUserInfoState], но
-  // ///при включенном [EditingProfile], активно состояние [StopBuildUserInfoState],
-  // ///поэтому у bloc нужно запросить состояние [LocalUserInfo]. Поэтому переопределяем
-  // ///метод [didUpdateWidget] чтобы перед закрытием запросить состояние
-  // @override
-  // void didUpdateWidget(covariant EditingProfile oldWidget) {
-  //   BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
-  //   super.didUpdateWidget(oldWidget);
-  // }
-
   @override
   Widget build(BuildContext context) {
-     
     return GestureDetector(
       onTap: (){
         FocusScope.of(context).unfocus();
@@ -172,7 +182,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                       if(_formKey.currentState!.validate() && validate){
                         assignDefaultColor();
                         BlocProvider.of<UserInfoBloc>(context).add(
-                            UserEditingInfoEvent(
+                            UserInfoEvent.update(
                                 name: name,
                                 email: email,
                                 weightNow: double.parse(weight),
@@ -180,7 +190,8 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                                 birthday: DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day),
                                 height: int.parse(height),
                                 sexValue: sexValue
-                            ));
+                            )
+                        );
                       }
                     }
                   },
@@ -201,50 +212,23 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
           ),
           body: Form(
             key: _formKey,
-            child:
-            BlocBuilder<UserInfoBloc,UserInfoState>(builder: (context, state){
-              final localUser = context.read<UserInfoBloc>().localUser;
-              if(localUser != null){
-                name = localUser.name;
-                email = localUser.email;
-                weight = localUser.weightNow?.toString() ?? '';
-                weightGoal = localUser.weightGoal?.toString() ?? '';
-                height = localUser.height?.toString() ?? '';
-                birthday = localUser.birthday != null ? DateFormat('dd.MM.yyyy').format(localUser.birthday!) : '';
-                selectedDate = localUser.birthday;
-                sexValue = localUser.sex?.sex ?? sexValue;
-                _controllerName.text = name;
-                _controllerEmail.text = email;
-                _controllerWeight.text = weight;
-                _controllerWeightGoal.text = weightGoal;
-                _controllerHeight.text = height;
-                _controllerBirthday.text = birthday;
-                if(sexValue != 'Не выбран'){
-                  sexList.remove('Не выбран');
-                }
-              }
-              // if(state is LocalUserInfoState) {
-              //   BlocProvider.of<UserInfoBloc>(context).add(StopBuildUserInfoEvent());
-              // }
-              if(state is UserInfoErrorState){
-                error = state.error;
-              }
-              return Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children:
-                    [
-                      SizedBox(
-                          height: screenHeight/50
-                      ),
-                      Container(
-                          height: screenHeight * 0.082,
-                          width: screenWidth/1.1,
-                          padding: EdgeInsets.only(top: screenHeight/50),
-                          alignment: Alignment.centerLeft,
-                          decoration: _getContainerDecoration(_nameTextFieldColor),
-                          child: TextFormField(
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children:
+                  [
+                    SizedBox(
+                        height: screenHeight/50
+                    ),
+                    Container(
+                        height: screenHeight * 0.082,
+                        width: screenWidth/1.1,
+                        padding: EdgeInsets.only(top: screenHeight/50),
+                        alignment: Alignment.centerLeft,
+                        decoration: _getContainerDecoration(_nameTextFieldColor),
+                        ///TODO переделать изменение цевта границ(border) с помощью двух параметров OutlineInputBorder и OutlineInputBorder
+                        child: TextFormField(
                           validator: (value) {
                             if(isNameValid(value)){
                               setState(() {
@@ -287,17 +271,17 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                           ),
                         )
-                      ),
-                      SizedBox(
-                          height: screenHeight/50
-                      ),
-                      Container(
-                          height: screenHeight * 0.082,
-                          width: screenWidth/1.1,
-                          padding: EdgeInsets.only(top: screenHeight/45),
-                          alignment: Alignment.centerLeft,
-                          decoration: _getContainerDecoration(_emailTextFieldColor),
-                          child: TextFormField(
+                    ),
+                    SizedBox(
+                        height: screenHeight/50
+                    ),
+                    Container(
+                        height: screenHeight * 0.082,
+                        width: screenWidth/1.1,
+                        padding: EdgeInsets.only(top: screenHeight/45),
+                        alignment: Alignment.centerLeft,
+                        decoration: _getContainerDecoration(_emailTextFieldColor),
+                        child: TextFormField(
                           validator: (value){
                             if(isEmailValid(value) != null)
                             {
@@ -326,7 +310,6 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                             });
                           },
                           decoration: InputDecoration(
-
                             counterText: '',
                             constraints: BoxConstraints.tightFor(width: screenWidth/1.2, height: screenHeight * 0.075),
                             contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
@@ -338,17 +321,17 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                           ),
                         )
-                      ),
-                      SizedBox(
-                          height: screenHeight/50
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          _selectDate(context);
-                        },
-                        child: Container(
+                    ),
+                    SizedBox(
+                        height: screenHeight/50
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        _selectDate(context);
+                      },
+                      child: Container(
                           alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(top: screenHeight/85, left: screenWidth/20),
+                          padding: EdgeInsets.only(top: screenHeight/200, left: screenWidth/20),
                           width: screenWidth/1.1,
                           height: screenHeight * 0.082,
                           decoration: _getContainerDecoration(_birthdayTextFieldColor),
@@ -369,267 +352,272 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                               const Spacer(),
                             ],
                           )
-                        ),
                       ),
-                      SizedBox(
-                          height: screenHeight/50,
-                      ),
-                      SizedBox(
-                        width: screenWidth/1.1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: screenHeight * 0.082,
-                              padding: EdgeInsets.only(top: screenHeight/45),
+                    ),
+                    SizedBox(
+                      height: screenHeight/50,
+                    ),
+                    SizedBox(
+                      width: screenWidth/1.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: screenHeight * 0.082,
+                            padding: EdgeInsets.only(top: screenHeight/45),
 
-                              width: screenWidth * 0.43,
-                              decoration: _getContainerDecoration(_weightTextFieldColor),
-                              child: TextFormField(
-                                validator: (value){
-                                  if(isWeightValid(value)){
-                                    setState(() {
-                                      _weightTextFieldColor = defaultColor;
-                                    });
-                                  }
-                                  else{
-                                    setState(() {
-                                      _weightTextFieldColor = errorColor;
-                                      validate = false;
-                                    });
-                                  }
-                                  return null;
-                                },
-                                controller: _controllerWeight,
-                                style: Theme.of(context).textTheme.titleMedium,
-                                maxLength: 5,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
-                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.bottom,
-                                onChanged: (String value){
-                                  weight = value;
-                                },
-                                onTap: (){
+                            width: screenWidth * 0.43,
+                            decoration: _getContainerDecoration(_weightTextFieldColor),
+                            child: TextFormField(
+                              validator: (value){
+                                if(isWeightValid(value)){
                                   setState(() {
-                                    assignDefaultColor();
-                                    _weightTextFieldColor = activeColor;
+                                    _weightTextFieldColor = defaultColor;
                                   });
-                                },
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
-                                  contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  labelText: 'Вес',
-                                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                }
+                                else{
+                                  setState(() {
+                                    _weightTextFieldColor = errorColor;
+                                    validate = false;
+                                  });
+                                }
+                                return null;
+                              },
+                              controller: _controllerWeight,
+                              style: Theme.of(context).textTheme.titleMedium,
+                              maxLength: 5,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              textAlign: TextAlign.start,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              onChanged: (String value){
+                                weight = value;
+                              },
+                              onTap: (){
+                                setState(() {
+                                  assignDefaultColor();
+                                  _weightTextFieldColor = activeColor;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                counterText: '',
+                                constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
+                                contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
                                 ),
+                                labelText: 'Вес',
+                                labelStyle: Theme.of(context).textTheme.titleMedium,
+                                floatingLabelBehavior: FloatingLabelBehavior.always,
                               ),
+                            ),
 
-                            ),
-                            Container(
-                              height: screenHeight * 0.082,
-                              width: screenWidth * 0.43,
-                              padding: EdgeInsets.only(top: screenHeight/45),
-                              decoration: _getContainerDecoration(_weightGoalTextFieldColor),
-                              child: TextFormField(
-                                validator: (value){
-                                  if(isWeightValid(value)){
-                                    setState(() {
-                                      _weightGoalTextFieldColor = defaultColor;
-                                    });
-                                  }
-                                  else{
-                                    setState(() {
-                                      _weightGoalTextFieldColor = errorColor;
-                                    });
-                                    if(validate){
-                                      validate = false;
-                                    }
-                                  }
-                                  return null;
-                                },
-                                controller: _controllerWeightGoal,
-                                style: Theme.of(context).textTheme.titleMedium,
-                                maxLength: 5,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
-                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.bottom,
-                                onChanged: (String value){
-                                  weightGoal = value;
-                                },
-                                onTap: (){
+                          ),
+                          Container(
+                            height: screenHeight * 0.082,
+                            width: screenWidth * 0.43,
+                            padding: EdgeInsets.only(top: screenHeight/45),
+                            decoration: _getContainerDecoration(_weightGoalTextFieldColor),
+                            child: TextFormField(
+                              validator: (value){
+                                if(isWeightValid(value)){
                                   setState(() {
-                                    assignDefaultColor();
-                                    _weightGoalTextFieldColor = activeColor;
+                                    _weightGoalTextFieldColor = defaultColor;
                                   });
-                                },
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
-                                  contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  labelText: 'Желаемый вес',
-                                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                }
+                                else{
+                                  setState(() {
+                                    _weightGoalTextFieldColor = errorColor;
+                                  });
+                                  if(validate){
+                                    validate = false;
+                                  }
+                                }
+                                return null;
+                              },
+                              controller: _controllerWeightGoal,
+                              style: Theme.of(context).textTheme.titleMedium,
+                              maxLength: 5,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              textAlign: TextAlign.start,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              onChanged: (String value){
+                                weightGoal = value;
+                              },
+                              onTap: (){
+                                setState(() {
+                                  assignDefaultColor();
+                                  _weightGoalTextFieldColor = activeColor;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                counterText: '',
+                                constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
+                                contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
                                 ),
+                                labelText: 'Желаемый вес',
+                                labelStyle: Theme.of(context).textTheme.titleMedium,
+                                floatingLabelBehavior: FloatingLabelBehavior.always,
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
-                      SizedBox(
-                        height: screenHeight/50,
+                    ),
+                    SizedBox(
+                      height: screenHeight/50,
+                    ),
+                    SizedBox(
+                      width: screenWidth/1.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: screenHeight * 0.082,
+                            width: screenWidth * 0.43,
+                            padding: EdgeInsets.only(top: screenHeight/45),
+                            alignment: Alignment.centerLeft,
+                            decoration: _getContainerDecoration(_heightTextFieldColor),
+                            child: TextFormField(
+                              validator: (value){
+                                if(isHeightValid(value)){
+                                  setState(() {
+                                    _heightTextFieldColor = defaultColor;
+                                  });
+                                }
+                                else{
+                                  setState(() {
+                                    _heightTextFieldColor = errorColor;
+                                  });
+                                  if(validate){
+                                    validate = false;
+                                  }
+                                }
+                                return null;
+                              },
+                              controller: _controllerHeight,
+                              style: Theme.of(context).textTheme.titleMedium,
+                              maxLength: 5,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              textAlign: TextAlign.start,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              onChanged: (String value){
+                                height = value;
+                              },
+                              onTap: (){
+                                setState(() {
+                                  assignDefaultColor();
+                                  _heightTextFieldColor = activeColor;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                counterText: '',
+                                constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
+                                contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                labelText: 'Рост',
+                                labelStyle: Theme.of(context).textTheme.titleMedium,
+                                floatingLabelBehavior: FloatingLabelBehavior.always,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: screenHeight * 0.082,
+                            width: screenWidth * 0.43,
+                            padding: EdgeInsets.only(top: screenHeight/45),
+                            alignment: Alignment.centerLeft,
+                            decoration: _getContainerDecoration(_sexTextFieldColor),
+                            child: DropdownButtonFormField<String>(
+                              iconSize: 0,
+                              value: sexValue,
+                              items: List.generate(
+                                  sexList.length, (index) => DropdownMenuItem<String>(
+                                  value: sexList[index],
+                                  child: Text(sexList[index]))),
+                              onChanged: (value) => setState(() {
+                                sexValue = value ?? 'Не выбран';
+                                if(value != 'Не выбран'){
+                                  sexList.remove('Не выбран');
+                                }
+                              }),
+                              style: Theme.of(context).textTheme.titleMedium,
+                              decoration: InputDecoration(
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                counterText: '',
+                                constraints: BoxConstraints.tightFor(width: screenWidth * 0.43, height: screenHeight * 0.075),
+                                contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
+                                labelText: 'Пол',
+                                labelStyle: Theme.of(context).textTheme.titleMedium,
+                                //floatingLabelBehavior: FloatingLabelBehavior.always,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
+                    ),
+                    SizedBox(height: screenHeight/50),
+                    SizedBox(
                         width: screenWidth/1.1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: screenHeight * 0.082,
-                              width: screenWidth * 0.43,
-                              padding: EdgeInsets.only(top: screenHeight/45),
-                              alignment: Alignment.centerLeft,
-                              decoration: _getContainerDecoration(_heightTextFieldColor),
-                              child: TextFormField(
-                                validator: (value){
-                                  if(isHeightValid(value)){
-                                    setState(() {
-                                      _heightTextFieldColor = defaultColor;
-                                    });
-                                  }
-                                  else{
-                                    setState(() {
-                                      _heightTextFieldColor = errorColor;
-                                    });
-                                    if(validate){
-                                      validate = false;
-                                    }
-                                  }
-                                  return null;
-                                },
-                                controller: _controllerHeight,
-                                style: Theme.of(context).textTheme.titleMedium,
-                                maxLength: 5,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
-                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.bottom,
-                                onChanged: (String value){
-                                  height = value;
-                                },
-                                onTap: (){
-                                  setState(() {
-                                    assignDefaultColor();
-                                    _heightTextFieldColor = activeColor;
-                                  });
-                                },
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
-                                  contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  labelText: 'Рост',
-                                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: screenHeight * 0.082,
-                              width: screenWidth * 0.43,
-                              padding: EdgeInsets.only(top: screenHeight/45),
-                              alignment: Alignment.centerLeft,
-                              decoration: _getContainerDecoration(_sexTextFieldColor),
-                              child: DropdownButtonFormField<String>(
-                                iconSize: 0,
-                                value: sexValue,
-                                items: List.generate(
-                                    sexList.length, (index) => DropdownMenuItem<String>(
-                                    value: sexList[index],
-                                    child: Text(sexList[index]))),
-                                onChanged: (value) => setState(() {
-                                  sexValue = value ?? 'Не выбран';
-                                  if(value != 'Не выбран'){
-                                    sexList.remove('Не выбран');
-                                  }
-                                }),
-                                style: Theme.of(context).textTheme.titleMedium,
-                                decoration: InputDecoration(
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  counterText: '',
-                                  constraints: BoxConstraints.tightFor(width: screenWidth * 0.43, height: screenHeight * 0.075),
-                                  contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
-                                  labelText: 'Пол',
-                                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                                  //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: screenHeight/50),
-                      SizedBox(
-                          width: screenWidth/1.1,
+                        height: screenHeight/20,
+                        child: BlocBuilder<UserInfoBloc, UserInfoState>(
+                          builder: (context, state) {
+                            error = '';
+                            state.whenOrNull(
+                              error: (errorState) => error = errorState
+                            );
+                            return Text(
+                              error,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.clip,
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(color: AppColors.red),
+                            );
+                            },
+                        )
+                    ),
+                    SizedBox(height: screenHeight/4.5),
+                    GestureDetector(
+                      onTap: () {
+                        context.router.pop();
+                        BlocProvider.of<UserInfoBloc>(context).add(const UserInfoEvent.singOut());
+                      },
+                      child: Container(
+                          width: screenWidth * 0.95,
                           height: screenHeight/20,
-                          child: Text(
-                            error,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.clip,
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: AppColors.red
+                          decoration: BoxDecoration(
+                              gradient: AppColors.greenGradient,
+                              borderRadius: BorderRadius.circular(90),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  spreadRadius: 5,
+                                  blurRadius: 13,
+                                  offset: const Offset(10, 10),
+                                ),
+                              ]
+                          ),
+                          child: Center(
+                            child: Text(
+                                'Выйти из аккаунта',
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: AppColors.white
+                                )
                             ),
                           )
                       ),
-                      SizedBox(height: screenHeight/4.5),
-                      GestureDetector(
-                        onTap: () {
-                          context.router.pop();
-                          BlocProvider.of<UserInfoBloc>(context).add(UserSignOutEvent());
-                        },
-                        child: Container(
-                            width: screenWidth * 0.95,
-                            height: screenHeight/20,
-                            decoration: BoxDecoration(
-                                gradient: AppColors.greenGradient,
-                                borderRadius: BorderRadius.circular(90),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    spreadRadius: 5,
-                                    blurRadius: 13,
-                                    offset: const Offset(10, 10),
-                                  ),
-                                ]
-                            ),
-                            child: Center(
-                              child: Text(
-                                  'Выйти из аккаунта',
-                                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      color: AppColors.white
-                                  )
-                              ),
-                            )
-                        ),
-                      ),
-                    ]
-                ),
-              );
-            }
-            ),
+                    ),
+                  ]
+              ),
+            )
           )
       )
     );

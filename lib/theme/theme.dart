@@ -23,7 +23,7 @@ ThemeData createTheme() {
       ///screenHeight/40
       titleMedium: TextStyles.comfortaa(size: screenHeight/40).textStyle,
       ///screenHeight/50
-      titleSmall: TextStyles.comfortaa(size: screenHeight/50).textStyle,
+      titleSmall: TextStyles.comfortaa(size: screenHeight/45).textStyle,
       ///screenHeight/49
       bodyLarge: TextStyles.comfortaa(size: screenHeight/49).textStyle,
       ///screenHeight/56

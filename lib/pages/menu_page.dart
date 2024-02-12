@@ -15,8 +15,8 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    
+   
     final double widthHeightImage = screenWidth/2.1;
     return Scaffold(
       body: SingleChildScrollView(
@@ -30,7 +30,7 @@ class MenuPage extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: (){
-                    BlocProvider.of<FoodBloc>(context).add(FoodInitialEvent());
+                    BlocProvider.of<FoodBloc>(context).add(const FoodEvent.getFoodList());
                     context.router.push(MyFoodRoute(isAddEatingFood: false));
                   },
                   child: Container(

@@ -1,4 +1,5 @@
-import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
+import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';
+import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -24,14 +25,13 @@ class _PFCChartState extends State<PFCChart> {
     // TODO: implement initState
     super.initState();
     title = widget.title;
-    //goalValue = widget.goalValue;
   }
 
   @override
   Widget build(BuildContext context) {
      
-    return Builder(
-      builder: (context) {
+    return BlocBuilder<EatingFoodBloc, EatingFoodState>(
+      builder: (context, state) {
         final eatingFoodRead = context.read<EatingFoodBloc>();
         if (title == 'БЕЛКИ'){
           value = eatingFoodRead.allProtein;
@@ -61,6 +61,7 @@ class _PFCChartState extends State<PFCChart> {
         return Container(
             width: screenWidth * 0.3,
             height: screenWidth * 0.4,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -76,6 +77,7 @@ class _PFCChartState extends State<PFCChart> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Spacer(flex: 2),
                 SizedBox(
                   width: screenWidth * 0.16,
                   height: screenWidth * 0.160,
@@ -121,19 +123,17 @@ class _PFCChartState extends State<PFCChart> {
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/60),
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
+                const Spacer(flex: 2),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/160),
-                  child:
-                  Text(
-                    '${value.toInt()}/${goalValue.toInt()}',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                )
+                const Spacer(),
+                Text(
+                  '${value.toInt()}/${goalValue.toInt()}',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const Spacer(),
               ],
             )
         );

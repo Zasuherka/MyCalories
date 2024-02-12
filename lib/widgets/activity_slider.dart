@@ -28,8 +28,8 @@ class _ActivitySliderState extends State<ActivitySlider> {
   double _currentSliderValue = 1;
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    
+   
     return SizedBox(
       width: screenWidth/1.1,
       child: Column(

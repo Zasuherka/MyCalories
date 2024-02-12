@@ -1,21 +1,33 @@
 part of 'user_info_bloc.dart';
 
-abstract class UserInfoState {}
+@freezed
+class UserInfoState with _$UserInfoState {
+  const factory UserInfoState.initial() = _Initial;
+  const factory UserInfoState.successful() = _Successful;
+  const factory UserInfoState.info() = _InfoState;
+  const factory UserInfoState.error({
+    required String error
+  }) = _Error;
+}
 
-class UserInfoInitial extends UserInfoState {}
 
-class UserInfoSuccessfulState extends UserInfoState {}
+// abstract class UserInfoState {}
+//
+// class UserInfoInitial extends UserInfoState {}
+//
+// class UserInfoSuccessfulState extends UserInfoState {}
+//
+// class LocalUserInfoState extends UserInfoState {}
+//
+// class UserInfoErrorState extends UserInfoState {
+//   final String error;
+//
+//   UserInfoErrorState(this.error);
+// }
 
-class LocalUserInfoState extends UserInfoState {}
-
+//Пусть пока поспит в коментах
 // class LocalUserInfoState extends UserInfoState {
 //   final AppUser appUser;
 //
 //   LocalUserInfoState(this.appUser);
 // }
-
-class UserInfoErrorState extends UserInfoState {
-  final String error;
-
-  UserInfoErrorState(this.error);
-}

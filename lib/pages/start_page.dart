@@ -28,13 +28,19 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<GetPageCubit, GetPageState>(
       builder: (context, state) {
-        if(state is AuthPageState){
-          return const AuthPage();
-        }
-        if(state is FirstPageState){
-          return const FirstPage();
-        }
-        return Scaffold(
+        Widget? page;
+        state.whenOrNull(
+          authPage: () {
+            page = const AuthPage();
+          },
+            firstPage: () {
+              page = const FirstPage();
+          }
+        );
+        return page != null
+            ? page!
+            :
+        Scaffold(
           backgroundColor: Colors.white,
           body: Center(
             child: Container(

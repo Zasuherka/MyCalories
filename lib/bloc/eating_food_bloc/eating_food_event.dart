@@ -1,48 +1,40 @@
 part of 'eating_food_bloc.dart';
 
-abstract class EatingFoodEvent {}
 
-class UpdateListEvent extends EatingFoodEvent{}
+@freezed
+class EatingFoodEvent with _$EatingFoodEvent {
+  /// Удаление еды из приёма пищи
+  const factory EatingFoodEvent.deleteEatingFood() = _DeleteEatingFood;
+  ///Обновление информации о [eatingBreakfast], [eatingLunch],
+  ///[eatingDinner], [eatingAnother].
+  const factory EatingFoodEvent.updateEatingState() = _UpdateEatingState;
 
-class GetEatingFoodListEvent extends EatingFoodEvent{
-  final String nameEating;
+  ///Добавление еды в приём пищи
+  const factory EatingFoodEvent.addEatingFood({
+    required String idFood,
+    required String title,
+    required double protein,
+    required double fats,
+    required double carbohydrates,
+    required double calories,
+    required int weight,
+  }) = _AddEatingFood;
 
-  GetEatingFoodListEvent(this.nameEating);
-}
+  ///Обновление сьеденной еды. По факту обновляется только весовка
+  const factory EatingFoodEvent.updateEatingFood({
+    required int index,
+    required int weight,
+  }) = _UpdateEatingFood;
 
-class GetAllEatingFoodListEvent extends EatingFoodEvent {}
+  ///Получение названия приёма пищи, с которым далее планируем какие-либо действия
+  const factory EatingFoodEvent.getNameEating({
+    required String nameEating
+  }) = _GetNameEating;
 
-class GetIsFoodEvent extends EatingFoodEvent{
-  final String nameEating;
-
-  GetIsFoodEvent(this.nameEating);
-}
-
-class DeleteEatingFoodEvent extends EatingFoodEvent{}
-
-class UpdateEatingFoodEvent extends EatingFoodEvent{
-  final int index;
-  final int weight;
-
-  UpdateEatingFoodEvent(this.index, this.weight);
-}
-
-class AddEatingFoodEvent extends EatingFoodEvent{
-  final String idFood;
-  final String title;
-  final double protein;
-  final double fats;
-  final double carbohydrates;
-  final double calories;
-  final int weight;
-
-  AddEatingFoodEvent(this.idFood, this.title, this.protein, this.fats, this.carbohydrates, this.calories, this.weight);
-}
-
-class GetEatingFoodInfoEvent extends EatingFoodEvent {
-  final EatingFood eatingFood;
-  final int index;
-  final String nameEating;
-
-  GetEatingFoodInfoEvent(this.eatingFood, this.index, this.nameEating);
+  ///Получение информации о еде, с которой планируем какие-либо действия
+  const factory EatingFoodEvent.getEatingFoodInfo({
+    required EatingFood eatingFood,
+    required int index,
+    required String nameEating,
+  }) = _GetEatingFoodInfo;
 }

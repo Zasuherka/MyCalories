@@ -1,10 +1,8 @@
 part of 'get_page_cubit.dart';
 
-@immutable
-abstract class GetPageState {}
-
-class GetPageInitial extends GetPageState {}
-
-class AuthPageState extends GetPageState {}
-
-class FirstPageState extends GetPageState {}
+@freezed
+class GetPageState with _$GetPageState {
+  const factory GetPageState.initial() = _Initial;
+  const factory GetPageState.authPage() = _AuthPage;
+  const factory GetPageState.firstPage() = _FirstPage;
+}

@@ -47,16 +47,12 @@ class _CaloriesChartState extends State<CaloriesChart> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(padding: EdgeInsets.only(left: screenWidth * 0.075)),
-                Text(
-                  'КАЛОРИИ: ${value.toInt()}/${goalValue.toInt()}',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ],
+            const Spacer(),
+            Text(
+              'КАЛОРИИ: ${value.toInt()}/${goalValue.toInt()}',
+              style: Theme.of(context).textTheme.titleSmall,
             ),
+            const Spacer(),
             Container(
                 width: screenWidth * 0.85,
                 height: screenHeight * 0.03,
@@ -73,7 +69,8 @@ class _CaloriesChartState extends State<CaloriesChart> {
                     // Цвет заполнения
                   ),
                 )
-            )
+            ),
+            const Spacer(),
           ],
         ),
       );

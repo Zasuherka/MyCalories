@@ -1,4 +1,5 @@
-import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';import 'package:app1/widgets/add_food_widget.dart';
+import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';
+import 'package:app1/constants.dart';import 'package:app1/widgets/add_food_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,8 +10,8 @@ class EatingFoodWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    
+    
     return Wrap(
       children: [
         SizedBox(
@@ -20,7 +21,7 @@ class EatingFoodWrap extends StatelessWidget {
             onTap: (){
               Navigator.pop(context);
               showDialog(context: context, builder: (BuildContext context) =>
-              AddEatingFood(bloc: BlocProvider.of<EatingFoodBloc>(context)));
+                  AddEatingFood(bloc: BlocProvider.of<EatingFoodBloc>(context)));
             },
           ),
         ),
@@ -30,7 +31,7 @@ class EatingFoodWrap extends StatelessWidget {
             title: const Text('Удалить из списка', textAlign: TextAlign.center),
             onTap: (){
               Navigator.pop(context);
-              BlocProvider.of<EatingFoodBloc>(context).add(DeleteEatingFoodEvent());
+              BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.deleteEatingFood());
           },
           ),
         ),

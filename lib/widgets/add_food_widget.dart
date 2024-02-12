@@ -19,7 +19,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
   final _formKey = GlobalKey<FormState>();
   String buttonTitle = 'Добавить';
   int? index;
-  late Food food;
+  Food? food;
   String? weight;
 
   final TextEditingController _weightController = TextEditingController();
@@ -38,8 +38,8 @@ class _AddEatingFoodState extends State<AddEatingFood> {
   @override
   Widget build(BuildContext context) {
 
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    
+    
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
@@ -57,30 +57,33 @@ class _AddEatingFoodState extends State<AddEatingFood> {
               child: BlocBuilder(
                 bloc: widget.bloc,
                 builder: (context, state) {
-                  print(state);
-                  if(state is GetFoodInfoState){
-                    if(state.food != null){
-                      food = state.food!;
-                      buttonTitle = 'Добавить';
-                    }
+                  if (widget.bloc is FoodBloc) {
+                    context.read<FoodBloc>().state.whenOrNull(
+                      getFoodInfo: (foodState) {
+                        food = foodState;
+                        buttonTitle = 'Добавить';
+                      }
+                    );
                   }
-                  else if(state is GetEatingFoodInfoState){
-                    if(state.eatingFood != null){
-                      food = state.eatingFood!;
-                      weight = state.eatingFood!.weight.toString();
-                      _weightController.text = weight!;
-                      index = state.index;
-                      buttonTitle = 'Изменить';
-                    }
-                    else{
-                      Navigator.pop(context);
-                    }
+                  if(widget.bloc is EatingFoodBloc){
+                    context.read<EatingFoodBloc>().state.whenOrNull(
+                      eatingFoodInfo: (indexState, nameEating, eatingFood) {
+                        food = eatingFood;
+                        weight = eatingFood?.weight.toString() ?? '';
+                        _weightController.text = weight!;
+                        index = indexState;
+                        buttonTitle = 'Изменить';
+                      }
+                    );
+                  }
+                  if (food == null) {
+                    Navigator.pop(context);
                   }
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: screenHeight/50),
+                      const Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -102,7 +105,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                               //height: screenHeight/,
                               child:
                               Text(
-                                food.title,
+                                food?.title ?? '',
                                 style: Theme.of(context).textTheme.titleMedium,
                                 textAlign: TextAlign.left,
                               )
@@ -110,7 +113,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
 
                         ],
                       ),
-                      Padding(padding: EdgeInsets.only(top: screenHeight/60)),
+                      const Spacer(),
                       SizedBox(
                         width: screenWidth/1.1,
                         height: screenHeight/12,
@@ -180,7 +183,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             height: screenHeight/30,
                                             child: Center(
                                                 child: Text(
-                                                  food.protein.toStringAsFixed(2),
+                                                  food?.protein.toStringAsFixed(2) ?? '',
                                                   style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
@@ -196,7 +199,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             height: screenHeight/30,
                                             child: Center(
                                                 child: Text(
-                                                  food.fats.toStringAsFixed(2),
+                                                  food?.fats.toStringAsFixed(2) ?? '',
                                                   style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
@@ -211,7 +214,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             height: screenHeight/30,
                                             child: Center(
                                                 child: Text(
-                                                  food.carbohydrates.toStringAsFixed(2),
+                                                  food?.carbohydrates.toStringAsFixed(2) ?? '',
                                                   style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
@@ -227,7 +230,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                                             child: Center(
                                                 child:
                                                 Text(
-                                                  food.calories.toStringAsFixed(2),
+                                                  food?.calories.toStringAsFixed(2) ?? '',
                                                   style: Theme.of(context).textTheme.titleSmall,
                                                 )
                                             )
@@ -239,7 +242,7 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                           ],
                         ),
                       ),
-                      SizedBox(height: screenHeight/100),
+                      const Spacer(),
                       SizedBox(
                           width: screenWidth * 0.9,
                           height: screenHeight/11,
@@ -301,37 +304,48 @@ class _AddEatingFoodState extends State<AddEatingFood> {
                             ],
                           )
                       ),
-                      Padding(padding: EdgeInsets.only(top: screenHeight/40)),
-                      SizedBox(
-                        height: screenHeight/25,
-                        width: screenWidth/2.5,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState != null)
-                            {
-                              if (_formKey.currentState!.validate()) {
-                                state is FoodState
-                                    ? BlocProvider.of<EatingFoodBloc>(context).add(AddEatingFoodEvent(food.idFood, food.title, food.protein, food.fats, food.carbohydrates, food.calories, int.parse(weight!)))
-                                    : BlocProvider.of<EatingFoodBloc>(context).add(UpdateEatingFoodEvent(index!, int.parse(weight!)));
-                                Navigator.pop(context, true);
-                              }
+                      const Spacer(),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState != null)
+                          {
+                            if (_formKey.currentState!.validate() && food != null) {
+                              widget.bloc is FoodBloc
+                                  ? BlocProvider.of<EatingFoodBloc>(context).add(EatingFoodEvent.addEatingFood(
+                                  idFood: food!.idFood,
+                                  title: food!.title,
+                                  protein: food!.protein,
+                                  fats: food!.fats,
+                                  carbohydrates: food!.carbohydrates,
+                                  calories: food!.calories,
+                                  weight: int.parse(weight!)
+                              ))
+                                  : BlocProvider.of<EatingFoodBloc>(context).add(
+                                  EatingFoodEvent.updateEatingFood(
+                                      index: index!,
+                                      weight: int.parse(weight!)
+                                  )
+                              );
+                              Navigator.pop(context, true);
                             }
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.turquoise ,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(36)
-                              )
-                          ),
-                          child: Text(
-                            buttonTitle,
-                            style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(screenWidth / 2, screenHeight / 23),
+                            backgroundColor: AppColors.turquoise ,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(36)
+                            )
+                        ),
+                        child: Text(
+                          buttonTitle,
+                          style:
+                          Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: AppColors.white
-                            ),
                           ),
                         ),
                       ),
+                      const Spacer(),
                     ],
                   );
                 },

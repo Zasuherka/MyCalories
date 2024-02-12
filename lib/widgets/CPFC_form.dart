@@ -1,10 +1,9 @@
 import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/validation/cpfc_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../constants.dart';
 
 class CPFCForm extends StatefulWidget {
   final bool isActive;
@@ -322,14 +321,16 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
                 const Spacer(),
                 BlocBuilder<UserInfoBloc, UserInfoState>(
                     builder: (context,state){
-                      if(state is UserInfoErrorState){
-                        response = state.error;
-                        _responseColor = _errorColor;
-                      }
-                      if(state is UserInfoSuccessfulState){
-                        response = 'Изменения успешно сохранены';
-                        _responseColor = _activeColor;
-                      }
+                      state.whenOrNull(
+                        error: (error) {
+                          response = error;
+                          _responseColor = _errorColor;
+                        },
+                        successful: () {
+                          response = 'Изменения успешно сохранены';
+                          _responseColor = _activeColor;
+                        }
+                      );
                       return Text(response,
                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               color: _responseColor
@@ -342,7 +343,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
                     FocusScope.of(context).unfocus();
                     assignDefaultColor();
                     if(_key.currentState != null && _key.currentState!.validate()){
-                      BlocProvider.of<UserInfoBloc>(context).add(UserEditingInfoEvent(
+                      BlocProvider.of<UserInfoBloc>(context).add(UserInfoEvent.update(
                           carbohydratesGoal: _carbohydrates,
                           caloriesGoal: _calories,
                           fatsGoal: _fats,

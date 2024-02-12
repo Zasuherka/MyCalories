@@ -1,4 +1,5 @@
 import 'package:app1/bloc/user_image_bloc/user_image_bloc.dart';
+import 'package:app1/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,8 +9,6 @@ class AvatarWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Wrap(
       children: [
         SizedBox(
@@ -18,7 +17,7 @@ class AvatarWrap extends StatelessWidget {
             title: const Text('Изменить фотографию', textAlign: TextAlign.center),
 
               onTap: (){
-              BlocProvider.of<UserImageBloc>(context).add(SelectAndUploadImageEvent());
+              BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.selectAndUploadImage());
               Navigator.pop(context);
             },
           ),
@@ -29,7 +28,7 @@ class AvatarWrap extends StatelessWidget {
             leadingAndTrailingTextStyle: Theme.of(context).listTileTheme.leadingAndTrailingTextStyle,
             title: const Text('Удалить фотографию', textAlign: TextAlign.center),
             onTap: (){
-              BlocProvider.of<UserImageBloc>(context).add(DeleteImageEvent());
+              BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.deleteImage());
               Navigator.pop(context);
             },
           ),

@@ -32,7 +32,7 @@ class UserService {
     }
   }
 
-  Future setEatingFoodList(
+  Future setEatingFoodListForLocalUser(
       (
       List<EatingFood>,
       List<EatingFood>,
@@ -184,7 +184,7 @@ class UserService {
   Future _userIsNotConnected() async {
     AppUser? userInfo = await getUserInfo();
     if (userInfo == null) {
-      await exitUser();
+      await logOutUser();
       return null;
     } else {
       _localUser = userInfo;
@@ -242,6 +242,7 @@ class UserService {
 
     /// Ответ в случае ошибки
     on FirebaseAuthException catch (e) {
+      print(e);
       if (e.code == 'network-request-failed') {
         return AuthorizationStatus.networkRequestFailed;
       }
@@ -269,14 +270,24 @@ class UserService {
       return RegistrationStatus.errorPassword;
     }
     try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password1);
+      ///Почта для теста
+      ///https://mycalories-76e9d.firebaseapp.com/__/auth/action
+      ///pautovkirill2004@mail.ru
+      ///Kirill
+      ///zxcvbnm
+      print(email);
+      print(password1);
+      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password1
+      );
       User? user = userCredential.user;
 
       if (user != null) {
         await _newUser(user, name);
         if (!user.emailVerified) {
           await user.sendEmailVerification();
+          print('Отправил');
           await _auth.signOut();
         }
       }
@@ -375,26 +386,27 @@ class UserService {
   }
 
   /// Выход юзера из профиля
-  Future exitUser() async {
+  Future logOutUser() async {
     if (_localUser == null) {
       return;
     }
     _localUser = null;
+    await _auth.signOut();
     controller.add(null);
-    final Box<AppUser> box = Hive.box<AppUser>('appUser');
-    if (box.isNotEmpty) {
-      box.clear();
+    final Box<AppUser> userBox = Hive.box<AppUser>('appUser');
+    if (userBox.isNotEmpty) {
+      await userBox.clear();
     }
+    userBox.close();
     final Box<List> eatingBox = await Hive.openBox<List>('eatingBox');
     if (eatingBox.isNotEmpty) {
-      eatingBox.clear();
+      await eatingBox.clear();
     }
     await eatingBox.close();
     final Box<List> foodBox = await Hive.openBox<List>('foodBox');
     if (foodBox.isNotEmpty) {
-      foodBox.clear();
+      await foodBox.clear();
     }
     await foodBox.close();
-    await _auth.signOut();
   }
 }

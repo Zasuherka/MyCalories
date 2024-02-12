@@ -1,4 +1,4 @@
-import 'package:app1/bloc/authorization/authorisation_bloc.dart';
+import 'package:app1/bloc/authorization/authorization_bloc.dart';
 import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/bloc/food_bloc/food_bloc.dart';
 import 'package:app1/bloc/registration/registration_bloc.dart';

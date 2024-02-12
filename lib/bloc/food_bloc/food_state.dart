@@ -1,32 +1,20 @@
 part of 'food_bloc.dart';
 
-@immutable
-abstract class FoodState {
-  final Food? food;
-
-  const FoodState([this.food]);
-}
-
-class FoodInitialState extends FoodState {}
-
-class GetFoodListState extends FoodState {
-  final List<Food> list;
-  const GetFoodListState(this.list);
-}
-
-class FindFoodListState extends FoodState {
-  final List<Food> userFoodList;
-  final List<Food> globalFoodList;
-
-  const FindFoodListState(this.userFoodList, this.globalFoodList);
-}
-
-class ErrorFoodState extends FoodState{
-  final String errorText;
-
-  const ErrorFoodState(this.errorText);
-}
-
-class GetFoodInfoState extends FoodState {
-  const GetFoodInfoState(super.food);
+@freezed
+class FoodState with _$FoodState {
+  const factory FoodState.initial() = _Initial;
+  const factory FoodState.loading() = _Loading;
+  const factory FoodState.listFood({
+    required List<Food> list
+  }) = _ListFood;
+  const factory FoodState.findListFood({
+    required List<Food> userListFood,
+    required List<Food> globalListFood,
+  }) = _FindListFood;
+  const factory FoodState.error({
+    required String error
+  }) = _Error;
+  const factory FoodState.getFoodInfo({
+    required Food? food
+  }) = _GetFoodInfo;
 }

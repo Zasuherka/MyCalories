@@ -26,7 +26,8 @@ class _MyFoodPageState extends State<MyFoodPage> {
   String searchText = '';
   _searchListener() {
     searchText = searchTextController.text;
-    BlocProvider.of<FoodBloc>(context).add(FindFoodEvent(searchText));
+    BlocProvider.of<FoodBloc>(context)
+        .add(FoodEvent.findFood(searchText: searchText));
   }
   @override
   void initState() {
@@ -43,7 +44,6 @@ class _MyFoodPageState extends State<MyFoodPage> {
 
   @override
   Widget build(BuildContext context) {
-     
     return GestureDetector(
       onTap: (){
         FocusScope.of(context).unfocus();
@@ -63,7 +63,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    GestureDetector(
+                    context.router.canPop() ? GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -74,46 +74,60 @@ class _MyFoodPageState extends State<MyFoodPage> {
                         colorFilter:
                         const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                       ),
-                    ),
-                    Container(
-                      width: screenWidth/1.5,
-                      height: screenHeight/20,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: AppColors.backGroundColor,
-                      ),
-                      child: BlocBuilder<FoodBloc, FoodState>(
+                    ) : const SizedBox(),
+                    BlocBuilder<FoodBloc, FoodState>(
                         builder: (context, state) {
-                          if(state is GetFoodListState){
-                            searchText = '';
-                            searchTextController.clear();
-                          }
-                          if(state is FindFoodListState){
-                            //searchTextController.addListener(_searchListener);
-                          }
+                          state.whenOrNull(
+                              listFood: (_) {
+                                searchText = '';
+                                searchTextController.clear();
+                                },
+                              findListFood: (_, __) =>
+                                  searchTextController.addListener(_searchListener)
+                          );
                           return TextField(
                             maxLength: 20,
                             controller: searchTextController,
                             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.% ]'))],
                             onChanged: (String value){
                             },
+                            textAlignVertical: TextAlignVertical.bottom,
                             style: Theme.of(context).textTheme.titleMedium,
                             decoration: InputDecoration(
+                                suffixIcon: GestureDetector(
+                                  onTap: () => searchTextController.text = '',
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: AppColors.colorForHintText,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: AppColors.backGroundColor,
                                 counterText: '',
                                 hoverColor: Colors.orange,
-                                floatingLabelBehavior: FloatingLabelBehavior.never,
                                 hintText: 'Поиск',
                                 hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: AppColors.colorForHintText
+                                    color: AppColors.colorForHintText
+                                ),
+                                constraints: BoxConstraints(
+                                  maxHeight: screenHeight/20,
+                                  maxWidth: context.router.canPop()
+                                      ? screenWidth/1.5
+                                      : screenWidth/1.3
                                 ),
                                 contentPadding: EdgeInsets.only(
-                                    left: screenWidth * 0.05, right: screenWidth * 0.025,
-                                    bottom: screenHeight/200),
-                                border: InputBorder.none
+                                    left: screenWidth/20,
+                                    right: screenWidth/20,
+                                    top: 8,
+                                    bottom: 8
+                                ),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(30)
+                                )
                             ),
                           );
                         }
-                      ),
                     ),
                     GestureDetector(
                       onTap: () async {
@@ -141,14 +155,16 @@ class _MyFoodPageState extends State<MyFoodPage> {
               children: [
                 BlocBuilder<FoodBloc, FoodState>(
                   builder: (context, state) {
-                    if(state is GetFoodListState){
-                      userFoodList = state.list;
-                      globalFoodList = [];
-                    }
-                    if(state is FindFoodListState){
-                      userFoodList = state.userFoodList;
-                      globalFoodList = state.globalFoodList;
-                    }
+                    state.whenOrNull(
+                        listFood: (list) {
+                          userFoodList = list;
+                          globalFoodList = [];
+                          },
+                        findListFood: (userFoodList, globalFoodList) {
+                          this.userFoodList = userFoodList;
+                          this.globalFoodList = globalFoodList;
+                        }
+                    );
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -162,7 +178,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                         globalFoodList.isNotEmpty
                             ? Container(
                                 padding: EdgeInsets.only(top: screenHeight/400),
-                                height: screenHeight / 45,
+                                height: screenHeight / 35,
                                 width: screenWidth,
                                 child: Text(
                                   'Глобальный поиск',
@@ -171,6 +187,9 @@ class _MyFoodPageState extends State<MyFoodPage> {
                                 ),
                             )
                             : const SizedBox(),
+                        SizedBox(
+                          height: screenHeight/100,
+                        ),
                         globalFoodList.isNotEmpty
                             ? SizedBox(
                               height: (screenHeight / 200 + screenHeight/10) * globalFoodList.length + screenHeight/8,

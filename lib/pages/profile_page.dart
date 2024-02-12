@@ -22,8 +22,6 @@ class ProfilePage extends StatelessWidget {
     String height = '';
     String age = '';
     late bool avatarIsNotNull = false;
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
     Image avatar = Image.asset('images/icon.jpg');
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -60,17 +58,24 @@ class ProfilePage extends StatelessWidget {
                 Padding(padding: EdgeInsets.only(top: screenWidth / 27  * 13 - screenHeight/12, left: screenWidth/2 - screenHeight/12),
                     child: BlocBuilder<UserImageBloc, UserImageState>(
                         builder: (context, state){
-                          if(state is UserImageInitial){
-                            BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
-                          }
-                          if(state is LoadImageState){
-                            avatar = Image.file(state.image);
-                            avatarIsNotNull = true;
-                          }
-                          if(state is UserImageErrorState || state is DeleteImageState){
-                            avatarIsNotNull = false;
-                            avatar = Image.asset('images/icon.jpg');
-                          }
+                          state.whenOrNull(
+                              // initial: () {
+                              //   BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
+                              // },
+                              loadImage: (image) {
+                                avatar = Image.file(image);
+                                avatarIsNotNull = true;
+                              },
+                              error: (error) {
+                                avatarIsNotNull = false;
+                                avatar = Image.asset('images/icon.jpg');
+                              },
+                              deleteImage: () {
+                                {
+                                  avatarIsNotNull = false;
+                                  avatar = Image.asset('images/icon.jpg');
+                                }
+                              });
                           return GestureDetector(
                             onTap: (){
                               showModalBottomSheet(context: context, builder:
@@ -97,18 +102,11 @@ class ProfilePage extends StatelessWidget {
                         })
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: screenHeight/30, left: screenWidth/1.22),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      //BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
+                  padding: EdgeInsets.only(top: screenHeight/23, left: screenWidth/1.16),
+                  child: GestureDetector(
+                    onTap: () {
                       context.router.push(const EditingProfileRoute());
                     },
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(0),
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent
-                    ),
                     child: SvgPicture.asset(
                       'images/editing.svg',
                       width: screenHeight / 27,

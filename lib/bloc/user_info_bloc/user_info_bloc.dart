@@ -2,9 +2,11 @@ import 'package:app1/models/user.dart';
 import 'package:app1/service/image_service.dart';
 import 'package:app1/service/user_sirvice.dart';
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_info_event.dart';
 part 'user_info_state.dart';
+part 'user_info_bloc.freezed.dart';
 
 class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
@@ -13,33 +15,56 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
   AppUser? localUser;
 
-  UserInfoBloc() : super(UserInfoInitial()) {
-    on<UserEditingInfoEvent>(_editingUserInfo);
-    on<UserSignOutEvent>(_onSignOut);
+  UserInfoBloc() : super(const UserInfoState.initial()) {
+    on<UserInfoEvent>((event, emit) async {
+      await event.when(
+          singOut: () => _signOut(emit),
+          update: (name, email, weightNow, weightGoal, birthday,
+                  height, caloriesGoal, fatsGoal, carbohydratesGoal,
+                  proteinGoal, sexValue) =>
+              _updateUserInfo(name, email, weightNow, weightGoal,
+                  birthday, height, caloriesGoal, fatsGoal,
+                  carbohydratesGoal, proteinGoal, sexValue, emit));
+    });
+
     localUser = _userService.localUser;
     UserService.controller.stream.listen((event) {
       localUser = event;
     });
   }
 
-  Future _editingUserInfo(UserEditingInfoEvent event, Emitter<UserInfoState> emitter) async {
+  Future _updateUserInfo(
+      String? name,
+      String? email,
+      double? weightNow,
+      double? weightGoal,
+      DateTime? birthday,
+      int? height,
+      int? caloriesGoal,
+      int? fatsGoal,
+      int? carbohydratesGoal,
+      int? proteinGoal,
+      String? sexValue,
+      Emitter<UserInfoState> emitter) async {
+
     try{
       await _userService.updateUserInfo(
-        email: event.email,
-        name: event.name,
-        weightNow: event.weightNow,
-        weightGoal: event.weightGoal,
-        height: event.height,
-        birthday: event.birthday,
-        carbohydratesGoal: event.carbohydratesGoal,
-        caloriesGoal: event.caloriesGoal,
-        proteinGoal: event.proteinGoal,
-        fatsGoal: event.fatsGoal,
-        sexValue: event.sexValue
+        email: email,
+        name: name,
+        weightNow: weightNow,
+        weightGoal: weightGoal,
+        height: height,
+        birthday: birthday,
+        carbohydratesGoal: carbohydratesGoal,
+        caloriesGoal: caloriesGoal,
+        proteinGoal: proteinGoal,
+        fatsGoal: fatsGoal,
+        sexValue: sexValue
       );
+      emitter(const UserInfoState.successful());
     }
     catch(error){
-      emitter(UserInfoErrorState('$error'));
+      emitter(UserInfoState.error(error: error.toString()));
     }
   }
 
@@ -52,8 +77,8 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   //   }
   // }
 
-  Future _onSignOut(UserSignOutEvent event, Emitter<UserInfoState> emitter) async {
+  Future _signOut(Emitter<UserInfoState> emitter) async {
     await _imageService.signOut();
-    await _userService.exitUser();
+    await _userService.logOutUser();
   }
 }

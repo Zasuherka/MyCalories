@@ -25,10 +25,6 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
-
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
@@ -47,7 +43,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -64,42 +60,43 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                       ),
                     ),
                     SizedBox(width: screenWidth/25),
-                    SizedBox(
-                      width: screenWidth/1.5,
-                      height: screenHeight/14,
-                      child: TextFormField(
-                        maxLength: 20,
-                        validator: (value) {
-                          if (value == ''){
-                            return 'Поле должно быть заполнено';
-                          }
-                          return null;
-                        },
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[ёЁa-zA-Zа-яА-Я0-9.% ]'))],
-                        onChanged: (String value){
-                          title = value;
-                        },
-                        style: Theme.of(context).textTheme.titleLarge,
-                        decoration: InputDecoration(hoverColor: Colors.orange,
-                          counterText: '',
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          hintText: 'Название',
-                          hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    TextFormField(
+                      maxLength: 20,
+                      validator: (value) {
+                        if (value == ''){
+                          return 'Поле должно быть заполнено';
+                        }
+                        return null;
+                      },
+                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[ёЁa-zA-Zа-яА-Я0-9.% ]'))],
+                      onChanged: (String value){
+                        title = value;
+                      },
+                      style: Theme.of(context).textTheme.titleLarge,
+                      decoration: InputDecoration(hoverColor: Colors.orange,
+                        counterText: ' ',
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        hintText: 'Название',
+                        hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: AppColors.colorForHintText
-                          ),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black, width: 1),
-                          ),
-                          contentPadding: EdgeInsets.only(top: screenHeight/200),
-                          border: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black, width: 1),
-                          ),
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black, width: 1),
+                        ),
+                        constraints: BoxConstraints(
+                          maxHeight: screenHeight/13,
+                          minHeight: screenHeight/13,
+                          maxWidth: screenWidth/1.5
+                        ),
+                        contentPadding: const EdgeInsets.only(bottom: 8, top: 0),
+                        border: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black, width: 1),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                const Spacer(),
                 SizedBox(
                   width: screenWidth/1.1,
                   child:
@@ -301,9 +298,9 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/80)),
+                const Spacer(),
                 SizedBox(
-                  height: screenHeight/25,
+                  height: screenHeight/20,
                   width: screenWidth/1.4,
                   child: Text(
                     notification,
@@ -313,7 +310,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                     ),
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/60)),
+                const Spacer(),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -324,8 +321,15 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                       if (_formKey.currentState!.validate() &&
                           notification == '') {
                         activeTap = false;
-                        BlocProvider.of<FoodBloc>(context).add(CreateFoodEvent(title, protein, fats, carbohydrates, calories));
-                        Navigator.pop(context);
+                          BlocProvider.of<FoodBloc>(context).add(
+                              FoodEvent.createFood(
+                                  title: title,
+                                  protein: protein,
+                                  fats: fats,
+                                  carbohydrates: carbohydrates,
+                                  calories: calories
+                              ));
+                          Navigator.pop(context);
                       }
                     }
                   },
@@ -344,6 +348,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                     textAlign: TextAlign.center,
                   ),
                 ),
+                const Spacer(),
               ],
             ),
           )

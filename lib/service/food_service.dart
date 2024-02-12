@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 
 class FoodService {
   final UserService _userService = UserService();
+  static String _dateNow = DateFormat('ddMMyyyy').format(DateTime.now());
 
   ///Создание Еды, запись в БД, запись в список еды пользователя
   Future<List<Food>?> createFood(String title, String protein, String fats,
@@ -325,8 +326,8 @@ class FoodService {
 
     if (await _userService.isConnected()) {
       try {
-        _userService
-            .setEatingFoodList(await _getEatingFoodListsByDate(DateTime.now()));
+        _userService.setEatingFoodListForLocalUser(
+            await _getEatingFoodListsByDate(DateTime.now()));
         return;
       } on Exception catch (_) {
         print('Ошибка получения списков приёмов пищи с БД');
@@ -335,7 +336,7 @@ class FoodService {
 
     final DateTime now = DateTime.now();
     final DateTime dateNow = DateTime(now.year, now.month, now.day);
-    _userService.setEatingFoodList(await _getEatingFoodListsByDate(dateNow));
+    _userService.setEatingFoodListForLocalUser(await _getEatingFoodListsByDate(dateNow));
   }
 
   ///Пока что будет способ сохранения только на текущую дату
@@ -349,8 +350,8 @@ class FoodService {
     ///Логика тут ломает ум, поэтому комментарии исключительно для меня
 
     ///Получаем данные о текущей дате
-    DateTime now = DateTime.now();
-    DateTime dateNow = DateTime(now.year, now.month, now.day);
+    final DateTime now = DateTime.now();
+    final DateTime dateNow = DateTime(now.year, now.month, now.day);
 
     ///Открываем [eatingBox]
     final Box<List> eatingBox = await Hive.openBox<List>('eatingBox');
@@ -362,7 +363,6 @@ class FoodService {
     await eatingBox.put('dinner${dateNow.toString()}', localUser.eatingDinner);
     await eatingBox.put(
         'another${dateNow.toString()}', localUser.eatingAnother);
-
     await eatingBox.close();
   }
 
@@ -405,6 +405,16 @@ class FoodService {
       double carbohydrates,
       double calories,
       int weight) async {
+
+    ///Получаем дату на момент получение запроса на добавление еды в приём пищи
+    final String dateNow = DateFormat('ddMMyyyy').format(DateTime.now());
+
+    /// Сравниваем [dateNow] и [_dateNow]. Если они не равны, значит наступил новый день
+    if(_dateNow != dateNow){
+      _dateNow = dateNow;
+      await getEatingFoodInfoInFirebase();
+    }
+
     final localUser = _userService.localUser;
 
     if (localUser == null) {
@@ -418,23 +428,19 @@ class FoodService {
     if (nameEating == 'Завтрак') {
       localUser.eatingBreakfast.add(eatingFood);
       listEatingFood = localUser.eatingBreakfast;
-    }
+    } else
     if (nameEating == 'Обед') {
       localUser.eatingLunch.add(eatingFood);
       listEatingFood = localUser.eatingLunch;
-    }
+    } else
     if (nameEating == 'Ужин') {
       localUser.eatingDinner.add(eatingFood);
       listEatingFood = localUser.eatingDinner;
+    } else{
+      localUser.eatingAnother.add(eatingFood);
+      listEatingFood = localUser.eatingAnother;
     }
-    localUser.eatingAnother.add(eatingFood);
-    listEatingFood = localUser.eatingAnother;
-    await _userService.setEatingFoodList((
-      localUser.eatingBreakfast,
-      localUser.eatingLunch,
-      localUser.eatingDinner,
-      localUser.eatingAnother,
-    ));
+    await _userService.setUserInfo((localUser));
     await _setEatingInfoInFirebase();
     await _setEatingFoodInfoNow();
     return (listEatingFood, getCalories(listEatingFood));
@@ -452,61 +458,18 @@ class FoodService {
     List<EatingFood> listEatingFood = [];
 
     if (nameEating == 'Завтрак') {
-      final int oldWeight = localUser!.eatingBreakfast[index].weight;
+      print(localUser.eatingBreakfast[index].protein);
       localUser.eatingBreakfast[index].weight = weight;
-      localUser.eatingBreakfast[index].protein =
-          localUser.eatingBreakfast[index].protein / oldWeight * weight;
-      localUser.eatingBreakfast[index].fats =
-          localUser.eatingBreakfast[index].fats / oldWeight * weight;
-      localUser.eatingBreakfast[index].carbohydrates =
-          localUser.eatingBreakfast[index].carbohydrates / oldWeight * weight;
-      localUser.eatingBreakfast[index].calories =
-          localUser.eatingBreakfast[index].calories / oldWeight * weight;
-      listEatingFood = localUser.eatingBreakfast;
-    }
+    } else
     if (nameEating == 'Обед') {
-      final int oldWeight = localUser.eatingLunch[index].weight;
       localUser.eatingLunch[index].weight = weight;
-      localUser.eatingLunch[index].protein =
-          localUser.eatingLunch[index].protein / oldWeight * weight;
-      localUser.eatingLunch[index].fats =
-          localUser.eatingLunch[index].fats / oldWeight * weight;
-      localUser.eatingLunch[index].carbohydrates =
-          localUser.eatingLunch[index].carbohydrates / oldWeight * weight;
-      localUser.eatingLunch[index].calories =
-          localUser.eatingLunch[index].calories / oldWeight * weight;
-      listEatingFood = localUser.eatingLunch;
-    }
+    } else
     if (nameEating == 'Ужин') {
-      final int oldWeight = localUser.eatingDinner[index].weight;
       localUser.eatingDinner[index].weight = weight;
-      localUser.eatingDinner[index].protein =
-          localUser.eatingDinner[index].protein / oldWeight * weight;
-      localUser.eatingDinner[index].fats =
-          localUser.eatingDinner[index].fats / oldWeight * weight;
-      localUser.eatingDinner[index].carbohydrates =
-          localUser.eatingDinner[index].carbohydrates / oldWeight * weight;
-      localUser.eatingDinner[index].calories =
-          localUser.eatingDinner[index].calories / oldWeight * weight;
-      listEatingFood = localUser.eatingDinner;
+    } else{
+      localUser.eatingAnother[index].weight = weight;
     }
-    final int oldWeight = localUser.eatingAnother[index].weight;
-    localUser.eatingAnother[index].weight = weight;
-    localUser.eatingAnother[index].protein =
-        localUser.eatingAnother[index].protein / oldWeight * weight;
-    localUser.eatingAnother[index].fats =
-        localUser.eatingAnother[index].fats / oldWeight * weight;
-    localUser.eatingAnother[index].carbohydrates =
-        localUser.eatingAnother[index].carbohydrates / oldWeight * weight;
-    localUser.eatingAnother[index].calories =
-        localUser.eatingAnother[index].calories / oldWeight * weight;
-    listEatingFood = localUser.eatingAnother;
-    await _userService.setEatingFoodList((
-      localUser.eatingBreakfast,
-      localUser.eatingLunch,
-      localUser.eatingDinner,
-      localUser.eatingAnother,
-    ));
+    await _userService.setUserInfo((localUser));
     await _setEatingInfoInFirebase();
     await _setEatingFoodInfoNow();
     return (listEatingFood, getCalories(listEatingFood));
@@ -526,23 +489,20 @@ class FoodService {
     if (nameEating == 'Завтрак') {
       localUser.eatingBreakfast.removeAt(index);
       listEatingFood = localUser.eatingBreakfast;
-    }
+    } else
     if (nameEating == 'Обед') {
       localUser.eatingLunch.removeAt(index);
       listEatingFood = localUser.eatingLunch;
-    }
+    } else
     if (nameEating == 'Ужин') {
       localUser.eatingDinner.removeAt(index);
       listEatingFood = localUser.eatingDinner;
+    } else{
+      localUser.eatingAnother.removeAt(index);
+      listEatingFood = localUser.eatingAnother;
     }
-    localUser.eatingAnother.removeAt(index);
-    listEatingFood = localUser.eatingAnother;
-    await _userService.setEatingFoodList((
-      localUser.eatingBreakfast,
-      localUser.eatingLunch,
-      localUser.eatingDinner,
-      localUser.eatingAnother
-    ));
+
+    await _userService.setUserInfo((localUser));
     await _setEatingInfoInFirebase();
     await _setEatingFoodInfoNow();
     return (listEatingFood, getCalories(listEatingFood));
@@ -617,7 +577,7 @@ class FoodService {
   }
 
   Future<(List<EatingFood>, List<EatingFood>, List<EatingFood>, List<EatingFood>)>
-  getEatingFoodInfoInFirebase(DateTime dateTime) async {
+  getEatingFoodInfoInFirebase([DateTime? dateTime]) async {
 
     final localUser = _userService.localUser;
 
@@ -629,10 +589,10 @@ class FoodService {
     List<EatingFood> lunch = [];
     List<EatingFood> dinner = [];
     List<EatingFood> another = [];
-
     try {
-
-      final String dateFormat = DateFormat('ddMMyyyy').format(dateTime);
+      final String dateFormat = dateTime != null
+          ? DateFormat('ddMMyyyy').format(dateTime)
+          : _dateNow;
 
       final DatabaseReference userRef = FirebaseDatabase.instance
           .ref('users/${localUser.userId}/eatingByDate/$dateFormat');
@@ -641,7 +601,7 @@ class FoodService {
 
       for (int i = 0; i < eatingInfo.snapshot.child('eatingBreakfast').children.length; i++) {
         Map<String, dynamic> eatingMap = Map<String, dynamic>.from(
-            eatingInfo.snapshot.child('eatingLunch').child('$i').value as Map);
+            eatingInfo.snapshot.child('eatingBreakfast').child('$i').value as Map);
         breakfast.add(EatingFood.fromJson(eatingMap));
       }
 
@@ -653,16 +613,18 @@ class FoodService {
 
       for (int i = 0; i < eatingInfo.snapshot.child('eatingDinner').children.length; i++) {
         Map<String, dynamic> eatingMap = Map<String, dynamic>.from(
-            eatingInfo.snapshot.child('eatingLunch').child('$i').value as Map);
+            eatingInfo.snapshot.child('eatingDinner').child('$i').value as Map);
         dinner.add(EatingFood.fromJson(eatingMap));
       }
 
       for (int i = 0; i < eatingInfo.snapshot.child('eatingAnother').children.length; i++) {
         Map<String, dynamic> eatingMap = Map<String, dynamic>.from(
-            eatingInfo.snapshot.child('eatingLunch').child('$i').value as Map);
+            eatingInfo.snapshot.child('eatingAnother').child('$i').value as Map);
         another.add(EatingFood.fromJson(eatingMap));
       }
 
+      await _userService.setEatingFoodListForLocalUser((breakfast, lunch, dinner, another));
+      await _setEatingFoodInfoNow();
     } on Exception catch (error) {
       throw error.toString();
     }

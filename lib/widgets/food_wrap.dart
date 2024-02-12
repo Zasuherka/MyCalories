@@ -1,4 +1,5 @@
 import 'package:app1/bloc/food_bloc/food_bloc.dart';
+import 'package:app1/constants.dart';
 import 'package:app1/models/food.dart';
 import 'package:app1/widgets/add_food_widget.dart';
 import 'package:app1/widgets/update_food.dart';
@@ -12,9 +13,8 @@ class FoodWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    print(food.title);
+    
+    
     final String userTitle = food.isThisFoodOnTheMyFoodList
         ? 'Удалить из моей еды'
         : 'Добавить в мою еду';
@@ -38,8 +38,9 @@ class FoodWrap extends StatelessWidget {
             ),
             onTap: (){
               Navigator.pop(context);
-              BlocProvider.of<FoodBloc>(context).add(GetFoodInfoEvent(food));
-              showDialog(
+                    BlocProvider.of<FoodBloc>(context)
+                        .add(FoodEvent.infoAboutFood(food: food));
+                    showDialog(
                   context: context,
                   builder: (BuildContext context) => AddEatingFood(
                       bloc: BlocProvider.of<FoodBloc>(context)));
@@ -64,8 +65,10 @@ class FoodWrap extends StatelessWidget {
             ),
             onTap: (){
               food.isThisFoodOnTheMyFoodList
-                  ? BlocProvider.of<FoodBloc>(context).add(DeleteFoodEvent(food))
-                  : BlocProvider.of<FoodBloc>(context).add(AddingFoodEvent(food));
+                  ? BlocProvider.of<FoodBloc>(context)
+                      .add(FoodEvent.deleteFood(food: food))
+                  : BlocProvider.of<FoodBloc>(context)
+                      .add(FoodEvent.addingFood(food: food));
               Navigator.pop(context);
             },
           ),
@@ -88,11 +91,10 @@ class FoodWrap extends StatelessWidget {
             ),
             onTap: () async {
               Navigator.pop(context);
-              BlocProvider.of<FoodBloc>(context).add(GetFoodInfoEvent(food));
               await showDialog(
                   context: context,
-                  builder: (BuildContext context) => const UpdateFood());
-            },
+                  builder: (BuildContext context) => UpdateFood(food: food));
+              },
           ),
         )
         : const SizedBox(),

@@ -5,5 +5,4 @@ class RegistrationEvent{
   final String password2;
 
   RegistrationEvent(this.name, this.email, this.password1, this.password2);
-
 }

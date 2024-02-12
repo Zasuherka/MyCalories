@@ -62,7 +62,7 @@ class ImageService{
       throw 'localUser равен нулю';
     }
     if(await _userService.isConnected()){
-      if(localUser.urlAvatar != null && localUser.urlAvatar == 'null'){
+      if(localUser.urlAvatar != null && localUser.urlAvatar != 'null'){
         try{
           final http.Response response = await http.get(Uri.parse(localUser.urlAvatar!));
           final documentDirectory = await getApplicationDocumentsDirectory() ;
@@ -71,7 +71,7 @@ class ImageService{
           localUser.avatar = file;
           _userService.setAvatar(localUser.urlAvatar, file);
         }
-        catch(e){
+        catch(error){
           return loadImage();
         }
       }
@@ -170,7 +170,7 @@ class ImageService{
     if(localUser != null && localUser.avatar != null){
       final documentDirectory = await getApplicationDocumentsDirectory();
       File file = File('${documentDirectory.path}/avatar.jpg');
-      file.deleteSync();
+      await file.delete();
     }
   }
 }
