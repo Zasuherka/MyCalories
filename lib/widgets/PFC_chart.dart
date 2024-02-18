@@ -5,31 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PFCChart extends StatefulWidget {
+class PFCChart extends StatelessWidget {
 
   final String title;
   const PFCChart({super.key, required this.title});
 
   @override
-  State<PFCChart> createState() => _PFCChartState();
-}
-
-class _PFCChartState extends State<PFCChart> {
-  late String title;
-  double goalValue = 100;
-  double value = 0;
-  double counter = 0;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    title = widget.title;
-  }
-
-  @override
   Widget build(BuildContext context) {
-     
+    const Color  = AppColors.white;
+    double goalValue = 100;
+    double value = 0;
+    double counter = 0;
     return BlocBuilder<EatingFoodBloc, EatingFoodState>(
       builder: (context, state) {
         final eatingFoodRead = context.read<EatingFoodBloc>();
@@ -63,13 +49,13 @@ class _PFCChartState extends State<PFCChart> {
             height: screenWidth * 0.4,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.elementColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 13,
-                    offset: const Offset(10, 10),
+                    color: Colors.black.withOpacity(0.3),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                    offset: const Offset(-2, 2),
                   ),
                 ],
                 borderRadius: BorderRadius.circular(20.0)
@@ -92,7 +78,7 @@ class _PFCChartState extends State<PFCChart> {
                                 sectionsSpace: screenWidth/100,
                                 startDegreeOffset : 270,
                                 centerSpaceRadius: screenWidth * 0.07,
-                                centerSpaceColor: Colors.white,
+                                centerSpaceColor: Colors.transparent,
                                 borderData: FlBorderData(show: false),
                                 sections: [
                                   PieChartSectionData
@@ -117,7 +103,9 @@ class _PFCChartState extends State<PFCChart> {
                         child:
                         Text(
                           '${value ~/ (goalValue / 100)}%',
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.textColor
+                          ),
                         ),
                       ),
                     ],
@@ -126,12 +114,16 @@ class _PFCChartState extends State<PFCChart> {
                 const Spacer(flex: 2),
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: AppColors.textColor
+                  ),
                 ),
                 const Spacer(),
                 Text(
                   '${value.toInt()}/${goalValue.toInt()}',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.textColor
+                  ),
                 ),
                 const Spacer(),
               ],

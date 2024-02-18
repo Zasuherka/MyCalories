@@ -83,29 +83,46 @@ class _FirstPageState extends State<FirstPage> {
     BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(gradient: AppColors.greenGradient),
-        child: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: iconFood, label: 'Меню'),
-            BottomNavigationBarItem(icon: iconHome, label: 'Дневник'),
-            BottomNavigationBarItem(icon: iconProfile, label: 'Профиль'),
-            BottomNavigationBarItem(icon: temporary, label: 'КБЖУ'),
-          ],
-          backgroundColor: Colors.transparent,
-          type: BottomNavigationBarType.fixed,
-          showUnselectedLabels: false,
-          elevation: 0,
-          currentIndex: _selectedIndex,
-          selectedItemColor: AppColors.white,
-          unselectedItemColor: AppColors.white.withOpacity(0.7),
-          onTap: _onItemTapped,
+    return Stack(
+      children: [
+        Image.asset('images/background_image.png',
+          height: screenHeight,
+          width: screenWidth,
+          fit: BoxFit.cover,
         ),
-      ),
-      body: getPage(_selectedIndex),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          bottomNavigationBar: Container(
+            decoration: const BoxDecoration(
+              color: AppColors.elementColor,
+              //gradient: AppColors.greenGradient
+            ),
+            child: BottomNavigationBar(
+              items: <BottomNavigationBarItem>[
+                BottomNavigationBarItem(icon: iconFood, label: 'Меню'),
+                BottomNavigationBarItem(icon: iconHome, label: 'Дневник'),
+                BottomNavigationBarItem(icon: iconProfile, label: 'Профиль'),
+                BottomNavigationBarItem(icon: temporary, label: 'КБЖУ'),
+              ],
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.transparent,
+              showUnselectedLabels: false,
+              elevation: 0,
+              currentIndex: _selectedIndex,
+              selectedItemColor: AppColors.white,
+              unselectedItemColor: AppColors.white.withOpacity(0.7),
+              onTap: _onItemTapped,
+            ),
+          ),
+          body: getPage(_selectedIndex),
+        )
+      ],
     );
   }
 }

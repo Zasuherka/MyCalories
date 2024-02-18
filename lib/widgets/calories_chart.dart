@@ -1,5 +1,4 @@
 import 'package:app1/bloc/eating_food_bloc/eating_food_bloc.dart';
-import 'package:app1/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/constants.dart';
 import 'package:flutter/material.dart';
@@ -13,31 +12,25 @@ class CaloriesChart extends StatefulWidget {
 }
 
 class _CaloriesChartState extends State<CaloriesChart> {
-  double value = 0;
-  double goalValue = 1000;
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-
+    double value = 0;
+    double goalValue = 1000;
     return BlocBuilder<EatingFoodBloc, EatingFoodState>(
         builder: (context, state){
           value = context.read<EatingFoodBloc>().allCalories;
           goalValue = context.read<UserInfoBloc>().localUser?.caloriesGoal?.toDouble() ?? 1000;
       return Container(
         width: screenWidth * 0.95,
-        height: screenHeight * 0.08,
+        height: screenHeight * 0.09,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.elementColor,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                spreadRadius: 5,
-                blurRadius: 13,
-                offset: const Offset(10, 10),
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: const Offset(-2, 2),
               ),
             ],
             borderRadius: BorderRadius.circular(25.0)
@@ -50,7 +43,9 @@ class _CaloriesChartState extends State<CaloriesChart> {
             const Spacer(),
             Text(
               'КАЛОРИИ: ${value.toInt()}/${goalValue.toInt()}',
-              style: Theme.of(context).textTheme.titleSmall,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                color: AppColors.textColor
+              ),
             ),
             const Spacer(),
             Container(

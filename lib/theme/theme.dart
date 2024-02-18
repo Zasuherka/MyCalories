@@ -12,9 +12,9 @@ ThemeData createTheme() {
       displayMedium: TextStyles.comfortaa(size: screenHeight/13).textStyle,
       ///screenHeight/14.5
       displaySmall: TextStyles.comfortaa(size: screenHeight/16).textStyle,
-      ///screenHeight/1648
+      ///screenHeight/20
       headlineLarge: TextStyles.comfortaa(size: screenHeight/20).textStyle,
-      ///screenHeight/1648
+      ///screenHeight/23
       headlineMedium: TextStyles.comfortaa(size: screenHeight/23).textStyle,
       ///screenHeight/23
       headlineSmall: TextStyles.comfortaa(size: screenHeight/27).textStyle,
@@ -23,9 +23,9 @@ ThemeData createTheme() {
       ///screenHeight/40
       titleMedium: TextStyles.comfortaa(size: screenHeight/40).textStyle,
       ///screenHeight/50
-      titleSmall: TextStyles.comfortaa(size: screenHeight/45).textStyle,
+      titleSmall: TextStyles.comfortaa(size: screenHeight/48).textStyle,
       ///screenHeight/49
-      bodyLarge: TextStyles.comfortaa(size: screenHeight/49).textStyle,
+      bodyLarge: TextStyles.comfortaa(size: screenHeight/51).textStyle,
       ///screenHeight/56
       bodyMedium: TextStyles.comfortaa(size: screenHeight/56).textStyle,
       ///screenHeight/65

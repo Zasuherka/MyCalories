@@ -26,44 +26,43 @@ class _MyCaloriesPageState extends State<MyCaloriesPage> {
 
   @override
   Widget build(BuildContext context) {
-     
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
-      body:
-      SingleChildScrollView(
-        child:Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + screenHeight/200),
-            child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
+        backgroundColor: Colors.transparent,
+        body:
+        SingleChildScrollView(
+            child:Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + screenHeight/200),
+                child:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                        child: const PFCChart(title: 'БЕЛКИ')
+                    Row(
+                      children: [
+                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
+                            child: const PFCChart(title: 'БЕЛКИ')
+                        ),
+                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
+                            child: const PFCChart(title: 'ЖИРЫ')
+                        ),
+                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
+                            child: const PFCChart(title: 'УГЛЕВОДЫ')
+                        )
+                      ],
                     ),
-                    Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                        child: const PFCChart(title: 'ЖИРЫ')
-                    ),
-                    Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                        child: const PFCChart(title: 'УГЛЕВОДЫ')
-                    )
+                    Padding(padding: EdgeInsets.only(top: screenHeight/75)),
+                    const CaloriesChart(),
+                    Padding(padding: EdgeInsets.only(top: screenHeight/75)),
+                    const EatingWidget(title: 'Завтрак'),
+                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                    const EatingWidget(title: 'Обед'),
+                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                    const EatingWidget(title: 'Ужин'),
+                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                    const EatingWidget(title: 'Другое'),
+                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
                   ],
-                ),
-                Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                const CaloriesChart(),
-                Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                const EatingWidget(title: 'Завтрак'),
-                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                const EatingWidget(title: 'Обед'),
-                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                const EatingWidget(title: 'Ужин'),
-                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                const EatingWidget(title: 'Другое'),
-                Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-              ],
+                )
             )
         )
-      )
     );
   }
 }

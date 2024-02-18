@@ -9,27 +9,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app1/models/eating_food.dart';
 
-class EatingWidget extends StatefulWidget {
+class EatingWidget extends StatelessWidget {
   final String title;
   const EatingWidget({super.key, required this.title});
 
   @override
-  State<EatingWidget> createState() => _EatingWidgetState();
-}
-
-class _EatingWidgetState extends State<EatingWidget> {
-  late double heightWidget;
-  late String title;
-  String calories = '0.00';
-  late List<EatingFood> list = [];
-
-  @override
-  void initState() {
-    super.initState();
-    title = widget.title;
-  }
-  @override
   Widget build(BuildContext context) {
+    double heightWidget = screenHeight * 0.07;
+    String calories = '0.00';
+    List<EatingFood> list = [];
     return BlocBuilder<EatingFoodBloc, EatingFoodState>(
         builder: (context, state) {
           if(title == 'Завтрак'){
@@ -55,13 +43,13 @@ class _EatingWidgetState extends State<EatingWidget> {
             decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 13,
-                    offset: const Offset(10, 10),
+                    color: Colors.black.withOpacity(0.3),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                    offset: const Offset(-2, 2),
                   ),
                 ],
-                color: AppColors.white,
+                color: AppColors.elementColor,
                 borderRadius: BorderRadius.circular(25)
             ),
             child:
@@ -84,7 +72,9 @@ class _EatingWidgetState extends State<EatingWidget> {
                         child: Text(
                           title,
                           textAlign: TextAlign.left,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: AppColors.textColor
+                          ),
                         ),
                       ),
                       const Spacer(flex: 5),
@@ -92,7 +82,9 @@ class _EatingWidgetState extends State<EatingWidget> {
                         width: screenWidth * 0.25,
                         child: Text('$calories ккал',
                           textAlign: TextAlign.right,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textColor
+                          ),
                         ),
                       ),
                       const Spacer(),
@@ -158,7 +150,9 @@ class _EatingWidgetState extends State<EatingWidget> {
                                   SizedBox(
                                     width: screenWidth * 0.55,
                                     child: Text(list[index].title,
-                                      style: Theme.of(context).textTheme.titleMedium,
+                                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                          color: AppColors.textColor
+                                      ),
                                     ),
                                   ),
                                   const Spacer(),
@@ -171,12 +165,16 @@ class _EatingWidgetState extends State<EatingWidget> {
                                       children: [
                                         const Spacer(),
                                         Text('${(list[index].calories / 100 * list[index].weight).toStringAsFixed(2)}ккал.',
-                                          style: Theme.of(context).textTheme.bodyMedium,
+                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                              color: AppColors.textColor
+                                          ),
                                           textAlign: TextAlign.right,
                                         ),
                                         const Spacer(),
                                         Text('${list[index].weight.toString()}г.',
-                                          style: Theme.of(context).textTheme.bodyMedium,
+                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                              color: AppColors.textColor
+                                          ),
                                         ),
                                         const Spacer(),
                                       ],

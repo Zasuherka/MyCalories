@@ -4,7 +4,7 @@ import 'package:app1/pages/editing_profile_page.dart';
 import 'package:app1/pages/first_page.dart';
 import 'package:app1/pages/goal_page.dart';
 import 'package:app1/pages/menu_page.dart';
-import 'package:app1/pages/my_calories.dart';
+import 'package:app1/pages/my_calories(old2).dart';
 import 'package:app1/pages/my_food_page.dart';
 import 'package:app1/pages/start_page.dart';
 import 'package:app1/pages/profile_page.dart';

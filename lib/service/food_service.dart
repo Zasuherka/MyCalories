@@ -440,7 +440,12 @@ class FoodService {
       localUser.eatingAnother.add(eatingFood);
       listEatingFood = localUser.eatingAnother;
     }
-    await _userService.setUserInfo((localUser));
+    await _userService.setEatingFoodListForLocalUser((
+      localUser.eatingBreakfast,
+      localUser.eatingLunch,
+      localUser.eatingDinner,
+      localUser.eatingAnother
+    ));
     await _setEatingInfoInFirebase();
     await _setEatingFoodInfoNow();
     return (listEatingFood, getCalories(listEatingFood));
@@ -469,7 +474,12 @@ class FoodService {
     } else{
       localUser.eatingAnother[index].weight = weight;
     }
-    await _userService.setUserInfo((localUser));
+    await _userService.setEatingFoodListForLocalUser((
+      localUser.eatingBreakfast,
+      localUser.eatingLunch,
+      localUser.eatingDinner,
+      localUser.eatingAnother
+    ));
     await _setEatingInfoInFirebase();
     await _setEatingFoodInfoNow();
     return (listEatingFood, getCalories(listEatingFood));
@@ -502,7 +512,12 @@ class FoodService {
       listEatingFood = localUser.eatingAnother;
     }
 
-    await _userService.setUserInfo((localUser));
+    await _userService.setEatingFoodListForLocalUser((
+      localUser.eatingBreakfast,
+        localUser.eatingLunch,
+        localUser.eatingDinner,
+        localUser.eatingAnother
+    ));
     await _setEatingInfoInFirebase();
     await _setEatingFoodInfoNow();
     return (listEatingFood, getCalories(listEatingFood));
