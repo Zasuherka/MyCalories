@@ -4,6 +4,7 @@ import 'package:app1/constants.dart';
 import 'package:app1/validation/profile.dart';
 import 'package:app1/widgets/CPFC_form.dart';
 import 'package:app1/widgets/activity_slider.dart';
+import 'package:app1/widgets/custom_drop_down_button.dart';
 import 'package:app1/widgets/switch.dart';
 import 'package:app1/widgets/title_for_goal_page.dart';
 import 'package:auto_route/auto_route.dart';
@@ -23,6 +24,8 @@ class GoalPage extends StatefulWidget {
 
 class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final Color textAdditionalColor = AppColors.lightGrey;
 
   bool _switchValue = false;
   bool isShow = false;
@@ -49,15 +52,15 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
 
   final ScrollController scrollController = ScrollController();
 
-  Color defaultColor = AppColors.dark;
-  Color defaultWeightColor = AppColors.white;
+  Color defaultColor = AppColors.textColor;
+  Color defaultWeightColor = Colors.transparent;
   Color activeColor = AppColors.turquoise ;
   Color errorColor = AppColors.red;
 
   late Color _weightTextFieldColor;
   late Color _heightTextFieldColor;
   late Color _ageTextFieldColor;
-  late Color _sexTextFieldColor;
+  late Color _sexButtonColor;
   late Color _gainWeightColor;
   late Color _saveWeightColor;
   late Color _loseWeightColor;
@@ -68,7 +71,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
 
   BoxDecoration _getContainerDecoration(Color color) {
     return BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
             color: color,
             width: 1
@@ -78,24 +81,18 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
 
   BoxDecoration _getButtonDecoration(Color borderColor){
     return BoxDecoration(
-      color: AppColors.white,
-      boxShadow: <BoxShadow>[
-        BoxShadow(
-          color: AppColors.black.withOpacity(0.2),
-          offset: const Offset(10,10),
-          blurRadius: 15
-        ),
-      ],
+      color: AppColors.elementColor,
+      boxShadow: boxShadow,
       borderRadius: BorderRadius.circular(25),
       border: Border.all(
-        width: 2,
+        width: 1,
         color: borderColor
       )
     );
   }
 
-  void assignDefaultColor() {
-    _sexTextFieldColor = defaultColor;
+  void _assignDefaultColor() {
+    _sexButtonColor = defaultColor;
     _weightTextFieldColor = defaultColor;
     _heightTextFieldColor = defaultColor;
     _ageTextFieldColor = defaultColor;
@@ -126,7 +123,6 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
     setState(() {
       calories =  ((10 * double.parse(weight)  + 6.25 * double.parse(height) -
           5 * double.parse(age) + sexNum) * activityCoefficient * (percent/100)).toInt();
-
       protein = calories * 0.3 ~/ 4;
       fats = calories * 0.3 ~/ 9;
       carbohydrates = calories * 0.4 ~/ 4;
@@ -137,7 +133,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
-    assignDefaultColor();
+    _assignDefaultColor();
     assignDefaultWeightColor();
     final localUser = context.read<UserInfoBloc>().localUser;
     if(localUser != null){
@@ -169,13 +165,13 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
-        assignDefaultColor();
+        _assignDefaultColor();
       },
       child: Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: const BoxDecoration(
-                gradient: AppColors.greenGradient
+              gradient: AppColors.greenGradient
             ),
           ),
           leading: context.router.canPop() ? Padding(
@@ -210,7 +206,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
           child: SingleChildScrollView(
               controller: scrollController,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: (screenWidth - (screenWidth/1.1))/2),
+                padding: const EdgeInsets.symmetric(horizontal: 12.5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,104 +240,87 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                     SizedBox(
                       height: screenHeight/50,
                     ),
-                    SizedBox(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenHeight * 0.083,
-                            width: screenWidth * 0.43,
-                            alignment: Alignment.centerLeft,
-                            //padding: EdgeInsets.zero,
-                            decoration: _getContainerDecoration(_sexTextFieldColor),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: screenHeight/45),
-                              child: DropdownButtonFormField<String>(
-                                onTap: ()=> assignDefaultColor(),
-                                iconSize: 0,
-                                value: sexValue,
-                                items: List.generate(
-                                    sexList.length, (index) => DropdownMenuItem<String>(
-                                    value: sexList[index],
-                                    child: Text(sexList[index]))),
-                                onChanged: (value) => setState(() {
-                                  sexValue = value ?? 'Не выбран';
-                                  if(value != 'Не выбран'){
-                                    sexList.remove('Не выбран');
-                                  }
-                                }),
-                                style: Theme.of(context).textTheme.titleMedium,
-                                decoration: InputDecoration(
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  counterText: '',
-                                  constraints: BoxConstraints.tightFor(width: screenWidth * 0.43, height: screenHeight * 0.075),
-                                  contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
-                                  labelText: 'Пол',
-                                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                                  //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                ),
-                              ),
-                            ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: CustomDropDownButton(
+                            value: sexValue,
+                            itemHeight: 74,
+                            borderColor: _sexButtonColor,
+                            labelText: 'Пол',
+                            listValues: sexList,
+                            onTap: () {
+                              setState(() {
+                                _assignDefaultColor();
+                                _sexButtonColor = activeColor;
+                              });
+                            },
+                            onChanged: (value) => setState(() {
+                              _assignDefaultColor();
+                              sexValue = value;
+                              if(value != 'Не выбран'){
+                                sexList.remove('Не выбран');
+                              }
+                            }),
                           ),
-                          const Spacer(),
-                          Container(
-                            height: screenHeight * 0.083,
-                            width: screenWidth * 0.43,
+                        ),
+                        const SizedBox(
+                            width :10
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 74,
+                            padding: const EdgeInsets.only(top: 20),
                             alignment: Alignment.centerLeft,
                             decoration: _getContainerDecoration(_weightTextFieldColor),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: screenHeight/45),
-                              child:
-                              TextFormField(
-                                validator: (value){
-                                  if(isWeightValid(value)){
-                                    setState(() {
-                                      _weightTextFieldColor = defaultColor;
-                                    });
-                                  }
-                                  else{
-                                    setState(() {
-                                      _weightTextFieldColor = errorColor;
-                                    });
-                                  }
-                                  return null;
-                                },
-                                controller: _controllerWeight,
-                                style: Theme.of(context).textTheme.titleMedium,
-                                maxLength: 5,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
-                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.bottom,
-                                onChanged: (String value){
-                                  _controllerWeight.text = value;
-                                  weight = value;
-                                },
-                                onTap: (){
+                            child: TextFormField(
+                              validator: (value){
+                                if(isWeightValid(value)){
                                   setState(() {
-                                    assignDefaultColor();
-                                    _weightTextFieldColor = activeColor;
+                                    _weightTextFieldColor = defaultColor;
                                   });
-                                },
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
-                                  contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  labelText: 'Вес',
-                                  labelStyle: Theme.of(context).textTheme.titleMedium,
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                }
+                                else{
+                                  setState(() {
+                                    _weightTextFieldColor = errorColor;
+                                  });
+                                }
+                                return null;
+                              },
+                              controller: _controllerWeight,
+                              style: Theme.of(context).textTheme.titleMedium,
+                              maxLength: 5,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              textAlign: TextAlign.start,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              onChanged: (String value){
+                                _controllerWeight.text = value;
+                                weight = value;
+                              },
+                              onTap: (){
+                                setState(() {
+                                  _assignDefaultColor();
+                                  _weightTextFieldColor = activeColor;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                counterText: '',
+                                //constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
+                                contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
                                 ),
+                                labelText: 'Вес',
+                                labelStyle: Theme.of(context).textTheme.titleMedium,
+                                floatingLabelBehavior: FloatingLabelBehavior.always,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: screenHeight/50,
@@ -350,15 +329,13 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: screenHeight * 0.083,
-                          width: screenWidth * 0.43,
-                          alignment: Alignment.centerLeft,
-                          decoration: _getContainerDecoration(_ageTextFieldColor),
-                          child: Padding(
-                            padding: EdgeInsets.only(top: screenHeight/45),
-                            child:
-                            TextFormField(
+                        Expanded(
+                          child: Container(
+                            height: 74,
+                            padding: const EdgeInsets.only(top: 20),
+                            alignment: Alignment.centerLeft,
+                            decoration: _getContainerDecoration(_ageTextFieldColor),
+                            child: TextFormField(
                               validator: (value){
                                 if(isWeightValid(value)){
                                   setState(() {
@@ -387,7 +364,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                               },
                               onTap: (){
                                 setState(() {
-                                  assignDefaultColor();
+                                  _assignDefaultColor();
                                   _ageTextFieldColor = activeColor;
                                 });
                               },
@@ -405,16 +382,16 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                             ),
                           ),
                         ),
-                        const Spacer(),
-                        Container(
-                          height: screenHeight * 0.083,
-                          width: screenWidth * 0.43,
-                          alignment: Alignment.centerLeft,
-                          decoration: _getContainerDecoration(_heightTextFieldColor),
-                          child: Padding(
-                            padding: EdgeInsets.only(top: screenHeight/45),
-                            child:
-                            TextFormField(
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 74,
+                            padding: const EdgeInsets.only(top: 20),
+                            alignment: Alignment.centerLeft,
+                            decoration: _getContainerDecoration(_heightTextFieldColor),
+                            child: TextFormField(
                               validator: (value){
                                 if(isWeightValid(value)){
                                   setState(() {
@@ -436,21 +413,19 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                               maxLength: 3,
                               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
                               keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                              textAlign: TextAlign.start,
                               textAlignVertical: TextAlignVertical.bottom,
                               onChanged: (String value){
                                 height = value;
                               },
                               onTap: (){
                                 setState(() {
-                                  assignDefaultColor();
+                                  _assignDefaultColor();
                                   _heightTextFieldColor = activeColor;
                                 });
                               },
                               decoration: InputDecoration(
                                 counterText: '',
-                                constraints: BoxConstraints.tightFor(width: screenWidth * 0.4, height: screenHeight * 0.075),
-                                contentPadding: EdgeInsets.only(bottom: screenHeight/40, left: screenWidth/20),
+                                contentPadding: EdgeInsets.only(bottom: 20, left: screenWidth/20),
                                 border: const OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                 ),
@@ -468,7 +443,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                     SizedBox(height: screenHeight/50),
                     ActivitySlider(onChanged: (value) {
                       activityCoefficient = value;
-                      assignDefaultColor();
+                      _assignDefaultColor();
                     }),
                     SizedBox(height: screenHeight/20),
                     const TitleForGoalPage(title: 'Ваша цель'),
@@ -485,7 +460,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                           }),
                           child: Container(
                             alignment: Alignment.center,
-                            width: screenWidth * 0.28,
+                            width: screenWidth * 0.30,
                             height: screenHeight/15,
                             decoration: _getButtonDecoration(_loseWeightColor),
                             child: Text(Goal.lose.goal,
@@ -501,7 +476,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                           }),
                           child: Container(
                             alignment: Alignment.center,
-                            width: screenWidth * 0.28,
+                            width: screenWidth * 0.30,
                             height: screenHeight/15,
                             decoration: _getButtonDecoration(_saveWeightColor),
                             child: Text(Goal.save.goal,
@@ -517,7 +492,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                           }),
                           child: Container(
                             alignment: Alignment.center,
-                            width: screenWidth * 0.28,
+                            width: screenWidth * 0.30,
                             height: screenHeight/15,
                             decoration: _getButtonDecoration(_gainWeightColor),
                             child: Text(Goal.gain.goal,
@@ -532,19 +507,19 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                       onTap: (){
                         if(sexValue.toLowerCase() == 'не выбран'){
                           setState(() {
-                            _sexTextFieldColor = errorColor;
+                            _sexButtonColor = errorColor;
                             validate = false;
                           });
                           return;
                         }
                         else {
                           setState(() {
-                            _sexTextFieldColor = defaultColor;
+                            _sexButtonColor = defaultColor;
                             validate = true;
                           });
                         }
                         if(_formKey.currentState != null && _formKey.currentState!.validate() && validate){
-                          assignDefaultColor();
+                          _assignDefaultColor();
                           _saveWeightColor = activeColor;
                           if(calories == 0){
                             scrollController.animateTo(screenHeight/2.5, duration: const Duration(seconds: 1), curve: Curves.easeIn);
@@ -557,14 +532,8 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                         width: screenWidth/1.1,
                         height: screenHeight/20,
                         decoration: BoxDecoration(
-                          color: AppColors.turquoise ,
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                color: AppColors.black.withOpacity(0.2),
-                                offset: const Offset(10,10),
-                                blurRadius: 15
-                            ),
-                          ],
+                          gradient: AppColors.greenGradient,
+                          boxShadow: boxShadow,
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Text('Расчитать',
@@ -752,7 +721,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                             GestureDetector(
                               onTap: (){
                                 FocusScope.of(context).unfocus();
-                                assignDefaultColor();
+                                _assignDefaultColor();
                                 if(_formKey.currentState != null && _formKey.currentState!.validate()){
                                   BlocProvider.of<UserInfoBloc>(context).add(UserInfoEvent.update(
                                       carbohydratesGoal: carbohydrates,
@@ -806,7 +775,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                       'выдаёт необходимое количество килокалорий в сутки для каждого конкретного человека.\n',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey
+                                      color: textAdditionalColor
                                   )
                               ),
                               TextSpan(
@@ -820,14 +789,14 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                       'для мужчин: \n' ,
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey
+                                      color: textAdditionalColor
                                   )
                               ),
                               TextSpan(
                                   text: '10 * вес(кг) + 6,25 * рост(см) – 5 * возраст(г) + 5;\n',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey,
+                                      color: textAdditionalColor,
                                       fontStyle: FontStyle.italic
                                   )
                               ),
@@ -835,14 +804,14 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                   text: 'для женщин: \n' ,
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey
+                                      color: textAdditionalColor
                                   )
                               ),
                               TextSpan(
                                   text: '10 * вес(кг) + 6,25 * рост(см) – 5 * возраст(г) - 161;\n',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey,
+                                      color: textAdditionalColor,
                                       fontStyle: FontStyle.italic
                                   )
                               ),
@@ -852,14 +821,14 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                       'для мужчин: \n',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey
+                                      color: textAdditionalColor
                                   )
                               ),
                               TextSpan(
                                   text: '(10 * вес(кг) + 6,25 * рост(см) – 5 * возраст(г) + 5) * A;\n',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey,
+                                      color: textAdditionalColor,
                                       fontStyle: FontStyle.italic
                                   )
                               ),
@@ -867,14 +836,14 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                   text: 'для женщин: \n' ,
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey
+                                      color: textAdditionalColor
                                   )
                               ),
                               TextSpan(
                                   text: '(10 * вес(кг) + 6,25 * рост(см) – 5 * возраст(г) - 161) * A;\n',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey,
+                                      color: textAdditionalColor,
                                       fontStyle: FontStyle.italic
                                   )
                               ),
@@ -888,7 +857,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                       'В приложении \'Мой фитнес\' используется второй вариант формулы.',
                                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       height: 1.5,
-                                      color: AppColors.grey
+                                      color: textAdditionalColor
                                   )
                               ),
                             ]

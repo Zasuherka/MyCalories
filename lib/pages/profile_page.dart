@@ -1,7 +1,6 @@
 import 'package:app1/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/constants.dart';
-import 'package:app1/pages/editing_profile_page.dart';
 import 'package:app1/router/router.dart';
 import 'package:app1/widgets/avatar_wrap.dart';
 import 'package:auto_route/auto_route.dart';
@@ -25,298 +24,258 @@ class ProfilePage extends StatelessWidget {
     Image avatar = Image.asset('images/icon.jpg');
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SizedBox(
-        width: screenWidth,
-        height: screenHeight,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Stack(
-              children: [
-                Container(
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(137, 195, 232, 0.3),
-                          spreadRadius: 5,
-                          blurRadius: 13,
-                          offset: Offset(0, 10),
-                        ),
-                      ],
-                    ),
-                    width: screenWidth,
-                    height: screenWidth / 27  * 13,
-                    child: SvgPicture.asset(
-                      'images/waves.svg',
-                      colorFilter: const ColorFilter.mode(
-                          Colors.transparent, BlendMode.color),
-                      // Применение прозрачного фильтра
-                      width: screenWidth,
-                    )
-                ),
-                Padding(padding: EdgeInsets.only(top: screenWidth / 27  * 13 - screenHeight/12, left: screenWidth/2 - screenHeight/12),
-                    child: BlocBuilder<UserImageBloc, UserImageState>(
-                        builder: (context, state){
-                          state.whenOrNull(
-                              // initial: () {
-                              //   BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
-                              // },
-                              loadImage: (image) {
-                                avatar = Image.file(image);
-                                avatarIsNotNull = true;
-                              },
-                              error: (error) {
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Stack(
+            children: [
+              Container(
+                  decoration: BoxDecoration(
+                    boxShadow: boxShadow,
+                  ),
+                  height: 190,
+                  child: SvgPicture.asset(
+                    'images/waves.svg',
+                    fit: BoxFit.cover,
+                    colorFilter: const ColorFilter.mode(
+                        Colors.transparent, BlendMode.color),
+                  )
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: 117.5, left: screenWidth/2 - 145/2),
+                  child: BlocBuilder<UserImageBloc, UserImageState>(
+                      builder: (context, state){
+                        state.whenOrNull(
+                            // initial: () {
+                            //   BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
+                            // },
+                            loadImage: (image) {
+                              avatar = Image.file(image);
+                              avatarIsNotNull = true;
+                            },
+                            error: (error) {
+                              avatarIsNotNull = false;
+                              avatar = Image.asset('images/icon.jpg');
+                            },
+                            deleteImage: () {
+                              {
                                 avatarIsNotNull = false;
                                 avatar = Image.asset('images/icon.jpg');
-                              },
-                              deleteImage: () {
-                                {
-                                  avatarIsNotNull = false;
-                                  avatar = Image.asset('images/icon.jpg');
-                                }
-                              });
-                          return GestureDetector(
-                            onTap: (){
-                              showModalBottomSheet(context: context, builder:
-                                  (BuildContext context) => AvatarWrap(avatarIsNotNull: avatarIsNotNull));
-                            },
-                            child: Container(
-                              height: screenHeight/6,
-                              width: screenHeight/6,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(360),
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: avatar.image
-                                  ),
-                                  boxShadow: [BoxShadow(
+                              }
+                            });
+                        return GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(context: context, builder:
+                                (BuildContext context) => AvatarWrap(avatarIsNotNull: avatarIsNotNull));
+                          },
+                          child: Container(
+                            height: 145,
+                            width: 145,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(360),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: avatar.image
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
                                     color: Colors.black.withOpacity(0.17),
                                     spreadRadius: 4,
                                     blurRadius: 10,
                                     offset: const Offset(0, -5),
-                                  )]
-                              ),
+                                  )
+                                ]
                             ),
-                          );
-                        })
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: screenHeight/23, left: screenWidth/1.16),
-                  child: GestureDetector(
-                    onTap: () {
-                      context.router.push(const EditingProfileRoute());
-                    },
-                    child: SvgPicture.asset(
-                      'images/editing.svg',
-                      width: screenHeight / 27,
-                      height: screenHeight / 27,
-                      colorFilter:
-                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                    ),
+                          ),
+                        );
+                      })
+              ),
+              Positioned(
+                top: 37,
+                right: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    context.router.push(const EditingProfileRoute());
+                  },
+                  child: SvgPicture.asset(
+                    'images/editing.svg',
+                    width: 32,
+                    height: 32,
+                    colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: screenHeight/35
-            ),
-            //Padding(padding: EdgeInsets.only(top: screenHeight/70)),
-            BlocBuilder<UserInfoBloc, UserInfoState>(
-                builder: (context, state){
-                  final localUser = context.read<UserInfoBloc>().localUser;
-                  if(localUser != null){
-                    name = localUser.name;
-                    email = localUser.email;
-                  }
-                  // else{
-                  //   if (state is! StopBuildUserInfoState) {
-                  //     BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
-                  //   }
-                  // }
-                  return Text(name,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontSize: 30,
-                          color: AppColors.dark
-                      )
-                  );
-            }),
-            Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-            BlocBuilder<UserInfoBloc, UserInfoState>(
-              builder: (context, state) {
-                return Text(
-                  email,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.dark
-                  )
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10
+          ),
+          BlocBuilder<UserInfoBloc, UserInfoState>(
+              builder: (context, state){
+                final localUser = context.read<UserInfoBloc>().localUser;
+                if(localUser != null){
+                  name = localUser.name;
+                  email = localUser.email;
+                }
+                // else{
+                //   if (state is! StopBuildUserInfoState) {
+                //     BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
+                //   }
+                // }
+                return Text(name,
+                    style: Theme.of(context).textTheme.titleLarge
                 );
-              },
-            ),
-            Padding(padding: EdgeInsets.only(top: screenHeight/70)),
-            Container(
-                width: screenWidth * 0.95,
-                height: screenHeight/5,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 5,
-                      blurRadius: 13,
-                      offset: const Offset(10, 10),
+          }),
+          const SizedBox(
+              height: 10
+          ),
+          BlocBuilder<UserInfoBloc, UserInfoState>(
+            builder: (context, state) {
+              return Text(
+                email,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleSmall
+              );
+            },
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          Container(
+              margin: const EdgeInsets.symmetric(horizontal: 12.5),
+              height: 170,
+              decoration: BoxDecoration(
+                boxShadow: boxShadow,
+                color: AppColors.elementColor,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state){
+                final localUser = context.read<UserInfoBloc>().localUser;
+                if(localUser != null){
+                  weightNow = localUser.weightNow?.toString() ?? '—';
+                  weightGoal = localUser.weightGoal?.toString() ?? '—';
+                  height = localUser.height?.toString() ?? '—';
+                  age = localUser.age?.toString() ?? '—';
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Spacer(flex: 2),
+                        SizedBox(
+                          child: SvgPicture.asset(
+                            'images/weight.svg',
+                            width: 45,
+                            colorFilter: const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
+                          ),
+                        ),
+                        const Spacer(flex: 3),
+                        SizedBox(
+                          width: 100,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                  weightNow,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleLarge
+                              ),
+                              Text(
+                                  'Сейчас',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleSmall
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(flex: 3),
+                        SizedBox(
+                          width: 100,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                  weightGoal,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleLarge
+                              ),
+                              Text(
+                                  'Цель',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleSmall
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(flex: 2),
+                      ],
                     ),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Spacer(flex: 2),
+                        SvgPicture.asset(
+                          'images/people.svg',
+                          width: 45,
+                          colorFilter: const ColorFilter.mode(AppColors.textColor, BlendMode.srcIn),
+                        ),
+                        const Spacer(flex: 3),
+                        SizedBox(
+                          width: 100,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                  height,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleLarge
+                              ),
+                              Text(
+                                  'Рост',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleSmall
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(flex: 3),
+                        SizedBox(
+                          width: 100,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(age,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleLarge
+                              ),
+                              Text(
+                                  'Возраст',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleSmall
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(flex: 2),
+                      ],
+                    ),
+                    const Spacer()
                   ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: BlocBuilder<UserInfoBloc, UserInfoState>(builder: (context, state){
-                  final localUser = context.read<UserInfoBloc>().localUser;
-                  if(localUser != null){
-                    weightNow = localUser.weightNow?.toString() ?? '—';
-                    weightGoal = localUser.weightGoal?.toString() ?? '—';
-                    height = localUser.height?.toString() ?? '—';
-                    age = localUser.age?.toString() ?? '—';
-                  }
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Spacer(),
-                      Padding(padding: EdgeInsets.only(left: screenWidth/50, right: screenWidth/20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: screenHeight/14,
-                              child: SvgPicture.asset(
-                                'images/weight.svg',
-                                width: screenHeight/20,
-                                height: screenHeight/20,
-                                colorFilter: const ColorFilter.mode(Color(0xff2D2D2D), BlendMode.srcIn),
-                              ),
-                            ),
-                            SizedBox(
-                              height: screenHeight/14,
-                              width: screenWidth/4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    weightNow,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: const Color(0xff2D2D2D)
-                                    )
-                                  ),
-                                  Text(
-                                    'Сейчас',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                        color: const Color(0xff2D2D2D)
-                                    )
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: screenHeight/14,
-                              width: screenWidth/4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                      weightGoal,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                          color: const Color(0xff2D2D2D)
-                                      )
-                                  ),
-                                  Text(
-                                    'Цель',
-                                    overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                          color: const Color(0xff2D2D2D)
-                                      )
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const Spacer(),
-                      Padding(padding: EdgeInsets.only(left: screenWidth/50, right: screenWidth/20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: screenHeight/14,
-                              child: SvgPicture.asset(
-                                'images/people.svg',
-                                width: screenHeight/20,
-                                height: screenHeight/20,
-                                colorFilter: const ColorFilter.mode(Color(0xff2D2D2D), BlendMode.srcIn),
-                              ),
-                            ),
-                            SizedBox(
-                              height: screenHeight/14,
-                              width: screenWidth/4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    height,
-                                    overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                          color: const Color(0xff2D2D2D)
-                                      )
-                                  ),
-                                  Text(
-                                      'Рост',
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                          color: const Color(0xff2D2D2D)
-                                      )
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: screenHeight/14,
-                              width: screenWidth/4,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(age,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                          color: const Color(0xff2D2D2D)
-                                      )
-                                  ),
-                                  Text(
-                                    'Возраст',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                        color: const Color(0xff2D2D2D)
-                                    )
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const Spacer()
-                    ],
-                  );
-                })
-            ),
-          ],
-        ),
+                );
+              })
+          ),
+        ],
       )
     );
   }

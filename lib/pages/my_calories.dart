@@ -30,37 +30,51 @@ class _MyCaloriesPageState extends State<MyCaloriesPage> {
         backgroundColor: Colors.transparent,
         body:
         SingleChildScrollView(
-            child:Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + screenHeight/200),
-                child:
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top + 5,
+              left: 12.5, right: 12.5
+            ),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: const PFCChart(title: 'БЕЛКИ')
-                        ),
-                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: const PFCChart(title: 'ЖИРЫ')
-                        ),
-                        Padding(padding: EdgeInsets.only(left: screenWidth * 0.025),
-                            child: const PFCChart(title: 'УГЛЕВОДЫ')
-                        )
-                      ],
+                    Expanded(child: PFCChart(title: 'БЕЛКИ')),
+                    SizedBox(
+                      width: 10,
                     ),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                    const CaloriesChart(),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/75)),
-                    const EatingWidget(title: 'Завтрак'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    const EatingWidget(title: 'Обед'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    const EatingWidget(title: 'Ужин'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
-                    const EatingWidget(title: 'Другое'),
-                    Padding(padding: EdgeInsets.only(top: screenHeight/100)),
+                    Expanded(child: PFCChart(title: 'ЖИРЫ')),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(child: PFCChart(title: 'УГЛЕВОДЫ')),
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CaloriesChart(),
+                SizedBox(
+                  height: 10,
+                ),
+                EatingWidget(title: 'Завтрак'),
+                SizedBox(
+                  height: 10,
+                ),
+                EatingWidget(title: 'Обед'),
+                SizedBox(
+                  height: 10,
+                ),
+                EatingWidget(title: 'Ужин'),
+                SizedBox(
+                  height: 10,
+                ),
+                EatingWidget(title: 'Другое'),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             )
         )
     );

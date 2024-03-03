@@ -84,7 +84,7 @@ class _ActivitySliderState extends State<ActivitySlider> {
             width: screenWidth/1.1,
             child: Text('${activeListDescription[_currentSliderValue.toInt()]}.',
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.grey
+                  color: AppColors.lightGrey
               ),
             ),
           ),

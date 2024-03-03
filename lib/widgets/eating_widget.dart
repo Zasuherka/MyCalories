@@ -15,7 +15,7 @@ class EatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double heightWidget = screenHeight * 0.07;
+    double heightWidget = 55;
     String calories = '0.00';
     List<EatingFood> list = [];
     return BlocBuilder<EatingFoodBloc, EatingFoodState>(
@@ -36,19 +36,11 @@ class EatingWidget extends StatelessWidget {
             list = context.read<EatingFoodBloc>().another;
             calories = context.read<EatingFoodBloc>().caloriesInAnother;
           }
-          heightWidget = screenHeight * list.length * 0.07 + screenHeight * 0.07;
+          heightWidget = 55 * (list.length + 1);
           return Container(
-            width: screenWidth * 0.95,
             height: heightWidget,
             decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 2,
-                    offset: const Offset(-2, 2),
-                  ),
-                ],
+                boxShadow: boxShadow,
                 color: AppColors.elementColor,
                 borderRadius: BorderRadius.circular(25)
             ),
@@ -58,17 +50,17 @@ class EatingWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: screenHeight * 0.07,
+                  height: 55,
                   child:
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: screenWidth * 0.05,
+                      const SizedBox(
+                        width: 20,
                       ),
                       SizedBox(
-                        width: screenWidth/2.5,
+                        width: 160,
                         child: Text(
                           title,
                           textAlign: TextAlign.left,
@@ -77,9 +69,9 @@ class EatingWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Spacer(flex: 5),
+                      const Spacer(flex: 6),
                       SizedBox(
-                        width: screenWidth * 0.25,
+                        width: 120,
                         child: Text('$calories ккал',
                           textAlign: TextAlign.right,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -97,20 +89,19 @@ class EatingWidget extends StatelessWidget {
                         },
                         child: SvgPicture.asset(
                           'images/plus2.svg',
-                          width: screenHeight/40,
-                          height: screenHeight/40,
+                          width: 20,
+                          height: 20,
                           colorFilter: const ColorFilter.mode(AppColors.turquoise , BlendMode.srcIn),
                         ),
                       ),
-                      SizedBox(
-                        width: screenWidth * 0.05,
+                      const SizedBox(
+                        width: 20,
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  width: screenWidth * 0.95,
-                  height: screenHeight * 0.07 * list.length,
+                  height: 55.0 * list.length,
                   child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),//Чтобы не скролился
                       addSemanticIndexes: false,
@@ -130,8 +121,7 @@ class EatingWidget extends StatelessWidget {
                             );
                           },
                           child: Container(
-                              width: screenWidth * 0.95,
-                              height: screenHeight * 0.07,
+                              height: 55,
                               decoration: const BoxDecoration(
                                   border: Border(
                                       top: BorderSide(
@@ -144,12 +134,13 @@ class EatingWidget extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(
-                                    width: screenWidth * 0.05,
+                                  const SizedBox(
+                                    width: 20,
                                   ),
                                   SizedBox(
-                                    width: screenWidth * 0.55,
+                                    width: 220,
                                     child: Text(list[index].title,
+                                      overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                           color: AppColors.textColor
                                       ),
@@ -157,7 +148,7 @@ class EatingWidget extends StatelessWidget {
                                   ),
                                   const Spacer(),
                                   SizedBox(
-                                    width: screenWidth * 0.288,
+                                    width: 115,
                                     child:
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -180,8 +171,8 @@ class EatingWidget extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: screenWidth * 0.05,
+                                  const SizedBox(
+                                    width: 20,
                                   ),
                                 ],
                               )

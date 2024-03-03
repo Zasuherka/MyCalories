@@ -41,6 +41,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   void _onItemTapped(int index) {
+    FocusScope.of(context).unfocus();
     setState(() {
       _selectedIndex = index;
       iconProfile = const Icon(Icons.person_outline);
@@ -76,16 +77,12 @@ class _FirstPageState extends State<FirstPage> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
-      DeviceOrientation.portraitUp,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   //Для заблокирования ориентации экрана(чтобы работало только в вертикальном режиме)
+    //   DeviceOrientation.portraitUp,
+    // ]);
     BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -97,12 +94,13 @@ class _FirstPageState extends State<FirstPage> {
           fit: BoxFit.cover,
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
-          bottomNavigationBar: Container(
+          backgroundColor: AppColors.backGroundColor,
+          bottomNavigationBar:
+          Container(
             decoration: const BoxDecoration(
-              color: AppColors.elementColor,
-              //gradient: AppColors.greenGradient
+              gradient: AppColors.greenGradient
             ),
+            height: 55,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(icon: iconFood, label: 'Меню'),
@@ -110,6 +108,8 @@ class _FirstPageState extends State<FirstPage> {
                 BottomNavigationBarItem(icon: iconProfile, label: 'Профиль'),
                 BottomNavigationBarItem(icon: temporary, label: 'КБЖУ'),
               ],
+              iconSize: 20,
+              selectedFontSize: 10,
               type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.transparent,
               showUnselectedLabels: false,

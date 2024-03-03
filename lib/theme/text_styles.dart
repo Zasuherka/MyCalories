@@ -10,7 +10,7 @@ class TextStyles {
     //fontWeight: FontWeight.w100,
     fontSize: size,
     fontFamily: 'Comfortaa',
-    color: color ?? AppColors.dark
+    color: color ?? AppColors.textColor
   );
 
   TextStyle updateColor(Color color){

@@ -84,14 +84,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
             width: widget.isActive ? screenWidth/1.1 : 0,
             decoration: BoxDecoration(
               color: AppColors.white,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: AppColors.black.withOpacity(0.2),
-                    offset: const Offset(10,10),
-                    blurRadius: 15,
-                    spreadRadius: 5
-                ),
-              ],
+              boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(25),
             ),
             child: _isShow && widget.isActive ? Column(

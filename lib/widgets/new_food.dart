@@ -31,7 +31,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
         child:
         Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.elementColor,
               borderRadius: BorderRadius.circular(30)
           ),
           width: screenWidth/1.05,
@@ -78,7 +78,7 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         hintText: 'Название',
                         hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.colorForHintText
+                            color: AppColors.lightGrey
                         ),
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black, width: 1),

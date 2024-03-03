@@ -45,19 +45,12 @@ class PFCChart extends StatelessWidget {
           counter = 0;
         }
         return Container(
-            width: screenWidth * 0.3,
-            height: screenWidth * 0.4,
+            //width: 118,
+            height: 155,
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: AppColors.elementColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 2,
-                    offset: const Offset(-2, 2),
-                  ),
-                ],
+                boxShadow: boxShadow,
                 borderRadius: BorderRadius.circular(20.0)
             ),
             child: Column(
@@ -65,8 +58,8 @@ class PFCChart extends StatelessWidget {
               children: [
                 const Spacer(flex: 2),
                 SizedBox(
-                  width: screenWidth * 0.16,
-                  height: screenWidth * 0.160,
+                  width: 64,
+                  height: 64,
                   child:
                   Stack(
                     children: [
@@ -75,23 +68,23 @@ class PFCChart extends StatelessWidget {
                         PieChart
                           (
                             PieChartData(
-                                sectionsSpace: screenWidth/100,
+                                sectionsSpace: 4,
                                 startDegreeOffset : 270,
-                                centerSpaceRadius: screenWidth * 0.07,
+                                centerSpaceRadius: 28,
                                 centerSpaceColor: Colors.transparent,
                                 borderData: FlBorderData(show: false),
                                 sections: [
                                   PieChartSectionData
                                     (
                                       title: '',
-                                      radius: screenWidth * 0.03,
+                                      radius: 12,
                                       value: value,
                                       color: AppColors.turquoise
                                   ),
                                   PieChartSectionData
                                     (
                                       title: '',
-                                      radius: screenWidth * 0.03,
+                                      radius: 12,
                                       value: counter,
                                       color: AppColors.red
                                   ),

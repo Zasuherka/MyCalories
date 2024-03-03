@@ -10,89 +10,73 @@ class FoodListView extends StatelessWidget {
   const FoodListView({super.key, required this.listFood, required this.isAddEatingFood});
   @override
   Widget build(BuildContext context) {
-     
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(top: screenHeight / 300),
       itemCount: listFood.length,
       itemBuilder: (BuildContext context, int index) {
         int elementIndex = listFood.length - 1 - index;
-        return Padding(
-            padding: EdgeInsets.only(
-                top: screenHeight / 200,
-                left: screenWidth / 100,
-                right: screenWidth / 100),
-            child:
-            GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-                showModalBottomSheet(context: context, builder:
-                    (BuildContext context) =>
-                        FoodWrap(food: listFood[elementIndex], isAddEatingFood: isAddEatingFood));
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 5,
-                          blurRadius: 13,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(15.0)),
-                  width: screenWidth,
-                  height: screenHeight / 10,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: screenWidth / 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(
-                                left: screenWidth / 60)),
-                        SizedBox(
-                          height: screenHeight / 29,
-                          child: Text(
-                            listFood.elementAt(elementIndex).title,
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: AppColors.dark
-                            ),
+        return GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            showModalBottomSheet(context: context, builder:
+                (BuildContext context) =>
+                FoodWrap(food: listFood[elementIndex], isAddEatingFood: isAddEatingFood));
+          },
+          child: Container(
+              margin: const EdgeInsets.only(
+                  top: 5,
+                  left: 7,
+                  right: 7
+              ),
+              decoration: BoxDecoration(
+                  color: AppColors.elementColor,
+                  boxShadow: boxShadow,
+                  borderRadius: BorderRadius.circular(25.0)),
+              width: 400,
+              height: 77,
+              padding: const EdgeInsets.only(left: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+                  Text(
+                    listFood.elementAt(elementIndex).title,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: AppColors.textColor
+                    ),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 130,
+                        child: Text(
+                          '${listFood.elementAt(elementIndex).calories.toString()}ккал.',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              color: AppColors.textColor
                           ),
                         ),
-                        Padding(
-                            padding: EdgeInsets.only(top: screenHeight / 100)),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: screenWidth / 3,
-                              child: Text(
-                                '${listFood.elementAt(elementIndex).calories.toString()}ккал.',
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: AppColors.dark
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: screenWidth / 2.5,
-                              child: Text(
-                                '${listFood.elementAt(elementIndex).protein.toStringAsFixed(2)}|'
-                                    '${listFood.elementAt(elementIndex).fats.toStringAsFixed(2)}|'
-                                    '${listFood.elementAt(elementIndex).carbohydrates.toStringAsFixed(2)}',
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: AppColors.dark
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  )),
-            )
+                      ),
+                      SizedBox(
+                        width: 180,
+                        child: Text(
+                          '${listFood.elementAt(elementIndex).protein.toStringAsFixed(2)}|'
+                              '${listFood.elementAt(elementIndex).fats.toStringAsFixed(2)}|'
+                              '${listFood.elementAt(elementIndex).carbohydrates.toStringAsFixed(2)}',
+                          textAlign: TextAlign.left,
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              color: AppColors.textColor
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
+          ),
         );
       },
     );

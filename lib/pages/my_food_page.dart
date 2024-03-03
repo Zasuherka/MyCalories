@@ -53,7 +53,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
             preferredSize: Size.fromHeight(screenHeight/17),
             child: Container(
               decoration: const BoxDecoration(
-                gradient: AppColors.greenGradient
+                gradient: AppColors.greenGradient,
               ),
               height: screenHeight/10,
               //color: AppColors.turquoise ,
@@ -102,9 +102,8 @@ class _MyFoodPageState extends State<MyFoodPage> {
                                   ),
                                 ),
                                 filled: true,
-                                fillColor: AppColors.backGroundColor,
+                                fillColor: AppColors.white,
                                 counterText: '',
-                                hoverColor: Colors.orange,
                                 hintText: 'Поиск',
                                 hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
                                     color: AppColors.colorForHintText
@@ -133,6 +132,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                       onTap: () async {
                         await showDialog(
                             context: context,
+                            //barrierColor: AppColors.barrierColor,
                             builder: (BuildContext context) => const NewFood());
                         setState(() {});
                       },
@@ -150,59 +150,59 @@ class _MyFoodPageState extends State<MyFoodPage> {
             ),
             ),
           body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                BlocBuilder<FoodBloc, FoodState>(
-                  builder: (context, state) {
-                    state.whenOrNull(
-                        listFood: (list) {
-                          userFoodList = list;
-                          globalFoodList = [];
-                          },
-                        findListFood: (userFoodList, globalFoodList) {
-                          this.userFoodList = userFoodList;
-                          this.globalFoodList = globalFoodList;
-                        }
-                    );
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        userFoodList.isNotEmpty
-                            ? SizedBox(
-                                height: (screenHeight / 200 + screenHeight/10) * userFoodList.length + screenHeight/50,
-                                width: screenWidth,
-                                child: FoodListView(listFood: userFoodList, isAddEatingFood: isAddEatingFood)
-                              )
-                            : const SizedBox(),
-                        globalFoodList.isNotEmpty
-                            ? Container(
-                                padding: EdgeInsets.only(top: screenHeight/400),
-                                height: screenHeight / 35,
-                                width: screenWidth,
-                                child: Text(
-                                  'Глобальный поиск',
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                ),
-                            )
-                            : const SizedBox(),
-                        SizedBox(
-                          height: screenHeight/100,
-                        ),
-                        globalFoodList.isNotEmpty
-                            ? SizedBox(
-                              height: (screenHeight / 200 + screenHeight/10) * globalFoodList.length + screenHeight/8,
-                              width: screenWidth,
-                              child: FoodListView(listFood: globalFoodList, isAddEatingFood: isAddEatingFood)
-                            )
-                            : const SizedBox(),
-                      ],
-                    );
-                  },
-                )
-              ],
-            ),
+            child: BlocBuilder<FoodBloc, FoodState>(
+              builder: (context, state) {
+                state.whenOrNull(
+                    listFood: (list) {
+                      userFoodList = list;
+                      globalFoodList = [];
+                    },
+                    findListFood: (userFoodList, globalFoodList) {
+                      this.userFoodList = userFoodList;
+                      this.globalFoodList = globalFoodList;
+                    }
+                );
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    userFoodList.isNotEmpty
+                      ? SizedBox(
+                          height: (screenHeight / 200 + screenHeight / 10) *
+                                  userFoodList.length + screenHeight / 50,
+                          width: screenWidth,
+                          child: FoodListView(
+                              listFood: userFoodList,
+                              isAddEatingFood: isAddEatingFood))
+                      : const SizedBox(),
+                  globalFoodList.isNotEmpty
+                      ? Container(
+                          padding: EdgeInsets.only(top: screenHeight / 400),
+                          height: screenHeight / 35,
+                          width: screenWidth,
+                          child: Text(
+                            'Глобальный поиск',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        )
+                      : const SizedBox(),
+                  SizedBox(
+                    height: screenHeight / 100,
+                  ),
+                  globalFoodList.isNotEmpty
+                      ? SizedBox(
+                          height: (screenHeight / 200 + screenHeight / 10) *
+                                  globalFoodList.length +
+                              screenHeight / 8,
+                          width: screenWidth,
+                          child: FoodListView(
+                              listFood: globalFoodList,
+                              isAddEatingFood: isAddEatingFood))
+                      : const SizedBox(),
+                ],
+                );
+              },
+            )
           )
       ),
     );
