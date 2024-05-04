@@ -62,7 +62,7 @@ class EatingWidget extends StatelessWidget {
                           title,
                           textAlign: TextAlign.left,
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.textColor
+                            color: AppColors.secondaryTextColor
                           ),
                         ),
                       ),
@@ -72,7 +72,7 @@ class EatingWidget extends StatelessWidget {
                         child: Text('$calories ккал',
                           textAlign: TextAlign.right,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.textColor
+                              color: AppColors.secondaryTextColor
                           ),
                         ),
                       ),
@@ -98,7 +98,8 @@ class EatingWidget extends StatelessWidget {
                             EatingFoodEvent.getEatingFoodInfo(
                                 eatingFood: list[index],
                                 index: index,
-                                nameEating: title));
+                                nameEating: title)
+                            );
                             showModalBottomSheet(
                                 context: context,
                                 builder: (BuildContext context) => const EatingFoodWrap()
@@ -126,7 +127,7 @@ class EatingWidget extends StatelessWidget {
                                     child: Text(list[index].title,
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                          color: AppColors.textColor
+                                          color: AppColors.secondaryTextColor
                                       ),
                                     ),
                                   ),
@@ -141,14 +142,14 @@ class EatingWidget extends StatelessWidget {
                                         const Spacer(),
                                         Text('${(list[index].calories / 100 * list[index].weight).toStringAsFixed(2)}ккал.',
                                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                              color: AppColors.textColor
+                                              color: AppColors.secondaryTextColor
                                           ),
                                           textAlign: TextAlign.right,
                                         ),
                                         const Spacer(),
                                         Text('${list[index].weight.toString()}г.',
                                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                              color: AppColors.textColor
+                                              color: AppColors.secondaryTextColor
                                           ),
                                         ),
                                         const Spacer(),

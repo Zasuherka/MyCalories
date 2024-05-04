@@ -43,7 +43,7 @@ class FoodListView extends StatelessWidget {
                     listFood.elementAt(elementIndex).title,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.textColor
+                        color: AppColors.secondaryTextColor
                     ),
                   ),
                   const Spacer(),
@@ -54,7 +54,7 @@ class FoodListView extends StatelessWidget {
                         child: Text(
                           '${listFood.elementAt(elementIndex).calories.toString()}ккал.',
                           style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: AppColors.textColor
+                              color: AppColors.secondaryTextColor
                           ),
                         ),
                       ),
@@ -66,7 +66,7 @@ class FoodListView extends StatelessWidget {
                               '${listFood.elementAt(elementIndex).carbohydrates.toStringAsFixed(2)}',
                           textAlign: TextAlign.left,
                           style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: AppColors.textColor
+                              color: AppColors.secondaryTextColor
                           ),
                         ),
                       ),

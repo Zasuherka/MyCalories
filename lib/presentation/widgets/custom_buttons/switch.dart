@@ -22,7 +22,7 @@ class CustomSwitch extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(
                 width: 2,
-                color: value ? AppColors.turquoise  : AppColors.textColor
+                color: value ? AppColors.turquoise  : AppColors.secondaryTextColor
             ),
             borderRadius: BorderRadius.circular(30)
         ),
@@ -32,7 +32,7 @@ class CustomSwitch extends StatelessWidget {
           height: screenHeight/20,
           margin: EdgeInsets.fromLTRB(screenWidth/400, screenHeight/200, screenWidth/400, screenHeight/200),
           decoration: BoxDecoration(
-              color: value? AppColors.turquoise  : AppColors.textColor,
+              color: value? AppColors.turquoise  : AppColors.secondaryTextColor,
               //image: value? const DecorationImage(image: AssetImage('images/icon.png')) : null,
               shape: BoxShape.circle
           ),

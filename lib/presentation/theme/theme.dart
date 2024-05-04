@@ -55,12 +55,12 @@ ThemeData createTheme() {
       backgroundColor: AppColors.elementColor,
       titleTextStyle: TextStyles.comfortaa(
           size: 22,
-          color: AppColors.textAdditionalColor
+          color: AppColors.primaryTextColor
       ).textStyle,
     ),
     menuTheme: const MenuThemeData(
       style: MenuStyle(
-          backgroundColor: MaterialStatePropertyAll<Color>(AppColors.white),
+          backgroundColor: MaterialStatePropertyAll<Color>(AppColors.primaryButtonColor),
           shape: MaterialStatePropertyAll<OutlinedBorder?>(RoundedRectangleBorder ()),
           side: MaterialStatePropertyAll<BorderSide?>(BorderSide(
               width: 2

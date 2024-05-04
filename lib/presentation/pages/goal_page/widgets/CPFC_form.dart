@@ -83,7 +83,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
             padding: const EdgeInsets.all(10),
             width: widget.isActive ? screenWidth : 0,
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: AppColors.primaryButtonColor,
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(25),
             ),
@@ -366,7 +366,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
                     ),
                     child: Text('Сохранить',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.white
+                          color: AppColors.primaryButtonColor
                       ),
                     ),
                   ),

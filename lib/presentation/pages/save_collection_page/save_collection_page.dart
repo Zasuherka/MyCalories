@@ -1,3 +1,5 @@
+import 'package:app1/domain/model/collection.dart';
+import 'package:app1/internal/bloc/collection_food/collection_food_bloc.dart';
 import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/domain/model/food.dart';
@@ -11,7 +13,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 @RoutePage()
 class SaveCollectionPage extends StatefulWidget {
   final List<Food> listFood;
-  const SaveCollectionPage({super.key, required this.listFood});
+  final Collection? collection;
+  const SaveCollectionPage({super.key, required this.listFood, this.collection});
 
   @override
   State<SaveCollectionPage> createState() => _SaveCollectionPageState();
@@ -38,6 +41,10 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
   @override
   void initState() {
     super.initState();
+    if(widget.collection != null){
+      title = widget.collection!.title ?? '';
+    }
+    _titleTextController.text = title;
     listFood.addAll(widget.listFood);
     _titleTextController.addListener(_titleListener);
   }
@@ -63,7 +70,7 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                 decoration: const BoxDecoration(
                     gradient: AppColors.greenGradient
                 ),),
-              title: const Text('Сохранить'),
+              title: const Text('Редактирование'),
               centerTitle: true,
               leading: Padding(
                 padding: const EdgeInsets.only(left: 23),
@@ -82,7 +89,7 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                       width: 33,
                       height: 33,
                       colorFilter:
-                      const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                      const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
                     ),
                   ),
                 ),
@@ -96,12 +103,22 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                           _errorText = 'Выберите название';
                         }
                         else{
-                          BlocProvider.of<CollectionBloc>(context)
-                              .add(CollectionEvent.createCollection(
-                              title: title,
-                              listFood: listFood
-                          ));
-                          context.router.popUntilRouteWithName(StartRoute.name);
+                          if(widget.collection == null){
+                            BlocProvider.of<CollectionBloc>(context)
+                                .add(CollectionEvent.createCollection(
+                                title: title,
+                                listFood: listFood
+                            ));
+                          }
+                          else{
+                            BlocProvider.of<CollectionFoodBloc>(context)
+                                .add(CollectionFoodEvent
+                                .updateCollection(
+                                  updateListFood: listFood,
+                                  collection: widget.collection!
+                            ));
+                          }
+                          context.router.popUntilRouteWithName(CollectionsRoute.name);
                         }
                       });
                     },
@@ -110,7 +127,7 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                       width: 33,
                       height: 33,
                       colorFilter:
-                      const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                      const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
                     ),
                   ),
                 )
@@ -195,7 +212,7 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                     'Добавить ещё',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.white
+                      color: AppColors.primaryButtonColor
                     ),
                   ),
                 ),

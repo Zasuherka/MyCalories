@@ -31,7 +31,6 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   Future<void> _authorization(String email, String password, Emitter<AuthorizationState> emitter) async{
     emitter(const AuthorizationState.loading());
     final AuthorizationStatus status = await _userRepository.authorization(email, password);
-    print(status.authorizationStatus);
     if(status == AuthorizationStatus.successful){
       emitter(const AuthorizationState.successful());
       await Future.delayed(const Duration(milliseconds: 300));

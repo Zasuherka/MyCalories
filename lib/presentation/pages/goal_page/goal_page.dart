@@ -4,8 +4,8 @@ import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/validation/profile.dart';
 import 'package:app1/presentation/pages/goal_page/widgets/CPFC_form.dart';
 import 'package:app1/presentation/pages/goal_page/widgets/activity_slider.dart';
-import 'package:app1/presentation/widgets/custom_drop_down_button.dart';
-import 'package:app1/presentation/widgets/switch.dart';
+import 'package:app1/presentation/widgets/custom_buttons/custom_drop_down_button.dart';
+import 'package:app1/presentation/widgets/custom_buttons/switch.dart';
 import 'package:app1/presentation/pages/goal_page/widgets/title_for_goal_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -52,7 +52,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
 
   final ScrollController scrollController = ScrollController();
 
-  Color defaultColor = AppColors.textColor;
+  Color defaultColor = AppColors.secondaryTextColor;
   Color defaultWeightColor = Colors.transparent;
   Color activeColor = AppColors.turquoise ;
   Color errorColor = AppColors.red;
@@ -192,7 +192,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                   width: 33,
                   height: 33,
                   colorFilter:
-                  const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                  const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
                 ),
               ),
             ),
@@ -555,7 +555,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                         ),
                         child: Text('Расчитать',
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: AppColors.white
+                              color: AppColors.primaryButtonColor
                           ),
                         ),
                       ),
@@ -575,7 +575,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                         height: calories != 0 ? 325 : 0,
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
-                          color: AppColors.white,
+                          color: AppColors.primaryButtonColor,
                           boxShadow: <BoxShadow>[
                             BoxShadow(
                                 color: AppColors.black.withOpacity(0.2),
@@ -756,7 +756,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                                 ),
                                 child: Text('Сохранить',
                                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      color: AppColors.white
+                                      color: AppColors.primaryButtonColor
                                   ),
                                 ),
                               ),

@@ -102,7 +102,7 @@ class _MyFoodPageState extends State<MyFoodPage> {
                                 ),
                               ),
                               filled: true,
-                              fillColor: AppColors.white,
+                              fillColor: AppColors.primaryButtonColor,
                               counterText: '',
                               hintText: 'Поиск',
                               hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(

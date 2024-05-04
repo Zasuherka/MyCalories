@@ -9,10 +9,18 @@ abstract class ICollectionRepository {
     required String title
   });
 
-  Future getUserListCollection();
+  Future<void> updateCollection({
+    required List<Food> updateListFood,
+    required Collection collection
+  });
+
+  Future<void> getUserListCollection();
 
   Future<List<CollectionView>> findGlobalCollection(String searchText);
 
-  Future<Collection> getCollectionById(String collectionId);
+  Future<void> deleteCollectionFromList(String collectionId);
 
+  Future<void> addCollectionInUserListCollection(Collection collection);
+
+  Future<(Collection, bool, bool)> getCollectionById(String collectionId);
 }

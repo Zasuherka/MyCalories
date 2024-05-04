@@ -44,13 +44,41 @@ class CollectionRepository implements ICollectionRepository {
   }
 
   @override
-  Future getUserListCollection() async {
+  Future<void> updateCollection({
+    required List<Food> updateListFood,
+    required Collection collection
+  }) async {
+
+    final localUser = _userRepository.localUser;
+
+    if(localUser == null){
+      throw 'localUser is Null';
+    }
+
+    collection.listFood = updateListFood;
+
+    try{
+      await _database.collectionData.updateCollection(
+          collectionDto: CollectionDto(
+              authorEmail: collection.authorEmail,
+              lowerCaseTitle: collection.title.toLowerCase(),
+              title: collection.title,
+              foodsId: collection.listFoodIds
+          ),
+          collectionId: collection.id
+      );
+      _userRepository.setUserInfo(localUser);
+    }
+    catch(_){}
+  }
+
+  @override
+  Future<void> getUserListCollection() async {
     final localUser = _userRepository.localUser;
 
     if (localUser == null) {
       throw 'localUser равен нулю';
     }
-    
     try{
       final list = await _database.collectionData.getUserListCollection(
           localUser.email,
@@ -59,9 +87,7 @@ class CollectionRepository implements ICollectionRepository {
       localUser.listCollection = list;
       _userRepository.setUserInfo(localUser);
     }
-    catch(error){
-      print(error);
-    }
+    catch(error){}
   }
 
   @override
@@ -93,21 +119,92 @@ class CollectionRepository implements ICollectionRepository {
 
 
   @override
-  Future<Collection> getCollectionById(String collectionId) async {
+  Future<(Collection, bool, bool)> getCollectionById(String collectionId) async {
     final localUser = _userRepository.localUser;
     
     if(localUser == null) {
       throw 'localUser равен нулю';
     }
 
-    for(Collection collection in localUser.listCollection){
-      if(collection.id == collectionId){
-        return collection;
+    // for(Collection collection in localUser.listCollection){
+    //   if(collection.id == collectionId){
+    //     if(collection.authorEmail == localUser.email){
+    //       return (collection, true, true);
+    //     }
+    //     return (collection, false, true);
+    //   }
+    // }
+
+    try{
+      final collection = await _database
+          .collectionData
+          .getCollectionById(collectionId);
+      if(localUser.email == collection.authorEmail){
+        for(CollectionView collectionView in localUser.listCollectionView){
+          if(collectionView.id == collection.id){
+            return (collection, true, true);
+          }
+        }
+        return (collection, true, false);
       }
+      for(CollectionView collectionView in localUser.listCollectionView){
+        if(collectionView.id == collection.id){
+          return (collection, false, true);
+        }
+      }
+      return (collection, false, false);
+    }
+    catch(_){
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteCollectionFromList(String collectionId) async {
+    final localUser = _userRepository.localUser;
+
+    if (localUser == null) {
+      throw 'localUser равен нулю';
     }
 
-    return await _database
-        .collectionData
-        .getCollectionById(collectionId);
+    try{
+      localUser.listCollectionsId.removeWhere((element) => element == collectionId);
+      localUser.listCollectionView.removeWhere((element) => element.id == collectionId);
+
+      _userRepository.setUserInfo(localUser);
+
+      await _database.collectionData.editUserListCollection(
+          localUser.listCollectionsId, localUser.userId
+      );
+    }
+    catch(_){
+      throw Exception('Ошбика при удаление коллекции из списка коллекций пользователя');
+    }
+  }
+
+  @override
+  Future<void> addCollectionInUserListCollection(Collection collection) async {
+    final localUser = _userRepository.localUser;
+
+    if (localUser == null) {
+      throw 'localUser равен нулю';
+    }
+
+    if(localUser.listCollectionsId.contains(collection.id)){
+      throw Exception('В списке пользователя уже имеется данная коллекция');
+    }
+
+    try{
+      localUser.listCollectionView.add(CollectionView.fromCollection(collection));
+      localUser.listCollectionsId.add(collection.id);
+
+      await _database.collectionData
+          .editUserListCollection(localUser.listCollectionsId, localUser.userId);
+
+      _userRepository.setUserInfo(localUser);
+    }
+    catch(error){
+      rethrow;
+    }
   }
 }

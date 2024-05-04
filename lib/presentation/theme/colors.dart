@@ -24,13 +24,14 @@ class AppColors {
   //       Color(0xff01c57c),
   //     ]
   // );
-  static const Color textAdditionalColor = Color(0xFFFFFFFF);
+  static const Color primaryTextColor = Color(0xFFFFFFFF);
   static const Color lightGrey = Color(0xFFa3a3a3);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color textColor = Color(0xFF000000);
+  static const Color primaryButtonColor = Color(0xFFFFFFFF);
+  static const Color inactivePrimaryButtonColor = Color(0xFFd6d6d6);
+  static const Color inactiveIconColor = Color(0x7FFFFFFF);
+  static const Color secondaryTextColor = Color(0xFF2D2D2D);
   static const Color colorForHintText = Color(0x2A000000);
   static const Color backGroundColor = Color(0xFFEEEEEE);
-  // static const Color green = Color(0xFF10F00C); //0xFF10F00C
   static const Color turquoise  = Color(0xff21e9ce); //0xFF10F00C
   static const Color red = Color(0xFFfc0f2b); //0xFFFF000D
   static const Color dark = Color(0xff2D2D2D);
@@ -44,6 +45,12 @@ class AppColors {
       colors: [
         Color(0xff21e9ce),
         Color(0xff01c57c),
+      ]
+  );
+  static const LinearGradient inactiveGreenGradient = LinearGradient(
+      colors: [
+        Color(0x7F21e9ce),
+        Color(0x7F01c57c),
       ]
   );
 }

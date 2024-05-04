@@ -20,7 +20,6 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
   final IUserRepository _userRepository = UserRepository();
   AppUser? localUser;
 
-  List<Collection> listCollection = [];
   List<CollectionView> listCollectionView = [];
 
   CollectionBloc() : super(const CollectionState.initial()) {
@@ -43,19 +42,19 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
 
     localUser = _userRepository.localUser;
     if(localUser != null){
-      listCollection = localUser!.listCollection;
       listCollectionView = localUser!.listCollectionView;
     }
     UserRepository.controller.stream.listen((event) {
       if(event != null){
-        listCollection = event.listCollection;
         listCollectionView = event.listCollectionView;
+        print('ПРИШЁЛ EVENT');
+        print(listCollectionView.length);
       }
     });
   }
 
   Future _getUserListCollection(Emitter<CollectionState> emitter) async {
-    if(listCollection.isEmpty){
+    if(listCollectionView.isEmpty){
       emitter(const CollectionState.loading());
       await _collectionService.getUserListCollection();
       emitter(CollectionState.listCollection(listCollection: listCollectionView));

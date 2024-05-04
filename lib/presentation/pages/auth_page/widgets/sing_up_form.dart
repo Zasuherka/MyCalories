@@ -50,7 +50,7 @@ class SingUpForm extends StatelessWidget {
                       title,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: AppColors.white,
+                          color: AppColors.primaryButtonColor,
                           height: 1
                       ),
                     ),
@@ -64,14 +64,14 @@ class SingUpForm extends StatelessWidget {
                       },
                       inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9.@-]'))],
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.white
+                          color: AppColors.primaryButtonColor
                       ),
                       decoration: InputDecoration(
                         hoverColor: Colors.orange,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         hintText: 'Почта',
                         hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.white.withOpacity(0.8)
+                            color: AppColors.primaryButtonColor.withOpacity(0.8)
                         ),
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black, width: 1),
@@ -95,7 +95,7 @@ class SingUpForm extends StatelessWidget {
                       inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9. ]'))],
                       maxLength: 20,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.white
+                          color: AppColors.primaryButtonColor
                       ),
                       decoration: InputDecoration(
                         counterText: '',
@@ -103,7 +103,7 @@ class SingUpForm extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         hintText: 'Имя',
                         hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.white.withOpacity(0.8)
+                            color: AppColors.primaryButtonColor.withOpacity(0.8)
                         ),
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black, width: 1),
@@ -127,14 +127,14 @@ class SingUpForm extends StatelessWidget {
                       },
                       inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9]'))],
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.white
+                          color: AppColors.primaryButtonColor
                       ),
                       decoration: InputDecoration(
                         hoverColor: Colors.orange,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         hintText: 'Пароль',
                         hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.white.withOpacity(0.8)
+                            color: AppColors.primaryButtonColor.withOpacity(0.8)
                         ),
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black, width: 1),
@@ -158,14 +158,14 @@ class SingUpForm extends StatelessWidget {
                       },
                       inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Zа-яА-Я0-9]'))],
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.white
+                          color: AppColors.primaryButtonColor
                       ),
                       decoration: InputDecoration(
                         hoverColor: Colors.orange,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         hintText: 'Повторите пароль',
                         hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.white.withOpacity(0.8)
+                            color: AppColors.primaryButtonColor.withOpacity(0.8)
                         ),
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black, width: 1),
@@ -191,7 +191,7 @@ class SingUpForm extends StatelessWidget {
                       height: screenHeight * 0.05,
                       width: screenWidth * 0.76,
                       decoration: BoxDecoration(
-                          color: AppColors.white.withOpacity(buttonIsActive ? 1 : 0.65),
+                          color: AppColors.primaryButtonColor.withOpacity(buttonIsActive ? 1 : 0.65),
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: <BoxShadow>[
                             BoxShadow(

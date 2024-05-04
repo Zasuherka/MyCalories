@@ -2,7 +2,7 @@ import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/domain/enums/sex.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/validation/profile.dart';
-import 'package:app1/presentation/widgets/custom_drop_down_button.dart';
+import 'package:app1/presentation/widgets/custom_buttons/custom_drop_down_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -169,7 +169,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                         width: 33,
                         height: 33,
                         colorFilter:
-                        const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                        const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
                       ),
                     ),
                   ),
@@ -210,7 +210,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                           width: 33,
                           height: 33,
                           colorFilter:
-                          const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                          const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
                         ),
                       ),
                     )
@@ -635,7 +635,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                                     child: Text(
                                         'Выйти из аккаунта',
                                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                            color: AppColors.white
+                                            color: AppColors.primaryButtonColor
                                         )
                                     ),
                                   )

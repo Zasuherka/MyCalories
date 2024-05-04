@@ -74,7 +74,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                       updateView();
                     }),
                     child: Container(
-                      color: AppColors.white,
+                      color: AppColors.primaryButtonColor,
                       child: const LoginForm(),
                     ),
                   )
@@ -164,7 +164,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
                   style: TextStyle(
                       fontFamily: 'Comfortaa',
                       fontSize: _isShowSingUp ? screenHeight/23 : screenHeight/27,
-                      color:  _isShowSingUp ? Colors.transparent : AppColors.white
+                      color:  _isShowSingUp ? Colors.transparent : AppColors.primaryButtonColor
                   ),
                   textAlign: TextAlign.center,
                   child: Transform.rotate(

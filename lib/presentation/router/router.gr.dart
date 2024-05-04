@@ -21,6 +21,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AuthPage(),
       );
     },
+    CollectionRoute.name: (routeData) {
+      final args = routeData.argsAs<CollectionRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CollectionPage(
+          key: args.key,
+          collectionId: args.collectionId,
+        ),
+      );
+    },
     CollectionsRoute.name: (routeData) {
       final args = routeData.argsAs<CollectionsRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -90,6 +100,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: SaveCollectionPage(
           key: args.key,
           listFood: args.listFood,
+          collection: args.collection,
         ),
       );
     },
@@ -97,6 +108,16 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const StartPage(),
+      );
+    },
+    UpdateCollectionRoute.name: (routeData) {
+      final args = routeData.argsAs<UpdateCollectionRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: UpdateCollectionPage(
+          key: args.key,
+          collection: args.collection,
+        ),
       );
     },
   };
@@ -114,6 +135,44 @@ class AuthRoute extends PageRouteInfo<void> {
   static const String name = 'AuthRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CollectionPage]
+class CollectionRoute extends PageRouteInfo<CollectionRouteArgs> {
+  CollectionRoute({
+    Key? key,
+    required String collectionId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CollectionRoute.name,
+          args: CollectionRouteArgs(
+            key: key,
+            collectionId: collectionId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CollectionRoute';
+
+  static const PageInfo<CollectionRouteArgs> page =
+      PageInfo<CollectionRouteArgs>(name);
+}
+
+class CollectionRouteArgs {
+  const CollectionRouteArgs({
+    this.key,
+    required this.collectionId,
+  });
+
+  final Key? key;
+
+  final String collectionId;
+
+  @override
+  String toString() {
+    return 'CollectionRouteArgs{key: $key, collectionId: $collectionId}';
+  }
 }
 
 /// generated route for
@@ -295,12 +354,14 @@ class SaveCollectionRoute extends PageRouteInfo<SaveCollectionRouteArgs> {
   SaveCollectionRoute({
     Key? key,
     required List<Food> listFood,
+    Collection? collection,
     List<PageRouteInfo>? children,
   }) : super(
           SaveCollectionRoute.name,
           args: SaveCollectionRouteArgs(
             key: key,
             listFood: listFood,
+            collection: collection,
           ),
           initialChildren: children,
         );
@@ -315,15 +376,18 @@ class SaveCollectionRouteArgs {
   const SaveCollectionRouteArgs({
     this.key,
     required this.listFood,
+    this.collection,
   });
 
   final Key? key;
 
   final List<Food> listFood;
 
+  final Collection? collection;
+
   @override
   String toString() {
-    return 'SaveCollectionRouteArgs{key: $key, listFood: $listFood}';
+    return 'SaveCollectionRouteArgs{key: $key, listFood: $listFood, collection: $collection}';
   }
 }
 
@@ -339,4 +403,42 @@ class StartRoute extends PageRouteInfo<void> {
   static const String name = 'StartRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UpdateCollectionPage]
+class UpdateCollectionRoute extends PageRouteInfo<UpdateCollectionRouteArgs> {
+  UpdateCollectionRoute({
+    Key? key,
+    required Collection collection,
+    List<PageRouteInfo>? children,
+  }) : super(
+          UpdateCollectionRoute.name,
+          args: UpdateCollectionRouteArgs(
+            key: key,
+            collection: collection,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'UpdateCollectionRoute';
+
+  static const PageInfo<UpdateCollectionRouteArgs> page =
+      PageInfo<UpdateCollectionRouteArgs>(name);
+}
+
+class UpdateCollectionRouteArgs {
+  const UpdateCollectionRouteArgs({
+    this.key,
+    required this.collection,
+  });
+
+  final Key? key;
+
+  final Collection collection;
+
+  @override
+  String toString() {
+    return 'UpdateCollectionRouteArgs{key: $key, collection: $collection}';
+  }
 }

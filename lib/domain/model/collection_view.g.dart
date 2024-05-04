@@ -10,10 +10,12 @@ CollectionView _$CollectionViewFromJson(Map<String, dynamic> json) =>
     CollectionView(
       json['id'] as String,
       json['title'] as String,
+      json['authorEmail'] as String,
     );
 
 Map<String, dynamic> _$CollectionViewToJson(CollectionView instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'authorEmail': instance.authorEmail,
     };

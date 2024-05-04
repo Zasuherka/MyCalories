@@ -4,8 +4,11 @@ part of 'collection_food_bloc.dart';
 class CollectionFoodState with _$CollectionFoodState {
   const factory CollectionFoodState.initial() = _Initial;
   const factory CollectionFoodState.loading() = _Loading;
-  const factory CollectionFoodState.collectionFood({
-    required List<Food> list
+  const factory CollectionFoodState.success() = _Success;
+  const factory CollectionFoodState.collection({
+    required Collection collection,
+    required bool isUserCollection,
+    required bool userHaveThisCollection,
   }) = _CollectionFood;
   const factory CollectionFoodState.failure({
     required String errorText

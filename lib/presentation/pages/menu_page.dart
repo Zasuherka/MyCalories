@@ -41,7 +41,7 @@ class MenuPage extends StatelessWidget {
                       Text(
                           'Моя еда',
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.white
+                            color: AppColors.primaryButtonColor
                           )
                       ),
                     )
@@ -66,7 +66,7 @@ class MenuPage extends StatelessWidget {
                           'Колекции еды',
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: AppColors.white
+                              color: AppColors.primaryButtonColor
                           )
                       ),
                     ),
@@ -98,7 +98,7 @@ class MenuPage extends StatelessWidget {
                           'Мои КБЖУ',
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: AppColors.white
+                              color: AppColors.primaryButtonColor
                           )
                       ),
                     ),
@@ -119,7 +119,7 @@ class MenuPage extends StatelessWidget {
                         'Рецепты',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.white
+                            color: AppColors.primaryButtonColor
                         )
                     ),
                   ),

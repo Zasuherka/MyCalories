@@ -21,7 +21,14 @@ class _CollectionData{
     });
 
     return listCollectionId;
-}
+  }
+
+  Future<void> updateCollection({
+    required CollectionDto collectionDto,
+    required String collectionId,
+  }) async {
+    await _collectionsRef.child(collectionId).update(collectionDto.toJson());
+  }
 
   Future<Collection> getCollectionById(String collectionId) async {
     final DataSnapshot snapshot = await _collectionsRef.child(collectionId).get();
@@ -38,12 +45,12 @@ class _CollectionData{
   Future<List<Food>> getListFoodByCollectionId(List<String> listId) async {
     List<Food> listFood = [];
     for(String foodId in listId){
-      listFood.add(await getFoodById(foodId));
+      listFood.add(await _getFoodById(foodId));
     }
     return listFood;
   }
 
-  Future<Food> getFoodById(String foodId) async {
+  Future<Food> _getFoodById(String foodId) async {
     final DataSnapshot snapshot = await _foodsRef.child(foodId).get();
     final Map<String, dynamic> map = Map<String, dynamic>
         .from(snapshot.value as Map);
@@ -66,44 +73,30 @@ class _CollectionData{
     }
     return listCollectionView;
   }
+  
+  Future<void> editUserListCollection(List<String> newUserListCollectionId, String userId) async {
+    try{
+      print(newUserListCollectionId);
+      await _usersRef.child(userId).update({
+        'collections': newUserListCollectionId
+      });
+    }
+    catch(error){
+      print(error);
+      throw Exception('Ошибка при добавлении коллекции в список коллекий пользователя');
+    }
+  }
 
-  Future<List<Collection>> getUserListCollection(String email, List<String> listCollectionsId) async {
+  Future<List<CollectionView>> getUserListCollection(String email, List<String> listCollectionsId) async {
+    List<CollectionView> listCollectionView = [];
 
-    List<Collection> listCollection = [];
-
-    final Query query = _collectionsRef.orderByChild('authorEmail').startAt(
-        email);
-    final snapshot = await query.get();
-
-    for (DataSnapshot collectionSnap in snapshot.children) {
-      if (listCollectionsId.contains(collectionSnap.key)) {
-        final list = collectionSnap
-            .child('foodsId')
-            .value as List<Object?>;
-        final List<Food> listFood = [];
-        for (String id in list.map((id) => id.toString())) {
-          final foodRef = _foodsRef.child(id);
-          final foodSnap = await foodRef.get();
-          final Map<String, dynamic> map = Map<String, dynamic>
-              .from(foodSnap.value as Map);
-          map['idFood'] = id;
-          listFood.add(Food.fromJson(map));
-        }
-        final collection = Collection(
-          id: collectionSnap.key.toString(),
-          title: collectionSnap
-              .child('title')
-              .value
-              .toString(),
-          authorEmail: collectionSnap
-              .child('authorEmail')
-              .value
-              .toString(),
-        );
-        listCollection.add(collection);
-      }
+    for(String collectionId in listCollectionsId){
+      final DataSnapshot snap = await _collectionsRef.child(collectionId).get();
+      final String title = snap.child('title').value.toString();
+      final String authorEmail = snap.child('authorEmail').value.toString();
+      listCollectionView.add(CollectionView(collectionId, title, authorEmail));
     }
 
-    return listCollection;
+    return listCollectionView;
   }
 }

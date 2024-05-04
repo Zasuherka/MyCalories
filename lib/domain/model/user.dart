@@ -82,7 +82,7 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
     'УГЛЕВОДЫ': 0
   };
 
-  List<Collection> _listCollection = [];
+  List<CollectionView> _listCollectionView = [];
   List<String> listCollectionsId = [];
 
 
@@ -169,14 +169,14 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
     }
   }
 
-  List<Collection> get listCollection => _listCollection;
+  List<CollectionView> get listCollectionView => _listCollectionView;
 
-  set listCollection(List<Collection> list){
-    _listCollection = list;
+  set listCollection(List<CollectionView> list){
+    _listCollectionView = list;
     listCollectionsId = list.map((e) => e.id.toString()).toList();
   }
 
-  List<CollectionView> get listCollectionView {
-    return listCollection.map((collection) => CollectionView.fromCollection(collection)).toList();
-  }
+  // List<CollectionView> get listCollectionView {
+  //   return listCollection.map((collection) => CollectionView.fromCollection(collection)).toList();
+  // }
 }

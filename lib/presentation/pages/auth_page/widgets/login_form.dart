@@ -141,7 +141,7 @@ class LoginForm extends StatelessWidget {
                       child: Text(
                           'Войти',
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: AppColors.white
+                              color: AppColors.primaryButtonColor
                           )
                       ),
                     )

@@ -51,7 +51,6 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
         }
     );
 
-
     localUser = _userRepository.localUser;
     UserRepository.controller.stream.listen((event) {
       localUser = event;
