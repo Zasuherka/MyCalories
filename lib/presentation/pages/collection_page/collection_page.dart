@@ -66,7 +66,7 @@ class _CollectionPageState extends State<CollectionPage> {
               padding: const EdgeInsets.only(left: 23),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  context.router.popForced();
                 },
                 child: SvgPicture.asset(
                   'images/arrow.svg',

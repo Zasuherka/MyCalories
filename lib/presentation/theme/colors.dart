@@ -1,6 +1,6 @@
 part of '../constants.dart';
 
-class AppColors {
+abstract class AppColors {
   // static const Color white = Color(0xFFFFFFFF);
   // static const Color textColor = Color(0xFFEEEEEE);
   // static const Color textAdditionalColor = Color(0xFF519fe8);
@@ -29,6 +29,7 @@ class AppColors {
   static const Color primaryButtonColor = Color(0xFFFFFFFF);
   static const Color inactivePrimaryButtonColor = Color(0xFFd6d6d6);
   static const Color inactiveIconColor = Color(0x7FFFFFFF);
+  static const Color hintTextColor = Color(0x7Fadadad);
   static const Color secondaryTextColor = Color(0xFF2D2D2D);
   static const Color colorForHintText = Color(0x2A000000);
   static const Color backGroundColor = Color(0xFFEEEEEE);

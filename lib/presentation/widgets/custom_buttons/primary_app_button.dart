@@ -39,27 +39,30 @@ class PrimaryAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: animatedDuration ?? animationDurationMedium,
-      alignment: alignment,
-      padding:
-          padding ?? const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: margin,
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        gradient: !withColor
-            ? (isActive
-                ? gradient ?? AppColors.greenGradient
-                : inactiveGradient ?? AppColors.inactiveGreenGradient)
-            : null,
-        color: isActive
-            ? color ?? AppColors.primaryButtonColor
-            : inactiveColor ?? AppColors.inactivePrimaryButtonColor,
-        boxShadow: boxShadow,
-        borderRadius: BorderRadius.circular(borderRadius ?? 25),
+    return InkWell(
+      onTap: () => onTap.call(),
+      child: AnimatedContainer(
+        duration: animatedDuration ?? animationDurationMedium,
+        alignment: alignment,
+        padding:
+            padding ?? const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        margin: margin,
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          gradient: !withColor
+              ? (isActive
+                  ? gradient ?? AppColors.greenGradient
+                  : inactiveGradient ?? AppColors.inactiveGreenGradient)
+              : null,
+          color: isActive
+              ? color ?? AppColors.primaryButtonColor
+              : inactiveColor ?? AppColors.inactivePrimaryButtonColor,
+          boxShadow: boxShadow,
+          borderRadius: BorderRadius.circular(borderRadius ?? 25),
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }

@@ -47,6 +47,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CreateCollectionPage(),
       );
     },
+    CurrentWorkoutRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CurrentWorkoutPage(),
+      );
+    },
     EditingProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -223,6 +229,20 @@ class CreateCollectionRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CreateCollectionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CurrentWorkoutPage]
+class CurrentWorkoutRoute extends PageRouteInfo<void> {
+  const CurrentWorkoutRoute({List<PageRouteInfo>? children})
+      : super(
+          CurrentWorkoutRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CurrentWorkoutRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -1,5 +1,7 @@
 import 'package:app1/presentation/constants.dart';
+import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutMenuPage extends StatelessWidget {
@@ -29,7 +31,9 @@ class WorkoutMenuPage extends StatelessWidget {
               height: 10,
             ),
             PrimaryAppButton(
-              onTap: (){},
+              onTap: (){
+                context.router.push(const CurrentWorkoutRoute());
+              },
               withColor: true,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               alignment: Alignment.center,
