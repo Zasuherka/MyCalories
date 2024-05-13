@@ -150,7 +150,6 @@ class UserRepository implements IUserRepository{
           controller.add(null);
           return;
         }
-        print(_localUser);
         await _getCount();
         setUserInfo(_localUser!);
       } on FirebaseAuthException catch (e) {

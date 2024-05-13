@@ -26,7 +26,11 @@ class _WorkoutSetTextFieldState extends State<WorkoutSetTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value){
+        _fieldValidator(value);
+        return null;
+      },
       controller: widget.workoutSetController,
       textAlign: TextAlign.center,
       maxLength: 3,
@@ -74,9 +78,9 @@ class _WorkoutSetTextFieldState extends State<WorkoutSetTextField> {
     );
   }
 
-  void _fieldValidator(String value){
+  void _fieldValidator(String? value){
     setState(() {
-      if(value.isEmpty){
+      if(value == null || value.isEmpty){
         hasError = true;
       } else {
         hasError = false;

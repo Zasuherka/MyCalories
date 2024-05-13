@@ -1,3 +1,4 @@
+import 'package:app1/domain/model/workout/exercise_set.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/active_workout_title.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/workout_set_text_field.dart';
@@ -5,11 +6,16 @@ import 'package:flutter/material.dart';
 
 class WorkoutSetWithActiveTitle extends StatefulWidget {
   final void Function(String, String, String) onChanged;
-
+  final String title;
+  final String setCount;
+  final String repetitionsCount;
 
   const WorkoutSetWithActiveTitle({
     super.key,
-    required this.onChanged
+    required this.onChanged,
+    required this.title,
+    required this.setCount,
+    required this.repetitionsCount,
   });
 
   @override
@@ -17,20 +23,21 @@ class WorkoutSetWithActiveTitle extends StatefulWidget {
 }
 
 class _WorkoutSetWithActiveTitleState extends State<WorkoutSetWithActiveTitle> {
+  final TextEditingController titleController = TextEditingController();
 
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _setController = TextEditingController();
-  final TextEditingController _repetitionController = TextEditingController();
+  final TextEditingController setController = TextEditingController();
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  final TextEditingController repetitionController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
+    titleController.text = widget.title;
+    setController.text = widget.setCount;
+    repetitionController.text = widget.repetitionsCount;
     return Container(
       alignment: Alignment.center,
+      margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
@@ -41,12 +48,12 @@ class _WorkoutSetWithActiveTitleState extends State<WorkoutSetWithActiveTitle> {
         mainAxisSize: MainAxisSize.min,
         children: [
           ActiveWorkOutTitle(
-            titleController: _titleController,
+            titleController: titleController,
             onChanged: (_){
               widget.onChanged(
-                _titleController.text,
-                _setController.text,
-                _repetitionController.text,
+                titleController.text,
+                setController.text,
+                repetitionController.text,
               );
             },
           ),
@@ -58,24 +65,24 @@ class _WorkoutSetWithActiveTitleState extends State<WorkoutSetWithActiveTitle> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               WorkoutSetTextField(
-                workoutSetController: _setController,
+                workoutSetController: setController,
                 onChanged: (_){
                   widget.onChanged(
-                    _titleController.text,
-                    _setController.text,
-                    _repetitionController.text,
+                    titleController.text,
+                    setController.text,
+                    repetitionController.text,
                   );
                 },
                 width: 100,
                 hintText: 'Подходы',
               ),
               WorkoutSetTextField(
-                workoutSetController: _repetitionController,
+                workoutSetController: repetitionController,
                 onChanged: (_){
                   widget.onChanged(
-                    _titleController.text,
-                    _setController.text,
-                    _repetitionController.text,
+                    titleController.text,
+                    setController.text,
+                    repetitionController.text,
                   );
                 },
                 width: 100,

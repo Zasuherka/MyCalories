@@ -9,7 +9,7 @@ class ActiveWorkOutTitle extends StatefulWidget {
   const ActiveWorkOutTitle({
     super.key,
     this.titleController,
-    this.onChanged
+    this.onChanged,
   });
 
   @override
@@ -22,14 +22,18 @@ class _ActiveWorkOutTitleState extends State<ActiveWorkOutTitle> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value){
+        _fieldValidator(value);
+        return null;
+      },
       controller: widget.titleController,
       textAlign: TextAlign.center,
       maxLength: 20,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       inputFormatters: [
         FilteringTextInputFormatter.allow(
-            RegExp(r'[a-zA-Zа-яА-Я0-9.-]'))
+            RegExp(r'[a-zA-Zа-яА-Я0-9 .-]'))
       ],
       onChanged: (value){
         _fieldValidator(value);
@@ -70,9 +74,9 @@ class _ActiveWorkOutTitleState extends State<ActiveWorkOutTitle> {
     );
   }
 
-  void _fieldValidator(String value){
+  void _fieldValidator(String? value){
     setState(() {
-      if(value.isEmpty){
+      if(value == null || value.isEmpty){
         hasError = true;
       } else {
         hasError = false;
