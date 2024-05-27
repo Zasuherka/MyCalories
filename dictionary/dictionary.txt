@@ -1,0 +1,5 @@
+Workout - одна тренировка
+Exercise - физическое упражнение
+ExerciseSet - подход
+ExerciseRoundSet - сет
+PhysicalActivity - физическая аткивность(из этого состоит сет(ExerciseRoundSet))

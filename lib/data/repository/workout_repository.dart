@@ -22,12 +22,6 @@ class WorkoutRepository extends IWorkoutRepository{
 
     try{
       return _database.currentWorkout.getCurrentWorkout(localUser.userId).map((event) {
-        try{
-          print(event.toWorkout());
-        }
-        catch(error){
-          print(error);
-        }
         return event.toWorkout();
       });
     }
@@ -43,13 +37,11 @@ class WorkoutRepository extends IWorkoutRepository{
     if(localUser == null){
       throw 'localUser is null';
     }
-    print(workout.listExercise.length);
 
     try{
       await _database.currentWorkout.setCurrentWorkout(WorkoutDto.fromWorkout(workout), localUser.userId);
     }
     catch(error){
-      print(error);
       rethrow;
     }
   }

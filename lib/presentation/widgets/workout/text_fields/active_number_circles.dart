@@ -2,21 +2,21 @@ import 'package:app1/presentation/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ActiveWorkOutTitle extends StatefulWidget {
+class ActiveCountTitle extends StatefulWidget {
   final TextEditingController? titleController;
   final void Function(String)? onChanged;
 
-  const ActiveWorkOutTitle({
+  const ActiveCountTitle({
     super.key,
     this.titleController,
     this.onChanged,
   });
 
   @override
-  State<ActiveWorkOutTitle> createState() => _ActiveWorkOutTitleState();
+  State<ActiveCountTitle> createState() => _ActiveCountTitleState();
 }
 
-class _ActiveWorkOutTitleState extends State<ActiveWorkOutTitle> {
+class _ActiveCountTitleState extends State<ActiveCountTitle> {
 
   bool hasError = false;
 
@@ -29,12 +29,13 @@ class _ActiveWorkOutTitleState extends State<ActiveWorkOutTitle> {
       },
       controller: widget.titleController,
       textAlign: TextAlign.center,
-      maxLength: 20,
+      maxLength: 2,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       inputFormatters: [
         FilteringTextInputFormatter.allow(
-            RegExp(r'[a-zA-Zа-яА-Я0-9 .-]'))
+            RegExp(r'[0-9-]'))
       ],
+      keyboardType: TextInputType.phone,
       onChanged: (value){
         _fieldValidator(value);
         if(widget.onChanged != null){
@@ -49,7 +50,7 @@ class _ActiveWorkOutTitleState extends State<ActiveWorkOutTitle> {
                 color: AppColors.dark
             ),
           ),
-          hintText: 'Название',
+          hintText: 'Кругов',
           hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.hintTextColor
           ),
@@ -68,7 +69,7 @@ class _ActiveWorkOutTitleState extends State<ActiveWorkOutTitle> {
                 color: AppColors.red
             ),
           ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
           constraints: const BoxConstraints.tightFor(height: 40)
       ),
     );

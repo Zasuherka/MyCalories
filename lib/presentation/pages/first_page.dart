@@ -26,13 +26,6 @@ class _FirstPageState extends State<FirstPage> {
     const ProfilePage(),
     const WorkoutMenuPage()
   ];
-  // final List<Widget> pages = [
-  //   const MyFoodPage(isAddEatingFood: false),
-  //   const MyCaloriesPage(),
-  //   const ProfilePage(),
-  //   const GoalPage(),
-  //   const CollectionsPage()
-  // ];
   int _selectedIndex = 1;
   Widget iconProfile = const Icon(Icons.person_outline);
   Widget iconFood = const Icon(Icons.food_bank_outlined);

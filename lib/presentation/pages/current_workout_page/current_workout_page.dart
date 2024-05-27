@@ -1,6 +1,12 @@
+import 'package:app1/domain/model/workout/exercise.dart';
+import 'package:app1/domain/model/workout/exercise_cardio.dart';
+import 'package:app1/domain/model/workout/exercise_round_set.dart';
 import 'package:app1/domain/model/workout/exercise_set.dart';
-import 'package:app1/internal/bloc/current_workout/current_workout_bloc.dart';
+import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
+import 'package:app1/presentation/widgets/workout/plus_exercise_widget.dart';
+import 'package:app1/presentation/widgets/workout/workout_cardio_with_active_title.dart';
+import 'package:app1/presentation/widgets/workout/workout_round_set_with_active_title.dart';
 import 'package:app1/presentation/widgets/workout/workout_set_with_active_title.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +24,7 @@ class CurrentWorkoutPage extends StatefulWidget {
 class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int activeTitle = -1;
+  int activeIndex = -1;
 
   @override
   void initState() {
@@ -28,7 +34,7 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentWorkoutBloc = context.read<CurrentWorkoutCubit>();
+    final currentWorkoutCubit = context.read<CurrentWorkoutCubit>();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: MediaQuery
@@ -66,111 +72,272 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
           builder: (context, state) {
             state.whenOrNull(
               emptyValueIndex: (index){
-                activeTitle = index;
+                activeIndex = index;
               },
             );
-            final training = currentWorkoutBloc.workout.listExercise;
-            return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 7,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ReorderableListView.builder(
-                        shrinkWrap: true,
-                        itemCount: training.length,
-                        onReorderStart: (_){
-                          setState(() {
-                            activeTitle = -1;
-                          });
-                        },
-                        itemBuilder: (context, index) {
-                          final exercise = training[index];
-                          if (exercise is ExerciseSet) {
-                            return GestureDetector(
-                              key: Key('$index'),
-                              onTap: (){
-                                _formKey.currentState!.validate();
-                                setState(() {
-                                  if(activeTitle == -1){
-                                    activeTitle = index;
-                                  } else{
-                                    if(!training[activeTitle].isNotValid){
-                                      if(activeTitle == index){
-                                        activeTitle = -1;
-                                      }
-                                      else{
-                                        activeTitle = index;
-                                      }
-                                      currentWorkoutBloc.setWorkoutListExercise(training);
+            final List<Exercise> training = [];
+            training.addAll(currentWorkoutCubit.workout.listExercise);
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ReorderableListView.builder(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemCount: training.length,
+                    padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                    onReorderStart: (_){
+                      setState(() {
+                        activeIndex = -1;
+                      });
+                    },
+                    proxyDecorator: (child, index, animation){
+                      return DecoratedBox(
+                        decoration: BoxDecoration(
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: AppColors.dark.withOpacity(0.35),
+                                blurRadius: 10,
+                                spreadRadius: 2
+                            )
+                          ]
+                        ),
+                          child: child
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      final exercise = training[index];
+                      if (exercise is ExerciseSet) {
+                        return Dismissible(
+                          key: Key(exercise.hashCode.toString()),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (_){
+                            training.removeAt(index);
+                            currentWorkoutCubit.deleteExercise(index);
+                          },
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            height: 77,
+                            child: const Icon(
+                              size: 35,
+                              Icons.delete,
+                              color: AppColors.red,
+                            ),
+                          ),
+                          child: GestureDetector(
+                            onTap: (){
+                              _formKey.currentState!.validate();
+                              setState(() {
+                                if(activeIndex == -1){
+                                  currentWorkoutCubit.setCurrentExerciseIndex(index);
+                                  activeIndex = index;
+                                } else{
+                                  if(!training[activeIndex].isNotValid){
+                                    if(activeIndex == index){
+                                      activeIndex = -1;
                                     }
+                                    else{
+                                      currentWorkoutCubit.setCurrentExerciseIndex(index);
+                                      activeIndex = index;
+                                    }
+                                    currentWorkoutCubit.setWorkoutListExercise(training);
                                   }
-                                });
-                              },
-                              child: (activeTitle == index) ? WorkoutSetWithActiveTitle(
-                                title: exercise.title,
-                                setCount: exercise.setCount,
-                                repetitionsCount: exercise.repetitionsCount,
-                                onChanged: (title, set, repetition) {
-                                  exercise.title = title;
-                                  exercise.setCount = set;
-                                  exercise.repetitionsCount = repetition;
-                                  training[index] = exercise;
-                                },
-                              ) : Container(
-                                alignment: Alignment.center,
-                                margin: const EdgeInsets.symmetric(vertical: 5),
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    boxShadow: boxShadow,
-                                    color: AppColors.primaryButtonColor
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(exercise.title),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                }
+                              });
+                            },
+                            child: (activeIndex == index)
+                                ? WorkoutSetWithActiveTitle(
+                                    title: exercise.title,
+                                    setCount: exercise.setCount,
+                                    repetitionsCount: exercise.repetitionsCount,
+                                    onChanged: (title, set, repetition) {
+                                      exercise.title = title;
+                                      exercise.setCount = set;
+                                      exercise.repetitionsCount = repetition;
+                                      training[index] = exercise;
+                                    },
+                                  )
+                                : Container(
+                                    alignment: Alignment.center,
+                                    margin: const EdgeInsets.symmetric(vertical: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        boxShadow: boxShadow,
+                                        color: AppColors.primaryButtonColor),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Text('Подходов: ${exercise.setCount}'),
-                                        Text('Повторений: ${exercise.repetitionsCount}'),
+                                        Text(exercise.title),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text('Подходов: ${exercise.setCount}'),
+                                            Text('Повторений: ${exercise.repetitionsCount}'),
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }
-                          return const SizedBox();
-                        },
-                        onReorder: (int oldIndex, int newIndex) {
-                          currentWorkoutBloc.onReorder(oldIndex, newIndex);
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            currentWorkoutBloc.addNewExerciseSet(training);
-                          }
-                        },
-                        child: SvgPicture.asset(
-                          'images/plus.svg',
-                          height: 36,
-                          colorFilter: const ColorFilter.mode(
-                              AppColors.grey,
-                              BlendMode.srcIn
+                                  ),
                           ),
-                        ),
-                      )
-                    ],
+                        );
+                      } else
+                      if(exercise is ExerciseRoundSet){
+                        return Dismissible(
+                          key: Key(exercise.hashCode.toString()),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (_){
+                            training.removeAt(index);
+                            currentWorkoutCubit.deleteExercise(index);
+                          },
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            height: 77,
+                            child: const Icon(
+                              size: 35,
+                              Icons.delete,
+                              color: AppColors.red,
+                            ),
+                          ),
+                          child: GestureDetector(
+                            onTap: (){
+                              _formKey.currentState!.validate();
+                              setState(() {
+                                if(activeIndex == -1){
+                                  currentWorkoutCubit.setCurrentExerciseIndex(index);
+                                  activeIndex = index;
+                                } else{
+                                  if(!training[activeIndex].isNotValid){
+                                    if(activeIndex == index){
+                                      activeIndex = -1;
+                                    }
+                                    else{
+                                      currentWorkoutCubit.setCurrentExerciseIndex(index);
+                                      activeIndex = index;
+                                    }
+                                    currentWorkoutCubit.setWorkoutListExercise(training);
+                                  }
+                                }
+                              });
+                            },
+                            child: (activeIndex == index)
+                                ? WorkoutRoundSetWithActiveTitle(
+                                    indexExercise: index,
+                                    onValidate: () =>
+                                        _formKey.currentState?.validate() ?? false,
+                                    onChanged: (title, set, list) {
+                                      exercise.title = title;
+                                      exercise.setCount = set;
+                                      training[index] = exercise;
+                                    },
+                                  )
+                                : Container(
+                                    alignment: Alignment.center,
+                                    margin: const EdgeInsets.symmetric(vertical: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        boxShadow: boxShadow,
+                                        color: AppColors.primaryButtonColor),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(exercise.title),
+                                        Text('Кругов: ${exercise.setCount}'),
+                                      ],
+                                    ),
+                                  ),
+                          ),
+                        );
+                      } else
+                      if(exercise is ExerciseCardio){
+                        return Dismissible(
+                          key: Key(exercise.hashCode.toString()),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (_){
+                            training.removeAt(index);
+                            currentWorkoutCubit.deleteExercise(index);
+                          },
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            height: 77,
+                            child: const Icon(
+                              size: 35,
+                              Icons.delete,
+                              color: AppColors.red,
+                            ),
+                          ),
+                          child: GestureDetector(
+                            onTap: (){
+                              _formKey.currentState!.validate();
+                              setState(() {
+                                if(activeIndex == -1){
+                                  currentWorkoutCubit.setCurrentExerciseIndex(index);
+                                  activeIndex = index;
+                                } else{
+                                  if(!training[activeIndex].isNotValid){
+                                    if(activeIndex == index){
+                                      activeIndex = -1;
+                                    }
+                                    else{
+                                      currentWorkoutCubit.setCurrentExerciseIndex(index);
+                                      activeIndex = index;
+                                    }
+                                    currentWorkoutCubit.setWorkoutListExercise(training);
+                                  }
+                                }
+                              });
+                            },
+                            child: (activeIndex == index)
+                                ? WorkoutCardioWithActiveTitle(
+                                    title: exercise.title,
+                                    count: exercise.count,
+                                    onChanged: (title, count){
+                                      exercise.title = title;
+                                      exercise.count = count;
+                                      training[index] = exercise;
+                                    },
+                                  )
+                                : Container(
+                                    alignment: Alignment.center,
+                                    margin: const EdgeInsets.symmetric(vertical: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        boxShadow: boxShadow,
+                                        color: AppColors.primaryButtonColor),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(exercise.title),
+                                        Text('Минут/раз: ${exercise.count}'),
+                                      ],
+                                    ),
+                                  ),
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                    onReorder: (int oldIndex, int newIndex) {
+                      currentWorkoutCubit.onReorder(oldIndex, newIndex);
+                    },
                   ),
-                )
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  PlusExerciseWidget(
+                      isActive: () => _formKey.currentState?.validate() ?? false,
+                      training: training)
+                ],
+              ),
             );
           },
         ),

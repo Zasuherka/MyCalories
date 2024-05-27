@@ -104,8 +104,6 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
 
   KeyEventResult _handleKeyPress(FocusNode node, KeyEvent event) {
     if (event is KeyDownEvent) {
-      debugPrint(
-          'Focus node ${node.debugLabel} got key event: ${event.logicalKey}');
       if (event.logicalKey == LogicalKeyboardKey.keyR) {
         return KeyEventResult.handled;
       } else if (event.logicalKey == LogicalKeyboardKey.keyG) {

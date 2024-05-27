@@ -1,4 +1,4 @@
-part of 'current_workout_bloc.dart';
+part of 'current_workout_cubit.dart';
 
 @freezed
 class CurrentWorkoutState with _$CurrentWorkoutState{

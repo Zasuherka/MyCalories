@@ -1,22 +1,26 @@
-import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
+import 'package:app1/domain/enums/exercise_case.dart';
+import 'package:app1/domain/model/workout/exercise.dart';
+import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
-import 'package:app1/presentation/router/router.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CollectionOrFoodDropDown extends StatefulWidget {
-  final String title;
-  const CollectionOrFoodDropDown({super.key, required this.title});
+class PlusExerciseWidget extends StatefulWidget {
+  final List<Exercise> training;
+  final bool Function() isActive;
+  const PlusExerciseWidget({
+    super.key,
+    required this.isActive,
+    required this.training,
+  });
 
   @override
-  State<CollectionOrFoodDropDown> createState() => _CollectionOrFoodDropDownState();
+  State<PlusExerciseWidget> createState() => _PlusExerciseWidgetState();
 }
 
-class _CollectionOrFoodDropDownState extends State<CollectionOrFoodDropDown> {
-
+class _PlusExerciseWidgetState extends State<PlusExerciseWidget> {
   late FocusNode _node;
   bool _focused = false;
   final _containerKey = GlobalKey();
@@ -29,9 +33,10 @@ class _CollectionOrFoodDropDownState extends State<CollectionOrFoodDropDown> {
       final renderBox = _containerKey.currentContext?.findRenderObject() as RenderBox;
       final offset = renderBox.localToGlobal(Offset.zero);
       return Positioned(
-        left: offset.dx - 150,
-        top: offset.dy + 35,
+        left: offset.dx,
+        top: offset.dy + 77,
         child: Container(
+          width: 200,
           decoration: BoxDecoration(
               color: AppColors.elementColor,
               boxShadow: boxShadow,
@@ -40,43 +45,59 @@ class _CollectionOrFoodDropDownState extends State<CollectionOrFoodDropDown> {
           child: _focused ? Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
+            children: [
               GestureDetector(
                 onTap: () {
+                  context.read<CurrentWorkoutCubit>()
+                      .addNewExerciseSet(widget.training, ExerciseCase.set);
                   _node.unfocus();
-                  context.router.push(MyFoodRoute(isAddEatingFood: true));
                 },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10
-                  ),
+                child: Container(
+                  width: 400,
+                  height: 45,
+                  alignment: Alignment.center,
                   child: Text(
-                      'Из списка еды',
-                      style: Theme.of(context).textTheme.titleSmall,
-                      textAlign: TextAlign.center
+                    ExerciseCase.set.exerciseCase,
+                    style: textStyle,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
               GestureDetector(
                 onTap: () {
+                  context.read<CurrentWorkoutCubit>()
+                      .addNewExerciseSet(widget.training, ExerciseCase.roundSet);
                   _node.unfocus();
-                  context.router.push(CollectionsRoute(isAddEatingFood: true));
                 },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10
-                  ),
+                child: Container(
+                  width: 400,
+                  height: 45,
+                  alignment: Alignment.center,
                   child: Text(
-                      'Из наборов',
-                      style: Theme.of(context).textTheme.titleSmall,
-                      textAlign: TextAlign.center
+                    ExerciseCase.roundSet.exerciseCase,
+                    style: textStyle,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
-
-            ]
+              GestureDetector(
+                onTap: () {
+                  context.read<CurrentWorkoutCubit>()
+                      .addNewExerciseSet(widget.training, ExerciseCase.cardio);
+                  _node.unfocus();
+                },
+                child: Container(
+                  width: 400,
+                  height: 45,
+                  alignment: Alignment.center,
+                  child: Text(
+                    ExerciseCase.cardio.exerciseCase,
+                    style: textStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
           )  : const SizedBox(),
         ),
       );
@@ -131,25 +152,29 @@ class _CollectionOrFoodDropDownState extends State<CollectionOrFoodDropDown> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
+    textStyle = Theme.of(context).textTheme.titleMedium;
     _nodeAttachment.reparent();
-    return GestureDetector(
+    return InkWell(
       key: _containerKey,
       onTap: () {
-        BlocProvider.of<EatingFoodBloc>(context)
-            .add(EatingFoodEvent.getNameEating(nameEating: widget.title));
-        if (_focused) {
-          _node.unfocus();
-        } else {
-          _node.requestFocus();
+        if (widget.isActive.call()) {
+          if (_focused) {
+            _node.unfocus();
+          } else {
+            _node.requestFocus();
+          }
         }
       },
       child: SvgPicture.asset(
-        'images/plus2.svg',
-        width: 25,
-        height: 25,
-        colorFilter: const ColorFilter.mode(AppColors.turquoise , BlendMode.srcIn),
+        'images/plus.svg',
+        height: 36,
+        colorFilter: const ColorFilter.mode(
+            AppColors.grey,
+            BlendMode.srcIn
+        ),
       ),
     );
   }

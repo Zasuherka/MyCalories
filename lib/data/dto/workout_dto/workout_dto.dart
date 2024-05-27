@@ -1,5 +1,4 @@
 import 'package:app1/domain/model/workout/exercise.dart';
-import 'package:app1/domain/model/workout/exercise_set.dart';
 import 'package:app1/domain/model/workout/workout.dart';
 
 class WorkoutDto {
@@ -17,7 +16,7 @@ class WorkoutDto {
     return WorkoutDto(
         workoutId: json['workoutId'],
         title: json['title'],
-        listExercise: parseListMapFromFirebase(json['listExercise'] as List<Object?>),
+        listExercise: parseListMapFromFirebase((json['listExercise'] ?? []) as List<Object?>),
     );
   }
 
@@ -67,9 +66,7 @@ class WorkoutDto {
     final List<Exercise> list = [];
     for(int i = 0; i < listMap.length; i++){
       final map = (listMap[i] as Map).cast<String, dynamic>();
-      if(map['exercise_set'] != null){
-        list.add(ExerciseSet.fromFirebase(Map<String, dynamic>.from(map['exercise_set'] as Map)));
-      }
+      list.add(Exercise.fromFirebase(map));
     }
     return list;
   }
@@ -80,7 +77,6 @@ class WorkoutDto {
       final exerciseMap = list[i].toFirebase();
       listMap.add(exerciseMap);
     }
-    print(listMap.first);
     return listMap;
   }
 }

@@ -1,13 +1,13 @@
 import 'package:app1/internal/bloc/authorization/authorization_bloc.dart';
 import 'package:app1/internal/bloc/collection_food/collection_food_bloc.dart';
 import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
-import 'package:app1/internal/bloc/current_workout/current_workout_bloc.dart';
 import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/internal/bloc/food_bloc/food_bloc.dart';
 import 'package:app1/internal/bloc/registration/registration_bloc.dart';
 import 'package:app1/internal/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/internal/cubit/connection/connection_cubit.dart';
+import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/internal/cubit/get_page_cubit.dart';
 import 'package:app1/presentation/router/router.dart';

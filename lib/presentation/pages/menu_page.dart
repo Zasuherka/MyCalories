@@ -116,7 +116,7 @@ class MenuPage extends StatelessWidget {
                   child: Center(
                     child:
                     Text(
-                        'Рецепты',
+                        'В РАЗРАБОТКЕ',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: AppColors.primaryButtonColor

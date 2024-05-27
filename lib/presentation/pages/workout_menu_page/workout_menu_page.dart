@@ -1,8 +1,11 @@
+import 'package:app1/domain/enums/exercise_case.dart';
+import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WorkoutMenuPage extends StatelessWidget {
   const WorkoutMenuPage({super.key});
@@ -48,7 +51,10 @@ class WorkoutMenuPage extends StatelessWidget {
               height: 10,
             ),
             PrimaryAppButton(
-              onTap: (){},
+              onTap: (){
+                context.read<CurrentWorkoutCubit>()
+                    .addNewExerciseSet(context.read<CurrentWorkoutCubit>().workout.listExercise, ExerciseCase.cardio);
+              },
               withColor: true,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               alignment: Alignment.center,
