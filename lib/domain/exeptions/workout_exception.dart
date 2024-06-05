@@ -1,3 +1,1 @@
-class NullCurrentWorkoutException extends Exception{
-
-}
+class NullCurrentWorkoutException implements Exception{}

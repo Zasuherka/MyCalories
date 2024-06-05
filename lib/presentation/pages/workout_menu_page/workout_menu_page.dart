@@ -1,9 +1,9 @@
-import 'package:app1/domain/enums/exercise_case.dart';
-import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
+import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:app1/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,17 +13,10 @@ class WorkoutMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).padding.top + 20,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: AppColors.greenGradient
-          ),
-        ),
-        title: const Text(
-            'Тренировки'
-        ),
-        centerTitle: true,
+      appBar: CustomAppBar(
+        title: 'Тренировки',
+        withoutRightIcon: true,
+        withoutLeftIcon: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(7),
@@ -51,10 +44,7 @@ class WorkoutMenuPage extends StatelessWidget {
               height: 10,
             ),
             PrimaryAppButton(
-              onTap: (){
-                context.read<CurrentWorkoutCubit>()
-                    .addNewExerciseSet(context.read<CurrentWorkoutCubit>().workout.listExercise, ExerciseCase.cardio);
-              },
+              onTap: (){},
               withColor: true,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               alignment: Alignment.center,
@@ -84,7 +74,10 @@ class WorkoutMenuPage extends StatelessWidget {
               height: 10,
             ),
             PrimaryAppButton(
-              onTap: (){},
+              onTap: (){
+                context.read<WorkoutCubit>().getCompletedWorkoutsList();
+                context.router.push(const CompletedWorkoutsRoute());
+              },
               withColor: true,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               alignment: Alignment.center,

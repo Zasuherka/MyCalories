@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'current_workout_cubit.dart';
+part of 'workout_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,14 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CurrentWorkoutState {
+mixin _$WorkoutState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -31,6 +33,8 @@ mixin _$CurrentWorkoutState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -41,6 +45,8 @@ mixin _$CurrentWorkoutState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -52,6 +58,8 @@ mixin _$CurrentWorkoutState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -62,6 +70,8 @@ mixin _$CurrentWorkoutState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -72,6 +82,8 @@ mixin _$CurrentWorkoutState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -81,16 +93,16 @@ mixin _$CurrentWorkoutState {
 }
 
 /// @nodoc
-abstract class $CurrentWorkoutStateCopyWith<$Res> {
-  factory $CurrentWorkoutStateCopyWith(
-          CurrentWorkoutState value, $Res Function(CurrentWorkoutState) then) =
-      _$CurrentWorkoutStateCopyWithImpl<$Res, CurrentWorkoutState>;
+abstract class $WorkoutStateCopyWith<$Res> {
+  factory $WorkoutStateCopyWith(
+          WorkoutState value, $Res Function(WorkoutState) then) =
+      _$WorkoutStateCopyWithImpl<$Res, WorkoutState>;
 }
 
 /// @nodoc
-class _$CurrentWorkoutStateCopyWithImpl<$Res, $Val extends CurrentWorkoutState>
-    implements $CurrentWorkoutStateCopyWith<$Res> {
-  _$CurrentWorkoutStateCopyWithImpl(this._value, this._then);
+class _$WorkoutStateCopyWithImpl<$Res, $Val extends WorkoutState>
+    implements $WorkoutStateCopyWith<$Res> {
+  _$WorkoutStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,7 +119,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CurrentWorkoutStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -121,7 +133,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'CurrentWorkoutState.initial()';
+    return 'WorkoutState.initial()';
   }
 
   @override
@@ -139,6 +151,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -152,6 +166,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -165,6 +181,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -182,6 +200,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -195,6 +215,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -208,6 +230,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -220,7 +244,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CurrentWorkoutState {
+abstract class _Initial implements WorkoutState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -233,7 +257,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CurrentWorkoutStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -247,7 +271,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'CurrentWorkoutState.loading()';
+    return 'WorkoutState.loading()';
   }
 
   @override
@@ -265,6 +289,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -278,6 +304,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -291,6 +319,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -308,6 +338,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -321,6 +353,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -334,6 +368,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -346,7 +382,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements CurrentWorkoutState {
+abstract class _Loading implements WorkoutState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -359,7 +395,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$CurrentWorkoutStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -373,7 +409,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'CurrentWorkoutState.success()';
+    return 'WorkoutState.success()';
   }
 
   @override
@@ -391,6 +427,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -404,6 +442,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -417,6 +457,8 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -434,6 +476,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -447,6 +491,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -460,6 +506,8 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -472,8 +520,315 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements CurrentWorkoutState {
+abstract class _Success implements WorkoutState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessWorkoutEndImplCopyWith<$Res> {
+  factory _$$SuccessWorkoutEndImplCopyWith(_$SuccessWorkoutEndImpl value,
+          $Res Function(_$SuccessWorkoutEndImpl) then) =
+      __$$SuccessWorkoutEndImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SuccessWorkoutEndImplCopyWithImpl<$Res>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$SuccessWorkoutEndImpl>
+    implements _$$SuccessWorkoutEndImplCopyWith<$Res> {
+  __$$SuccessWorkoutEndImplCopyWithImpl(_$SuccessWorkoutEndImpl _value,
+      $Res Function(_$SuccessWorkoutEndImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SuccessWorkoutEndImpl implements _SuccessWorkoutEnd {
+  const _$SuccessWorkoutEndImpl();
+
+  @override
+  String toString() {
+    return 'WorkoutState.successWorkoutEnd()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SuccessWorkoutEndImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
+    required TResult Function(int index) emptyValueIndex,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(List<Exercise> listExercise) listExercise,
+  }) {
+    return successWorkoutEnd();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
+    TResult? Function(int index)? emptyValueIndex,
+    TResult? Function(String errorMessage)? failure,
+    TResult? Function(List<Exercise> listExercise)? listExercise,
+  }) {
+    return successWorkoutEnd?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
+    TResult Function(int index)? emptyValueIndex,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(List<Exercise> listExercise)? listExercise,
+    required TResult orElse(),
+  }) {
+    if (successWorkoutEnd != null) {
+      return successWorkoutEnd();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ListExercise value) listExercise,
+  }) {
+    return successWorkoutEnd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_ListExercise value)? listExercise,
+  }) {
+    return successWorkoutEnd?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ListExercise value)? listExercise,
+    required TResult orElse(),
+  }) {
+    if (successWorkoutEnd != null) {
+      return successWorkoutEnd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessWorkoutEnd implements WorkoutState {
+  const factory _SuccessWorkoutEnd() = _$SuccessWorkoutEndImpl;
+}
+
+/// @nodoc
+abstract class _$$WorkoutImplCopyWith<$Res> {
+  factory _$$WorkoutImplCopyWith(
+          _$WorkoutImpl value, $Res Function(_$WorkoutImpl) then) =
+      __$$WorkoutImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Workout workout});
+}
+
+/// @nodoc
+class __$$WorkoutImplCopyWithImpl<$Res>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$WorkoutImpl>
+    implements _$$WorkoutImplCopyWith<$Res> {
+  __$$WorkoutImplCopyWithImpl(
+      _$WorkoutImpl _value, $Res Function(_$WorkoutImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? workout = null,
+  }) {
+    return _then(_$WorkoutImpl(
+      workout: null == workout
+          ? _value.workout
+          : workout // ignore: cast_nullable_to_non_nullable
+              as Workout,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$WorkoutImpl implements _Workout {
+  const _$WorkoutImpl({required this.workout});
+
+  @override
+  final Workout workout;
+
+  @override
+  String toString() {
+    return 'WorkoutState.workout(workout: $workout)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkoutImpl &&
+            (identical(other.workout, workout) || other.workout == workout));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, workout);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkoutImplCopyWith<_$WorkoutImpl> get copyWith =>
+      __$$WorkoutImplCopyWithImpl<_$WorkoutImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
+    required TResult Function(int index) emptyValueIndex,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(List<Exercise> listExercise) listExercise,
+  }) {
+    return workout(this.workout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
+    TResult? Function(int index)? emptyValueIndex,
+    TResult? Function(String errorMessage)? failure,
+    TResult? Function(List<Exercise> listExercise)? listExercise,
+  }) {
+    return workout?.call(this.workout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
+    TResult Function(int index)? emptyValueIndex,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(List<Exercise> listExercise)? listExercise,
+    required TResult orElse(),
+  }) {
+    if (workout != null) {
+      return workout(this.workout);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ListExercise value) listExercise,
+  }) {
+    return workout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_ListExercise value)? listExercise,
+  }) {
+    return workout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ListExercise value)? listExercise,
+    required TResult orElse(),
+  }) {
+    if (workout != null) {
+      return workout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Workout implements WorkoutState {
+  const factory _Workout({required final Workout workout}) = _$WorkoutImpl;
+
+  Workout get workout;
+  @JsonKey(ignore: true)
+  _$$WorkoutImplCopyWith<_$WorkoutImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -487,7 +842,7 @@ abstract class _$$EmptyValueIndexImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmptyValueIndexImplCopyWithImpl<$Res>
-    extends _$CurrentWorkoutStateCopyWithImpl<$Res, _$EmptyValueIndexImpl>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$EmptyValueIndexImpl>
     implements _$$EmptyValueIndexImplCopyWith<$Res> {
   __$$EmptyValueIndexImplCopyWithImpl(
       _$EmptyValueIndexImpl _value, $Res Function(_$EmptyValueIndexImpl) _then)
@@ -517,7 +872,7 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
 
   @override
   String toString() {
-    return 'CurrentWorkoutState.emptyValueIndex(index: $index)';
+    return 'WorkoutState.emptyValueIndex(index: $index)';
   }
 
   @override
@@ -544,6 +899,8 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -557,6 +914,8 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -570,6 +929,8 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -587,6 +948,8 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -600,6 +963,8 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -613,6 +978,8 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -625,7 +992,7 @@ class _$EmptyValueIndexImpl implements _EmptyValueIndex {
   }
 }
 
-abstract class _EmptyValueIndex implements CurrentWorkoutState {
+abstract class _EmptyValueIndex implements WorkoutState {
   const factory _EmptyValueIndex({required final int index}) =
       _$EmptyValueIndexImpl;
 
@@ -646,7 +1013,7 @@ abstract class _$$FailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$CurrentWorkoutStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
@@ -676,7 +1043,7 @@ class _$FailureImpl implements _Failure {
 
   @override
   String toString() {
-    return 'CurrentWorkoutState.failure(errorMessage: $errorMessage)';
+    return 'WorkoutState.failure(errorMessage: $errorMessage)';
   }
 
   @override
@@ -703,6 +1070,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -716,6 +1085,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -729,6 +1100,8 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -746,6 +1119,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -759,6 +1134,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -772,6 +1149,8 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -784,7 +1163,7 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements CurrentWorkoutState {
+abstract class _Failure implements WorkoutState {
   const factory _Failure({required final String errorMessage}) = _$FailureImpl;
 
   String get errorMessage;
@@ -804,7 +1183,7 @@ abstract class _$$ListExerciseImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ListExerciseImplCopyWithImpl<$Res>
-    extends _$CurrentWorkoutStateCopyWithImpl<$Res, _$ListExerciseImpl>
+    extends _$WorkoutStateCopyWithImpl<$Res, _$ListExerciseImpl>
     implements _$$ListExerciseImplCopyWith<$Res> {
   __$$ListExerciseImplCopyWithImpl(
       _$ListExerciseImpl _value, $Res Function(_$ListExerciseImpl) _then)
@@ -840,7 +1219,7 @@ class _$ListExerciseImpl implements _ListExercise {
 
   @override
   String toString() {
-    return 'CurrentWorkoutState.listExercise(listExercise: $listExercise)';
+    return 'WorkoutState.listExercise(listExercise: $listExercise)';
   }
 
   @override
@@ -868,6 +1247,8 @@ class _$ListExerciseImpl implements _ListExercise {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(Workout workout) workout,
     required TResult Function(int index) emptyValueIndex,
     required TResult Function(String errorMessage) failure,
     required TResult Function(List<Exercise> listExercise) listExercise,
@@ -881,6 +1262,8 @@ class _$ListExerciseImpl implements _ListExercise {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(Workout workout)? workout,
     TResult? Function(int index)? emptyValueIndex,
     TResult? Function(String errorMessage)? failure,
     TResult? Function(List<Exercise> listExercise)? listExercise,
@@ -894,6 +1277,8 @@ class _$ListExerciseImpl implements _ListExercise {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(Workout workout)? workout,
     TResult Function(int index)? emptyValueIndex,
     TResult Function(String errorMessage)? failure,
     TResult Function(List<Exercise> listExercise)? listExercise,
@@ -911,6 +1296,8 @@ class _$ListExerciseImpl implements _ListExercise {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_Workout value) workout,
     required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ListExercise value) listExercise,
@@ -924,6 +1311,8 @@ class _$ListExerciseImpl implements _ListExercise {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_Workout value)? workout,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ListExercise value)? listExercise,
@@ -937,6 +1326,8 @@ class _$ListExerciseImpl implements _ListExercise {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_Workout value)? workout,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_Failure value)? failure,
     TResult Function(_ListExercise value)? listExercise,
@@ -949,7 +1340,7 @@ class _$ListExerciseImpl implements _ListExercise {
   }
 }
 
-abstract class _ListExercise implements CurrentWorkoutState {
+abstract class _ListExercise implements WorkoutState {
   const factory _ListExercise({required final List<Exercise> listExercise}) =
       _$ListExerciseImpl;
 

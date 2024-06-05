@@ -85,7 +85,7 @@ class _CreateCollectionPageState extends State<CreateCollectionPage> {
                     title: const Text('Создать набор'),
                     centerTitle: true,
                     leading: Padding(
-                      padding: const EdgeInsets.only(left: 23),
+                      padding: const EdgeInsets.only(left: 20),
                       child: Container(
                         alignment: Alignment.center,
                         constraints: const BoxConstraints(
@@ -107,7 +107,7 @@ class _CreateCollectionPageState extends State<CreateCollectionPage> {
                       ),
                     ),
                     actions: [
-                      Padding(padding: EdgeInsets.only(right: screenWidth/20),
+                      Padding(padding: const EdgeInsets.only(right: 20),
                         child: GestureDetector(
                           onTap: () {
                             if(_listSelectedFood.isNotEmpty){

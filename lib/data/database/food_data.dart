@@ -3,7 +3,7 @@ part of 'database.dart';
 class _FoodData{
   Future<Food> createFood(FoodDto dto, String userId) async {
     try {
-      final foodRef = _foodsRef.push();
+      final DatabaseReference foodRef = _foodsRef.push();
 
       await foodRef.set(dto.toJson());
 

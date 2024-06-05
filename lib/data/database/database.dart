@@ -19,7 +19,7 @@ part 'collection_data.dart';
 part 'user_data.dart';
 part 'food_data.dart';
 part 'image_data.dart';
-part 'current_workout_data.dart';
+part 'workout_data.dart';
 
 final _usersRef = FirebaseDatabase.instance.ref('users');
 final _foodsRef = FirebaseDatabase.instance.ref('foods');
@@ -31,5 +31,5 @@ class Database{
   final foodData = _FoodData();
   final userData = _UserData();
   final imageData = _ImageData();
-  final currentWorkout = _CurrentWorkoutData();
+  final workout = _WorkoutData();
 }

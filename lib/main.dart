@@ -7,7 +7,7 @@ import 'package:app1/internal/bloc/registration/registration_bloc.dart';
 import 'package:app1/internal/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/internal/cubit/connection/connection_cubit.dart';
-import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
+import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/internal/cubit/get_page_cubit.dart';
 import 'package:app1/presentation/router/router.dart';
@@ -70,8 +70,8 @@ class MyFitnessApp extends StatelessWidget {
           BlocProvider<CollectionFoodBloc>(
               create: (BuildContext context) => CollectionFoodBloc()
           ),
-          BlocProvider<CurrentWorkoutCubit>(
-              create: (BuildContext context) => CurrentWorkoutCubit()
+          BlocProvider<WorkoutCubit>(
+              create: (BuildContext context) => WorkoutCubit()
           ),
         ],
         child: MaterialApp.router(

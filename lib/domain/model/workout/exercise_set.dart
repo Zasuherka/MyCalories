@@ -13,7 +13,7 @@ class ExerciseSet extends Exercise{
   @override
   bool get isNotValid => title.isEmpty || setCount.isEmpty || repetitionsCount.isEmpty;
 
-  factory ExerciseSet.fromFirebase(Map<String, dynamic> json){
+  factory ExerciseSet.fromJson(Map<String, dynamic> json){
     return ExerciseSet(
       title: json['title'] ?? '',
       setCount: json['setCount'] ?? '',
@@ -22,7 +22,7 @@ class ExerciseSet extends Exercise{
   }
 
   @override
-  Map<String, dynamic> toFirebase() {
+  Map<String, dynamic> toJson() {
     return {
       'exercise_set': {
         'title': title,

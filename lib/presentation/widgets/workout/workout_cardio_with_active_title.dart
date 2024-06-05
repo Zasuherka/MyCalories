@@ -60,6 +60,7 @@ class _WorkoutCardioWithActiveTitleState extends State<WorkoutCardioWithActiveTi
             flex: 4,
             child: ActiveCountTitle(
               titleController: countController,
+              hintText: 'мин/раз',
               onChanged: (_){
                 widget.onChanged(
                   titleController.text,

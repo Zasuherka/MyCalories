@@ -41,6 +41,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CompletedWorkoutsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompletedWorkoutsPage(),
+      );
+    },
     CreateCollectionRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -217,6 +223,20 @@ class CollectionsRouteArgs {
   String toString() {
     return 'CollectionsRouteArgs{key: $key, isAddEatingFood: $isAddEatingFood}';
   }
+}
+
+/// generated route for
+/// [CompletedWorkoutsPage]
+class CompletedWorkoutsRoute extends PageRouteInfo<void> {
+  const CompletedWorkoutsRoute({List<PageRouteInfo>? children})
+      : super(
+          CompletedWorkoutsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompletedWorkoutsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

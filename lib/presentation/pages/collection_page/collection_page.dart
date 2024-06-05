@@ -64,7 +64,7 @@ class _CollectionPageState extends State<CollectionPage> {
             title: Text(!isLoading ? title : ''),
             centerTitle: true,
             leading: Padding(
-              padding: const EdgeInsets.only(left: 23),
+              padding: const EdgeInsets.only(left: 20),
               child: GestureDetector(
                 onTap: () {
                   context.router.popForced();
@@ -83,7 +83,7 @@ class _CollectionPageState extends State<CollectionPage> {
                 orElse: () => [
                   if (isUserCollection)
                     Padding(
-                      padding: const EdgeInsets.only(right: 23),
+                      padding: const EdgeInsets.only(right: 20),
                       child: GestureDetector(
                         onTap: () => context.router
                             .push(UpdateCollectionRoute(collection: collection!)),

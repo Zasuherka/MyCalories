@@ -82,7 +82,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
               title: const Text('Ныборы еды'),
               centerTitle: true,
               leading: Padding(
-                padding: const EdgeInsets.only(left: 23),
+                padding: const EdgeInsets.only(left: 20),
                 child: Container(
                   alignment: Alignment.center,
                   constraints: const BoxConstraints(
@@ -104,7 +104,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                 ),
               ),
               actions: [
-                !widget.isAddEatingFood ? Padding(padding: EdgeInsets.only(right: screenWidth/20),
+                !widget.isAddEatingFood ? Padding(padding: const EdgeInsets.only(right: 20),
                   child: GestureDetector(
                     onTap: () {
                       BlocProvider.of<FoodBloc>(context).add(const FoodEvent.getFoodList());

@@ -1,6 +1,6 @@
 import 'package:app1/domain/enums/exercise_case.dart';
 import 'package:app1/domain/model/workout/exercise.dart';
-import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
+import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,70 +35,73 @@ class _PlusExerciseWidgetState extends State<PlusExerciseWidget> {
       return Positioned(
         left: offset.dx,
         top: offset.dy + 77,
-        child: Container(
-          width: 200,
-          decoration: BoxDecoration(
-              color: AppColors.elementColor,
-              boxShadow: boxShadow,
-              borderRadius: BorderRadius.circular(30)
+        child: TapRegion(
+          onTapOutside: (_) => _node.unfocus(),
+          child: Container(
+            width: 200,
+            decoration: BoxDecoration(
+                color: AppColors.elementColor,
+                boxShadow: boxShadow,
+                borderRadius: BorderRadius.circular(30)
+            ),
+            child: _focused ? Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context.read<WorkoutCubit>()
+                        .addNewExerciseSet(widget.training, ExerciseCase.set);
+                    _node.unfocus();
+                  },
+                  child: Container(
+                    width: 400,
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: Text(
+                      ExerciseCase.set.exerciseCase,
+                      style: textStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    context.read<WorkoutCubit>()
+                        .addNewExerciseSet(widget.training, ExerciseCase.roundSet);
+                    _node.unfocus();
+                  },
+                  child: Container(
+                    width: 400,
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: Text(
+                      ExerciseCase.roundSet.exerciseCase,
+                      style: textStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    context.read<WorkoutCubit>()
+                        .addNewExerciseSet(widget.training, ExerciseCase.cardio);
+                    _node.unfocus();
+                  },
+                  child: Container(
+                    width: 400,
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: Text(
+                      ExerciseCase.cardio.exerciseCase,
+                      style: textStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            )  : const SizedBox(),
           ),
-          child: _focused ? Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  context.read<CurrentWorkoutCubit>()
-                      .addNewExerciseSet(widget.training, ExerciseCase.set);
-                  _node.unfocus();
-                },
-                child: Container(
-                  width: 400,
-                  height: 45,
-                  alignment: Alignment.center,
-                  child: Text(
-                    ExerciseCase.set.exerciseCase,
-                    style: textStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  context.read<CurrentWorkoutCubit>()
-                      .addNewExerciseSet(widget.training, ExerciseCase.roundSet);
-                  _node.unfocus();
-                },
-                child: Container(
-                  width: 400,
-                  height: 45,
-                  alignment: Alignment.center,
-                  child: Text(
-                    ExerciseCase.roundSet.exerciseCase,
-                    style: textStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  context.read<CurrentWorkoutCubit>()
-                      .addNewExerciseSet(widget.training, ExerciseCase.cardio);
-                  _node.unfocus();
-                },
-                child: Container(
-                  width: 400,
-                  height: 45,
-                  alignment: Alignment.center,
-                  child: Text(
-                    ExerciseCase.cardio.exerciseCase,
-                    style: textStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
-          )  : const SizedBox(),
         ),
       );
     });
@@ -157,7 +160,7 @@ class _PlusExerciseWidgetState extends State<PlusExerciseWidget> {
   Widget build(BuildContext context) {
     textStyle = Theme.of(context).textTheme.titleMedium;
     _nodeAttachment.reparent();
-    return InkWell(
+    return GestureDetector(
       key: _containerKey,
       onTap: () {
         if (widget.isActive.call()) {

@@ -7,15 +7,15 @@ abstract class Exercise{
 
   Exercise({required this.title});
 
-  factory Exercise.fromFirebase(Map<String, dynamic> map){
+  factory Exercise.fromJson(Map<String, dynamic> map){
     if(map['exercise_set'] != null){
-      return ExerciseSet.fromFirebase(Map<String, dynamic>.from(map['exercise_set'] as Map));
+      return ExerciseSet.fromJson(Map<String, dynamic>.from(map['exercise_set'] as Map));
     }
     if(map['exercise_round_set'] != null){
-      return ExerciseRoundSet.fromFirebase(Map<String, dynamic>.from(map['exercise_round_set'] as Map));
+      return ExerciseRoundSet.fromJson(Map<String, dynamic>.from(map['exercise_round_set'] as Map));
     }
     if(map['exercise_cardio'] != null){
-      return ExerciseCardio.fromFirebase(Map<String, dynamic>.from(map['exercise_cardio'] as Map));
+      return ExerciseCardio.fromJson(Map<String, dynamic>.from(map['exercise_cardio'] as Map));
     }
     throw Exception('Invalid exercise type');
   }
@@ -24,5 +24,5 @@ abstract class Exercise{
     throw Exception('$runtimeType не переопределяет [isNotValid]');
   }
 
-  Map<String, dynamic> toFirebase();
+  Map<String, dynamic> toJson();
 }

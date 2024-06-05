@@ -2,6 +2,27 @@ import 'package:app1/presentation/constants.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryAppButton extends StatelessWidget {
+  const PrimaryAppButton({
+    super.key,
+    required this.onTap,
+    required this.child,
+    this.withColor = false,
+    this.isActive = true,
+    this.isLoading = false,
+    this.animatedDuration,
+    this.height,
+    this.gradient,
+    this.width,
+    this.color,
+    this.borderRadius,
+    this.alignment,
+    this.padding,
+    this.margin,
+    this.inactiveGradient,
+    this.inactiveColor,
+  });
+
+
   final void Function() onTap;
   final Widget child;
   final EdgeInsetsGeometry? padding;
@@ -19,27 +40,12 @@ class PrimaryAppButton extends StatelessWidget {
   final bool isActive;
   final bool isLoading;
 
-  const PrimaryAppButton({
-    super.key,
-    required this.onTap,
-    required this.child,
-    this.withColor = false,
-    this.isActive = true,
-    this.isLoading = false,
-    this.animatedDuration,
-    this.height,
-    this.gradient,
-    this.width,
-    this.color,
-    this.borderRadius,
-    this.alignment,
-    this.padding,
-    this.margin, this.inactiveGradient, this.inactiveColor,
-  });
+
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(borderRadius ?? 25),
       onTap: () => onTap.call(),
       child: AnimatedContainer(
         duration: animatedDuration ?? animationDurationMedium,

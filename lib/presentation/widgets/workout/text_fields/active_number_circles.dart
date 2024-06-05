@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 class ActiveCountTitle extends StatefulWidget {
   final TextEditingController? titleController;
   final void Function(String)? onChanged;
+  final String hintText;
 
   const ActiveCountTitle({
     super.key,
+    required this.hintText,
     this.titleController,
     this.onChanged,
   });
@@ -29,7 +31,7 @@ class _ActiveCountTitleState extends State<ActiveCountTitle> {
       },
       controller: widget.titleController,
       textAlign: TextAlign.center,
-      maxLength: 2,
+      maxLength: 3,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       inputFormatters: [
         FilteringTextInputFormatter.allow(
@@ -50,7 +52,7 @@ class _ActiveCountTitleState extends State<ActiveCountTitle> {
                 color: AppColors.dark
             ),
           ),
-          hintText: 'Кругов',
+          hintText: widget.hintText,
           hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.hintTextColor
           ),

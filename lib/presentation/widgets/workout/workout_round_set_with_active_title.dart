@@ -1,5 +1,5 @@
 import 'package:app1/domain/model/workout/exercise_round_set.dart';
-import 'package:app1/internal/cubit/current_workout/current_workout_cubit.dart';
+import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/active_number_circles.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/active_workout_title.dart';
@@ -51,9 +51,9 @@ class _WorkoutRoundSetWithActiveTitleState extends State<WorkoutRoundSetWithActi
 
   @override
   Widget build(BuildContext context) {
-    final CurrentWorkoutCubit currentWorkoutCubit = context.read<CurrentWorkoutCubit>();
-    final ExerciseRoundSet exerciseRoundSet = currentWorkoutCubit
-        .workout.listExercise[widget.indexExercise] as ExerciseRoundSet;
+    final WorkoutCubit workoutCubit = context.read<WorkoutCubit>();
+    final ExerciseRoundSet exerciseRoundSet = workoutCubit
+        .currentWorkout.listExercise[widget.indexExercise] as ExerciseRoundSet;
     physicalActivityList = exerciseRoundSet.physicalActivityList;
     titleController.text = exerciseRoundSet.title;
     setCountController.text = exerciseRoundSet.setCount;
@@ -90,6 +90,7 @@ class _WorkoutRoundSetWithActiveTitleState extends State<WorkoutRoundSetWithActi
                 flex: 4,
                 child: ActiveCountTitle(
                   titleController: setCountController,
+                  hintText: 'Кругов',
                   onChanged: (_){
                     widget.onChanged(
                         titleController.text,
@@ -182,7 +183,7 @@ class _WorkoutRoundSetWithActiveTitleState extends State<WorkoutRoundSetWithActi
                         child: GestureDetector(
                           onTap: (){
                             physicalActivityList.removeAt(index);
-                            context.read<CurrentWorkoutCubit>().setCurrentRoundSet(
+                            context.read<WorkoutCubit>().setCurrentRoundSet(
                               physicalActivityList,
                               titleController.text,
                               setCountController.text,
@@ -220,7 +221,7 @@ class _WorkoutRoundSetWithActiveTitleState extends State<WorkoutRoundSetWithActi
                     physicalActivityList
                 );
                 physicalActivityList.add(PhysicalActivity(title: '', repetitionsCount: ''));
-                context.read<CurrentWorkoutCubit>().setCurrentRoundSet(
+                context.read<WorkoutCubit>().setCurrentRoundSet(
                   physicalActivityList,
                   titleController.text,
                   setCountController.text,
@@ -239,7 +240,7 @@ class _WorkoutRoundSetWithActiveTitleState extends State<WorkoutRoundSetWithActi
                     physicalActivityList
                 );
                 physicalActivityList.add(PhysicalActivity(title: '', repetitionsCount: ''));
-                context.read<CurrentWorkoutCubit>().setCurrentRoundSet(
+                context.read<WorkoutCubit>().setCurrentRoundSet(
                     physicalActivityList,
                     titleController.text,
                     setCountController.text,

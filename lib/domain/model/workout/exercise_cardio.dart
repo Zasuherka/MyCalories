@@ -12,7 +12,7 @@ class ExerciseCardio extends Exercise{
   @override
   bool get isNotValid => title.isEmpty || count.isEmpty;
 
-  factory ExerciseCardio.fromFirebase(Map<String, dynamic> json){
+  factory ExerciseCardio.fromJson(Map<String, dynamic> json){
     return ExerciseCardio(
       title: json['title'] ?? '',
       count: json['count'] ?? '',
@@ -20,7 +20,7 @@ class ExerciseCardio extends Exercise{
   }
 
   @override
-  Map<String, dynamic> toFirebase() {
+  Map<String, dynamic> toJson() {
     return {
       'exercise_cardio': {
         'title': title,

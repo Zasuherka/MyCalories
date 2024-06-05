@@ -1,6 +1,7 @@
 import 'package:app1/domain/model/collection.dart';
 import 'package:app1/domain/model/food.dart';
 import 'package:app1/presentation/pages/auth_page/auth_page.dart';
+import 'package:app1/presentation/pages/completed_workouts_page/completed_workouts_page.dart';
 import 'package:app1/presentation/pages/current_workout_page/current_workout_page.dart';
 import 'package:app1/presentation/pages/update_collection_page/update_collection_update_page.dart';
 import 'package:app1/presentation/pages/collections_pages/collections_page.dart';
@@ -27,60 +28,65 @@ class AppRouter extends _$AppRouter{
   List<AutoRoute> get routes => [
     MaterialRoute(
         page: AuthRoute.page,
-        path: '/authPage'
+        path: '/auth_page'
     ),
 
     MaterialRoute(
         page: EditingProfileRoute.page,
-        path: '/editingFoodPage'
+        path: '/editing_food_page'
     ),
     MaterialRoute(
         page: FirstRoute.page,
-        path: '/firstPage'
+        path: '/first_page'
     ),
     MaterialRoute(
         page: GoalRoute.page,
-        path: '/goalPage'
+        path: '/goal_page'
     ),
     MaterialRoute(
         page: MyCaloriesRoute.page,
-        path: '/myCaloriesPage'
+        path: '/my_calories_page'
     ),
     MaterialRoute(
         page: MyFoodRoute.page,
-        path: '/myFoodPagePage'
+        path: '/my_food_page'
     ),
     MaterialRoute(
         page: ProfileRoute.page,
-        path: '/profilePage'
+        path: '/profile_page'
     ),
     MaterialRoute(
         page: MenuRoute.page,
-        path: '/menuPage'
+        path: '/menu_page'
     ),
     MaterialRoute(
         page: CreateCollectionRoute.page,
-        path: '/createCollectionPage'
+        path: '/create_collection_page'
     ),
     MaterialRoute(
         page: CollectionsRoute.page,
-        path: '/collectionsPage'
+        path: '/collections_page'
     ),
     MaterialRoute(
         page: CollectionRoute.page,
-        path: '/collectionPage'
+        path: '/collection_page'
     ),
     MaterialRoute(
         page: SaveCollectionRoute.page,
-        path: '/saveCollectionPage'
+        path: '/save_collection_page'
     ),
     MaterialRoute(
         page: UpdateCollectionRoute.page,
-        path: '/updateCollectionPage'
+        path: '/update_collection_page'
     ),
     MaterialRoute(
         page: CurrentWorkoutRoute.page,
-        path: '/currentWorkoutPage'
+        path: '/current_workout_page'
+    ),
+    MaterialRoute(
+        page: CompletedWorkoutsRoute.page,
+        path: '/completed_workouts_page',
+        initial: false
     ),
     MaterialRoute(
         page: StartRoute.page,
