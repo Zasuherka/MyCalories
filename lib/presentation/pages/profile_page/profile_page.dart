@@ -281,7 +281,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(child: News())
+          //const SliverToBoxAdapter(child: News())
         ],
       )
     );

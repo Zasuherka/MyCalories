@@ -1,7 +1,9 @@
 import 'package:app1/internal/bloc/food_bloc/food_bloc.dart';
+import 'package:app1/internal/cubit/food_diary/food_diary_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -104,23 +106,30 @@ class MenuPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: widthHeightImage,
-                  width:  widthHeightImage,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: Image.asset('images/recipes.jpg').image
-                      )
-                  ),
-                  child: Center(
-                    child:
-                    Text(
-                        'В РАЗРАБОТКЕ',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.primaryButtonColor
+                GestureDetector(
+                  onTap: () {
+                    context.read<FoodDiaryCubit>().resetData();
+                    context.router.push(const FoodDiaryRoute());
+                  },
+                  child: Container(
+                    height: widthHeightImage,
+                    width:  widthHeightImage,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            ///TODO убрать надпись "рецепты" с фотографии
+                            image: Image.asset('images/recipes.jpg').image
                         )
+                    ),
+                    child: Center(
+                      child:
+                      Text(
+                          'Дневник',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              color: AppColors.primaryButtonColor
+                          )
+                      ),
                     ),
                   ),
                 )

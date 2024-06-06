@@ -32,7 +32,7 @@ class CompletedWorkoutPage extends StatelessWidget {
                 ),
               ),
               orElse: (){
-                final List<Workout> list = workoutCubit.completedWorkouts;
+                final List<Workout> list = workoutCubit.completedWorkoutsList;
                 return Column(
                   children: [
 

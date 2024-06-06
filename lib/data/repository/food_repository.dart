@@ -372,7 +372,7 @@ class FoodRepository implements IFoodRepository {
       localUser.eatingAnother
     ));
     await _setEatingInfoInFirebase();
-    return (listEatingFood, getCalories(listEatingFood));
+    return (listEatingFood, getCaloriesString(listEatingFood));
   }
 
   ///Редактирование еды, которая добавлена в список приёма пищи
@@ -405,7 +405,7 @@ class FoodRepository implements IFoodRepository {
       localUser.eatingAnother
     ));
     await _setEatingInfoInFirebase();
-    return (listEatingFood, getCalories(listEatingFood));
+    return (listEatingFood, getCaloriesString(listEatingFood));
   }
 
   ///Удаление еды из приёма пищи
@@ -444,7 +444,7 @@ class FoodRepository implements IFoodRepository {
     ));
 
     await _setEatingInfoInFirebase();
-    return (listEatingFood, getCalories(listEatingFood));
+    return (listEatingFood, getCaloriesString(listEatingFood));
   }
 
   ///Получение приёма пищи по названию
@@ -455,16 +455,16 @@ class FoodRepository implements IFoodRepository {
       throw 'localUser равен нулю';
     }
     if (nameEating == 'Завтрак') {
-      return (localUser.eatingBreakfast, getCalories(localUser.eatingBreakfast)
+      return (localUser.eatingBreakfast, getCaloriesString(localUser.eatingBreakfast)
       );
     }
     if (nameEating == 'Обед') {
-      return (localUser.eatingLunch, getCalories(localUser.eatingLunch));
+      return (localUser.eatingLunch, getCaloriesString(localUser.eatingLunch));
     }
     if (nameEating == 'Ужин') {
-      return (localUser.eatingDinner, getCalories(localUser.eatingDinner));
+      return (localUser.eatingDinner, getCaloriesString(localUser.eatingDinner));
     }
-    return (localUser.eatingAnother, getCalories(localUser.eatingAnother));
+    return (localUser.eatingAnother, getCaloriesString(localUser.eatingAnother));
   }
 
   Future _setEatingInfoInFirebase() async {
@@ -506,7 +506,7 @@ class FoodRepository implements IFoodRepository {
 
   @override
   Future<(List<EatingFood>, List<EatingFood>, List<EatingFood>, List<EatingFood>)>
-  getEatingFoodInfoInFirebase([DateTime? dateTime]) async {
+  getEatingFoodInfoInFirebase([DateTime? dateTime, bool saveUserInfo = true]) async {
 
     final localUser = _userRepository.localUser;
 
@@ -525,17 +525,55 @@ class FoodRepository implements IFoodRepository {
     List<EatingFood> dinner = response.$3;
     List<EatingFood> another = response.$4;
 
-    await _userRepository.setEatingFoodListForLocalUser((breakfast, lunch, dinner, another));
+    if(saveUserInfo){
+      await _userRepository.setEatingFoodListForLocalUser((breakfast, lunch, dinner, another));
+    }
 
     return (breakfast, lunch, dinner, another);
   }
 
   @override
-  String getCalories(List<EatingFood> listEatingFood) {
+  String getCaloriesString(List<EatingFood> listEatingFood) {
     double calories = 0;
     for (EatingFood food in listEatingFood) {
       calories += food.calories / 100 * food.weight;
     }
     return calories.toStringAsFixed(2);
+  }
+
+  @override
+  double getCalories(List<EatingFood> listEatingFood) {
+    double calories = 0;
+    for (EatingFood food in listEatingFood) {
+      calories += food.calories / 100 * food.weight;
+    }
+    return calories;
+  }
+
+  @override
+  double getProtein(List<EatingFood> listEatingFood) {
+    double protein = 0;
+    for (EatingFood food in listEatingFood) {
+      protein += food.protein / 100 * food.weight;
+    }
+    return protein;
+  }
+
+  @override
+  double getFats(List<EatingFood> listEatingFood) {
+    double fats = 0;
+    for (EatingFood food in listEatingFood) {
+      fats += food.fats / 100 * food.weight;
+    }
+    return fats;
+  }
+
+  @override
+  double getCarbohydrates(List<EatingFood> listEatingFood) {
+    double carbohydrates = 0;
+    for (EatingFood food in listEatingFood) {
+      carbohydrates += food.carbohydrates / 100 * food.weight;
+    }
+    return carbohydrates;
   }
 }

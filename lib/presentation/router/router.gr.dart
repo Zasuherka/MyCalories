@@ -41,6 +41,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CompletedWorkoutRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompletedWorkoutPage(),
+      );
+    },
     CompletedWorkoutsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -69,6 +75,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const FirstPage(),
+      );
+    },
+    FoodDiaryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FoodDiaryPage(),
       );
     },
     GoalRoute.name: (routeData) {
@@ -226,6 +238,20 @@ class CollectionsRouteArgs {
 }
 
 /// generated route for
+/// [CompletedWorkoutPage]
+class CompletedWorkoutRoute extends PageRouteInfo<void> {
+  const CompletedWorkoutRoute({List<PageRouteInfo>? children})
+      : super(
+          CompletedWorkoutRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompletedWorkoutRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CompletedWorkoutsPage]
 class CompletedWorkoutsRoute extends PageRouteInfo<void> {
   const CompletedWorkoutsRoute({List<PageRouteInfo>? children})
@@ -291,6 +317,20 @@ class FirstRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FirstRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FoodDiaryPage]
+class FoodDiaryRoute extends PageRouteInfo<void> {
+  const FoodDiaryRoute({List<PageRouteInfo>? children})
+      : super(
+          FoodDiaryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FoodDiaryRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

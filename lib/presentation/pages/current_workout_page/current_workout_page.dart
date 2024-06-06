@@ -8,9 +8,9 @@ import 'package:app1/presentation/pages/current_workout_page/widgets/current_wor
 import 'package:app1/presentation/widgets/custom_app_bar.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
 import 'package:app1/presentation/widgets/workout/plus_exercise_widget.dart';
-import 'package:app1/presentation/widgets/workout/workout_cardio_with_active_title.dart';
-import 'package:app1/presentation/widgets/workout/workout_round_set_with_active_title.dart';
-import 'package:app1/presentation/widgets/workout/workout_set_with_active_title.dart';
+import 'package:app1/presentation/widgets/workout/workout_cardio_active.dart';
+import 'package:app1/presentation/widgets/workout/workout_round_set_active.dart';
+import 'package:app1/presentation/widgets/workout/workout_set_active.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -88,7 +88,7 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
                           borderRadius: 15,
                           withColor: false,
                           margin: const EdgeInsets.symmetric(horizontal: 40),
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           alignment: Alignment.center,
                           child: Text(
                             'Начать тренировку',
@@ -221,7 +221,7 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
                                       });
                                     },
                                     child: (activeIndex == index)
-                                        ? WorkoutSetWithActiveTitle(
+                                        ? WorkoutSetActive(
                                       title: exercise.title,
                                       setCount: exercise.setCount,
                                       repetitionsCount: exercise.repetitionsCount,
@@ -299,7 +299,7 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
                                       });
                                     },
                                     child: (activeIndex == index)
-                                        ? WorkoutRoundSetWithActiveTitle(
+                                        ? WorkoutRoundSetActive(
                                       indexExercise: index,
                                       onValidate: () =>
                                       _formKey.currentState?.validate() ?? false,
@@ -368,7 +368,7 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
                                       });
                                     },
                                     child: (activeIndex == index)
-                                        ? WorkoutCardioWithActiveTitle(
+                                        ? WorkoutCardioActive(
                                       title: exercise.title,
                                       count: exercise.count,
                                       onChanged: (title, count) {

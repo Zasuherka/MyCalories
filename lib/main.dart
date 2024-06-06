@@ -7,6 +7,7 @@ import 'package:app1/internal/bloc/registration/registration_bloc.dart';
 import 'package:app1/internal/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/internal/cubit/connection/connection_cubit.dart';
+import 'package:app1/internal/cubit/food_diary/food_diary_cubit.dart';
 import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/internal/cubit/get_page_cubit.dart';
@@ -16,7 +17,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 ///TODO | ИЗМЕНИТЬ ПИСЬМО ПРИХОДЯЩЕЕ НА ПОЧТУ | Сделать валидацию при регистрации |
 ///TODO Сделать везде проверку на инет и вылет окна ошибки(Делать с помощью структуры
 ///TODO try catch(throw))
@@ -73,12 +74,19 @@ class MyFitnessApp extends StatelessWidget {
           BlocProvider<WorkoutCubit>(
               create: (BuildContext context) => WorkoutCubit()
           ),
+          BlocProvider<FoodDiaryCubit>(
+              create: (BuildContext context) => FoodDiaryCubit()
+          ),
         ],
         child: MaterialApp.router(
           theme: createTheme(),
           debugShowCheckedModeBanner: false,
           //home: const StartPage(),
           routerConfig: _appRouter.config(),
+          locale: const Locale('ru', 'RU'),
+
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
         )
     );
   }

@@ -4,13 +4,13 @@ import 'package:app1/presentation/widgets/workout/text_fields/active_workout_tit
 import 'package:app1/presentation/widgets/workout/text_fields/workout_set_text_field.dart';
 import 'package:flutter/material.dart';
 
-class WorkoutSetWithActiveTitle extends StatefulWidget {
+class WorkoutSetActive extends StatefulWidget {
   final void Function(String, String, String) onChanged;
   final String title;
   final String setCount;
   final String repetitionsCount;
 
-  const WorkoutSetWithActiveTitle({
+  const WorkoutSetActive({
     super.key,
     required this.onChanged,
     required this.title,
@@ -19,10 +19,10 @@ class WorkoutSetWithActiveTitle extends StatefulWidget {
   });
 
   @override
-  State<WorkoutSetWithActiveTitle> createState() => _WorkoutSetWithActiveTitleState();
+  State<WorkoutSetActive> createState() => _WorkoutSetActiveState();
 }
 
-class _WorkoutSetWithActiveTitleState extends State<WorkoutSetWithActiveTitle> {
+class _WorkoutSetActiveState extends State<WorkoutSetActive> {
   final TextEditingController titleController = TextEditingController();
 
   final TextEditingController setController = TextEditingController();

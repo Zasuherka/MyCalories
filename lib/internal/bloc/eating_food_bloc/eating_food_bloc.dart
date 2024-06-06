@@ -7,7 +7,6 @@ import 'package:app1/domain/repository/i_food_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'eating_food_event.dart';
 part 'eating_food_state.dart';
@@ -33,9 +32,6 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
   double allCarbohydrates = 0;
 
   AppUser? localUser;
-
-  // static DateTime _date =
-  //     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
   static String? _nameEating;
   static int? _eatingFoodIndex;
@@ -161,10 +157,10 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
       another = localUser!.eatingAnother;
 
 
-      caloriesInBreakfast = _foodRepository.getCalories(breakfast);
-      caloriesInLunch = _foodRepository.getCalories(lunch);
-      caloriesInDinner = _foodRepository.getCalories(dinner);
-      caloriesInAnother = _foodRepository.getCalories(another);
+      caloriesInBreakfast = _foodRepository.getCaloriesString(breakfast);
+      caloriesInLunch = _foodRepository.getCaloriesString(lunch);
+      caloriesInDinner = _foodRepository.getCaloriesString(dinner);
+      caloriesInAnother = _foodRepository.getCaloriesString(another);
 
       allCalories = localUser!.eatingValues['КАЛОРИИ'] ?? 0;
       allProtein = localUser!.eatingValues['БЕЛКИ'] ?? 0;

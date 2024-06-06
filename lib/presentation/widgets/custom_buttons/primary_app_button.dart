@@ -9,15 +9,14 @@ class PrimaryAppButton extends StatelessWidget {
     this.withColor = false,
     this.isActive = true,
     this.isLoading = false,
-    this.animatedDuration,
     this.height,
     this.gradient,
     this.width,
     this.color,
     this.borderRadius,
-    this.alignment,
+    this.alignment = Alignment.center,
     this.padding,
-    this.margin,
+    this.margin = EdgeInsets.zero,
     this.inactiveGradient,
     this.inactiveColor,
   });
@@ -26,9 +25,8 @@ class PrimaryAppButton extends StatelessWidget {
   final void Function() onTap;
   final Widget child;
   final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final Alignment? alignment;
-  final Duration? animatedDuration;
+  final EdgeInsetsGeometry margin;
+  final Alignment alignment;
   final Gradient? gradient;
   final Gradient? inactiveGradient;
   final double? height;
@@ -44,30 +42,36 @@ class PrimaryAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(borderRadius ?? 25),
-      onTap: () => onTap.call(),
-      child: AnimatedContainer(
-        duration: animatedDuration ?? animationDurationMedium,
-        alignment: alignment,
-        padding:
-            padding ?? const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        margin: margin,
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-          gradient: !withColor
-              ? (isActive
-                  ? gradient ?? AppColors.greenGradient
-                  : inactiveGradient ?? AppColors.inactiveGreenGradient)
-              : null,
-          color: isActive
-              ? color ?? AppColors.primaryButtonColor
-              : inactiveColor ?? AppColors.inactivePrimaryButtonColor,
-          boxShadow: boxShadow,
-          borderRadius: BorderRadius.circular(borderRadius ?? 25),
+    return Padding(
+      padding: margin,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(borderRadius ?? 25),
+        onTap: () => onTap.call(),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: !withColor
+                ? (isActive
+                    ? gradient ?? AppColors.greenGradient
+                    : inactiveGradient ?? AppColors.inactiveGreenGradient)
+                : null,
+            color: isActive
+                ? color ?? AppColors.primaryButtonColor
+                : inactiveColor ?? AppColors.inactivePrimaryButtonColor,
+            boxShadow: boxShadow,
+            borderRadius: BorderRadius.circular(borderRadius ?? 25),
+          ),
+          child: Padding(
+            padding: padding ?? const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            child: SizedBox(
+                height: height,
+                width: width,
+                child: Align(
+                  alignment: alignment ?? Alignment.center,
+                  child: child,
+                ),
+            ),
+          ),
         ),
-        child: child,
       ),
     );
   }

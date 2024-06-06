@@ -30,15 +30,15 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
   String height = '';
   String birthday = '';
   String error = '';
+
   late Color _nameTextFieldColor;
-  late Color _emailTextFieldColor;
   late Color _weightTextFieldColor;
   late Color _weightGoalTextFieldColor;
   late Color _heightTextFieldColor;
   late Color _birthdayTextFieldColor;
   late Color _sexButtonColor;
+
   final TextEditingController _controllerName = TextEditingController();
-  final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerWeight = TextEditingController();
   final TextEditingController _controllerWeightGoal = TextEditingController();
   final TextEditingController _controllerBirthday = TextEditingController();
@@ -53,7 +53,6 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
   void _assignDefaultColor() {
     _sexButtonColor = defaultColor;
     _nameTextFieldColor = defaultColor;
-    _emailTextFieldColor = defaultColor;
     _weightTextFieldColor = defaultColor;
     _weightGoalTextFieldColor = defaultColor;
     _heightTextFieldColor = defaultColor;
@@ -62,6 +61,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
+        locale: const Locale('ru', 'RU'),
         helpText: 'Выберите дату рождения',
         cancelText: 'Отмена',
         confirmText: 'Ок',
@@ -108,8 +108,8 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
       birthday = localUser.birthday != null ? DateFormat('dd.MM.yyyy').format(localUser.birthday!) : '';
       selectedDate = localUser.birthday;
       sexValue = localUser.sex?.sex ?? sexValue;
+
       _controllerName.text = name;
-      _controllerEmail.text = email;
       _controllerWeight.text = weight;
       _controllerWeightGoal.text = weightGoal;
       _controllerHeight.text = height;
@@ -123,7 +123,6 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
   ///Очищаем память
   @override
   void dispose() {
-    _controllerEmail.dispose();
     _controllerName.dispose();
     _controllerWeight.dispose();
     _controllerWeightGoal.dispose();

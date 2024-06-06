@@ -8,12 +8,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class WorkoutRoundSetWithActiveTitle extends StatefulWidget {
+class WorkoutRoundSetActive extends StatefulWidget {
   final void Function(String, String, List<PhysicalActivity> physicalActivityList) onChanged;
   final int indexExercise;
   final void Function() onValidate;
 
-  const WorkoutRoundSetWithActiveTitle({
+  const WorkoutRoundSetActive({
     super.key,
     required this.onChanged,
     required this.indexExercise,
@@ -21,10 +21,10 @@ class WorkoutRoundSetWithActiveTitle extends StatefulWidget {
   });
 
   @override
-  State<WorkoutRoundSetWithActiveTitle> createState() => _WorkoutRoundSetWithActiveTitleState();
+  State<WorkoutRoundSetActive> createState() => _WorkoutRoundSetActiveState();
 }
 
-class _WorkoutRoundSetWithActiveTitleState extends State<WorkoutRoundSetWithActiveTitle> {
+class _WorkoutRoundSetActiveState extends State<WorkoutRoundSetActive> {
   final TextEditingController titleController = TextEditingController();
 
   final TextEditingController setCountController = TextEditingController();

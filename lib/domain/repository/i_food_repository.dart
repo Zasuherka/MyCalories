@@ -38,7 +38,15 @@ abstract class IFoodRepository {
   (List<EatingFood>, String) getEatingList(String nameEating);
 
   Future<(List<EatingFood>, List<EatingFood>, List<EatingFood>, List<EatingFood>)>
-  getEatingFoodInfoInFirebase([DateTime? dateTime]);
+  getEatingFoodInfoInFirebase([DateTime? dateTime, bool saveUserInfo]);
 
-  String getCalories(List<EatingFood> listEatingFood);
+  String getCaloriesString(List<EatingFood> listEatingFood);
+
+  double getCalories(List<EatingFood> listEatingFood);
+
+  double getProtein(List<EatingFood> listEatingFood);
+
+  double getFats(List<EatingFood> listEatingFood);
+
+  double getCarbohydrates(List<EatingFood> listEatingFood);
 }

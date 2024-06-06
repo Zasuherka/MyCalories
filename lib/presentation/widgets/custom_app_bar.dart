@@ -72,8 +72,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               )
           : const SizedBox(),
-      title: const Text(
-          'Тренировки'
+      title: Text(
+          title
       ),
       centerTitle: true,
     );

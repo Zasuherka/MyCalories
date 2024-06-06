@@ -19,7 +19,9 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   Workout currentWorkout = Workout(title: '', listExercise: []);
 
-  List<Workout> completedWorkouts = [];
+  List<Workout> completedWorkoutsList = [];
+
+  late Workout completedWorkout;
 
   int? currentExerciseIndex;
 
@@ -123,11 +125,15 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   Future<void> getCompletedWorkoutsList() async{
     try{
       emit(const WorkoutState.loading());
-      completedWorkouts = await _workoutRepository.getCompletedWorkoutsList();
+      completedWorkoutsList = await _workoutRepository.getCompletedWorkoutsList();
       emit(const WorkoutState.success());
     }
     catch(error){
       emit(const WorkoutState.failure(errorMessage: 'Ошибка загрузки данных'));
     }
+  }
+
+  void setCompletedWorkout(Workout workout){
+    completedWorkout = workout;
   }
 }

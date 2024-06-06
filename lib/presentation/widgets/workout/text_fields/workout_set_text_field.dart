@@ -45,6 +45,7 @@ class _WorkoutSetTextFieldState extends State<WorkoutSetTextField> {
         FilteringTextInputFormatter.allow(
             RegExp(r'[0-9-]'))
       ],
+      keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         counterText: '',
         error: hasError ? const SizedBox() : null,

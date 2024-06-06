@@ -1,8 +1,10 @@
 import 'package:app1/domain/model/collection.dart';
 import 'package:app1/domain/model/food.dart';
 import 'package:app1/presentation/pages/auth_page/auth_page.dart';
+import 'package:app1/presentation/pages/completed_workouts/completed_workout_page.dart';
 import 'package:app1/presentation/pages/completed_workouts_page/completed_workouts_page.dart';
 import 'package:app1/presentation/pages/current_workout_page/current_workout_page.dart';
+import 'package:app1/presentation/pages/food_diary_page/food_diary_page.dart';
 import 'package:app1/presentation/pages/update_collection_page/update_collection_update_page.dart';
 import 'package:app1/presentation/pages/collections_pages/collections_page.dart';
 import 'package:app1/presentation/pages/collections_pages/create_collection_page.dart';
@@ -86,6 +88,16 @@ class AppRouter extends _$AppRouter{
     MaterialRoute(
         page: CompletedWorkoutsRoute.page,
         path: '/completed_workouts_page',
+        initial: false
+    ),
+    MaterialRoute(
+        page: CompletedWorkoutRoute.page,
+        path: '/completed_workout_page',
+        initial: false
+    ),
+    MaterialRoute(
+        page: FoodDiaryRoute.page,
+        path: '/food_diary_page',
         initial: false
     ),
     MaterialRoute(
