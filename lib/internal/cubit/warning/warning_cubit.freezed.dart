@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'connection_cubit.dart';
+part of 'warning_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,14 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ConnectionCubitState {
+mixin _$WarningCubitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() disconnected,
     required TResult Function() connected,
+    required TResult Function() saveInfo,
+    required TResult Function() errorSaveInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$ConnectionCubitState {
     TResult? Function()? unknown,
     TResult? Function()? disconnected,
     TResult? Function()? connected,
+    TResult? Function()? saveInfo,
+    TResult? Function()? errorSaveInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$ConnectionCubitState {
     TResult Function()? unknown,
     TResult Function()? disconnected,
     TResult Function()? connected,
+    TResult Function()? saveInfo,
+    TResult Function()? errorSaveInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,8 @@ mixin _$ConnectionCubitState {
     required TResult Function(Unknown value) unknown,
     required TResult Function(Disconnected value) disconnected,
     required TResult Function(Connected value) connected,
+    required TResult Function(SaveInfo value) saveInfo,
+    required TResult Function(ErrorSaveInfo value) errorSaveInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,8 @@ mixin _$ConnectionCubitState {
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Disconnected value)? disconnected,
     TResult? Function(Connected value)? connected,
+    TResult? Function(SaveInfo value)? saveInfo,
+    TResult? Function(ErrorSaveInfo value)? errorSaveInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,23 +67,24 @@ mixin _$ConnectionCubitState {
     TResult Function(Unknown value)? unknown,
     TResult Function(Disconnected value)? disconnected,
     TResult Function(Connected value)? connected,
+    TResult Function(SaveInfo value)? saveInfo,
+    TResult Function(ErrorSaveInfo value)? errorSaveInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConnectionCubitStateCopyWith<$Res> {
-  factory $ConnectionCubitStateCopyWith(ConnectionCubitState value,
-          $Res Function(ConnectionCubitState) then) =
-      _$ConnectionCubitStateCopyWithImpl<$Res, ConnectionCubitState>;
+abstract class $WarningCubitStateCopyWith<$Res> {
+  factory $WarningCubitStateCopyWith(
+          WarningCubitState value, $Res Function(WarningCubitState) then) =
+      _$WarningCubitStateCopyWithImpl<$Res, WarningCubitState>;
 }
 
 /// @nodoc
-class _$ConnectionCubitStateCopyWithImpl<$Res,
-        $Val extends ConnectionCubitState>
-    implements $ConnectionCubitStateCopyWith<$Res> {
-  _$ConnectionCubitStateCopyWithImpl(this._value, this._then);
+class _$WarningCubitStateCopyWithImpl<$Res, $Val extends WarningCubitState>
+    implements $WarningCubitStateCopyWith<$Res> {
+  _$WarningCubitStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,7 +101,7 @@ abstract class _$$UnknownImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnknownImplCopyWithImpl<$Res>
-    extends _$ConnectionCubitStateCopyWithImpl<$Res, _$UnknownImpl>
+    extends _$WarningCubitStateCopyWithImpl<$Res, _$UnknownImpl>
     implements _$$UnknownImplCopyWith<$Res> {
   __$$UnknownImplCopyWithImpl(
       _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
@@ -104,7 +115,7 @@ class _$UnknownImpl implements Unknown {
 
   @override
   String toString() {
-    return 'ConnectionCubitState.unknown()';
+    return 'WarningCubitState.unknown()';
   }
 
   @override
@@ -122,6 +133,8 @@ class _$UnknownImpl implements Unknown {
     required TResult Function() unknown,
     required TResult Function() disconnected,
     required TResult Function() connected,
+    required TResult Function() saveInfo,
+    required TResult Function() errorSaveInfo,
   }) {
     return unknown();
   }
@@ -132,6 +145,8 @@ class _$UnknownImpl implements Unknown {
     TResult? Function()? unknown,
     TResult? Function()? disconnected,
     TResult? Function()? connected,
+    TResult? Function()? saveInfo,
+    TResult? Function()? errorSaveInfo,
   }) {
     return unknown?.call();
   }
@@ -142,6 +157,8 @@ class _$UnknownImpl implements Unknown {
     TResult Function()? unknown,
     TResult Function()? disconnected,
     TResult Function()? connected,
+    TResult Function()? saveInfo,
+    TResult Function()? errorSaveInfo,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -156,6 +173,8 @@ class _$UnknownImpl implements Unknown {
     required TResult Function(Unknown value) unknown,
     required TResult Function(Disconnected value) disconnected,
     required TResult Function(Connected value) connected,
+    required TResult Function(SaveInfo value) saveInfo,
+    required TResult Function(ErrorSaveInfo value) errorSaveInfo,
   }) {
     return unknown(this);
   }
@@ -166,6 +185,8 @@ class _$UnknownImpl implements Unknown {
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Disconnected value)? disconnected,
     TResult? Function(Connected value)? connected,
+    TResult? Function(SaveInfo value)? saveInfo,
+    TResult? Function(ErrorSaveInfo value)? errorSaveInfo,
   }) {
     return unknown?.call(this);
   }
@@ -176,6 +197,8 @@ class _$UnknownImpl implements Unknown {
     TResult Function(Unknown value)? unknown,
     TResult Function(Disconnected value)? disconnected,
     TResult Function(Connected value)? connected,
+    TResult Function(SaveInfo value)? saveInfo,
+    TResult Function(ErrorSaveInfo value)? errorSaveInfo,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -185,7 +208,7 @@ class _$UnknownImpl implements Unknown {
   }
 }
 
-abstract class Unknown implements ConnectionCubitState {
+abstract class Unknown implements WarningCubitState {
   const factory Unknown() = _$UnknownImpl;
 }
 
@@ -198,7 +221,7 @@ abstract class _$$DisconnectedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DisconnectedImplCopyWithImpl<$Res>
-    extends _$ConnectionCubitStateCopyWithImpl<$Res, _$DisconnectedImpl>
+    extends _$WarningCubitStateCopyWithImpl<$Res, _$DisconnectedImpl>
     implements _$$DisconnectedImplCopyWith<$Res> {
   __$$DisconnectedImplCopyWithImpl(
       _$DisconnectedImpl _value, $Res Function(_$DisconnectedImpl) _then)
@@ -212,7 +235,7 @@ class _$DisconnectedImpl implements Disconnected {
 
   @override
   String toString() {
-    return 'ConnectionCubitState.disconnected()';
+    return 'WarningCubitState.disconnected()';
   }
 
   @override
@@ -230,6 +253,8 @@ class _$DisconnectedImpl implements Disconnected {
     required TResult Function() unknown,
     required TResult Function() disconnected,
     required TResult Function() connected,
+    required TResult Function() saveInfo,
+    required TResult Function() errorSaveInfo,
   }) {
     return disconnected();
   }
@@ -240,6 +265,8 @@ class _$DisconnectedImpl implements Disconnected {
     TResult? Function()? unknown,
     TResult? Function()? disconnected,
     TResult? Function()? connected,
+    TResult? Function()? saveInfo,
+    TResult? Function()? errorSaveInfo,
   }) {
     return disconnected?.call();
   }
@@ -250,6 +277,8 @@ class _$DisconnectedImpl implements Disconnected {
     TResult Function()? unknown,
     TResult Function()? disconnected,
     TResult Function()? connected,
+    TResult Function()? saveInfo,
+    TResult Function()? errorSaveInfo,
     required TResult orElse(),
   }) {
     if (disconnected != null) {
@@ -264,6 +293,8 @@ class _$DisconnectedImpl implements Disconnected {
     required TResult Function(Unknown value) unknown,
     required TResult Function(Disconnected value) disconnected,
     required TResult Function(Connected value) connected,
+    required TResult Function(SaveInfo value) saveInfo,
+    required TResult Function(ErrorSaveInfo value) errorSaveInfo,
   }) {
     return disconnected(this);
   }
@@ -274,6 +305,8 @@ class _$DisconnectedImpl implements Disconnected {
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Disconnected value)? disconnected,
     TResult? Function(Connected value)? connected,
+    TResult? Function(SaveInfo value)? saveInfo,
+    TResult? Function(ErrorSaveInfo value)? errorSaveInfo,
   }) {
     return disconnected?.call(this);
   }
@@ -284,6 +317,8 @@ class _$DisconnectedImpl implements Disconnected {
     TResult Function(Unknown value)? unknown,
     TResult Function(Disconnected value)? disconnected,
     TResult Function(Connected value)? connected,
+    TResult Function(SaveInfo value)? saveInfo,
+    TResult Function(ErrorSaveInfo value)? errorSaveInfo,
     required TResult orElse(),
   }) {
     if (disconnected != null) {
@@ -293,7 +328,7 @@ class _$DisconnectedImpl implements Disconnected {
   }
 }
 
-abstract class Disconnected implements ConnectionCubitState {
+abstract class Disconnected implements WarningCubitState {
   const factory Disconnected() = _$DisconnectedImpl;
 }
 
@@ -306,7 +341,7 @@ abstract class _$$ConnectedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ConnectedImplCopyWithImpl<$Res>
-    extends _$ConnectionCubitStateCopyWithImpl<$Res, _$ConnectedImpl>
+    extends _$WarningCubitStateCopyWithImpl<$Res, _$ConnectedImpl>
     implements _$$ConnectedImplCopyWith<$Res> {
   __$$ConnectedImplCopyWithImpl(
       _$ConnectedImpl _value, $Res Function(_$ConnectedImpl) _then)
@@ -320,7 +355,7 @@ class _$ConnectedImpl implements Connected {
 
   @override
   String toString() {
-    return 'ConnectionCubitState.connected()';
+    return 'WarningCubitState.connected()';
   }
 
   @override
@@ -338,6 +373,8 @@ class _$ConnectedImpl implements Connected {
     required TResult Function() unknown,
     required TResult Function() disconnected,
     required TResult Function() connected,
+    required TResult Function() saveInfo,
+    required TResult Function() errorSaveInfo,
   }) {
     return connected();
   }
@@ -348,6 +385,8 @@ class _$ConnectedImpl implements Connected {
     TResult? Function()? unknown,
     TResult? Function()? disconnected,
     TResult? Function()? connected,
+    TResult? Function()? saveInfo,
+    TResult? Function()? errorSaveInfo,
   }) {
     return connected?.call();
   }
@@ -358,6 +397,8 @@ class _$ConnectedImpl implements Connected {
     TResult Function()? unknown,
     TResult Function()? disconnected,
     TResult Function()? connected,
+    TResult Function()? saveInfo,
+    TResult Function()? errorSaveInfo,
     required TResult orElse(),
   }) {
     if (connected != null) {
@@ -372,6 +413,8 @@ class _$ConnectedImpl implements Connected {
     required TResult Function(Unknown value) unknown,
     required TResult Function(Disconnected value) disconnected,
     required TResult Function(Connected value) connected,
+    required TResult Function(SaveInfo value) saveInfo,
+    required TResult Function(ErrorSaveInfo value) errorSaveInfo,
   }) {
     return connected(this);
   }
@@ -382,6 +425,8 @@ class _$ConnectedImpl implements Connected {
     TResult? Function(Unknown value)? unknown,
     TResult? Function(Disconnected value)? disconnected,
     TResult? Function(Connected value)? connected,
+    TResult? Function(SaveInfo value)? saveInfo,
+    TResult? Function(ErrorSaveInfo value)? errorSaveInfo,
   }) {
     return connected?.call(this);
   }
@@ -392,6 +437,8 @@ class _$ConnectedImpl implements Connected {
     TResult Function(Unknown value)? unknown,
     TResult Function(Disconnected value)? disconnected,
     TResult Function(Connected value)? connected,
+    TResult Function(SaveInfo value)? saveInfo,
+    TResult Function(ErrorSaveInfo value)? errorSaveInfo,
     required TResult orElse(),
   }) {
     if (connected != null) {
@@ -401,6 +448,246 @@ class _$ConnectedImpl implements Connected {
   }
 }
 
-abstract class Connected implements ConnectionCubitState {
+abstract class Connected implements WarningCubitState {
   const factory Connected() = _$ConnectedImpl;
+}
+
+/// @nodoc
+abstract class _$$SaveInfoImplCopyWith<$Res> {
+  factory _$$SaveInfoImplCopyWith(
+          _$SaveInfoImpl value, $Res Function(_$SaveInfoImpl) then) =
+      __$$SaveInfoImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SaveInfoImplCopyWithImpl<$Res>
+    extends _$WarningCubitStateCopyWithImpl<$Res, _$SaveInfoImpl>
+    implements _$$SaveInfoImplCopyWith<$Res> {
+  __$$SaveInfoImplCopyWithImpl(
+      _$SaveInfoImpl _value, $Res Function(_$SaveInfoImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SaveInfoImpl implements SaveInfo {
+  const _$SaveInfoImpl();
+
+  @override
+  String toString() {
+    return 'WarningCubitState.saveInfo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SaveInfoImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() disconnected,
+    required TResult Function() connected,
+    required TResult Function() saveInfo,
+    required TResult Function() errorSaveInfo,
+  }) {
+    return saveInfo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? disconnected,
+    TResult? Function()? connected,
+    TResult? Function()? saveInfo,
+    TResult? Function()? errorSaveInfo,
+  }) {
+    return saveInfo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? disconnected,
+    TResult Function()? connected,
+    TResult Function()? saveInfo,
+    TResult Function()? errorSaveInfo,
+    required TResult orElse(),
+  }) {
+    if (saveInfo != null) {
+      return saveInfo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unknown value) unknown,
+    required TResult Function(Disconnected value) disconnected,
+    required TResult Function(Connected value) connected,
+    required TResult Function(SaveInfo value) saveInfo,
+    required TResult Function(ErrorSaveInfo value) errorSaveInfo,
+  }) {
+    return saveInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unknown value)? unknown,
+    TResult? Function(Disconnected value)? disconnected,
+    TResult? Function(Connected value)? connected,
+    TResult? Function(SaveInfo value)? saveInfo,
+    TResult? Function(ErrorSaveInfo value)? errorSaveInfo,
+  }) {
+    return saveInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unknown value)? unknown,
+    TResult Function(Disconnected value)? disconnected,
+    TResult Function(Connected value)? connected,
+    TResult Function(SaveInfo value)? saveInfo,
+    TResult Function(ErrorSaveInfo value)? errorSaveInfo,
+    required TResult orElse(),
+  }) {
+    if (saveInfo != null) {
+      return saveInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SaveInfo implements WarningCubitState {
+  const factory SaveInfo() = _$SaveInfoImpl;
+}
+
+/// @nodoc
+abstract class _$$ErrorSaveInfoImplCopyWith<$Res> {
+  factory _$$ErrorSaveInfoImplCopyWith(
+          _$ErrorSaveInfoImpl value, $Res Function(_$ErrorSaveInfoImpl) then) =
+      __$$ErrorSaveInfoImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ErrorSaveInfoImplCopyWithImpl<$Res>
+    extends _$WarningCubitStateCopyWithImpl<$Res, _$ErrorSaveInfoImpl>
+    implements _$$ErrorSaveInfoImplCopyWith<$Res> {
+  __$$ErrorSaveInfoImplCopyWithImpl(
+      _$ErrorSaveInfoImpl _value, $Res Function(_$ErrorSaveInfoImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ErrorSaveInfoImpl implements ErrorSaveInfo {
+  const _$ErrorSaveInfoImpl();
+
+  @override
+  String toString() {
+    return 'WarningCubitState.errorSaveInfo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ErrorSaveInfoImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() disconnected,
+    required TResult Function() connected,
+    required TResult Function() saveInfo,
+    required TResult Function() errorSaveInfo,
+  }) {
+    return errorSaveInfo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? disconnected,
+    TResult? Function()? connected,
+    TResult? Function()? saveInfo,
+    TResult? Function()? errorSaveInfo,
+  }) {
+    return errorSaveInfo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? disconnected,
+    TResult Function()? connected,
+    TResult Function()? saveInfo,
+    TResult Function()? errorSaveInfo,
+    required TResult orElse(),
+  }) {
+    if (errorSaveInfo != null) {
+      return errorSaveInfo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unknown value) unknown,
+    required TResult Function(Disconnected value) disconnected,
+    required TResult Function(Connected value) connected,
+    required TResult Function(SaveInfo value) saveInfo,
+    required TResult Function(ErrorSaveInfo value) errorSaveInfo,
+  }) {
+    return errorSaveInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unknown value)? unknown,
+    TResult? Function(Disconnected value)? disconnected,
+    TResult? Function(Connected value)? connected,
+    TResult? Function(SaveInfo value)? saveInfo,
+    TResult? Function(ErrorSaveInfo value)? errorSaveInfo,
+  }) {
+    return errorSaveInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unknown value)? unknown,
+    TResult Function(Disconnected value)? disconnected,
+    TResult Function(Connected value)? connected,
+    TResult Function(SaveInfo value)? saveInfo,
+    TResult Function(ErrorSaveInfo value)? errorSaveInfo,
+    required TResult orElse(),
+  }) {
+    if (errorSaveInfo != null) {
+      return errorSaveInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorSaveInfo implements WarningCubitState {
+  const factory ErrorSaveInfo() = _$ErrorSaveInfoImpl;
 }

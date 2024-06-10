@@ -3,28 +3,31 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'connection_cubit_state.dart';
-part 'connection_cubit.freezed.dart';
+part 'warning_cubit_state.dart';
+part 'warning_cubit.freezed.dart';
 
-class ConnectionCubit extends Cubit<ConnectionCubitState> {
+class WarningCubit extends Cubit<WarningCubitState> {
   final Connectivity connectivity;
 
   late StreamSubscription<List<ConnectivityResult>> connectivitySubscription;
 
-  ConnectionCubit({required this.connectivity}) : super(const Unknown()) {
+  WarningCubit({required this.connectivity}) : super(const Unknown()) {
     connectivitySubscription = connectivity.onConnectivityChanged.listen((checkConnectionState));
   }
 
-  void checkConnectionState(List<ConnectivityResult> connectivityResult) {
+  void saveInfoWarning(){
+    emit(const WarningCubitState.saveInfo());
+  }
 
+  void checkConnectionState(List<ConnectivityResult> connectivityResult) {
     if (connectivityResult.contains(ConnectivityResult.mobile)) {
-      emit(const ConnectionCubitState.connected());
+      emit(const WarningCubitState.connected());
     } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
-      emit(const ConnectionCubitState.connected());
+      emit(const WarningCubitState.connected());
     } else if (connectivityResult.contains(ConnectivityResult.none)) {
-      emit(const ConnectionCubitState.disconnected());
+      emit(const WarningCubitState.disconnected());
     } else{
-      emit(const ConnectionCubitState.unknown());
+      emit(const WarningCubitState.unknown());
     }
   }
 
