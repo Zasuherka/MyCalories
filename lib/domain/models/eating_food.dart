@@ -1,4 +1,4 @@
-import 'package:app1/domain/model/food.dart';
+import 'package:app1/domain/models/food.dart';
 
 class EatingFood extends Food
 {

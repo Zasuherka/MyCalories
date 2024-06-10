@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:app1/domain/model/eating_food.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/data/repository/food_repository.dart';
-import 'package:app1/domain/repository/i_food_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/models/eating_food.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/data/repositories/user_repository.dart';
+import 'package:app1/data/repositories/food_repository.dart';
+import 'package:app1/domain/repositories/i_food_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -35,6 +35,7 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
 
   static String? _nameEating;
   static int? _eatingFoodIndex;
+  EatingFood? food;
 
   EatingFoodBloc() : super(const EatingFoodState.initial()) {
     on<EatingFoodEvent>((event, emit) async {
@@ -48,14 +49,14 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
           updateEatingState: (_) => _updateEatingState(emit),
           updateEatingFood: (value) =>
               _updateEatingFood(value.index, value.weight, emit),
-          getNameEating: (value) =>
-              _getNameEating(value.nameEating, emit),
+          setNameEating: (value) =>
+              _setNameEating(value.nameEating, emit),
           getEatingFoodInfo: (value) =>
               _getEatingFoodInfo(
                   value.eatingFood,
+                  emit,
                   value.index,
                   value.nameEating,
-                  emit
               ));
     });
     UserRepository.controller.stream.listen((event) {
@@ -71,20 +72,23 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
     localUser = _userRepository.localUser;
     _updateInfoAboutLocalUser();
 
-    emitter(const EatingFoodState.eatingFood());
+    emitter(const EatingFoodState.success());
   }
 
-  /// Получение названия приёма пищи
-  Future _getNameEating(String nameEating, Emitter<EatingFoodState> emitter) async {
+  /// Сохранияем в блоке название приёма пищи
+  Future<void> _setNameEating(String nameEating, Emitter<EatingFoodState> emitter) async {
     _nameEating = nameEating;
   }
 
   /// Информация об отдельно съеденной еде
-  Future _getEatingFoodInfo(EatingFood eatingFood, int index, String nameEating, Emitter<EatingFoodState> emitter) async {
-    _eatingFoodIndex = index;
-    _nameEating = nameEating;
-    emitter(EatingFoodState.eatingFoodInfo(
-        eatingFood: eatingFood, index: index, nameEating: nameEating));
+  Future _getEatingFoodInfo(EatingFood eatingFood, Emitter<EatingFoodState> emitter, [int? index, String? nameEating]) async {
+    food = eatingFood;
+    if(index != null) _eatingFoodIndex = index;
+    if(nameEating != null) _nameEating = nameEating;
+    if(_eatingFoodIndex != null && _nameEating != null){
+      emitter(EatingFoodState.eatingFoodInfo(
+          eatingFood: eatingFood, index: _eatingFoodIndex!, nameEating: _nameEating!));
+    }
   }
 
   /// Добавление еды в список приёма пищи
@@ -99,13 +103,6 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
       Emitter<EatingFoodState> emitter) async {
     emitter(const EatingFoodState.loading());
     try {
-      // if (_date !=
-      //     DateTime(
-      //         DateTime.now().year, DateTime.now().month, DateTime.now().day)) {
-      //   await _updateList(emitter);
-      //   _date = DateTime(
-      //       DateTime.now().year, DateTime.now().month, DateTime.now().day);
-      // }
       await _foodRepository.addFoodEatingList(
           _nameEating!,
           idFood,
@@ -116,9 +113,8 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
           calories,
           weight
       );
-      emitter(const EatingFoodState.eatingFood());
+      emitter(const EatingFoodState.success());
     } catch (error) {
-      print('Ошибка: ' + error.toString());
       emitter(EatingFoodState.error(error: error.toString()));
     }
   }
@@ -132,7 +128,7 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
     try {
       await _foodRepository.updateFoodInEatingList(
           _nameEating!, _eatingFoodIndex!, weight);
-      emitter(const EatingFoodState.eatingFood());
+      emitter(const EatingFoodState.success());
     } catch (error) {
       emitter(EatingFoodState.error(error: error.toString()));
     }
@@ -143,7 +139,7 @@ class EatingFoodBloc extends Bloc<EatingFoodEvent, EatingFoodState> {
     emitter(const EatingFoodState.loading());
     try {
       await _foodRepository.deleteFoodInEatingList(_nameEating!, _eatingFoodIndex!);
-      emitter(const EatingFoodState.eatingFood());
+      emitter(const EatingFoodState.success());
     } catch (error) {
       emitter(EatingFoodState.error(error: error.toString()));
     }

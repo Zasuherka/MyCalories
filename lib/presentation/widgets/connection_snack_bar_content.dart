@@ -4,8 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ConnectionSnackBar extends StatelessWidget {
-  const ConnectionSnackBar({super.key});
+class WarningSnackBar extends StatelessWidget {
+  final String title;
+  final Color textColor;
+  final Widget? suffix;
+  const WarningSnackBar({
+    super.key,
+    required this.title,
+    this.textColor = AppColors.turquoise,
+    this.suffix,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +30,15 @@ class ConnectionSnackBar extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                'images/wi-fi_off.svg',
-                height: 20,
-                width: 20,
-                colorFilter: const ColorFilter.mode(AppColors.turquoise, BlendMode.srcIn),
-              ),
-              const SizedBox(width: 8),
+              if(suffix != null) ...[
+                suffix!,
+                const SizedBox(width: 8),
+              ],
               Flexible(
                 child: Text(
-                  'Подключение к интернету отсутствует',
+                  title,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: AppColors.turquoise,
+                    color: textColor,
                   ),
                 ),
               ),

@@ -4,7 +4,7 @@ class _UserData{
 
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<AppUser?> getAllInfoAboutUser() async {
+  Future<AppUserDto?> getAllInfoAboutUser() async {
     User? user = _auth.currentUser;
     if (user == null) {
       return null;
@@ -20,7 +20,7 @@ class _UserData{
 
     json['userId'] = user.uid;
 
-    return AppUser.fromJson(json);
+    return AppUserDto.fromFirebase(json);
   }
 
   Future<AuthorizationStatus> authorization(String email, String password) async {
@@ -95,33 +95,10 @@ class _UserData{
   }
 
   Future<void> updateUserInfo({
-    required String userId,
-    String? email,
-    String? name,
-    double? weightNow,
-    double? weightGoal,
-    int? height,
-    String? birthday,
-    String? caloriesGoal,
-    String? proteinGoal,
-    String? fatsGoal,
-    String? carbohydratesGoal,
-    String? sexValue
+    required AppUserDto appUserDto
   }) async {
     try {
-      _usersRef.child(userId).update({
-        "name": name,
-        "email": email,
-        "weightNow": weightNow,
-        "weightGoal": weightGoal,
-        "height": height,
-        "birthday": birthday,
-        "proteinGoal": proteinGoal,
-        "carbohydratesGoal": carbohydratesGoal,
-        "fatsGoal": fatsGoal,
-        "caloriesGoal": caloriesGoal,
-        "sex": sexValue
-      });
+      _usersRef.child(appUserDto.userId).update(appUserDto.toFirebase());
     }
     catch (_) {
       rethrow;

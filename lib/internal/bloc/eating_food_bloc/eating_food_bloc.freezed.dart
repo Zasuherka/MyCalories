@@ -24,9 +24,9 @@ mixin _$EatingFoodEvent {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +38,8 @@ mixin _$EatingFoodEvent {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -51,8 +51,8 @@ mixin _$EatingFoodEvent {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) =>
@@ -63,7 +63,7 @@ mixin _$EatingFoodEvent {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,7 +73,7 @@ mixin _$EatingFoodEvent {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) =>
       throw _privateConstructorUsedError;
@@ -83,7 +83,7 @@ mixin _$EatingFoodEvent {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) =>
@@ -152,9 +152,9 @@ class _$DeleteEatingFoodImpl implements _DeleteEatingFood {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) {
     return deleteEatingFood();
@@ -169,8 +169,8 @@ class _$DeleteEatingFoodImpl implements _DeleteEatingFood {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) {
     return deleteEatingFood?.call();
@@ -185,8 +185,8 @@ class _$DeleteEatingFoodImpl implements _DeleteEatingFood {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -203,7 +203,7 @@ class _$DeleteEatingFoodImpl implements _DeleteEatingFood {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) {
     return deleteEatingFood(this);
@@ -216,7 +216,7 @@ class _$DeleteEatingFoodImpl implements _DeleteEatingFood {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) {
     return deleteEatingFood?.call(this);
@@ -229,7 +229,7 @@ class _$DeleteEatingFoodImpl implements _DeleteEatingFood {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -288,9 +288,9 @@ class _$UpdateEatingStateImpl implements _UpdateEatingState {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) {
     return updateEatingState();
@@ -305,8 +305,8 @@ class _$UpdateEatingStateImpl implements _UpdateEatingState {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) {
     return updateEatingState?.call();
@@ -321,8 +321,8 @@ class _$UpdateEatingStateImpl implements _UpdateEatingState {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -339,7 +339,7 @@ class _$UpdateEatingStateImpl implements _UpdateEatingState {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) {
     return updateEatingState(this);
@@ -352,7 +352,7 @@ class _$UpdateEatingStateImpl implements _UpdateEatingState {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) {
     return updateEatingState?.call(this);
@@ -365,7 +365,7 @@ class _$UpdateEatingStateImpl implements _UpdateEatingState {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -515,9 +515,9 @@ class _$AddEatingFoodImpl implements _AddEatingFood {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) {
     return addEatingFood(
@@ -533,8 +533,8 @@ class _$AddEatingFoodImpl implements _AddEatingFood {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) {
     return addEatingFood?.call(
@@ -550,8 +550,8 @@ class _$AddEatingFoodImpl implements _AddEatingFood {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -569,7 +569,7 @@ class _$AddEatingFoodImpl implements _AddEatingFood {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) {
     return addEatingFood(this);
@@ -582,7 +582,7 @@ class _$AddEatingFoodImpl implements _AddEatingFood {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) {
     return addEatingFood?.call(this);
@@ -595,7 +595,7 @@ class _$AddEatingFoodImpl implements _AddEatingFood {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -707,9 +707,9 @@ class _$UpdateEatingFoodImpl implements _UpdateEatingFood {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) {
     return updateEatingFood(index, weight);
@@ -724,8 +724,8 @@ class _$UpdateEatingFoodImpl implements _UpdateEatingFood {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) {
     return updateEatingFood?.call(index, weight);
@@ -740,8 +740,8 @@ class _$UpdateEatingFoodImpl implements _UpdateEatingFood {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -758,7 +758,7 @@ class _$UpdateEatingFoodImpl implements _UpdateEatingFood {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) {
     return updateEatingFood(this);
@@ -771,7 +771,7 @@ class _$UpdateEatingFoodImpl implements _UpdateEatingFood {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) {
     return updateEatingFood?.call(this);
@@ -784,7 +784,7 @@ class _$UpdateEatingFoodImpl implements _UpdateEatingFood {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -808,20 +808,20 @@ abstract class _UpdateEatingFood implements EatingFoodEvent {
 }
 
 /// @nodoc
-abstract class _$$GetNameEatingImplCopyWith<$Res> {
-  factory _$$GetNameEatingImplCopyWith(
-          _$GetNameEatingImpl value, $Res Function(_$GetNameEatingImpl) then) =
-      __$$GetNameEatingImplCopyWithImpl<$Res>;
+abstract class _$$SetNameEatingImplCopyWith<$Res> {
+  factory _$$SetNameEatingImplCopyWith(
+          _$SetNameEatingImpl value, $Res Function(_$SetNameEatingImpl) then) =
+      __$$SetNameEatingImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String nameEating});
 }
 
 /// @nodoc
-class __$$GetNameEatingImplCopyWithImpl<$Res>
-    extends _$EatingFoodEventCopyWithImpl<$Res, _$GetNameEatingImpl>
-    implements _$$GetNameEatingImplCopyWith<$Res> {
-  __$$GetNameEatingImplCopyWithImpl(
-      _$GetNameEatingImpl _value, $Res Function(_$GetNameEatingImpl) _then)
+class __$$SetNameEatingImplCopyWithImpl<$Res>
+    extends _$EatingFoodEventCopyWithImpl<$Res, _$SetNameEatingImpl>
+    implements _$$SetNameEatingImplCopyWith<$Res> {
+  __$$SetNameEatingImplCopyWithImpl(
+      _$SetNameEatingImpl _value, $Res Function(_$SetNameEatingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -829,7 +829,7 @@ class __$$GetNameEatingImplCopyWithImpl<$Res>
   $Res call({
     Object? nameEating = null,
   }) {
-    return _then(_$GetNameEatingImpl(
+    return _then(_$SetNameEatingImpl(
       nameEating: null == nameEating
           ? _value.nameEating
           : nameEating // ignore: cast_nullable_to_non_nullable
@@ -840,22 +840,22 @@ class __$$GetNameEatingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetNameEatingImpl implements _GetNameEating {
-  const _$GetNameEatingImpl({required this.nameEating});
+class _$SetNameEatingImpl implements _SetNameEating {
+  const _$SetNameEatingImpl({required this.nameEating});
 
   @override
   final String nameEating;
 
   @override
   String toString() {
-    return 'EatingFoodEvent.getNameEating(nameEating: $nameEating)';
+    return 'EatingFoodEvent.setNameEating(nameEating: $nameEating)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetNameEatingImpl &&
+            other is _$SetNameEatingImpl &&
             (identical(other.nameEating, nameEating) ||
                 other.nameEating == nameEating));
   }
@@ -866,8 +866,8 @@ class _$GetNameEatingImpl implements _GetNameEating {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GetNameEatingImplCopyWith<_$GetNameEatingImpl> get copyWith =>
-      __$$GetNameEatingImplCopyWithImpl<_$GetNameEatingImpl>(this, _$identity);
+  _$$SetNameEatingImplCopyWith<_$SetNameEatingImpl> get copyWith =>
+      __$$SetNameEatingImplCopyWithImpl<_$SetNameEatingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -878,12 +878,12 @@ class _$GetNameEatingImpl implements _GetNameEating {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) {
-    return getNameEating(nameEating);
+    return setNameEating(nameEating);
   }
 
   @override
@@ -895,11 +895,11 @@ class _$GetNameEatingImpl implements _GetNameEating {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) {
-    return getNameEating?.call(nameEating);
+    return setNameEating?.call(nameEating);
   }
 
   @override
@@ -911,13 +911,13 @@ class _$GetNameEatingImpl implements _GetNameEating {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) {
-    if (getNameEating != null) {
-      return getNameEating(nameEating);
+    if (setNameEating != null) {
+      return setNameEating(nameEating);
     }
     return orElse();
   }
@@ -929,10 +929,10 @@ class _$GetNameEatingImpl implements _GetNameEating {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) {
-    return getNameEating(this);
+    return setNameEating(this);
   }
 
   @override
@@ -942,10 +942,10 @@ class _$GetNameEatingImpl implements _GetNameEating {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) {
-    return getNameEating?.call(this);
+    return setNameEating?.call(this);
   }
 
   @override
@@ -955,24 +955,24 @@ class _$GetNameEatingImpl implements _GetNameEating {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) {
-    if (getNameEating != null) {
-      return getNameEating(this);
+    if (setNameEating != null) {
+      return setNameEating(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetNameEating implements EatingFoodEvent {
-  const factory _GetNameEating({required final String nameEating}) =
-      _$GetNameEatingImpl;
+abstract class _SetNameEating implements EatingFoodEvent {
+  const factory _SetNameEating({required final String nameEating}) =
+      _$SetNameEatingImpl;
 
   String get nameEating;
   @JsonKey(ignore: true)
-  _$$GetNameEatingImplCopyWith<_$GetNameEatingImpl> get copyWith =>
+  _$$SetNameEatingImplCopyWith<_$SetNameEatingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -982,7 +982,7 @@ abstract class _$$GetEatingFoodInfoImplCopyWith<$Res> {
           $Res Function(_$GetEatingFoodInfoImpl) then) =
       __$$GetEatingFoodInfoImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({EatingFood eatingFood, int index, String nameEating});
+  $Res call({EatingFood eatingFood, int? index, String? nameEating});
 }
 
 /// @nodoc
@@ -997,22 +997,22 @@ class __$$GetEatingFoodInfoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? eatingFood = null,
-    Object? index = null,
-    Object? nameEating = null,
+    Object? index = freezed,
+    Object? nameEating = freezed,
   }) {
     return _then(_$GetEatingFoodInfoImpl(
       eatingFood: null == eatingFood
           ? _value.eatingFood
           : eatingFood // ignore: cast_nullable_to_non_nullable
               as EatingFood,
-      index: null == index
+      index: freezed == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      nameEating: null == nameEating
+              as int?,
+      nameEating: freezed == nameEating
           ? _value.nameEating
           : nameEating // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1021,16 +1021,14 @@ class __$$GetEatingFoodInfoImplCopyWithImpl<$Res>
 
 class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
   const _$GetEatingFoodInfoImpl(
-      {required this.eatingFood,
-      required this.index,
-      required this.nameEating});
+      {required this.eatingFood, this.index, this.nameEating});
 
   @override
   final EatingFood eatingFood;
   @override
-  final int index;
+  final int? index;
   @override
-  final String nameEating;
+  final String? nameEating;
 
   @override
   String toString() {
@@ -1068,9 +1066,9 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
             double fats, double carbohydrates, double calories, int weight)
         addEatingFood,
     required TResult Function(int index, int weight) updateEatingFood,
-    required TResult Function(String nameEating) getNameEating,
+    required TResult Function(String nameEating) setNameEating,
     required TResult Function(
-            EatingFood eatingFood, int index, String nameEating)
+            EatingFood eatingFood, int? index, String? nameEating)
         getEatingFoodInfo,
   }) {
     return getEatingFoodInfo(eatingFood, index, nameEating);
@@ -1085,8 +1083,8 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult? Function(int index, int weight)? updateEatingFood,
-    TResult? Function(String nameEating)? getNameEating,
-    TResult? Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult? Function(String nameEating)? setNameEating,
+    TResult? Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
   }) {
     return getEatingFoodInfo?.call(eatingFood, index, nameEating);
@@ -1101,8 +1099,8 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
             double carbohydrates, double calories, int weight)?
         addEatingFood,
     TResult Function(int index, int weight)? updateEatingFood,
-    TResult Function(String nameEating)? getNameEating,
-    TResult Function(EatingFood eatingFood, int index, String nameEating)?
+    TResult Function(String nameEating)? setNameEating,
+    TResult Function(EatingFood eatingFood, int? index, String? nameEating)?
         getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -1119,7 +1117,7 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
     required TResult Function(_UpdateEatingState value) updateEatingState,
     required TResult Function(_AddEatingFood value) addEatingFood,
     required TResult Function(_UpdateEatingFood value) updateEatingFood,
-    required TResult Function(_GetNameEating value) getNameEating,
+    required TResult Function(_SetNameEating value) setNameEating,
     required TResult Function(_GetEatingFoodInfo value) getEatingFoodInfo,
   }) {
     return getEatingFoodInfo(this);
@@ -1132,7 +1130,7 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
     TResult? Function(_UpdateEatingState value)? updateEatingState,
     TResult? Function(_AddEatingFood value)? addEatingFood,
     TResult? Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult? Function(_GetNameEating value)? getNameEating,
+    TResult? Function(_SetNameEating value)? setNameEating,
     TResult? Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
   }) {
     return getEatingFoodInfo?.call(this);
@@ -1145,7 +1143,7 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
     TResult Function(_UpdateEatingState value)? updateEatingState,
     TResult Function(_AddEatingFood value)? addEatingFood,
     TResult Function(_UpdateEatingFood value)? updateEatingFood,
-    TResult Function(_GetNameEating value)? getNameEating,
+    TResult Function(_SetNameEating value)? setNameEating,
     TResult Function(_GetEatingFoodInfo value)? getEatingFoodInfo,
     required TResult orElse(),
   }) {
@@ -1159,12 +1157,12 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
 abstract class _GetEatingFoodInfo implements EatingFoodEvent {
   const factory _GetEatingFoodInfo(
       {required final EatingFood eatingFood,
-      required final int index,
-      required final String nameEating}) = _$GetEatingFoodInfoImpl;
+      final int? index,
+      final String? nameEating}) = _$GetEatingFoodInfoImpl;
 
   EatingFood get eatingFood;
-  int get index;
-  String get nameEating;
+  int? get index;
+  String? get nameEating;
   @JsonKey(ignore: true)
   _$$GetEatingFoodInfoImplCopyWith<_$GetEatingFoodInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1176,7 +1174,7 @@ mixin _$EatingFoodState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() eatingFood,
+    required TResult Function() success,
     required TResult Function(String error) error,
     required TResult Function(
             int index, String nameEating, EatingFood? eatingFood)
@@ -1187,7 +1185,7 @@ mixin _$EatingFoodState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? eatingFood,
+    TResult? Function()? success,
     TResult? Function(String error)? error,
     TResult? Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1197,7 +1195,7 @@ mixin _$EatingFoodState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? eatingFood,
+    TResult Function()? success,
     TResult Function(String error)? error,
     TResult Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1208,7 +1206,7 @@ mixin _$EatingFoodState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_EatingFood value) eatingFood,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_EatingFoodInfo value) eatingFoodInfo,
   }) =>
@@ -1217,7 +1215,7 @@ mixin _$EatingFoodState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_EatingFood value)? eatingFood,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_EatingFoodInfo value)? eatingFoodInfo,
   }) =>
@@ -1226,7 +1224,7 @@ mixin _$EatingFoodState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_EatingFood value)? eatingFood,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_EatingFoodInfo value)? eatingFoodInfo,
     required TResult orElse(),
@@ -1292,7 +1290,7 @@ class _$InitialImpl extends _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() eatingFood,
+    required TResult Function() success,
     required TResult Function(String error) error,
     required TResult Function(
             int index, String nameEating, EatingFood? eatingFood)
@@ -1306,7 +1304,7 @@ class _$InitialImpl extends _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? eatingFood,
+    TResult? Function()? success,
     TResult? Function(String error)? error,
     TResult? Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1319,7 +1317,7 @@ class _$InitialImpl extends _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? eatingFood,
+    TResult Function()? success,
     TResult Function(String error)? error,
     TResult Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1336,7 +1334,7 @@ class _$InitialImpl extends _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_EatingFood value) eatingFood,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_EatingFoodInfo value) eatingFoodInfo,
   }) {
@@ -1348,7 +1346,7 @@ class _$InitialImpl extends _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_EatingFood value)? eatingFood,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_EatingFoodInfo value)? eatingFoodInfo,
   }) {
@@ -1360,7 +1358,7 @@ class _$InitialImpl extends _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_EatingFood value)? eatingFood,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_EatingFoodInfo value)? eatingFoodInfo,
     required TResult orElse(),
@@ -1417,7 +1415,7 @@ class _$LoadingImpl extends _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() eatingFood,
+    required TResult Function() success,
     required TResult Function(String error) error,
     required TResult Function(
             int index, String nameEating, EatingFood? eatingFood)
@@ -1431,7 +1429,7 @@ class _$LoadingImpl extends _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? eatingFood,
+    TResult? Function()? success,
     TResult? Function(String error)? error,
     TResult? Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1444,7 +1442,7 @@ class _$LoadingImpl extends _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? eatingFood,
+    TResult Function()? success,
     TResult Function(String error)? error,
     TResult Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1461,7 +1459,7 @@ class _$LoadingImpl extends _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_EatingFood value) eatingFood,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_EatingFoodInfo value) eatingFoodInfo,
   }) {
@@ -1473,7 +1471,7 @@ class _$LoadingImpl extends _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_EatingFood value)? eatingFood,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_EatingFoodInfo value)? eatingFoodInfo,
   }) {
@@ -1485,7 +1483,7 @@ class _$LoadingImpl extends _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_EatingFood value)? eatingFood,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_EatingFoodInfo value)? eatingFoodInfo,
     required TResult orElse(),
@@ -1503,35 +1501,35 @@ abstract class _Loading extends EatingFoodState {
 }
 
 /// @nodoc
-abstract class _$$EatingFoodImplCopyWith<$Res> {
-  factory _$$EatingFoodImplCopyWith(
-          _$EatingFoodImpl value, $Res Function(_$EatingFoodImpl) then) =
-      __$$EatingFoodImplCopyWithImpl<$Res>;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EatingFoodImplCopyWithImpl<$Res>
-    extends _$EatingFoodStateCopyWithImpl<$Res, _$EatingFoodImpl>
-    implements _$$EatingFoodImplCopyWith<$Res> {
-  __$$EatingFoodImplCopyWithImpl(
-      _$EatingFoodImpl _value, $Res Function(_$EatingFoodImpl) _then)
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$EatingFoodStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EatingFoodImpl extends _EatingFood {
-  const _$EatingFoodImpl() : super._();
+class _$SuccessImpl extends _Success {
+  const _$SuccessImpl() : super._();
 
   @override
   String toString() {
-    return 'EatingFoodState.eatingFood()';
+    return 'EatingFoodState.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EatingFoodImpl);
+        (other.runtimeType == runtimeType && other is _$SuccessImpl);
   }
 
   @override
@@ -1542,13 +1540,13 @@ class _$EatingFoodImpl extends _EatingFood {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() eatingFood,
+    required TResult Function() success,
     required TResult Function(String error) error,
     required TResult Function(
             int index, String nameEating, EatingFood? eatingFood)
         eatingFoodInfo,
   }) {
-    return eatingFood();
+    return success();
   }
 
   @override
@@ -1556,12 +1554,12 @@ class _$EatingFoodImpl extends _EatingFood {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? eatingFood,
+    TResult? Function()? success,
     TResult? Function(String error)? error,
     TResult? Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
   }) {
-    return eatingFood?.call();
+    return success?.call();
   }
 
   @override
@@ -1569,14 +1567,14 @@ class _$EatingFoodImpl extends _EatingFood {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? eatingFood,
+    TResult Function()? success,
     TResult Function(String error)? error,
     TResult Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
     required TResult orElse(),
   }) {
-    if (eatingFood != null) {
-      return eatingFood();
+    if (success != null) {
+      return success();
     }
     return orElse();
   }
@@ -1586,11 +1584,11 @@ class _$EatingFoodImpl extends _EatingFood {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_EatingFood value) eatingFood,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_EatingFoodInfo value) eatingFoodInfo,
   }) {
-    return eatingFood(this);
+    return success(this);
   }
 
   @override
@@ -1598,11 +1596,11 @@ class _$EatingFoodImpl extends _EatingFood {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_EatingFood value)? eatingFood,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_EatingFoodInfo value)? eatingFoodInfo,
   }) {
-    return eatingFood?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1610,21 +1608,21 @@ class _$EatingFoodImpl extends _EatingFood {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_EatingFood value)? eatingFood,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_EatingFoodInfo value)? eatingFoodInfo,
     required TResult orElse(),
   }) {
-    if (eatingFood != null) {
-      return eatingFood(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _EatingFood extends EatingFoodState {
-  const factory _EatingFood() = _$EatingFoodImpl;
-  const _EatingFood._() : super._();
+abstract class _Success extends EatingFoodState {
+  const factory _Success() = _$SuccessImpl;
+  const _Success._() : super._();
 }
 
 /// @nodoc
@@ -1693,7 +1691,7 @@ class _$ErrorImpl extends _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() eatingFood,
+    required TResult Function() success,
     required TResult Function(String error) error,
     required TResult Function(
             int index, String nameEating, EatingFood? eatingFood)
@@ -1707,7 +1705,7 @@ class _$ErrorImpl extends _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? eatingFood,
+    TResult? Function()? success,
     TResult? Function(String error)? error,
     TResult? Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1720,7 +1718,7 @@ class _$ErrorImpl extends _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? eatingFood,
+    TResult Function()? success,
     TResult Function(String error)? error,
     TResult Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
@@ -1737,7 +1735,7 @@ class _$ErrorImpl extends _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_EatingFood value) eatingFood,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_EatingFoodInfo value) eatingFoodInfo,
   }) {
@@ -1749,7 +1747,7 @@ class _$ErrorImpl extends _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_EatingFood value)? eatingFood,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_EatingFoodInfo value)? eatingFoodInfo,
   }) {
@@ -1761,7 +1759,7 @@ class _$ErrorImpl extends _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_EatingFood value)? eatingFood,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_EatingFoodInfo value)? eatingFoodInfo,
     required TResult orElse(),
@@ -1870,13 +1868,13 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() eatingFood,
+    required TResult Function() success,
     required TResult Function(String error) error,
     required TResult Function(
             int index, String nameEating, EatingFood? eatingFood)
         eatingFoodInfo,
   }) {
-    return eatingFoodInfo(index, nameEating, this.eatingFood);
+    return eatingFoodInfo(index, nameEating, eatingFood);
   }
 
   @override
@@ -1884,12 +1882,12 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? eatingFood,
+    TResult? Function()? success,
     TResult? Function(String error)? error,
     TResult? Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
   }) {
-    return eatingFoodInfo?.call(index, nameEating, this.eatingFood);
+    return eatingFoodInfo?.call(index, nameEating, eatingFood);
   }
 
   @override
@@ -1897,14 +1895,14 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? eatingFood,
+    TResult Function()? success,
     TResult Function(String error)? error,
     TResult Function(int index, String nameEating, EatingFood? eatingFood)?
         eatingFoodInfo,
     required TResult orElse(),
   }) {
     if (eatingFoodInfo != null) {
-      return eatingFoodInfo(index, nameEating, this.eatingFood);
+      return eatingFoodInfo(index, nameEating, eatingFood);
     }
     return orElse();
   }
@@ -1914,7 +1912,7 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_EatingFood value) eatingFood,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_EatingFoodInfo value) eatingFoodInfo,
   }) {
@@ -1926,7 +1924,7 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_EatingFood value)? eatingFood,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_EatingFoodInfo value)? eatingFoodInfo,
   }) {
@@ -1938,7 +1936,7 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_EatingFood value)? eatingFood,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_EatingFoodInfo value)? eatingFoodInfo,
     required TResult orElse(),

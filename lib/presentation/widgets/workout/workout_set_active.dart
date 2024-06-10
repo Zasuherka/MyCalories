@@ -1,4 +1,4 @@
-import 'package:app1/domain/model/workout/exercise_set.dart';
+import 'package:app1/domain/models/workout/exercise_set.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/active_workout_title.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/workout_set_text_field.dart';

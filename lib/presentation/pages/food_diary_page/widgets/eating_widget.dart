@@ -4,7 +4,7 @@ import 'package:app1/presentation/pages/my_calories/widgets/collection_or_food.d
 import 'package:app1/presentation/pages/my_calories/widgets/eating_food_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:app1/domain/model/eating_food.dart';
+import 'package:app1/domain/models/eating_food.dart';
 
 class EatingWidget extends StatelessWidget {
   final String title;

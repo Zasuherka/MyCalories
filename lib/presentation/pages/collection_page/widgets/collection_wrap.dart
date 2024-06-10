@@ -1,3 +1,4 @@
+import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/internal/bloc/food_bloc/food_bloc.dart';
 import 'package:app1/presentation/pages/my_calories/widgets/add_food_widget.dart';
 import 'package:auto_route/auto_route.dart';
@@ -12,10 +13,10 @@ class CollectionWrap extends StatelessWidget {
 
     void makeChoice(String nameEating){
       context.router.popForced();
+      context.read<EatingFoodBloc>().add(EatingFoodEvent.setNameEating(nameEating: nameEating));
       showDialog(
           context: context,
-          builder: (BuildContext context) => AddEatingFood(
-              bloc: BlocProvider.of<FoodBloc>(context)));
+          builder: (BuildContext context) => const AddEatingFood());
     }
 
     return Wrap(

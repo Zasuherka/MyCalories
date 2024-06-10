@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:app1/domain/enums/authorization_status.dart';
 import 'package:app1/domain/enums/local_yser_status.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:app1/data/repository/user_repository.dart';
+import 'package:app1/data/repositories/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authorization_event.dart';

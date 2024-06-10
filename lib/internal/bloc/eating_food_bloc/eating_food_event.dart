@@ -27,14 +27,14 @@ class EatingFoodEvent with _$EatingFoodEvent {
   }) = _UpdateEatingFood;
 
   ///Получение названия приёма пищи, с которым далее планируем какие-либо действия
-  const factory EatingFoodEvent.getNameEating({
+  const factory EatingFoodEvent.setNameEating({
     required String nameEating
-  }) = _GetNameEating;
+  }) = _SetNameEating;
 
   ///Получение информации о еде, с которой планируем какие-либо действия
   const factory EatingFoodEvent.getEatingFoodInfo({
     required EatingFood eatingFood,
-    required int index,
-    required String nameEating,
+    int? index,
+    String? nameEating,
   }) = _GetEatingFoodInfo;
 }

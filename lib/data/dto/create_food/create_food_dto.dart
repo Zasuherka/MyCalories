@@ -1,13 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'food_dto.freezed.dart';
-part 'food_dto.g.dart';
+part 'create_food_dto.freezed.dart';
+part 'create_food_dto.g.dart';
 
 @freezed
-class FoodDto with _$FoodDto {
+class CreateFoodDto with _$CreateFoodDto {
 
-  const FoodDto._();
-  const factory FoodDto({
+  const CreateFoodDto._();
+  const factory CreateFoodDto({
     required String title,
     required String lowerCaseTitle,
     required String protein,
@@ -17,5 +17,5 @@ class FoodDto with _$FoodDto {
     required String authorEmail
   }) = _FoodDto;
 
-  factory FoodDto.fromJson(Map<String, dynamic> json) => _$FoodDtoFromJson(json);
+  factory CreateFoodDto.fromJson(Map<String, dynamic> json) => _$CreateFoodDtoFromJson(json);
 }

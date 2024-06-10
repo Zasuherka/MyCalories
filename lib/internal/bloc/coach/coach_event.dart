@@ -1,4 +1,6 @@
 part of 'coach_bloc.dart';
 
-@immutable
-sealed class CoachEvent {}
+@freezed
+class CoachEvent with _$CoachEvent{
+  const factory CoachEvent.getCoachInfo() = _GetCoachInfo;
+}

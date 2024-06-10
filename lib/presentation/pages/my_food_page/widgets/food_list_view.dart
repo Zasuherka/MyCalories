@@ -1,5 +1,5 @@
 import 'package:app1/presentation/constants.dart';
-import 'package:app1/domain/model/food.dart';
+import 'package:app1/domain/models/food.dart';
 import 'package:app1/presentation/pages/my_food_page/widgets/food_wrap.dart';
 import 'package:flutter/material.dart';
 

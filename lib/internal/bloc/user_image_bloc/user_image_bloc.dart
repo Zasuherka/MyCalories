@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:app1/data/repository/image_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/repository/i_image_repository.dart';
+import 'package:app1/data/repositories/image_repository.dart';
+import 'package:app1/data/repositories/user_repository.dart';
+import 'package:app1/domain/repositories/i_image_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

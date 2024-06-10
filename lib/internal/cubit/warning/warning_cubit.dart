@@ -7,16 +7,21 @@ part 'warning_cubit_state.dart';
 part 'warning_cubit.freezed.dart';
 
 class WarningCubit extends Cubit<WarningCubitState> {
-  final Connectivity connectivity;
+  late Connectivity _connectivity;
 
   late StreamSubscription<List<ConnectivityResult>> connectivitySubscription;
 
-  WarningCubit({required this.connectivity}) : super(const Unknown()) {
-    connectivitySubscription = connectivity.onConnectivityChanged.listen((checkConnectionState));
+  WarningCubit() : super(const Unknown()) {
+    _connectivity = Connectivity();
   }
 
   void saveInfoWarning(){
+    print('d');
     emit(const WarningCubitState.saveInfo());
+  }
+
+  void listedConnectivityChanged(){
+    _connectivity.onConnectivityChanged.listen((checkConnectionState));
   }
 
   void checkConnectionState(List<ConnectivityResult> connectivityResult) {

@@ -19,7 +19,7 @@ class EatingFoodWrap extends StatelessWidget {
             onTap: (){
               Navigator.pop(context);
               showDialog(context: context, builder: (BuildContext context) =>
-                  AddEatingFood(bloc: BlocProvider.of<EatingFoodBloc>(context)));
+                  const AddEatingFood());
             },
           ),
         ),

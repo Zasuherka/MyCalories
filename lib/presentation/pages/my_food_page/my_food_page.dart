@@ -1,6 +1,6 @@
 import 'package:app1/internal/bloc/food_bloc/food_bloc.dart';
 import 'package:app1/presentation/constants.dart';
-import 'package:app1/domain/model/food.dart';
+import 'package:app1/domain/models/food.dart';
 import 'package:app1/presentation/pages/my_food_page/widgets/food_list_view.dart';
 import 'package:app1/presentation/pages/my_food_page/widgets/new_food.dart';
 import 'package:auto_route/auto_route.dart';

@@ -1,4 +1,4 @@
-import 'package:app1/domain/model/workout/exercise.dart';
+import 'package:app1/domain/models/workout/exercise.dart';
 
 class ExerciseRoundSet extends Exercise{
   String setCount;

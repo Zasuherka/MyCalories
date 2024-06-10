@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'food_dto.dart';
+part of 'create_food_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

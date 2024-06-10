@@ -1,9 +1,9 @@
-import 'package:app1/domain/model/food.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/data/repository/food_repository.dart';
-import 'package:app1/domain/repository/i_food_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/models/food.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/data/repositories/user_repository.dart';
+import 'package:app1/data/repositories/food_repository.dart';
+import 'package:app1/domain/repositories/i_food_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -117,12 +117,14 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
 
   ///TODO убрать [localUser] от сюда
   Future _getFoodList(Emitter<FoodState> emitter) async {
-    if(localUser != null){
+    try{
       emitter(const FoodState.loading());
       if(localUser!.myFoods.isEmpty){
         await _foodRepository.getUserFoods();
       }
       emitter(FoodState.listFood(list: localUser!.myFoods));
+    } catch(error){
+      emitter(const FoodState.error(error: 'Ошибка'));
     }
   }
 

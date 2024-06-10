@@ -1,8 +1,8 @@
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:app1/internal/bloc/registration/registration_event.dart';
 import 'package:app1/domain/enums/registration_status.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:app1/data/repository/user_repository.dart';
+import 'package:app1/data/repositories/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 

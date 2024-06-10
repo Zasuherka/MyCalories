@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:app1/data/database/database.dart';
-import 'package:app1/data/dto/create_food/food_dto.dart';
-import 'package:app1/domain/model/food.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/model/eating_food.dart';
-import 'package:app1/domain/repository/i_food_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/data/dto/create_food/create_food_dto.dart';
+import 'package:app1/data/dto/food_dto/food_dto.dart';
+import 'package:app1/domain/models/food.dart';
+import 'package:app1/data/repositories//user_repository.dart';
+import 'package:app1/domain/models/eating_food.dart';
+import 'package:app1/domain/repositories/i_food_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:intl/intl.dart';
 
 class FoodRepository implements IFoodRepository {
@@ -28,7 +29,7 @@ class FoodRepository implements IFoodRepository {
       final listFood = localUser.myFoods;
 
       final newFood = await _database.foodData.createFood(
-          FoodDto(
+          CreateFoodDto(
               title: title,
               lowerCaseTitle: title.toLowerCase(),
               protein: double.parse(protein).toStringAsFixed(2),
@@ -63,7 +64,7 @@ class FoodRepository implements IFoodRepository {
 
     try{
       await _database.foodData.updateFood(
-          FoodDto(
+          CreateFoodDto(
               title: title,
               lowerCaseTitle: title.toLowerCase(),
               protein: double.parse(protein).toStringAsFixed(2),
@@ -133,19 +134,22 @@ class FoodRepository implements IFoodRepository {
       return [];
     }
 
-    final listFood = await _database.foodData.findGlobalFood(searchText);
+    final listFoodDto = await _database.foodData.findGlobalFood(searchText);
 
-    for(int i = 0; i < listFood.length; i++){
-      if(localUser.myFoods.contains(listFood[i])){
-        listFood.removeAt(i);
+    final List<Food> listFood = [];
+
+    for(int i = 0; i < listFoodDto.length; i++){
+      final Food food = listFoodDto[i].toFood();
+      if(localUser.myFoods.contains(food)){
+        listFoodDto.removeAt(i);
         i--;
         continue;
       }
-      listFood[i].isThisFoodOnTheMyFoodList = false;
-      if (localUser.email == listFood[i].authorEmail) {
-        listFood[i].isUserFood = true;
+      food.isThisFoodOnTheMyFoodList = false;
+      if (localUser.email == listFoodDto[i].authorEmail) {
+        food.isUserFood = true;
       } else {
-        listFood[i].isUserFood = false;
+        food.isUserFood = false;
       }
     }
 
@@ -182,8 +186,21 @@ class FoodRepository implements IFoodRepository {
       throw 'localUser равен нулю';
     }
 
-    final List<Food> listFood = await _database.foodData
+    final List<FoodDto> listFoodDto = await _database.foodData
         .getUserFoods(localUser.userId, localUser.email);
+
+    final List<Food> listFood = [];
+
+    listFoodDto.forEach((food) {
+      final Food newFood = food.toFood();
+      if (localUser.email == newFood.authorEmail) {
+        newFood.isUserFood = true;
+      } else {
+        newFood.isUserFood = false;
+      }
+      newFood.isThisFoodOnTheMyFoodList = true;
+      listFood.add(newFood);
+    });
 
     _userRepository.setFoodList(listFood);
   }

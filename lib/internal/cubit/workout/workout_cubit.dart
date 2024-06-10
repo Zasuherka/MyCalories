@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:app1/data/repository/workout_repository.dart';
+import 'package:app1/data/repositories/workout_repository.dart';
 import 'package:app1/domain/enums/exercise_case.dart';
-import 'package:app1/domain/model/workout/exercise.dart';
-import 'package:app1/domain/model/workout/exercise_cardio.dart';
-import 'package:app1/domain/model/workout/exercise_round_set.dart';
-import 'package:app1/domain/model/workout/exercise_set.dart';
-import 'package:app1/domain/model/workout/workout.dart';
-import 'package:app1/domain/repository/i_workout_repository.dart';
+import 'package:app1/domain/models/workout/exercise.dart';
+import 'package:app1/domain/models/workout/exercise_cardio.dart';
+import 'package:app1/domain/models/workout/exercise_round_set.dart';
+import 'package:app1/domain/models/workout/exercise_set.dart';
+import 'package:app1/domain/models/workout/workout.dart';
+import 'package:app1/domain/repositories/i_workout_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

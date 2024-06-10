@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'create_food_dto.dart';
+part of 'food_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CreateFoodDto _$CreateFoodDtoFromJson(Map<String, dynamic> json) {
+FoodDto _$FoodDtoFromJson(Map<String, dynamic> json) {
   return _FoodDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateFoodDto {
+mixin _$FoodDto {
+  String get idFood => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get lowerCaseTitle => throw _privateConstructorUsedError;
   String get protein => throw _privateConstructorUsedError;
   String get fats => throw _privateConstructorUsedError;
   String get carbohydrates => throw _privateConstructorUsedError;
@@ -30,19 +30,17 @@ mixin _$CreateFoodDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreateFoodDtoCopyWith<CreateFoodDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FoodDtoCopyWith<FoodDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateFoodDtoCopyWith<$Res> {
-  factory $CreateFoodDtoCopyWith(
-          CreateFoodDto value, $Res Function(CreateFoodDto) then) =
-      _$CreateFoodDtoCopyWithImpl<$Res, CreateFoodDto>;
+abstract class $FoodDtoCopyWith<$Res> {
+  factory $FoodDtoCopyWith(FoodDto value, $Res Function(FoodDto) then) =
+      _$FoodDtoCopyWithImpl<$Res, FoodDto>;
   @useResult
   $Res call(
-      {String title,
-      String lowerCaseTitle,
+      {String idFood,
+      String title,
       String protein,
       String fats,
       String carbohydrates,
@@ -51,9 +49,9 @@ abstract class $CreateFoodDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CreateFoodDtoCopyWithImpl<$Res, $Val extends CreateFoodDto>
-    implements $CreateFoodDtoCopyWith<$Res> {
-  _$CreateFoodDtoCopyWithImpl(this._value, this._then);
+class _$FoodDtoCopyWithImpl<$Res, $Val extends FoodDto>
+    implements $FoodDtoCopyWith<$Res> {
+  _$FoodDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,8 +61,8 @@ class _$CreateFoodDtoCopyWithImpl<$Res, $Val extends CreateFoodDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? idFood = null,
     Object? title = null,
-    Object? lowerCaseTitle = null,
     Object? protein = null,
     Object? fats = null,
     Object? carbohydrates = null,
@@ -72,13 +70,13 @@ class _$CreateFoodDtoCopyWithImpl<$Res, $Val extends CreateFoodDto>
     Object? authorEmail = null,
   }) {
     return _then(_value.copyWith(
+      idFood: null == idFood
+          ? _value.idFood
+          : idFood // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      lowerCaseTitle: null == lowerCaseTitle
-          ? _value.lowerCaseTitle
-          : lowerCaseTitle // ignore: cast_nullable_to_non_nullable
               as String,
       protein: null == protein
           ? _value.protein
@@ -105,16 +103,15 @@ class _$CreateFoodDtoCopyWithImpl<$Res, $Val extends CreateFoodDto>
 }
 
 /// @nodoc
-abstract class _$$FoodDtoImplCopyWith<$Res>
-    implements $CreateFoodDtoCopyWith<$Res> {
+abstract class _$$FoodDtoImplCopyWith<$Res> implements $FoodDtoCopyWith<$Res> {
   factory _$$FoodDtoImplCopyWith(
           _$FoodDtoImpl value, $Res Function(_$FoodDtoImpl) then) =
       __$$FoodDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String title,
-      String lowerCaseTitle,
+      {String idFood,
+      String title,
       String protein,
       String fats,
       String carbohydrates,
@@ -124,7 +121,7 @@ abstract class _$$FoodDtoImplCopyWith<$Res>
 
 /// @nodoc
 class __$$FoodDtoImplCopyWithImpl<$Res>
-    extends _$CreateFoodDtoCopyWithImpl<$Res, _$FoodDtoImpl>
+    extends _$FoodDtoCopyWithImpl<$Res, _$FoodDtoImpl>
     implements _$$FoodDtoImplCopyWith<$Res> {
   __$$FoodDtoImplCopyWithImpl(
       _$FoodDtoImpl _value, $Res Function(_$FoodDtoImpl) _then)
@@ -133,8 +130,8 @@ class __$$FoodDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? idFood = null,
     Object? title = null,
-    Object? lowerCaseTitle = null,
     Object? protein = null,
     Object? fats = null,
     Object? carbohydrates = null,
@@ -142,13 +139,13 @@ class __$$FoodDtoImplCopyWithImpl<$Res>
     Object? authorEmail = null,
   }) {
     return _then(_$FoodDtoImpl(
+      idFood: null == idFood
+          ? _value.idFood
+          : idFood // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      lowerCaseTitle: null == lowerCaseTitle
-          ? _value.lowerCaseTitle
-          : lowerCaseTitle // ignore: cast_nullable_to_non_nullable
               as String,
       protein: null == protein
           ? _value.protein
@@ -178,8 +175,8 @@ class __$$FoodDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FoodDtoImpl extends _FoodDto {
   const _$FoodDtoImpl(
-      {required this.title,
-      required this.lowerCaseTitle,
+      {required this.idFood,
+      required this.title,
       required this.protein,
       required this.fats,
       required this.carbohydrates,
@@ -191,9 +188,9 @@ class _$FoodDtoImpl extends _FoodDto {
       _$$FoodDtoImplFromJson(json);
 
   @override
-  final String title;
+  final String idFood;
   @override
-  final String lowerCaseTitle;
+  final String title;
   @override
   final String protein;
   @override
@@ -207,7 +204,7 @@ class _$FoodDtoImpl extends _FoodDto {
 
   @override
   String toString() {
-    return 'CreateFoodDto(title: $title, lowerCaseTitle: $lowerCaseTitle, protein: $protein, fats: $fats, carbohydrates: $carbohydrates, calories: $calories, authorEmail: $authorEmail)';
+    return 'FoodDto(idFood: $idFood, title: $title, protein: $protein, fats: $fats, carbohydrates: $carbohydrates, calories: $calories, authorEmail: $authorEmail)';
   }
 
   @override
@@ -215,9 +212,8 @@ class _$FoodDtoImpl extends _FoodDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FoodDtoImpl &&
+            (identical(other.idFood, idFood) || other.idFood == idFood) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.lowerCaseTitle, lowerCaseTitle) ||
-                other.lowerCaseTitle == lowerCaseTitle) &&
             (identical(other.protein, protein) || other.protein == protein) &&
             (identical(other.fats, fats) || other.fats == fats) &&
             (identical(other.carbohydrates, carbohydrates) ||
@@ -230,8 +226,8 @@ class _$FoodDtoImpl extends _FoodDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, lowerCaseTitle, protein,
-      fats, carbohydrates, calories, authorEmail);
+  int get hashCode => Object.hash(runtimeType, idFood, title, protein, fats,
+      carbohydrates, calories, authorEmail);
 
   @JsonKey(ignore: true)
   @override
@@ -247,10 +243,10 @@ class _$FoodDtoImpl extends _FoodDto {
   }
 }
 
-abstract class _FoodDto extends CreateFoodDto {
+abstract class _FoodDto extends FoodDto {
   const factory _FoodDto(
-      {required final String title,
-      required final String lowerCaseTitle,
+      {required final String idFood,
+      required final String title,
       required final String protein,
       required final String fats,
       required final String carbohydrates,
@@ -261,9 +257,9 @@ abstract class _FoodDto extends CreateFoodDto {
   factory _FoodDto.fromJson(Map<String, dynamic> json) = _$FoodDtoImpl.fromJson;
 
   @override
-  String get title;
+  String get idFood;
   @override
-  String get lowerCaseTitle;
+  String get title;
   @override
   String get protein;
   @override

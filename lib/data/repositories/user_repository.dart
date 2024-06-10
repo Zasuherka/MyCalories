@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:app1/data/database/database.dart';
+import 'package:app1/data/dto/user_dto/user_dto.dart';
 import 'package:app1/domain/enums/authorization_status.dart';
 import 'package:app1/domain/enums/registration_status.dart';
 import 'package:app1/domain/enums/sex.dart';
-import 'package:app1/domain/model/eating_food.dart';
-import 'package:app1/domain/model/food.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/models/eating_food.dart';
+import 'package:app1/domain/models/food.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
@@ -145,11 +146,12 @@ class UserRepository implements IUserRepository{
   Future<void> getAppUser() async {
     if (await isConnected()) {
       try {
-        _localUser = await _database.userData.getAllInfoAboutUser();
-        if (_localUser == null) {
+        final appUserDto = await _database.userData.getAllInfoAboutUser();
+        if (appUserDto == null) {
           controller.add(null);
           return;
         }
+        _localUser = appUserDto.toAppUser();
         await _getCount();
         setUserInfo(_localUser!);
       } on FirebaseAuthException catch (e) {
@@ -245,6 +247,7 @@ class UserRepository implements IUserRepository{
   Future<void> updateUserInfo({
     String? email,
     String? name,
+    bool? isCoach,
     double? weightNow,
     double? weightGoal,
     int? height,
@@ -277,22 +280,10 @@ class UserRepository implements IUserRepository{
         carbohydratesGoal ?? _localUser!.carbohydratesGoal;
     _localUser!.caloriesGoal = caloriesGoal ?? _localUser!.caloriesGoal;
     _localUser!.sex = sex ?? _localUser!.sex;
+    _localUser!.isCoach = isCoach ?? _localUser!.isCoach;
 
     try{
-      await _database.userData.updateUserInfo(
-        userId: _localUser!.userId,
-        name: name ?? _localUser!.name,
-        email: email ?? _localUser!.email,
-        weightNow: _localUser!.weightNow,
-        weightGoal: _localUser!.weightGoal,
-        height: _localUser!.height,
-        birthday: _localUser!.birthday.toString(),
-        proteinGoal: _localUser!.proteinGoal.toString(),
-        carbohydratesGoal: _localUser!.carbohydratesGoal.toString(),
-        fatsGoal: _localUser!.fatsGoal.toString(),
-        caloriesGoal: _localUser!.caloriesGoal.toString(),
-        sexValue: sex?.sex ?? _localUser!.sex?.sex
-      );
+      await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(_localUser!));
     }
     catch (_){
       rethrow;

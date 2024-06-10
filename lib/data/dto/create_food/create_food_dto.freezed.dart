@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'food_dto.dart';
+part of 'create_food_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-FoodDto _$FoodDtoFromJson(Map<String, dynamic> json) {
+CreateFoodDto _$CreateFoodDtoFromJson(Map<String, dynamic> json) {
   return _FoodDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FoodDto {
+mixin _$CreateFoodDto {
   String get title => throw _privateConstructorUsedError;
   String get lowerCaseTitle => throw _privateConstructorUsedError;
   String get protein => throw _privateConstructorUsedError;
@@ -30,13 +30,15 @@ mixin _$FoodDto {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FoodDtoCopyWith<FoodDto> get copyWith => throw _privateConstructorUsedError;
+  $CreateFoodDtoCopyWith<CreateFoodDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FoodDtoCopyWith<$Res> {
-  factory $FoodDtoCopyWith(FoodDto value, $Res Function(FoodDto) then) =
-      _$FoodDtoCopyWithImpl<$Res, FoodDto>;
+abstract class $CreateFoodDtoCopyWith<$Res> {
+  factory $CreateFoodDtoCopyWith(
+          CreateFoodDto value, $Res Function(CreateFoodDto) then) =
+      _$CreateFoodDtoCopyWithImpl<$Res, CreateFoodDto>;
   @useResult
   $Res call(
       {String title,
@@ -49,9 +51,9 @@ abstract class $FoodDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FoodDtoCopyWithImpl<$Res, $Val extends FoodDto>
-    implements $FoodDtoCopyWith<$Res> {
-  _$FoodDtoCopyWithImpl(this._value, this._then);
+class _$CreateFoodDtoCopyWithImpl<$Res, $Val extends CreateFoodDto>
+    implements $CreateFoodDtoCopyWith<$Res> {
+  _$CreateFoodDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -103,7 +105,8 @@ class _$FoodDtoCopyWithImpl<$Res, $Val extends FoodDto>
 }
 
 /// @nodoc
-abstract class _$$FoodDtoImplCopyWith<$Res> implements $FoodDtoCopyWith<$Res> {
+abstract class _$$FoodDtoImplCopyWith<$Res>
+    implements $CreateFoodDtoCopyWith<$Res> {
   factory _$$FoodDtoImplCopyWith(
           _$FoodDtoImpl value, $Res Function(_$FoodDtoImpl) then) =
       __$$FoodDtoImplCopyWithImpl<$Res>;
@@ -121,7 +124,7 @@ abstract class _$$FoodDtoImplCopyWith<$Res> implements $FoodDtoCopyWith<$Res> {
 
 /// @nodoc
 class __$$FoodDtoImplCopyWithImpl<$Res>
-    extends _$FoodDtoCopyWithImpl<$Res, _$FoodDtoImpl>
+    extends _$CreateFoodDtoCopyWithImpl<$Res, _$FoodDtoImpl>
     implements _$$FoodDtoImplCopyWith<$Res> {
   __$$FoodDtoImplCopyWithImpl(
       _$FoodDtoImpl _value, $Res Function(_$FoodDtoImpl) _then)
@@ -204,7 +207,7 @@ class _$FoodDtoImpl extends _FoodDto {
 
   @override
   String toString() {
-    return 'FoodDto(title: $title, lowerCaseTitle: $lowerCaseTitle, protein: $protein, fats: $fats, carbohydrates: $carbohydrates, calories: $calories, authorEmail: $authorEmail)';
+    return 'CreateFoodDto(title: $title, lowerCaseTitle: $lowerCaseTitle, protein: $protein, fats: $fats, carbohydrates: $carbohydrates, calories: $calories, authorEmail: $authorEmail)';
   }
 
   @override
@@ -244,7 +247,7 @@ class _$FoodDtoImpl extends _FoodDto {
   }
 }
 
-abstract class _FoodDto extends FoodDto {
+abstract class _FoodDto extends CreateFoodDto {
   const factory _FoodDto(
       {required final String title,
       required final String lowerCaseTitle,

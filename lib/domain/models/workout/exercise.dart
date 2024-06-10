@@ -1,6 +1,6 @@
-import 'package:app1/domain/model/workout/exercise_cardio.dart';
-import 'package:app1/domain/model/workout/exercise_round_set.dart';
-import 'package:app1/domain/model/workout/exercise_set.dart';
+import 'package:app1/domain/models/workout/exercise_cardio.dart';
+import 'package:app1/domain/models/workout/exercise_round_set.dart';
+import 'package:app1/domain/models/workout/exercise_set.dart';
 
 abstract class Exercise{
   String title;

@@ -1,7 +1,7 @@
-import 'package:app1/domain/model/workout/exercise.dart';
-import 'package:app1/domain/model/workout/exercise_cardio.dart';
-import 'package:app1/domain/model/workout/exercise_round_set.dart';
-import 'package:app1/domain/model/workout/exercise_set.dart';
+import 'package:app1/domain/models/workout/exercise.dart';
+import 'package:app1/domain/models/workout/exercise_cardio.dart';
+import 'package:app1/domain/models/workout/exercise_round_set.dart';
+import 'package:app1/domain/models/workout/exercise_set.dart';
 import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/current_workout_page/widgets/current_workout_end_dialog.dart';
@@ -39,26 +39,28 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
   @override
   Widget build(BuildContext context) {
     final currentWorkoutCubit = context.read<WorkoutCubit>();
-    return GestureDetector(
-      onTap: () => currentWorkoutCubit.setWorkoutListExercise(),
-      child: BlocConsumer<WorkoutCubit, WorkoutState>(
-        listener: (context, state){
-          state.whenOrNull(
-            workout: (workout){
-              _titleTextController.text = workout.title;
-            },
-            successWorkoutEnd: () => context.router.popForced(),
-          );
-        },
-        builder: (context, state){
-          state.whenOrNull(
-            emptyValueIndex: (index){
-              activeIndex = index;
-            },
-          );
-          final List<Exercise> training = [];
-          training.addAll(currentWorkoutCubit.currentWorkout.listExercise);
-          return Scaffold(
+    return BlocConsumer<WorkoutCubit, WorkoutState>(
+      listener: (context, state){
+        state.whenOrNull(
+          workout: (workout){
+            _titleTextController.text = workout.title;
+          },
+          successWorkoutEnd: () => context.router.popForced(),
+        );
+      },
+      builder: (context, state){
+        state.whenOrNull(
+          emptyValueIndex: (index){
+            activeIndex = index;
+          },
+        );
+        final List<Exercise> training = [];
+        training.addAll(currentWorkoutCubit.currentWorkout.listExercise);
+        return GestureDetector(
+          onTap: () {
+            if(!currentWorkoutCubit.currentWorkoutIsNull) currentWorkoutCubit.setWorkoutListExercise();
+          },
+          child: Scaffold(
             appBar: CustomAppBar(
               title: 'Текущая тренировка',
               withoutRightIcon: currentWorkoutCubit.currentWorkoutIsNull,
@@ -414,9 +416,9 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
                     );
                   })
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

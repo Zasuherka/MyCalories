@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 import 'package:app1/data/database/database.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/repository/i_image_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/data/repositories//user_repository.dart';
+import 'package:app1/domain/repositories/i_image_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,8 +1,8 @@
-import 'package:app1/domain/model/collection.dart';
+import 'package:app1/domain/models/collection/collection.dart';
 import 'package:app1/internal/bloc/collection_food/collection_food_bloc.dart';
-import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
+import 'package:app1/internal/bloc/collection/collection_bloc.dart';
 import 'package:app1/presentation/constants.dart';
-import 'package:app1/domain/model/food.dart';
+import 'package:app1/domain/models/food.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';

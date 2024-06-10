@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:app1/domain/enums/authorization_status.dart';
 import 'package:app1/domain/enums/registration_status.dart';
-import 'package:app1/domain/model/eating_food.dart';
-import 'package:app1/domain/model/food.dart';
-import 'package:app1/domain/model/user.dart';
+import 'package:app1/domain/models/eating_food.dart';
+import 'package:app1/domain/models/food.dart';
+import 'package:app1/domain/models/app_user.dart';
 
 abstract class IUserRepository {
 
@@ -39,6 +39,7 @@ abstract class IUserRepository {
   Future<void> updateUserInfo({
     String? email,
     String? name,
+    bool? isCoach,
     double? weightNow,
     double? weightGoal,
     int? height,

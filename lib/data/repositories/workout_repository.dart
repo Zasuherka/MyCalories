@@ -1,10 +1,10 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/workout_dto/workout_dto.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/domain/model/workout/workout.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
-import 'package:app1/domain/repository/i_workout_repository.dart';
+import 'package:app1/data/repositories//user_repository.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/domain/models/workout/workout.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
+import 'package:app1/domain/repositories/i_workout_repository.dart';
 import 'package:intl/intl.dart';
 
 class WorkoutRepository extends IWorkoutRepository{

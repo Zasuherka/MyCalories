@@ -1,7 +1,7 @@
 part of 'database.dart';
 
 class _FoodData{
-  Future<Food> createFood(FoodDto dto, String userId) async {
+  Future<Food> createFood(CreateFoodDto dto, String userId) async {
     try {
       final DatabaseReference foodRef = _foodsRef.push();
 
@@ -40,12 +40,12 @@ class _FoodData{
     }
   }
 
-  Future<void> updateFood(FoodDto dto, String userId, String foodId) async {
+  Future<void> updateFood(CreateFoodDto dto, String userId, String foodId) async {
     await _foodsRef.child(foodId).update(dto.toJson());
   }
 
-  Future<List<Food>> findGlobalFood(String searchText) async {
-    List<Food> findGlobalFoodList = [];
+  Future<List<FoodDto>> findGlobalFood(String searchText) async {
+    List<FoodDto> findGlobalFoodList = [];
     final Query query = _foodsRef
         .orderByChild('lowerCaseTitle')
         .startAt(searchText.toLowerCase())
@@ -53,14 +53,14 @@ class _FoodData{
     try {
       final DataSnapshot snapshot = await query.get();
       for (DataSnapshot snapshotFood in snapshot.children) {
-        final Food findFood = Food(
-            snapshotFood.key.toString(),
-            snapshotFood.child('authorEmail').value.toString(),
-            snapshotFood.child('title').value.toString(),
-            double.parse(snapshotFood.child('protein').value.toString()),
-            double.parse(snapshotFood.child('fats').value.toString()),
-            double.parse(snapshotFood.child('carbohydrates').value.toString()),
-            double.parse(snapshotFood.child('calories').value.toString()));
+        final FoodDto findFood = FoodDto(
+            idFood: snapshotFood.key.toString(),
+            authorEmail: snapshotFood.child('authorEmail').value.toString(),
+            title: snapshotFood.child('title').value.toString(),
+            protein: snapshotFood.child('protein').value.toString(),
+            fats: snapshotFood.child('fats').value.toString(),
+            carbohydrates: snapshotFood.child('carbohydrates').value.toString(),
+            calories: snapshotFood.child('calories').value.toString());
         findGlobalFoodList.add(findFood);
       }
     } catch (error) {
@@ -90,26 +90,21 @@ class _FoodData{
     }
   }
 
-  Future<List<Food>> getUserFoods(String userId, String email) async {
-    List<Food> listFood = [];
+  Future<List<FoodDto>> getUserFoods(String userId, String email) async {
+    List<FoodDto> listFood = [];
     try {
       DataSnapshot listFoods = await _usersRef.child('$userId/myFoods').get();
       for (DataSnapshot food in listFoods.children) {
         DataSnapshot getFood = await _foodsRef.child('${food.value}').get();
-        final Food newFood = Food(
-            food.value.toString(),
-            getFood.child('authorEmail').value.toString(),
-            getFood.child('title').value.toString(),
-            double.parse(getFood.child('protein').value.toString()),
-            double.parse(getFood.child('fats').value.toString()),
-            double.parse(getFood.child('carbohydrates').value.toString()),
-            double.parse(getFood.child('calories').value.toString()));
-        if (email == newFood.authorEmail) {
-          newFood.isUserFood = true;
-        } else {
-          newFood.isUserFood = false;
-        }
-        newFood.isThisFoodOnTheMyFoodList = true;
+        final FoodDto newFood = FoodDto(
+            idFood: food.value.toString(),
+            authorEmail:  getFood.child('authorEmail').value.toString(),
+            title:  getFood.child('title').value.toString(),
+            protein: getFood.child('protein').value.toString(),
+            fats: getFood.child('fats').value.toString(),
+            carbohydrates: getFood.child('carbohydrates').value.toString(),
+            calories: getFood.child('calories').value.toString()
+        );
         if (!listFood.contains(newFood)) {
           listFood.add(newFood);
         }

@@ -1,8 +1,8 @@
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/image_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/repository/i_image_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/data/repositories/image_repository.dart';
+import 'package:app1/data/repositories/user_repository.dart';
+import 'package:app1/domain/repositories/i_image_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,14 +19,12 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
   UserInfoBloc() : super(const UserInfoState.initial()) {
     on<UserInfoEvent>((event, emit) async {
-      await event.when(
-          singOut: () => _signOut(emit),
-          update: (name, email, weightNow, weightGoal, birthday,
-                  height, caloriesGoal, fatsGoal, carbohydratesGoal,
-                  proteinGoal, sexValue) =>
-              _updateUserInfo(name, email, weightNow, weightGoal,
-                  birthday, height, caloriesGoal, fatsGoal,
-                  carbohydratesGoal, proteinGoal, sexValue, emit));
+      await event.map(
+          singOut: (_) => _signOut(emit),
+          update: (value) =>
+              _updateUserInfo(value.name, value.email, value.isCoach, value.weightNow, value.weightGoal,
+                  value.birthday, value.height, value.caloriesGoal, value.fatsGoal,
+                  value.carbohydratesGoal, value.proteinGoal, value.sexValue, emit));
     });
 
     localUser = _userRepository.localUser;
@@ -38,6 +36,7 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   Future _updateUserInfo(
       String? name,
       String? email,
+      bool? isCoach,
       double? weightNow,
       double? weightGoal,
       DateTime? birthday,
@@ -50,10 +49,11 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
       Emitter<UserInfoState> emitter) async {
 
     try{
-      //emitter(const UserInfoState.loading());
+      emitter(const UserInfoState.loading());
       await _userRepository.updateUserInfo(
         email: email,
         name: name,
+        isCoach: isCoach,
         weightNow: weightNow,
         weightGoal: weightGoal,
         height: height,
@@ -65,7 +65,7 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
         sexValue: sexValue
       );
       emitter(const UserInfoState.successful());
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(seconds: 5));
       emitter(const UserInfoState.initial());
     }
     catch(error){

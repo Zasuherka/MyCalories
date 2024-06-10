@@ -1,8 +1,8 @@
-import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/collection_repository.dart';
-import 'package:app1/data/repository/food_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
+import 'package:app1/internal/bloc/collection/collection_bloc.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/data/repositories/collection_repository.dart';
+import 'package:app1/data/repositories/food_repository.dart';
+import 'package:app1/data/repositories/user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

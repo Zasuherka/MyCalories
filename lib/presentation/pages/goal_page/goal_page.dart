@@ -185,7 +185,7 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
               ),
               child: GestureDetector(
                 onTap: () {
-                  context.router.pop();
+                  context.router.popForced();
                 },
                 child: SvgPicture.asset(
                   'images/arrow.svg',
@@ -217,14 +217,13 @@ class _GoalPageState extends State<GoalPage> with ProfileValidationMixin {
                     ),
                     Row(
                       children: [
-                        Transform.scale(
-                            scale: 0.75,
-                            alignment: Alignment.centerLeft,
-                            child: CustomSwitch(
-                                value: _switchValue,
-                                onChanged: (value) => setState(()=> _switchValue = !_switchValue)
-                            )
+                        CustomSwitch(
+                            value: _switchValue,
+                            height: 30,
+                            width: 55,
+                            onChanged: (value) => setState(()=> _switchValue = !_switchValue)
                         ),
+                        const SizedBox(width: 10,),
                         Text('Знаю свой КБЖУ',
                           style: Theme.of(context).textTheme.titleSmall,
                         )

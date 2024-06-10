@@ -92,7 +92,8 @@ class PFCChart extends StatelessWidget {
                                         color: AppColors.red
                                     ),
                                   ]
-                              )
+                              ),
+                              swapAnimationDuration: animationDurationLong
                           ),
                         ),
                         Center(

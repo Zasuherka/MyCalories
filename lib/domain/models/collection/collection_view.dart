@@ -1,4 +1,4 @@
-import 'package:app1/domain/models/collection.dart';
+import 'package:app1/domain/models/collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'collection_view.g.dart';

@@ -1,4 +1,4 @@
-import 'package:app1/domain/model/workout/workout.dart';
+import 'package:app1/domain/models/workout/workout.dart';
 
 abstract class IWorkoutRepository{
   Future<void> setCurrentWorkout(Workout workout);

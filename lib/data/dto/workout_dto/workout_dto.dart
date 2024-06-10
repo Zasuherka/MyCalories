@@ -1,5 +1,5 @@
-import 'package:app1/domain/model/workout/exercise.dart';
-import 'package:app1/domain/model/workout/workout.dart';
+import 'package:app1/domain/models/workout/exercise.dart';
+import 'package:app1/domain/models/workout/workout.dart';
 
 class WorkoutDto {
   String? workoutId;

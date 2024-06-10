@@ -1,6 +1,6 @@
-import 'package:app1/data/repository/food_repository.dart';
-import 'package:app1/domain/model/eating_food.dart';
-import 'package:app1/domain/repository/i_food_repository.dart';
+import 'package:app1/data/repositories/food_repository.dart';
+import 'package:app1/domain/models/eating_food.dart';
+import 'package:app1/domain/repositories/i_food_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'food_diary_state.dart';
@@ -14,7 +14,6 @@ class FoodDiaryCubit extends Cubit<FoodDiaryState> {
   List<EatingFood> lunch = [];
   List<EatingFood> dinner = [];
   List<EatingFood> another = [];
-
   double calories = 0;
   double protein = 0;
   double fats = 0;

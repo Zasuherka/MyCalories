@@ -1,11 +1,11 @@
 import 'package:app1/data/dto/collection/collection_dto.dart';
-import 'package:app1/domain/model/collection.dart';
-import 'package:app1/domain/model/collection_view.dart';
-import 'package:app1/domain/model/food.dart';
+import 'package:app1/domain/models/collection/collection.dart';
+import 'package:app1/domain/models/collection/collection_view.dart';
+import 'package:app1/domain/models/food.dart';
 import 'package:app1/data/database/database.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/repository/i_collection_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/data/repositories//user_repository.dart';
+import 'package:app1/domain/repositories/i_collection_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 
 class CollectionRepository implements ICollectionRepository {
 

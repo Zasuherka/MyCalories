@@ -1,15 +1,15 @@
+import 'package:app1/domain/models/food.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'create_food_dto.freezed.dart';
-part 'create_food_dto.g.dart';
+part 'food_dto.freezed.dart';
+part 'food_dto.g.dart';
 
 @freezed
-class CreateFoodDto with _$CreateFoodDto {
-
-  const CreateFoodDto._();
-  const factory CreateFoodDto({
+class FoodDto with _$FoodDto {
+  const FoodDto._();
+  const factory FoodDto({
+    required String idFood,
     required String title,
-    required String lowerCaseTitle,
     required String protein,
     required String fats,
     required String carbohydrates,
@@ -17,5 +17,15 @@ class CreateFoodDto with _$CreateFoodDto {
     required String authorEmail
   }) = _FoodDto;
 
-  factory CreateFoodDto.fromJson(Map<String, dynamic> json) => _$CreateFoodDtoFromJson(json);
+  factory FoodDto.fromJson(Map<String, dynamic> json) => _$FoodDtoFromJson(json);
+
+  Food toFood() => Food(
+      idFood,
+      authorEmail,
+      title,
+      double.tryParse(protein) ?? 0,
+      double.tryParse(fats) ?? 0,
+      double.tryParse(carbohydrates) ?? 0,
+      double.tryParse(calories) ?? 0,
+  );
 }

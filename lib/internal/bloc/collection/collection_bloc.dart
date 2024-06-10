@@ -1,10 +1,10 @@
-import 'package:app1/domain/model/collection_view.dart';
-import 'package:app1/domain/model/food.dart';
-import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/collection_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/domain/repository/i_collection_repository.dart';
-import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:app1/domain/models/collection/collection_view.dart';
+import 'package:app1/domain/models/food.dart';
+import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/data/repositories/collection_repository.dart';
+import 'package:app1/data/repositories/user_repository.dart';
+import 'package:app1/domain/repositories/i_collection_repository.dart';
+import 'package:app1/domain/repositories/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

@@ -1,4 +1,4 @@
-import 'package:app1/domain/model/workout/exercise_cardio.dart';
+import 'package:app1/domain/models/workout/exercise_cardio.dart';
 import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:flutter/material.dart';
