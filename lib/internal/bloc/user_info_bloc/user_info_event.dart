@@ -3,10 +3,10 @@ part of 'user_info_bloc.dart';
 @freezed
 class UserInfoEvent with _$UserInfoEvent {
   const factory UserInfoEvent.singOut() = _SingOut;
-  //const factory UserInfoEvent.info() = _InfoEvent;
   const factory UserInfoEvent.update({
      String? name,
      String? email,
+     bool? isCoach,
      double? weightNow,
      double? weightGoal,
      DateTime? birthday,

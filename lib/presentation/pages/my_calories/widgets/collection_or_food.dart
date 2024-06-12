@@ -138,7 +138,7 @@ class _CollectionOrFoodDropDownState extends State<CollectionOrFoodDropDown> {
       key: _containerKey,
       onTap: () {
         BlocProvider.of<EatingFoodBloc>(context)
-            .add(EatingFoodEvent.getNameEating(nameEating: widget.title));
+            .add(EatingFoodEvent.setNameEating(nameEating: widget.title));
         if (_focused) {
           _node.unfocus();
         } else {

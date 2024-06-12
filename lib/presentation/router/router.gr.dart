@@ -71,12 +71,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const EditingProfilePage(),
       );
     },
-    FirstRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FirstPage(),
-      );
-    },
     FoodDiaryRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -89,6 +83,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const GoalPage(),
       );
     },
+    MainRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MainPage(),
+      );
+    },
     MenuRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -99,6 +99,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MyCaloriesPage(),
+      );
+    },
+    MyCoachRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MyCoachPage(),
       );
     },
     MyFoodRoute.name: (routeData) {
@@ -128,10 +134,10 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    StartRoute.name: (routeData) {
+    SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const StartPage(),
+        child: const SplashPage(),
       );
     },
     UpdateCollectionRoute.name: (routeData) {
@@ -308,20 +314,6 @@ class EditingProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [FirstPage]
-class FirstRoute extends PageRouteInfo<void> {
-  const FirstRoute({List<PageRouteInfo>? children})
-      : super(
-          FirstRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FirstRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [FoodDiaryPage]
 class FoodDiaryRoute extends PageRouteInfo<void> {
   const FoodDiaryRoute({List<PageRouteInfo>? children})
@@ -350,6 +342,20 @@ class GoalRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MainPage]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [MenuPage]
 class MenuRoute extends PageRouteInfo<void> {
   const MenuRoute({List<PageRouteInfo>? children})
@@ -373,6 +379,20 @@ class MyCaloriesRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MyCaloriesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MyCoachPage]
+class MyCoachRoute extends PageRouteInfo<void> {
+  const MyCoachRoute({List<PageRouteInfo>? children})
+      : super(
+          MyCoachRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MyCoachRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -472,15 +492,15 @@ class SaveCollectionRouteArgs {
 }
 
 /// generated route for
-/// [StartPage]
-class StartRoute extends PageRouteInfo<void> {
-  const StartRoute({List<PageRouteInfo>? children})
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
       : super(
-          StartRoute.name,
+          SplashRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'StartRoute';
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

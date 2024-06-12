@@ -5,7 +5,7 @@ class EatingFoodState with _$EatingFoodState {
   const EatingFoodState._();
   const factory EatingFoodState.initial() = _Initial;
   const factory EatingFoodState.loading() = _Loading;
-  const factory EatingFoodState.eatingFood() = _EatingFood;
+  const factory EatingFoodState.success() = _Success;
   const factory EatingFoodState.error({
     required String error
   }) = _Error;

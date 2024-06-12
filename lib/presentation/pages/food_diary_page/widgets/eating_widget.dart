@@ -1,3 +1,4 @@
+import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/my_calories/widgets/collection_or_food.dart';

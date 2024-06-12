@@ -48,8 +48,8 @@ class _CaloriesChartState extends State<CaloriesChart> {
                   height: 25,
                   child:
                   LinearProgressIndicator(
-                    value: value / goalValue, // Здесь вычисляем процент заполнения
-                    backgroundColor: AppColors.red, // Цвет фона
+                    value: value / goalValue,
+                    backgroundColor: AppColors.red,
                     borderRadius: BorderRadius.circular(15),
                     valueColor: const AlwaysStoppedAnimation<Color>(AppColors.turquoise),
                     // Цвет заполнения

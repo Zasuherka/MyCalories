@@ -1,6 +1,6 @@
+import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
 import 'package:app1/internal/bloc/food_bloc/food_bloc.dart';
-import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';

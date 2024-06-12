@@ -22,6 +22,7 @@ mixin _$UserInfoEvent {
     required TResult Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -40,6 +41,7 @@ mixin _$UserInfoEvent {
     TResult? Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -58,6 +60,7 @@ mixin _$UserInfoEvent {
     TResult Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -152,6 +155,7 @@ class _$SingOutImpl implements _SingOut {
     required TResult Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -173,6 +177,7 @@ class _$SingOutImpl implements _SingOut {
     TResult? Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -194,6 +199,7 @@ class _$SingOutImpl implements _SingOut {
     TResult Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -257,6 +263,7 @@ abstract class _$$UpdateImplCopyWith<$Res> {
   $Res call(
       {String? name,
       String? email,
+      bool? isCoach,
       double? weightNow,
       double? weightGoal,
       DateTime? birthday,
@@ -281,6 +288,7 @@ class __$$UpdateImplCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? email = freezed,
+    Object? isCoach = freezed,
     Object? weightNow = freezed,
     Object? weightGoal = freezed,
     Object? birthday = freezed,
@@ -300,6 +308,10 @@ class __$$UpdateImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCoach: freezed == isCoach
+          ? _value.isCoach
+          : isCoach // ignore: cast_nullable_to_non_nullable
+              as bool?,
       weightNow: freezed == weightNow
           ? _value.weightNow
           : weightNow // ignore: cast_nullable_to_non_nullable
@@ -346,6 +358,7 @@ class _$UpdateImpl implements _Update {
   const _$UpdateImpl(
       {this.name,
       this.email,
+      this.isCoach,
       this.weightNow,
       this.weightGoal,
       this.birthday,
@@ -360,6 +373,8 @@ class _$UpdateImpl implements _Update {
   final String? name;
   @override
   final String? email;
+  @override
+  final bool? isCoach;
   @override
   final double? weightNow;
   @override
@@ -381,7 +396,7 @@ class _$UpdateImpl implements _Update {
 
   @override
   String toString() {
-    return 'UserInfoEvent.update(name: $name, email: $email, weightNow: $weightNow, weightGoal: $weightGoal, birthday: $birthday, height: $height, caloriesGoal: $caloriesGoal, fatsGoal: $fatsGoal, carbohydratesGoal: $carbohydratesGoal, proteinGoal: $proteinGoal, sexValue: $sexValue)';
+    return 'UserInfoEvent.update(name: $name, email: $email, isCoach: $isCoach, weightNow: $weightNow, weightGoal: $weightGoal, birthday: $birthday, height: $height, caloriesGoal: $caloriesGoal, fatsGoal: $fatsGoal, carbohydratesGoal: $carbohydratesGoal, proteinGoal: $proteinGoal, sexValue: $sexValue)';
   }
 
   @override
@@ -391,6 +406,7 @@ class _$UpdateImpl implements _Update {
             other is _$UpdateImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.isCoach, isCoach) || other.isCoach == isCoach) &&
             (identical(other.weightNow, weightNow) ||
                 other.weightNow == weightNow) &&
             (identical(other.weightGoal, weightGoal) ||
@@ -415,6 +431,7 @@ class _$UpdateImpl implements _Update {
       runtimeType,
       name,
       email,
+      isCoach,
       weightNow,
       weightGoal,
       birthday,
@@ -438,6 +455,7 @@ class _$UpdateImpl implements _Update {
     required TResult Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -449,7 +467,7 @@ class _$UpdateImpl implements _Update {
             String? sexValue)
         update,
   }) {
-    return update(name, email, weightNow, weightGoal, birthday, height,
+    return update(name, email, isCoach, weightNow, weightGoal, birthday, height,
         caloriesGoal, fatsGoal, carbohydratesGoal, proteinGoal, sexValue);
   }
 
@@ -460,6 +478,7 @@ class _$UpdateImpl implements _Update {
     TResult? Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -471,8 +490,19 @@ class _$UpdateImpl implements _Update {
             String? sexValue)?
         update,
   }) {
-    return update?.call(name, email, weightNow, weightGoal, birthday, height,
-        caloriesGoal, fatsGoal, carbohydratesGoal, proteinGoal, sexValue);
+    return update?.call(
+        name,
+        email,
+        isCoach,
+        weightNow,
+        weightGoal,
+        birthday,
+        height,
+        caloriesGoal,
+        fatsGoal,
+        carbohydratesGoal,
+        proteinGoal,
+        sexValue);
   }
 
   @override
@@ -482,6 +512,7 @@ class _$UpdateImpl implements _Update {
     TResult Function(
             String? name,
             String? email,
+            bool? isCoach,
             double? weightNow,
             double? weightGoal,
             DateTime? birthday,
@@ -495,8 +526,19 @@ class _$UpdateImpl implements _Update {
     required TResult orElse(),
   }) {
     if (update != null) {
-      return update(name, email, weightNow, weightGoal, birthday, height,
-          caloriesGoal, fatsGoal, carbohydratesGoal, proteinGoal, sexValue);
+      return update(
+          name,
+          email,
+          isCoach,
+          weightNow,
+          weightGoal,
+          birthday,
+          height,
+          caloriesGoal,
+          fatsGoal,
+          carbohydratesGoal,
+          proteinGoal,
+          sexValue);
     }
     return orElse();
   }
@@ -537,6 +579,7 @@ abstract class _Update implements UserInfoEvent {
   const factory _Update(
       {final String? name,
       final String? email,
+      final bool? isCoach,
       final double? weightNow,
       final double? weightGoal,
       final DateTime? birthday,
@@ -549,6 +592,7 @@ abstract class _Update implements UserInfoEvent {
 
   String? get name;
   String? get email;
+  bool? get isCoach;
   double? get weightNow;
   double? get weightGoal;
   DateTime? get birthday;
@@ -568,6 +612,7 @@ mixin _$UserInfoState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() successful,
     required TResult Function() info,
     required TResult Function(String error) error,
@@ -576,6 +621,7 @@ mixin _$UserInfoState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function()? successful,
     TResult? Function()? info,
     TResult? Function(String error)? error,
@@ -584,6 +630,7 @@ mixin _$UserInfoState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? successful,
     TResult Function()? info,
     TResult Function(String error)? error,
@@ -593,6 +640,7 @@ mixin _$UserInfoState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Successful value) successful,
     required TResult Function(_InfoState value) info,
     required TResult Function(_Error value) error,
@@ -601,6 +649,7 @@ mixin _$UserInfoState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Successful value)? successful,
     TResult? Function(_InfoState value)? info,
     TResult? Function(_Error value)? error,
@@ -609,6 +658,7 @@ mixin _$UserInfoState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Successful value)? successful,
     TResult Function(_InfoState value)? info,
     TResult Function(_Error value)? error,
@@ -674,6 +724,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() successful,
     required TResult Function() info,
     required TResult Function(String error) error,
@@ -685,6 +736,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function()? successful,
     TResult? Function()? info,
     TResult? Function(String error)? error,
@@ -696,6 +748,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? successful,
     TResult Function()? info,
     TResult Function(String error)? error,
@@ -711,6 +764,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Successful value) successful,
     required TResult Function(_InfoState value) info,
     required TResult Function(_Error value) error,
@@ -722,6 +776,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Successful value)? successful,
     TResult? Function(_InfoState value)? info,
     TResult? Function(_Error value)? error,
@@ -733,6 +788,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Successful value)? successful,
     TResult Function(_InfoState value)? info,
     TResult Function(_Error value)? error,
@@ -747,6 +803,126 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements UserInfoState {
   const factory _Initial() = _$InitialImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$UserInfoStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
+
+  @override
+  String toString() {
+    return 'UserInfoState.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() successful,
+    required TResult Function() info,
+    required TResult Function(String error) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? successful,
+    TResult? Function()? info,
+    TResult? Function(String error)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? successful,
+    TResult Function()? info,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Successful value) successful,
+    required TResult Function(_InfoState value) info,
+    required TResult Function(_Error value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Successful value)? successful,
+    TResult? Function(_InfoState value)? info,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Successful value)? successful,
+    TResult Function(_InfoState value)? info,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements UserInfoState {
+  const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -788,6 +964,7 @@ class _$SuccessfulImpl implements _Successful {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() successful,
     required TResult Function() info,
     required TResult Function(String error) error,
@@ -799,6 +976,7 @@ class _$SuccessfulImpl implements _Successful {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function()? successful,
     TResult? Function()? info,
     TResult? Function(String error)? error,
@@ -810,6 +988,7 @@ class _$SuccessfulImpl implements _Successful {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? successful,
     TResult Function()? info,
     TResult Function(String error)? error,
@@ -825,6 +1004,7 @@ class _$SuccessfulImpl implements _Successful {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Successful value) successful,
     required TResult Function(_InfoState value) info,
     required TResult Function(_Error value) error,
@@ -836,6 +1016,7 @@ class _$SuccessfulImpl implements _Successful {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Successful value)? successful,
     TResult? Function(_InfoState value)? info,
     TResult? Function(_Error value)? error,
@@ -847,6 +1028,7 @@ class _$SuccessfulImpl implements _Successful {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Successful value)? successful,
     TResult Function(_InfoState value)? info,
     TResult Function(_Error value)? error,
@@ -902,6 +1084,7 @@ class _$InfoStateImpl implements _InfoState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() successful,
     required TResult Function() info,
     required TResult Function(String error) error,
@@ -913,6 +1096,7 @@ class _$InfoStateImpl implements _InfoState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function()? successful,
     TResult? Function()? info,
     TResult? Function(String error)? error,
@@ -924,6 +1108,7 @@ class _$InfoStateImpl implements _InfoState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? successful,
     TResult Function()? info,
     TResult Function(String error)? error,
@@ -939,6 +1124,7 @@ class _$InfoStateImpl implements _InfoState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Successful value) successful,
     required TResult Function(_InfoState value) info,
     required TResult Function(_Error value) error,
@@ -950,6 +1136,7 @@ class _$InfoStateImpl implements _InfoState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Successful value)? successful,
     TResult? Function(_InfoState value)? info,
     TResult? Function(_Error value)? error,
@@ -961,6 +1148,7 @@ class _$InfoStateImpl implements _InfoState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Successful value)? successful,
     TResult Function(_InfoState value)? info,
     TResult Function(_Error value)? error,
@@ -1042,6 +1230,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() successful,
     required TResult Function() info,
     required TResult Function(String error) error,
@@ -1053,6 +1242,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function()? successful,
     TResult? Function()? info,
     TResult? Function(String error)? error,
@@ -1064,6 +1254,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? successful,
     TResult Function()? info,
     TResult Function(String error)? error,
@@ -1079,6 +1270,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Successful value) successful,
     required TResult Function(_InfoState value) info,
     required TResult Function(_Error value) error,
@@ -1090,6 +1282,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Successful value)? successful,
     TResult? Function(_InfoState value)? info,
     TResult? Function(_Error value)? error,
@@ -1101,6 +1294,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Successful value)? successful,
     TResult Function(_InfoState value)? info,
     TResult Function(_Error value)? error,

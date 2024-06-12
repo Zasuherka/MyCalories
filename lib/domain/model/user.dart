@@ -34,6 +34,8 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
 
   late String email;
 
+  bool isCoach;
+
   double? weightNow;
 
   double? weightGoal;
@@ -53,6 +55,8 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
   int? carbohydratesGoal;
 
   int? proteinGoal;
+
+  String? coachId;
 
   Sex? sex;
 
@@ -98,6 +102,8 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
         required this.birthday,
         required this.urlAvatar,
         required this.listCollectionsId,
+        this.isCoach = false,
+        this.coachId,
         this.caloriesGoal,
         this.fatsGoal,
         this.proteinGoal,
@@ -128,6 +134,8 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
         fatsGoal = int.tryParse(json['fatsGoal'] ?? ''),
         caloriesGoal = int.tryParse(json['caloriesGoal'] ?? ''),
         sex = getSex(json['sex']),
+        coachId = json['coachId'],
+        isCoach = json['isCoach'],
         listCollectionsId = (json['collections'] as List)
             .map((e) => e.toString()).toList()
   {
@@ -150,7 +158,9 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
       "fatsGoal": fatsGoal,
       "caloriesGoal": caloriesGoal,
       "sex": sex?.sex,
-      "collections": listCollectionsId
+      "collections": listCollectionsId,
+      "isCoach": isCoach,
+      "coachId": coachId,
     };
   }
 

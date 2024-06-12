@@ -1,8 +1,8 @@
-import 'package:app1/internal/cubit/connection/connection_cubit.dart';
-import 'package:app1/internal/cubit/get_page_cubit.dart';
+import 'package:app1/internal/cubit/warning/warning_cubit.dart';
+import 'package:app1/internal/cubit/get_page/get_page_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/auth_page/auth_page.dart';
-import 'package:app1/presentation/pages/first_page.dart';
+import 'package:app1/presentation/pages/main_page.dart';
 import 'package:app1/presentation/widgets/connection_snack_bar_content.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +12,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 @RoutePage()
-class StartPage extends StatefulWidget {
-  const StartPage({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<StartPage> createState() => _StartPageState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _StartPageState extends State<StartPage> {
+class _SplashPageState extends State<SplashPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -34,20 +34,54 @@ class _StartPageState extends State<StartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ConnectionCubit, ConnectionCubitState>(
-      listener: (BuildContext context, ConnectionCubitState state) {
+    return BlocListener<WarningCubit, WarningCubitState>(
+      listener: (BuildContext context, WarningCubitState state) {
+        print(state);
         if (state is Disconnected) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              padding: EdgeInsets.zero,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              content: WarningSnackBar(
+                title: 'Подключение к интернету отсутствует',
+                suffix: SvgPicture.asset(
+                  'images/wi-fi_off.svg',
+                  height: 20,
+                  width: 20,
+                  colorFilter: const ColorFilter.mode(AppColors.turquoise, BlendMode.srcIn),
+                ),
+              ),
+              duration: const Duration(days: 1),
+            ),
+          );
+        } else if (state is Connected) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        } if (state is SaveInfo){
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               padding: EdgeInsets.zero,
               elevation: 0,
               backgroundColor: Colors.transparent,
-              content: ConnectionSnackBar(),
+              content: WarningSnackBar(
+                title: 'Информация сохранена',
+              ),
               duration: Duration(days: 1),
             ),
           );
-        } else if (state is Connected) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        } else if(state is ErrorSaveInfo){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              padding: EdgeInsets.zero,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              content: WarningSnackBar(
+                title: 'Что-то пошло не так, попробуйте ещё раз',
+                textColor: AppColors.red,
+              ),
+              duration: Duration(days: 1),
+            ),
+          );
         }
       },
       child: BlocBuilder<GetPageCubit, GetPageState>(
@@ -58,7 +92,7 @@ class _StartPageState extends State<StartPage> {
                 page = const AuthPage();
               },
               firstPage: () {
-                page = const FirstPage();
+                page = const MainPage();
               }
           );
           return page != null
@@ -72,7 +106,6 @@ class _StartPageState extends State<StartPage> {
                 colorFilter:
                 const ColorFilter.mode(
                     Colors.transparent, BlendMode.color),
-                // Применение прозрачного фильтра
                 height: 250,
               ),
             ),

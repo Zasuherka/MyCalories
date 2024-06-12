@@ -72,6 +72,7 @@ class _CPFCFormState extends State<CPFCForm> with CPFCValidator {
         key: _key,
         child: Center(
           child: AnimatedContainer(
+            curve: Curves.easeIn,
             onEnd: (){
               setState(() {
                 _isShow = !_isShow;

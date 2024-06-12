@@ -3,7 +3,9 @@ import 'package:app1/domain/enums/sex.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/validation/profile.dart';
 import 'package:app1/presentation/widgets/custom_buttons/custom_drop_down_button.dart';
+import 'package:app1/presentation/widgets/custom_buttons/switch.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +32,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
   String height = '';
   String birthday = '';
   String error = '';
+  bool isCoach = false;
 
   late Color _nameTextFieldColor;
   late Color _weightTextFieldColor;
@@ -108,6 +111,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
       birthday = localUser.birthday != null ? DateFormat('dd.MM.yyyy').format(localUser.birthday!) : '';
       selectedDate = localUser.birthday;
       sexValue = localUser.sex?.sex ?? sexValue;
+      isCoach = localUser.isCoach;
 
       _controllerName.text = name;
       _controllerWeight.text = weight;
@@ -194,6 +198,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                                   UserInfoEvent.update(
                                       name: name,
                                       //email: email,
+                                      isCoach: isCoach,
                                       weightNow: double.parse(weight),
                                       weightGoal: double.parse(weightGoal),
                                       birthday: DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day),
@@ -234,7 +239,6 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                                 padding: const EdgeInsets.only(top: 16),
                                 alignment: Alignment.centerLeft,
                                 decoration: _getContainerDecoration(_nameTextFieldColor),
-                                ///TODO переделать изменение цевта границ(border) с помощью двух параметров OutlineInputBorder и OutlineInputBorder
                                 child: TextFormField(
                                   validator: (value) {
                                     if(isNameValid(value)){
@@ -584,6 +588,19 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                               ],
                             ),
                             verticalOffset,
+                            Row(
+                              children: [
+                                CustomSwitch(
+                                    value: isCoach,
+                                    onChanged: (_) => setState(() => isCoach = !isCoach),
+                                ),
+                                const SizedBox(width: 10,),
+                                const Text(
+                                    'Тренер',
+                                ),
+                              ],
+                            ),
+                            verticalOffset,
                             SizedBox(
                                 width: 375,
                                 height: 45,
@@ -611,14 +628,13 @@ class _EditingProfilePageState extends State<EditingProfilePage> with ProfileVal
                             const Spacer(),
                             GestureDetector(
                               onTap: () {
-                                context.router.pop();
+                                context.router.popForced();
                                 BlocProvider.of<UserInfoBloc>(context).add(const UserInfoEvent.singOut());
                               },
                               child: Container(
                                   width: 375,
                                   height: 45,
                                   decoration: BoxDecoration(
-                                    //color: AppColors.elementColor,
                                     gradient: AppColors.greenGradient,
                                     borderRadius: BorderRadius.circular(90),
                                     boxShadow: [

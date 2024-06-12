@@ -1,3 +1,4 @@
+import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
@@ -12,6 +13,10 @@ class WorkoutMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userIsCoach = context.read<UserInfoBloc>().localUser?.isCoach ?? false;
+    const Widget verticalOffset = SizedBox(
+      height: 10,
+    );
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Тренировки',
@@ -23,9 +28,25 @@ class WorkoutMenuPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 10,
+            PrimaryAppButton(
+              onTap: (){
+                if(userIsCoach){
+
+                } else{
+                  context.router.push(const MyCoachRoute());
+                }
+              },
+              withColor: true,
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              alignment: Alignment.center,
+              child: Text(
+                userIsCoach ? 'Подопечные' : 'Мой тренер',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: AppColors.secondaryTextColor
+                ),
+              ),
             ),
+            verticalOffset,
             PrimaryAppButton(
               onTap: (){
                 context.router.push(const CurrentWorkoutRoute());
@@ -40,9 +61,7 @@ class WorkoutMenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            verticalOffset,
             PrimaryAppButton(
               onTap: (){},
               withColor: true,
@@ -55,9 +74,7 @@ class WorkoutMenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            verticalOffset,
             PrimaryAppButton(
               onTap: (){},
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -70,9 +87,7 @@ class WorkoutMenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            verticalOffset,
             PrimaryAppButton(
               onTap: (){
                 context.read<WorkoutCubit>().getCompletedWorkoutsList();

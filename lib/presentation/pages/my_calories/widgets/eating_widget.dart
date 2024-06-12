@@ -87,7 +87,7 @@ class EatingWidget extends StatelessWidget {
                 SizedBox(
                   height: 55.0 * list.length,
                   child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),//Чтобы не скролился
+                      physics: const NeverScrollableScrollPhysics(),
                       addSemanticIndexes: false,
                       padding: EdgeInsets.zero,
                       itemCount: list.length,

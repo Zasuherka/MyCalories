@@ -60,6 +60,7 @@ class EatingCharts extends StatelessWidget {
                             value: protein,
                             color: AppColors.colorForProtein),
                       ]),
+                    swapAnimationDuration: animationDurationLong
                 ),
               ),
             ),

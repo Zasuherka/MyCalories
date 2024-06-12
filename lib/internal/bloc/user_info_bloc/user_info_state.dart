@@ -3,7 +3,7 @@ part of 'user_info_bloc.dart';
 @freezed
 class UserInfoState with _$UserInfoState {
   const factory UserInfoState.initial() = _Initial;
-  //const factory UserInfoState.loading() = _Loading;
+  const factory UserInfoState.loading() = _Loading;
   const factory UserInfoState.successful() = _Successful;
   const factory UserInfoState.info() = _InfoState;
   const factory UserInfoState.error({
