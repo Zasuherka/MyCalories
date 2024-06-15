@@ -7,6 +7,7 @@ class CoachState with _$CoachState {
   const factory CoachState.loading() = _Loading;
 
   const factory CoachState.error({required String errorMessage}) = _Error;
+  const factory CoachState.success() = _Success;
 
   const factory CoachState.coachSearchList({
     required List<AppUser> coachSearchList,

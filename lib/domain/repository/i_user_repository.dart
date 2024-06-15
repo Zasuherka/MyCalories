@@ -54,4 +54,6 @@ abstract class IUserRepository {
   Future<void> logOutUser();
 
   Future<List<AppUser>> searchUser(String searchText);
+
+  Future<AppUser> updateLocalUserInfo();
 }

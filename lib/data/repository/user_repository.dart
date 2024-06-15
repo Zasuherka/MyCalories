@@ -300,4 +300,23 @@ class UserRepository implements IUserRepository {
     final List<AppUser> userList = appUserDtoList.map((e) => e.toAppUser()).toList();
     return userList;
   }
+
+  @override
+  Future<AppUser> updateLocalUserInfo() async{
+    if (_localUser == null) {
+      throw Exception('localUser is null');
+    }
+
+    try{
+      final appUserDto = await _database.userData.getAllInfoAboutUser(userId: _localUser!.userId);
+      if(appUserDto != null){
+        _localUser = appUserDto.toAppUser();
+        setUserInfo(_localUser);
+      }
+      return _localUser!;
+    }
+    catch(_){
+      rethrow;
+    }
+  }
 }

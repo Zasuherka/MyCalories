@@ -107,7 +107,6 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: MyCoachPage(
           key: args.key,
-          coachId: args.coachId,
         ),
       );
     },

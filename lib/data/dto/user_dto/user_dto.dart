@@ -115,8 +115,9 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
         sex = getSex(json['sex']),
         listCollectionsId = ((json['collections'] ?? []) as List)
             .map((e) => e.toString()).toList(),
-        wards = json['wards'],
-        wardRequests = json['wardRequests'],
+        wards = (json['wards'] as List?)?.map((e) => e as String).toList(),
+        wardRequests = (json['wardRequests'] as List?)?.map((e) => e as String).toList(),
+        coachId = json['coachId'],
         requestCoachId = json['requestCoachId'];
 
   factory AppUserDto.fromAppUser(AppUser appUser){

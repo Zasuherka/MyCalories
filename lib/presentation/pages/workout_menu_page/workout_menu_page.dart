@@ -1,3 +1,4 @@
+import 'package:app1/internal/bloc/coach/coach_bloc.dart';
 import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:app1/internal/cubit/workout/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
@@ -13,6 +14,7 @@ class WorkoutMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CoachBloc>().add(const CoachEvent.updateLocalUserInfo());
     final userIsCoach = context.read<UserInfoBloc>().localUser?.isCoach ?? false;
     const Widget verticalOffset = SizedBox(
       height: 10,

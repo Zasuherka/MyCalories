@@ -4,21 +4,22 @@ class _UserData{
 
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<AppUserDto?> getAllInfoAboutUser() async {
-    User? user = _auth.currentUser;
-    if (user == null) {
-      return null;
+  Future<AppUserDto?> getAllInfoAboutUser({String? userId}) async {
+    if(userId == null){
+      User? user = _auth.currentUser;
+      if (user == null) {
+        return null;
+      }
+      await user.reload();
+      user = _auth.currentUser;
+      userId = user!.uid;
     }
-    await user.reload();
-    user = _auth.currentUser;
 
     final DataSnapshot userData =
-        await _usersRef.child(user!.uid).get();
+        await _usersRef.child(userId).get();
 
     final Map<String, dynamic> json = Map<String, dynamic>
         .from(userData.value as Map);
-
-    json['userId'] = user.uid;
 
     return AppUserDto.fromFirebase(json);
   }
@@ -98,7 +99,7 @@ class _UserData{
     required AppUserDto appUserDto
   }) async {
     try {
-      _usersRef.child(appUserDto.userId).update(appUserDto.toFirebase());
+      await _usersRef.child(appUserDto.userId).update(appUserDto.toFirebase());
     }
     catch (_) {
       rethrow;
@@ -124,15 +125,25 @@ class _UserData{
         .orderByChild('lowerCaseName')
         .startAt(searchText.toLowerCase())
         .endAt('${searchText.toLowerCase()}\uf8ff');
-    final DataSnapshot snapshot = await query.get();
-    for (DataSnapshot snapshotUser in snapshot.children) {
-      final Map<String, dynamic> json = Map<String, dynamic>
-          .from(snapshotUser.value as Map);
-      if((json['isCoach'] ?? false) && userId != json['userId']){
-        json['userId'] = snapshotUser.key;
-        userList.add(AppUserDto.fromFirebase(json));
+    try{
+      final DataSnapshot snapshot = await query.get();
+      for (DataSnapshot snapshotUser in snapshot.children) {
+        final Map<String, dynamic> json = Map<String, dynamic>
+            .from(snapshotUser.value as Map);
+        if((json['isCoach'] ?? false) && userId != json['userId']){
+          json['userId'] = snapshotUser.key;
+          userList.add(AppUserDto.fromFirebase(json));
+        }
       }
     }
+    catch(error){}
     return userList;
+  }
+
+  Future<void> cancelCoachRequest(String coachId, String userId) async{
+    final appUserDto = await getAllInfoAboutUser(userId: coachId);
+    if(appUserDto == null) return;
+    appUserDto.wardRequests?.removeWhere((element) => element == userId);
+    updateUserInfo(appUserDto: appUserDto);
   }
 }

@@ -14,6 +14,7 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
 
   final IUserRepository _userRepository = UserRepository();
   final CoachRepository _coachRepository = CoachRepository();
+  AppUser? coach;
   String? coachId;
   List<AppUser> appUserList = [];
   AppUser? localUser;
@@ -21,27 +22,47 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
   CoachBloc() : super(const CoachState.initial()) {
     on<CoachEvent>((event, emit) async {
       await event.map(
-          getCoachInfo: (_) async => await _getCoachInfo(emit),
-          searchCoach: (value) async => await _searchCoach(emit, value.searchText),
-        coachRequest: (value) async => await _coachRequest(emit, value.coach)
+        getCoachInfo: (_) async => await _getCoachInfo(emit),
+        searchCoach: (value) async => await _searchCoach(emit, value.searchText),
+        coachRequest: (value) async => await _coachRequest(emit, value.coach),
+        updateLocalUserInfo: (_) async => await _updateLocalUserInfo(emit),
       );
     }, transformer: restartable());
-    coachId = _userRepository.localUser?.coachId;
+    localUser = _userRepository.localUser;
+    coachId = localUser?.coachId;
     UserRepository.controller.stream.listen((event) {
       localUser = event;
       coachId = event?.coachId;
     });
   }
 
+  Future<void> _updateLocalUserInfo(Emitter<CoachState> emitter) async{
+    emitter(const CoachState.loading());
+    try{
+      localUser = await _userRepository.updateLocalUserInfo();
+      emitter(const CoachState.success());
+    }
+    catch(error){
+      emitter(const CoachState.error(errorMessage: 'Не удалось обновить информацию о localUser'));
+    }
+  }
+
   Future<void> _getCoachInfo(Emitter<CoachState> emitter) async{
     if(coachId == null) emitter(const CoachState.coachIsNull());
+    try{
+      localUser = await _coachRepository.;
+      emitter(const CoachState.success());
+    }
+    catch(error){
+      emitter(const CoachState.error(errorMessage: 'Не удалось обновить информацию о localUser'));
+    }
   }
 
   Future<void> _coachRequest(Emitter<CoachState> emitter, AppUser coach) async{
     emitter(const CoachState.loading());
     try{
       await _coachRepository.requestCoach(coach);
-      coachId = coach.coachId;
+      emitter(const CoachState.success());
     }
     catch(error){
       emitter(const CoachState.error(errorMessage: ''));

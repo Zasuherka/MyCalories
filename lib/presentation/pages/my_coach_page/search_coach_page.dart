@@ -170,14 +170,16 @@ class _SearchCoachPageState extends State<SearchCoachPage> {
                                 Expanded(
                                   flex: 3,
                                   child: Text(
-                                    coachBloc.appUserList[index].name,
+                                    user.name,
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        coachBloc.add(CoachEvent.coachRequest(coach: user));
+                                      },
                                       child: user.userId != coachBloc.localUser?.requestCoachId
                                           ? SvgPicture.asset(
                                         'images/mark.svg',

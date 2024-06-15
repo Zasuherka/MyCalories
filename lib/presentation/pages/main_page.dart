@@ -1,3 +1,4 @@
+import 'package:app1/internal/bloc/coach/coach_bloc.dart';
 import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/internal/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/presentation/constants.dart';
@@ -32,15 +33,16 @@ class _MainPageState extends State<MainPage> {
     const WorkoutMenuPage()
   ];
 
-  Widget iconProfile = const Icon(Icons.person_outline);
-  Widget iconFood = const Icon(Icons.food_bank_outlined);
-  Widget iconHome = const Icon(Icons.home);
-  Widget iconWorkoutMenu = SvgPicture.asset('images/workout_outlined.svg',
-    colorFilter: const ColorFilter.mode(AppColors.inactiveIconColor, BlendMode.srcIn),
-    height: 20,
-  );
-
-  void changeScreen(int index) async{
+  void changeScreen(int index) async {
+    switch (index) {
+      case 0:
+      case 1:
+        BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
+      case 2:
+        BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.loadImage());
+      case 3:
+        context.read<CoachBloc>().add(const CoachEvent.updateLocalUserInfo());
+    }
     activeChangedPageView = false;
     await _pageController.animateToPage(
       index,
@@ -49,51 +51,6 @@ class _MainPageState extends State<MainPage> {
     );
     setState(() => _selectedIndex = index);
     activeChangedPageView = true;
-  }
-
-  void _onItemTapped(int index) {
-    FocusScope.of(context).unfocus();
-    setState(() {
-      iconHome = const Icon(Icons.home);
-      changeScreen(index);
-      switch (index) {
-        case 0:
-          iconProfile = const Icon(Icons.person_outline);
-          iconFood = const Icon(Icons.food_bank);
-          iconHome = const Icon(Icons.home_outlined);
-          iconWorkoutMenu = SvgPicture.asset('images/workout_outlined.svg',
-            colorFilter: const ColorFilter.mode(AppColors.inactiveIconColor, BlendMode.srcIn),
-            height: 20,
-          );
-        case 1:
-          BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
-          iconProfile = const Icon(Icons.person_outline);
-          iconFood = const Icon(Icons.food_bank_outlined);
-          iconHome = const Icon(Icons.home);
-          iconWorkoutMenu = SvgPicture.asset('images/workout_outlined.svg',
-            colorFilter: const ColorFilter.mode(AppColors.inactiveIconColor, BlendMode.srcIn),
-            height: 20,
-          );
-        case 2:
-          //BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
-          BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.loadImage());
-          iconProfile = const Icon(Icons.person);
-          iconFood = const Icon(Icons.food_bank_outlined);
-          iconHome = const Icon(Icons.home_outlined);
-          iconWorkoutMenu = SvgPicture.asset('images/workout_outlined.svg',
-            colorFilter: const ColorFilter.mode(AppColors.inactiveIconColor, BlendMode.srcIn),
-            height: 20,
-          );
-        case 3:
-          iconProfile = const Icon(Icons.person_outline);
-          iconFood = const Icon(Icons.food_bank_outlined);
-          iconHome = const Icon(Icons.home_outlined);
-          iconWorkoutMenu = SvgPicture.asset('images/workout.svg',
-            colorFilter: const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
-            height: 20,
-          );
-      }
-    });
   }
 
   @override
@@ -111,7 +68,8 @@ class _MainPageState extends State<MainPage> {
       },
       child: Stack(
         children: [
-          Image.asset('images/background_image.png',
+          Image.asset(
+            'images/background_image.png',
             height: screenHeight,
             width: screenWidth,
             fit: BoxFit.cover,
@@ -119,42 +77,58 @@ class _MainPageState extends State<MainPage> {
           GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Scaffold(
-              backgroundColor: AppColors.backGroundColor,
-              bottomNavigationBar:
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: AppColors.greenGradient
+                backgroundColor: AppColors.backGroundColor,
+                bottomNavigationBar: Container(
+                  decoration: const BoxDecoration(gradient: AppColors.greenGradient),
+                  height: 55,
+                  child: BottomNavigationBar(
+                    items: <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                        icon:
+                            Icon(_selectedIndex == 0 ? Icons.food_bank : Icons.food_bank_outlined),
+                        label: 'Питание',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(_selectedIndex == 1 ? Icons.home : Icons.home_outlined),
+                        label: 'Дневник',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(_selectedIndex == 2 ? Icons.person : Icons.person_2_outlined),
+                        label: 'Профиль',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: _selectedIndex == 3
+                            ? SvgPicture.asset(
+                          'images/workout.svg',
+                          colorFilter: const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
+                          height: 20,
+                        ) :
+                        SvgPicture.asset(
+                          'images/workout_outlined.svg',
+                          colorFilter: const ColorFilter.mode(AppColors.inactiveIconColor, BlendMode.srcIn),
+                          height: 20,
+                        ),
+                        label: 'Спорт',
+                      ),
+                    ],
+                    iconSize: 20,
+                    selectedFontSize: 10,
+                    type: BottomNavigationBarType.fixed,
+                    backgroundColor: Colors.transparent,
+                    showUnselectedLabels: false,
+                    elevation: 0,
+                    currentIndex: _selectedIndex,
+                    selectedItemColor: AppColors.primaryButtonColor,
+                    unselectedItemColor: AppColors.inactiveIconColor,
+                    onTap: changeScreen,
+                  ),
                 ),
-                height: 55,
-                child: BottomNavigationBar(
-                  items: <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(icon: iconFood, label: 'Питание'),
-                    BottomNavigationBarItem(icon: iconHome, label: 'Дневник'),
-                    BottomNavigationBarItem(icon: iconProfile, label: 'Профиль'),
-                    BottomNavigationBarItem(icon: iconWorkoutMenu, label: 'Спорт'),
-                  ],
-                  iconSize: 20,
-                  selectedFontSize: 10,
-                  type: BottomNavigationBarType.fixed,
-                  backgroundColor: Colors.transparent,
-                  showUnselectedLabels: false,
-                  elevation: 0,
-                  currentIndex: _selectedIndex,
-                  selectedItemColor: AppColors.primaryButtonColor,
-                  unselectedItemColor: AppColors.inactiveIconColor,
-                  onTap: _onItemTapped,
+                body: PageView(
+                  physics: const ClampingScrollPhysics(),
+                  controller: _pageController,
+                  onPageChanged: changeScreen,
+                  children: pages,
                 ),
-              ),
-              body: PageView(
-                physics: const ClampingScrollPhysics(),
-                controller: _pageController,
-                onPageChanged: (int index) {
-                  if(activeChangedPageView) setState(() => _selectedIndex = index);
-                },
-                children: pages,
-              )
-
-              //getPage(_selectedIndex),
             ),
           )
         ],
