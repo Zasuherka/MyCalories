@@ -118,7 +118,7 @@ class MenuPage extends StatelessWidget {
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             ///TODO убрать надпись "рецепты" с фотографии
-                            image: Image.asset('images/recipes.jpg').image
+                            image: Image.asset('images/recipes.png').image
                         )
                     ),
                     child: Center(

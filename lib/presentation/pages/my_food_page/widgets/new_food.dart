@@ -138,13 +138,8 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                       decoration: const InputDecoration(hoverColor: Colors.orange,
                                         counterText: '',
                                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.black, width: 1),
-                                        ),
-                                        constraints: BoxConstraints(maxHeight: 50),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        ),
+                                        focusedBorder: InputBorder.none,
+                                        border: InputBorder.none,
                                       ),
                                     )
                                 )
@@ -176,13 +171,8 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                       decoration: const InputDecoration(hoverColor: Colors.orange,
                                         counterText: '',
                                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.black, width: 1),
-                                        ),
-                                        constraints: BoxConstraints(maxHeight: 50),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        ),
+                                        focusedBorder: InputBorder.none,
+                                        border: InputBorder.none,
                                       ),
                                     )
                                 )
@@ -214,13 +204,8 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                       decoration: const InputDecoration(hoverColor: Colors.orange,
                                         counterText: '',
                                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.black, width: 1),
-                                        ),
-                                        constraints: BoxConstraints(maxHeight: 50),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        ),
+                                        focusedBorder: InputBorder.none,
+                                        border: InputBorder.none,
                                       ),
                                     )
                                 )
@@ -252,13 +237,8 @@ class _NewFoodState extends State<NewFood> with FoodValidationMixin{
                                       decoration: const InputDecoration(hoverColor: Colors.orange,
                                         counterText: '',
                                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.black, width: 1),
-                                        ),
-                                        constraints: BoxConstraints(maxHeight: 50),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        ),
+                                        focusedBorder: InputBorder.none,
+                                        border: InputBorder.none,
                                       ),
                                     )
                                 )

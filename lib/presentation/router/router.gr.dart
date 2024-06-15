@@ -102,9 +102,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     MyCoachRoute.name: (routeData) {
+      final args = routeData.argsAs<MyCoachRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MyCoachPage(),
+        child: MyCoachPage(
+          key: args.key,
+          coachId: args.coachId,
+        ),
       );
     },
     MyFoodRoute.name: (routeData) {
@@ -385,16 +389,40 @@ class MyCaloriesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [MyCoachPage]
-class MyCoachRoute extends PageRouteInfo<void> {
-  const MyCoachRoute({List<PageRouteInfo>? children})
-      : super(
+class MyCoachRoute extends PageRouteInfo<MyCoachRouteArgs> {
+  MyCoachRoute({
+    Key? key,
+    required String? coachId,
+    List<PageRouteInfo>? children,
+  }) : super(
           MyCoachRoute.name,
+          args: MyCoachRouteArgs(
+            key: key,
+            coachId: coachId,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'MyCoachRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MyCoachRouteArgs> page =
+      PageInfo<MyCoachRouteArgs>(name);
+}
+
+class MyCoachRouteArgs {
+  const MyCoachRouteArgs({
+    this.key,
+    required this.coachId,
+  });
+
+  final Key? key;
+
+  final String? coachId;
+
+  @override
+  String toString() {
+    return 'MyCoachRouteArgs{key: $key, coachId: $coachId}';
+  }
 }
 
 /// generated route for

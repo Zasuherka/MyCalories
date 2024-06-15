@@ -68,7 +68,7 @@ class _MyCaloriesPageState extends State<MyCaloriesPage> {
                 ),
                 EatingWidget(title: 'Другое'),
                 SizedBox(
-                  height: 10,
+                  height: 50,
                 ),
               ],
             )

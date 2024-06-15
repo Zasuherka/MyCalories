@@ -56,6 +56,7 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
         weightNow: weightNow,
         weightGoal: weightGoal,
         height: height,
+        isCoach: isCoach,
         birthday: birthday,
         carbohydratesGoal: carbohydratesGoal,
         caloriesGoal: caloriesGoal,

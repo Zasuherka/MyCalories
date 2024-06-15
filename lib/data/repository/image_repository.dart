@@ -69,7 +69,7 @@ class ImageRepository implements IImageRepository {
               .imageData.downloadImage(localUser.urlAvatar!);
           final documentDirectory = await getApplicationDocumentsDirectory() ;
           File file = File('${documentDirectory.path}/avatar.jpg');
-          file.writeAsBytesSync(response.bodyBytes, flush: true);
+          await file.writeAsBytes(response.bodyBytes, flush: true);
           localUser.avatar = file;
           _userRepository.setAvatar(localUser.urlAvatar, file);
         }

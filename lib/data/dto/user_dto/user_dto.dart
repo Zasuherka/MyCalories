@@ -1,9 +1,7 @@
 import 'dart:io';
-import 'package:app1/domain/models/collection/collection_view.dart';
-import 'package:app1/domain/models/eating_food.dart';
-import 'package:app1/domain/models/food.dart';
+import 'package:app1/domain/model/food.dart';
 import 'package:app1/domain/enums/sex.dart';
-import 'package:app1/domain/models/app_user.dart';
+import 'package:app1/domain/model/user.dart';
 
 ///Класс юзера
 ///Вся работа с юзером происходит в UserService
@@ -55,7 +53,13 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
 
   String? coachId;
 
+  String? requestCoachId;
+
   Sex? sex;
+
+  List<String>? wardRequests;
+
+  List<String>? wards;
 
   ///Берём как файл с телефона
   File? avatar;
@@ -82,7 +86,10 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
     this.fatsGoal,
     this.proteinGoal,
     this.carbohydratesGoal,
-    this.sex
+    this.sex,
+    this.requestCoachId,
+    this.wards,
+    this.wardRequests,
   });
 
 
@@ -106,8 +113,11 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
         fatsGoal = int.tryParse(json['fatsGoal'] ?? ''),
         caloriesGoal = int.tryParse(json['caloriesGoal'] ?? ''),
         sex = getSex(json['sex']),
-        listCollectionsId = (json['collections'] as List)
-            .map((e) => e.toString()).toList();
+        listCollectionsId = ((json['collections'] ?? []) as List)
+            .map((e) => e.toString()).toList(),
+        wards = json['wards'],
+        wardRequests = json['wardRequests'],
+        requestCoachId = json['requestCoachId'];
 
   factory AppUserDto.fromAppUser(AppUser appUser){
     return AppUserDto(
@@ -126,7 +136,10 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
         birthday: appUser.birthday,
         urlAvatar: appUser.urlAvatar,
         listCollectionsId: appUser.listCollectionsId,
-        sex: appUser.sex
+        sex: appUser.sex,
+        requestCoachId: appUser.requestCoachId,
+        wardRequests: appUser.wardRequests.map((e) => e.userId).toList(),
+        wards: appUser.wards.map((e) => e.userId).toList(),
     );
   }
 
@@ -149,27 +162,31 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
       "fatsGoal": fatsGoal.toString(),
       "caloriesGoal": caloriesGoal.toString(),
       "sex": sex?.sex,
-      "collections": listCollectionsId
+      "collections": listCollectionsId,
+      "requestCoachId": requestCoachId,
+      "wards": wards,
+      "wardRequests": wardRequests,
     };
   }
 
   AppUser toAppUser() =>
       AppUser(
-          userId: userId,
-          name: name,
-          isCoach: isCoach,
-          coachId: coachId,
-          proteinGoal: proteinGoal,
-          caloriesGoal: caloriesGoal,
-          carbohydratesGoal: carbohydratesGoal,
-          fatsGoal: fatsGoal,
-          email: email,
-          weightNow: weightNow,
-          weightGoal: weightGoal,
-          height: height,
-          sex: sex,
-          birthday: birthday,
-          urlAvatar: urlAvatar,
-          listCollectionsId: listCollectionsId
+        userId: userId,
+        name: name,
+        isCoach: isCoach,
+        coachId: coachId,
+        proteinGoal: proteinGoal,
+        caloriesGoal: caloriesGoal,
+        carbohydratesGoal: carbohydratesGoal,
+        fatsGoal: fatsGoal,
+        email: email,
+        weightNow: weightNow,
+        weightGoal: weightGoal,
+        height: height,
+        sex: sex,
+        birthday: birthday,
+        urlAvatar: urlAvatar,
+        listCollectionsId: listCollectionsId,
+        requestCoachId: requestCoachId,
       );
 }

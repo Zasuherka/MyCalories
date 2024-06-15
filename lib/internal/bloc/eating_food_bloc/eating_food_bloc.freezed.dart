@@ -996,12 +996,12 @@ class __$$GetEatingFoodInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eatingFood = freezed,
+    Object? eatingFood = null,
     Object? index = freezed,
     Object? nameEating = freezed,
   }) {
     return _then(_$GetEatingFoodInfoImpl(
-      eatingFood: freezed == eatingFood
+      eatingFood: null == eatingFood
           ? _value.eatingFood
           : eatingFood // ignore: cast_nullable_to_non_nullable
               as EatingFood,
@@ -1040,16 +1040,15 @@ class _$GetEatingFoodInfoImpl implements _GetEatingFoodInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetEatingFoodInfoImpl &&
-            const DeepCollectionEquality()
-                .equals(other.eatingFood, eatingFood) &&
+            (identical(other.eatingFood, eatingFood) ||
+                other.eatingFood == eatingFood) &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.nameEating, nameEating) ||
                 other.nameEating == nameEating));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(eatingFood), index, nameEating);
+  int get hashCode => Object.hash(runtimeType, eatingFood, index, nameEating);
 
   @JsonKey(ignore: true)
   @override
@@ -1850,13 +1849,12 @@ class _$EatingFoodInfoImpl extends _EatingFoodInfo {
             (identical(other.index, index) || other.index == index) &&
             (identical(other.nameEating, nameEating) ||
                 other.nameEating == nameEating) &&
-            const DeepCollectionEquality()
-                .equals(other.eatingFood, eatingFood));
+            (identical(other.eatingFood, eatingFood) ||
+                other.eatingFood == eatingFood));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index, nameEating,
-      const DeepCollectionEquality().hash(eatingFood));
+  int get hashCode => Object.hash(runtimeType, index, nameEating, eatingFood);
 
   @JsonKey(ignore: true)
   @override

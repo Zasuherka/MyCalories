@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:app1/data/dto/user_dto/user_dto.dart';
 import 'package:app1/data/dto/workout_dto/workout_dto.dart';
 import 'package:app1/data/dto/collection/collection_dto.dart';
 import 'package:app1/data/dto/create_food/food_dto.dart';

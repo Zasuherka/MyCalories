@@ -33,7 +33,7 @@ class WorkoutMenuPage extends StatelessWidget {
                 if(userIsCoach){
 
                 } else{
-                  context.router.push(const MyCoachRoute());
+                  context.router.push(MyCoachRoute(coachId: context.read<UserInfoBloc>().localUser?.coachId));
                 }
               },
               withColor: true,
@@ -61,32 +61,21 @@ class WorkoutMenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            verticalOffset,
-            PrimaryAppButton(
-              onTap: (){},
-              withColor: true,
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              alignment: Alignment.center,
-              child: Text(
-                'Запланированная',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.secondaryTextColor
+            if(!userIsCoach) ...[
+              verticalOffset,
+              PrimaryAppButton(
+                onTap: (){},
+                withColor: true,
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                alignment: Alignment.center,
+                child: Text(
+                  'Запланированная',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: AppColors.secondaryTextColor
+                  ),
                 ),
               ),
-            ),
-            verticalOffset,
-            PrimaryAppButton(
-              onTap: (){},
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              withColor: true,
-              alignment: Alignment.center,
-              child: Text(
-                'Сохранённые',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.secondaryTextColor
-                ),
-              ),
-            ),
+            ],
             verticalOffset,
             PrimaryAppButton(
               onTap: (){

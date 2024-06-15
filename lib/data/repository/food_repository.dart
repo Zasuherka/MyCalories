@@ -10,7 +10,7 @@ import 'package:intl/intl.dart';
 
 class FoodRepository implements IFoodRepository {
   final IUserRepository _userRepository = UserRepository();
-  static String _dateNow = DateFormat('ddMMyyyy').format(DateTime.now());
+  static String _dateNow = DateFormat('yyyyMMdd').format(DateTime.now());
 
   final Database _database = Database();
 
@@ -338,7 +338,7 @@ class FoodRepository implements IFoodRepository {
     }
 
     ///Получаем дату на момент получение запроса на добавление еды в приём пищи
-    final String dateNow = DateFormat('ddMMyyyy').format(DateTime.now());
+    final String dateNow = DateFormat('yyyyMMdd').format(DateTime.now());
 
     /// Сравниваем [dateNow] и [_dateNow]. Если они не равны, значит наступил новый день
     if(_dateNow != dateNow){
@@ -495,7 +495,7 @@ class FoodRepository implements IFoodRepository {
     }
 
     await _database.foodData.setEatingInfoInFirebase(DateFormat(
-        'ddMMyyyy').format(dateNow),
+        'yyyyMMdd').format(dateNow),
         localUser.userId,
         eatingBreakfast,
         eatingLunch,
@@ -515,7 +515,7 @@ class FoodRepository implements IFoodRepository {
     }
 
     final String dateFormat = dateTime != null
-        ? DateFormat('ddMMyyyy').format(dateTime)
+        ? DateFormat('yyyyMMdd').format(dateTime)
         : _dateNow;
 
     final response = await _database.foodData.getEatingFoodInfoInFirebase(localUser.userId, dateFormat);

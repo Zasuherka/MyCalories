@@ -125,7 +125,8 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   Future<void> getCompletedWorkoutsList() async{
     try{
       emit(const WorkoutState.loading());
-      completedWorkoutsList = await _workoutRepository.getCompletedWorkoutsList();
+      final completedWorkoutsList = await _workoutRepository.getCompletedWorkoutsList();
+      this.completedWorkoutsList = completedWorkoutsList.reversed.toList();
       emit(const WorkoutState.success());
     }
     catch(error){

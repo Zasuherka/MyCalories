@@ -40,6 +40,7 @@ abstract class IUserRepository {
     String? email,
     String? name,
     double? weightNow,
+    bool? isCoach,
     double? weightGoal,
     int? height,
     DateTime? birthday,
@@ -51,4 +52,6 @@ abstract class IUserRepository {
   });
 
   Future<void> logOutUser();
+
+  Future<List<AppUser>> searchUser(String searchText);
 }

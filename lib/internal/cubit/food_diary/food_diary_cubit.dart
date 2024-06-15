@@ -25,10 +25,13 @@ class FoodDiaryCubit extends Cubit<FoodDiaryState> {
   double dinnerCalories = 0;
   double anotherCalories = 0;
 
+  DateTime? selectedDate;
+
   FoodDiaryCubit() : super(const FoodDiaryState.initial());
 
   Future<void> getEatingByData(DateTime dateTime) async{
     emit(const FoodDiaryState.loading());
+    selectedDate = dateTime;
     final response = await _foodRepository.getEatingFoodInfoInFirebase(dateTime, false);
     breakfast = response.$1;
     lunch = response.$2;

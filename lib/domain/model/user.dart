@@ -58,6 +58,8 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
 
   String? coachId;
 
+  String? requestCoachId;
+
   Sex? sex;
 
   ///Берём как файл с телефона
@@ -77,6 +79,10 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
 
   ///Подгружаем из FireBase
   List<EatingFood> eatingAnother = [];
+
+  List<AppUser> wardRequests = [];
+
+  List<AppUser> wards = [];
 
   ///Считаем с помощью [await getCount()]
   Map<String, double> eatingValues = {
@@ -108,60 +114,15 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
         this.fatsGoal,
         this.proteinGoal,
         this.carbohydratesGoal,
+        this.sex,
+        this.requestCoachId,
+        List<AppUser>? wardRequests,
+        List<AppUser>? wards,
       })
   {
+    if(wardRequests != null) this.wardRequests = wardRequests;
+    if(wardRequests != null) this.wardRequests = wardRequests;
     countAge();
-  }
-
-  ///Получаем данные из json
-  AppUser.fromJson(Map<String?, dynamic> json):
-        name = json['name'],
-        email = json['email'],
-        userId = json['userId'],
-        urlAvatar = json['urlAvatar'],
-        ///Если вдруг придёт int, а не double
-        weightNow = json['weightNow'].runtimeType == double
-            ? json['weightNow']
-            : double.tryParse(json['weightNow'].toString()),
-        ///Если вдруг придёт int, а не double
-        weightGoal = json['weightGoal'].runtimeType == double
-            ? json['weightGoal']
-            : double.tryParse(json['weightGoal'].toString()),
-        height = json['height'],
-        birthday = DateTime.tryParse(json['birthday'] ?? '') ,
-        proteinGoal = int.tryParse(json['proteinGoal'] ?? ''),
-        carbohydratesGoal = int.tryParse(json['carbohydratesGoal'] ?? ''),
-        fatsGoal = int.tryParse(json['fatsGoal'] ?? ''),
-        caloriesGoal = int.tryParse(json['caloriesGoal'] ?? ''),
-        sex = getSex(json['sex']),
-        coachId = json['coachId'],
-        isCoach = json['isCoach'],
-        listCollectionsId = (json['collections'] as List)
-            .map((e) => e.toString()).toList()
-  {
-    countAge();
-  }
-
-  ///Превращаем в json
-  Map<String, dynamic> toJson() {
-    return {
-      'name' : name,
-      'email': email,
-      'userId': userId,
-      'urlAvatar': urlAvatar,
-      'weightNow': weightNow,
-      'weightGoal': weightGoal,
-      'height': height,
-      'birthday': birthday,
-      "proteinGoal": proteinGoal,
-      "carbohydratesGoal": carbohydratesGoal,
-      "fatsGoal": fatsGoal,
-      "caloriesGoal": caloriesGoal,
-      "sex": sex?.sex,
-      "collections": listCollectionsId,
-      "isCoach": isCoach,
-      "coachId": coachId,
-    };
   }
 
   ///Считаем количество полных лет. Юзаем только в дефолтном конструкторе
