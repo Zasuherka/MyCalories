@@ -29,6 +29,10 @@ class CoachRepository {
       if(appUserDto == null){
         throw Exception('this coach does not exist');
       }
+      return appUserDto.toAppUser();
+    }
+    catch(error){
+      rethrow;
     }
   }
 

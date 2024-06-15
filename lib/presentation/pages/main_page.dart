@@ -1,4 +1,3 @@
-import 'package:app1/internal/bloc/coach/coach_bloc.dart';
 import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
 import 'package:app1/internal/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/presentation/constants.dart';
@@ -33,24 +32,27 @@ class _MainPageState extends State<MainPage> {
     const WorkoutMenuPage()
   ];
 
-  void changeScreen(int index) async {
-    switch (index) {
-      case 0:
-      case 1:
-        BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
-      case 2:
-        BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.loadImage());
-      case 3:
-        context.read<CoachBloc>().add(const CoachEvent.updateLocalUserInfo());
-    }
+  void changeScreen(int index) async{
     activeChangedPageView = false;
     await _pageController.animateToPage(
       index,
       duration: Duration(milliseconds: 400 * (_selectedIndex - index).abs()),
       curve: Curves.easeIn,
     );
-    setState(() => _selectedIndex = index);
+    if(index != _selectedIndex) setState(() => _selectedIndex = index);
     activeChangedPageView = true;
+  }
+
+  void _indexSwitch(int index){
+    switch (index) {
+      case 0:
+      case 1:
+        BlocProvider.of<EatingFoodBloc>(context).add(const EatingFoodEvent.updateEatingState());
+      case 2:
+      //BlocProvider.of<UserInfoBloc>(context).add(LocalUserInfoEvent());
+        BlocProvider.of<UserImageBloc>(context).add(const UserImageEvent.loadImage());
+      case 3:
+    }
   }
 
   @override
@@ -68,8 +70,7 @@ class _MainPageState extends State<MainPage> {
       },
       child: Stack(
         children: [
-          Image.asset(
-            'images/background_image.png',
+          Image.asset('images/background_image.png',
             height: screenHeight,
             width: screenWidth,
             fit: BoxFit.cover,
@@ -78,14 +79,17 @@ class _MainPageState extends State<MainPage> {
             onTap: () => FocusScope.of(context).unfocus(),
             child: Scaffold(
                 backgroundColor: AppColors.backGroundColor,
-                bottomNavigationBar: Container(
-                  decoration: const BoxDecoration(gradient: AppColors.greenGradient),
+                bottomNavigationBar:
+                Container(
+                  decoration: const BoxDecoration(
+                      gradient: AppColors.greenGradient
+                  ),
                   height: 55,
                   child: BottomNavigationBar(
                     items: <BottomNavigationBarItem>[
                       BottomNavigationBarItem(
                         icon:
-                            Icon(_selectedIndex == 0 ? Icons.food_bank : Icons.food_bank_outlined),
+                        Icon(_selectedIndex == 0 ? Icons.food_bank : Icons.food_bank_outlined),
                         label: 'Питание',
                       ),
                       BottomNavigationBarItem(
@@ -126,9 +130,14 @@ class _MainPageState extends State<MainPage> {
                 body: PageView(
                   physics: const ClampingScrollPhysics(),
                   controller: _pageController,
-                  onPageChanged: changeScreen,
+                  onPageChanged: (int index) {
+                    if(activeChangedPageView) setState(() => _selectedIndex = index);
+                    _indexSwitch(index);
+                  },
                   children: pages,
-                ),
+                )
+
+              //getPage(_selectedIndex),
             ),
           )
         ],

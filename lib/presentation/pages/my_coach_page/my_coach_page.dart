@@ -12,13 +12,10 @@ class MyCoachPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CoachBloc coachBloc = context.read<CoachBloc>();
-    return BlocBuilder<CoachBloc, CoachState>(
-      builder: (BuildContext context, CoachState state){
-        if (coachBloc.coachId == null) {
-          return const SearchCoachPage();
-        }
-        return const CoachPage();
-      },
-    );
+    if (coachBloc.coachId == null) {
+      return const SearchCoachPage();
+    }
+    coachBloc.add(const CoachEvent.getCoachInfo());
+    return const CoachPage();
   }
 }

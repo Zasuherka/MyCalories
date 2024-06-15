@@ -48,13 +48,17 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
   }
 
   Future<void> _getCoachInfo(Emitter<CoachState> emitter) async{
-    if(coachId == null) emitter(const CoachState.coachIsNull());
+    emitter(const CoachState.loading());
+    if(coachId == null){
+      emitter(const CoachState.coachIsNull());
+      return;
+    }
     try{
-      localUser = await _coachRepository.;
+      coach = await _coachRepository.getCoachInfo(coachId!);
       emitter(const CoachState.success());
     }
     catch(error){
-      emitter(const CoachState.error(errorMessage: 'Не удалось обновить информацию о localUser'));
+      emitter(const CoachState.error(errorMessage: 'Не удалось получить информацию о тренере'));
     }
   }
 

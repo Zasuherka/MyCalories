@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     const Widget verticalOffset = SliverToBoxAdapter(
       child: SizedBox(
           height: 10
@@ -60,9 +60,9 @@ class ProfilePage extends StatelessWidget {
                     child: BlocBuilder<UserImageBloc, UserImageState>(
                         builder: (context, state){
                           state.whenOrNull(
-                              // initial: () {
-                              //   BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
-                              // },
+                            // initial: () {
+                            //   BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
+                            // },
                               loadImage: (image) {
                                 avatar = Image.file(image);
                                 avatarIsNotNull = true;

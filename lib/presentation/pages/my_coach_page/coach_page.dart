@@ -1,6 +1,7 @@
 import 'package:app1/internal/bloc/coach/coach_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
+import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,15 +14,13 @@ class CoachPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Widget verticalOffset = SliverToBoxAdapter(
-      child: SizedBox(
-          height: 10
-      ),
+      child: SizedBox(height: 10),
     );
     final coachBloc = context.read<CoachBloc>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: BlocBuilder<CoachBloc, CoachState>(
-          builder: (BuildContext context, CoachState state){
+          builder: (BuildContext context, CoachState state) {
             return CustomScrollView(
               physics: const RangeMaintainingScrollPhysics(),
               slivers: <Widget>[
@@ -36,22 +35,26 @@ class CoachPage extends StatelessWidget {
                           child: SvgPicture.asset(
                             'images/waves.svg',
                             fit: BoxFit.cover,
-                            colorFilter: const ColorFilter.mode(
-                                Colors.transparent, BlendMode.color),
-                          )
-                      ),
+                            colorFilter:
+                                const ColorFilter.mode(Colors.transparent, BlendMode.color),
+                          )),
                       Padding(
-                        padding: EdgeInsets.only(top: 117.5, left: screenWidth/2 - 145/2),
+                        padding: EdgeInsets.only(top: 117.5, left: screenWidth / 2 - 145 / 2),
                         child: SizedBox(
                           height: 145,
                           width: 145,
                           child: ClipOval(
                             child: coachBloc.coach?.urlAvatar?.contains('http') ?? false
                                 ? Image.network(
-                              'https://sun9-64.userapi.com/impg/Ab1TSqAT0YQuWbHPbCzTyMR1LF28_lMaIBuopQ/aK_DWhAKmBk.jpg?size=1440x2160&quality=95&sign=ad7649c02922d09a2565dc10b7a224a8&type=album',
-                              fit: BoxFit.cover,
-                            )
-                                : Image.asset('images/icon.png'),
+                                    coachBloc.coach!.urlAvatar!,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'images/icon.jpg',
+                                    height: 145,
+                                    width: 145,
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                       ),
@@ -60,22 +63,17 @@ class CoachPage extends StatelessWidget {
                 ),
                 verticalOffset,
                 SliverToBoxAdapter(
-                  child: Text(
-                      coachBloc.coach?.name ?? '',
+                  child: Text(coachBloc.coach?.name ?? '',
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleLarge
-                  ),
+                      style: Theme.of(context).textTheme.titleLarge),
                 ),
                 verticalOffset,
                 SliverToBoxAdapter(
-                    child: Text(
-                        coachBloc.coach?.email ?? '',
+                    child: Text(coachBloc.coach?.email ?? '',
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.titleSmall
-                    )
-                ),
+                        style: Theme.of(context).textTheme.titleSmall)),
                 verticalOffset,
                 SliverToBoxAdapter(
                   child: GestureDetector(
@@ -101,7 +99,8 @@ class CoachPage extends StatelessWidget {
                                   child: SvgPicture.asset(
                                     'images/weight.svg',
                                     width: 45,
-                                    colorFilter: const ColorFilter.mode(AppColors.secondaryTextColor, BlendMode.srcIn),
+                                    colorFilter: const ColorFilter.mode(
+                                        AppColors.secondaryTextColor, BlendMode.srcIn),
                                   ),
                                 ),
                                 const Spacer(flex: 3),
@@ -111,16 +110,12 @@ class CoachPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                          coachBloc.coach?.weightNow.toString() ?? '—',
+                                      Text(coachBloc.coach?.weightNow?.toString() ?? '—',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge
-                                      ),
-                                      Text(
-                                          'Сейчас',
+                                          style: Theme.of(context).textTheme.titleLarge),
+                                      Text('Сейчас',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall
-                                      ),
+                                          style: Theme.of(context).textTheme.titleSmall),
                                     ],
                                   ),
                                 ),
@@ -131,16 +126,12 @@ class CoachPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                          coachBloc.coach?.weightGoal.toString() ?? '—',
+                                      Text(coachBloc.coach?.weightGoal?.toString() ?? '—',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge
-                                      ),
-                                      Text(
-                                          'Цель',
+                                          style: Theme.of(context).textTheme.titleLarge),
+                                      Text('Цель',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall
-                                      ),
+                                          style: Theme.of(context).textTheme.titleSmall),
                                     ],
                                   ),
                                 ),
@@ -155,7 +146,8 @@ class CoachPage extends StatelessWidget {
                                 SvgPicture.asset(
                                   'images/people.svg',
                                   width: 45,
-                                  colorFilter: const ColorFilter.mode(AppColors.secondaryTextColor, BlendMode.srcIn),
+                                  colorFilter: const ColorFilter.mode(
+                                      AppColors.secondaryTextColor, BlendMode.srcIn),
                                 ),
                                 const Spacer(flex: 3),
                                 SizedBox(
@@ -164,16 +156,12 @@ class CoachPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                          coachBloc.coach?.height.toString() ?? '—',
+                                      Text(coachBloc.coach?.height?.toString() ?? '—',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge
-                                      ),
-                                      Text(
-                                          'Рост',
+                                          style: Theme.of(context).textTheme.titleLarge),
+                                      Text('Рост',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall
-                                      ),
+                                          style: Theme.of(context).textTheme.titleSmall),
                                     ],
                                   ),
                                 ),
@@ -185,15 +173,13 @@ class CoachPage extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                          coachBloc.coach?.age.toString() ?? '—',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge,
+                                        coachBloc.coach?.age?.toString() ?? '—',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleLarge,
                                       ),
-                                      Text(
-                                          'Возраст',
+                                      Text('Возраст',
                                           overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall
-                                      ),
+                                          style: Theme.of(context).textTheme.titleSmall),
                                     ],
                                   ),
                                 ),
@@ -202,15 +188,29 @@ class CoachPage extends StatelessWidget {
                             ),
                             const Spacer()
                           ],
-                        )
-                    ),
+                        )),
                   ),
                 ),
+                verticalOffset,
+                verticalOffset,
+                SliverToBoxAdapter(
+                  child: PrimaryAppButton(
+                    onTap: () {
+                      
+                    },
+                    margin: const EdgeInsets.symmetric(horizontal: 12.5),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    withColor: true,
+                    child: Text(
+                      'Наборы',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                )
                 //const SliverToBoxAdapter(child: News())
               ],
             );
           },
-        )
-    );
+        ));
   }
 }

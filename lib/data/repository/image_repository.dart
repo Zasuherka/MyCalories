@@ -167,11 +167,8 @@ class ImageRepository implements IImageRepository {
   @override
   Future<void> signOut() async{
     final localUser = _userRepository.localUser;
-    if(localUser != null && localUser.avatar != null){
-      final documentDirectory = await getApplicationDocumentsDirectory();
-      File file = File('${documentDirectory.path}/avatar.jpg');
-      await file.delete();
-      print('Удалил');
-    }
+    final documentDirectory = await getApplicationDocumentsDirectory();
+    File file = File('${documentDirectory.path}/avatar.jpg');
+    if(await file.exists()) await file.delete();
   }
 }
