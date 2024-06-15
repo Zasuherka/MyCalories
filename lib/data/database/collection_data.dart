@@ -87,7 +87,7 @@ class _CollectionData{
     }
   }
 
-  Future<List<CollectionView>> getUserListCollection(String email, List<String> listCollectionsId) async {
+  Future<List<CollectionView>> getUserListCollection(List<String> listCollectionsId) async {
     List<CollectionView> listCollectionView = [];
 
     for(String collectionId in listCollectionsId){

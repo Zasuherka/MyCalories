@@ -1,6 +1,7 @@
 import 'package:app1/domain/model/collection.dart';
 import 'package:app1/domain/model/food.dart';
 import 'package:app1/presentation/pages/auth_page/auth_page.dart';
+import 'package:app1/presentation/pages/coach_collections_page/coach_collections_page.dart';
 import 'package:app1/presentation/pages/completed_workouts/completed_workout_page.dart';
 import 'package:app1/presentation/pages/completed_workouts_page/completed_workouts_page.dart';
 import 'package:app1/presentation/pages/current_workout_page/current_workout_page.dart';
@@ -103,6 +104,11 @@ class AppRouter extends _$AppRouter{
     MaterialRoute(
         page: MyCoachRoute.page,
         path: '/my_coach_page',
+        initial: false
+    ),
+    MaterialRoute(
+        page: CoachCollectionsRoute.page,
+        path: '/coach_collection_page',
         initial: false
     ),
     MaterialRoute(

@@ -1,5 +1,6 @@
 import 'package:app1/data/repository/coach_repository.dart';
 import 'package:app1/data/repository/user_repository.dart';
+import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -17,6 +18,7 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
   AppUser? coach;
   String? coachId;
   List<AppUser> appUserList = [];
+  List<CollectionView> collectionViewList = [];
   AppUser? localUser;
 
   CoachBloc() : super(const CoachState.initial()) {
@@ -26,6 +28,8 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
         searchCoach: (value) async => await _searchCoach(emit, value.searchText),
         coachRequest: (value) async => await _coachRequest(emit, value.coach),
         updateLocalUserInfo: (_) async => await _updateLocalUserInfo(emit),
+        getCoachCollectionViewList: (_) async => _getCoachCollectionViewList(emit),
+        removeCoach: (_) async => _removeCoach(emit),
       );
     }, transformer: restartable());
     localUser = _userRepository.localUser;
@@ -40,6 +44,7 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
     emitter(const CoachState.loading());
     try{
       localUser = await _userRepository.updateLocalUserInfo();
+      coachId = localUser?.coachId;
       emitter(const CoachState.success());
     }
     catch(error){
@@ -81,5 +86,27 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
       appUserList = await _coachRepository.searchCoach(searchText);
     }
     emitter(CoachState.coachSearchList(coachSearchList: appUserList));
+  }
+
+  Future<void> _getCoachCollectionViewList(Emitter<CoachState> emitter) async{
+    if(coach == null) return;
+    emitter(const CoachState.loading());
+    collectionViewList = await _coachRepository.getCoachCollectionViewList(coach!.listCollectionsId);
+    emitter(const CoachState.success());
+  }
+
+  Future<void> _removeCoach(Emitter<CoachState> emitter) async{
+    if(coach == null) return;
+    emitter(const CoachState.loading());
+    try{
+      await _coachRepository.removeCoach(coach!);
+      localUser?.coachId = null;
+      coachId = null;
+      coach = null;
+      emitter(const CoachState.removeSuccess());
+    }
+    catch(error){
+      emitter(const CoachState.error(errorMessage: 'Не удалось отказаться от тренера'));
+    }
   }
 }

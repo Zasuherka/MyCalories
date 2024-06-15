@@ -21,6 +21,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AuthPage(),
       );
     },
+    CoachCollectionsRoute.name: (routeData) {
+      final args = routeData.argsAs<CoachCollectionsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CoachCollectionsPage(
+          key: args.key,
+          isAddEatingFood: args.isAddEatingFood,
+        ),
+      );
+    },
     CollectionRoute.name: (routeData) {
       final args = routeData.argsAs<CollectionRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -102,12 +112,9 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     MyCoachRoute.name: (routeData) {
-      final args = routeData.argsAs<MyCoachRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: MyCoachPage(
-          key: args.key,
-        ),
+        child: const MyCoachPage(),
       );
     },
     MyFoodRoute.name: (routeData) {
@@ -168,6 +175,44 @@ class AuthRoute extends PageRouteInfo<void> {
   static const String name = 'AuthRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CoachCollectionsPage]
+class CoachCollectionsRoute extends PageRouteInfo<CoachCollectionsRouteArgs> {
+  CoachCollectionsRoute({
+    Key? key,
+    required bool isAddEatingFood,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CoachCollectionsRoute.name,
+          args: CoachCollectionsRouteArgs(
+            key: key,
+            isAddEatingFood: isAddEatingFood,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CoachCollectionsRoute';
+
+  static const PageInfo<CoachCollectionsRouteArgs> page =
+      PageInfo<CoachCollectionsRouteArgs>(name);
+}
+
+class CoachCollectionsRouteArgs {
+  const CoachCollectionsRouteArgs({
+    this.key,
+    required this.isAddEatingFood,
+  });
+
+  final Key? key;
+
+  final bool isAddEatingFood;
+
+  @override
+  String toString() {
+    return 'CoachCollectionsRouteArgs{key: $key, isAddEatingFood: $isAddEatingFood}';
+  }
 }
 
 /// generated route for
@@ -388,40 +433,16 @@ class MyCaloriesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [MyCoachPage]
-class MyCoachRoute extends PageRouteInfo<MyCoachRouteArgs> {
-  MyCoachRoute({
-    Key? key,
-    required String? coachId,
-    List<PageRouteInfo>? children,
-  }) : super(
+class MyCoachRoute extends PageRouteInfo<void> {
+  const MyCoachRoute({List<PageRouteInfo>? children})
+      : super(
           MyCoachRoute.name,
-          args: MyCoachRouteArgs(
-            key: key,
-            coachId: coachId,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'MyCoachRoute';
 
-  static const PageInfo<MyCoachRouteArgs> page =
-      PageInfo<MyCoachRouteArgs>(name);
-}
-
-class MyCoachRouteArgs {
-  const MyCoachRouteArgs({
-    this.key,
-    required this.coachId,
-  });
-
-  final Key? key;
-
-  final String? coachId;
-
-  @override
-  String toString() {
-    return 'MyCoachRouteArgs{key: $key, coachId: $coachId}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

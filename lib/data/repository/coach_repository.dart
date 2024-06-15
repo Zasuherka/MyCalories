@@ -1,6 +1,7 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/user_dto/user_dto.dart';
 import 'package:app1/data/repository/user_repository.dart';
+import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 
@@ -57,6 +58,36 @@ class CoachRepository {
       _userRepository.setUserInfo(localUser);
     } catch (error) {
       rethrow;
+    }
+  }
+
+  Future<void> removeCoach(AppUser coach) async{
+    final localUser = _userRepository.localUser;
+
+    if (localUser == null) {
+      return;
+    }
+
+    try{
+      coach.wards.removeWhere((element) => element.userId == localUser.userId);
+      await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(coach));
+      localUser.requestCoachId = coach.userId;
+      await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(localUser));
+      _userRepository.setUserInfo(localUser);
+    }
+    catch(error){
+      rethrow;
+    }
+  }
+
+  Future<List<CollectionView>> getCoachCollectionViewList(List<String> listCollectionsId) async{
+    try{
+      return await _database.collectionData.getUserListCollection(
+          listCollectionsId
+      );
+    }
+    catch(_){
+      return [];
     }
   }
 }

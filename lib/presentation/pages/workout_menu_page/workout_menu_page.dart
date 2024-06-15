@@ -35,7 +35,7 @@ class WorkoutMenuPage extends StatelessWidget {
                 if(userIsCoach){
 
                 } else{
-                  context.router.push(MyCoachRoute(coachId: context.read<UserInfoBloc>().localUser?.coachId));
+                  context.router.push(const MyCoachRoute());
                 }
               },
               withColor: true,

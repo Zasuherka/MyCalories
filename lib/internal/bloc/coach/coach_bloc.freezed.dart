@@ -22,6 +22,8 @@ mixin _$CoachEvent {
     required TResult Function(String searchText) searchCoach,
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,8 @@ mixin _$CoachEvent {
     TResult? Function(String searchText)? searchCoach,
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +42,8 @@ mixin _$CoachEvent {
     TResult Function(String searchText)? searchCoach,
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +53,9 @@ mixin _$CoachEvent {
     required TResult Function(_SearchCoach value) searchCoach,
     required TResult Function(_CoachRequest value) coachRequest,
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +64,9 @@ mixin _$CoachEvent {
     TResult? Function(_SearchCoach value)? searchCoach,
     TResult? Function(_CoachRequest value)? coachRequest,
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +75,9 @@ mixin _$CoachEvent {
     TResult Function(_SearchCoach value)? searchCoach,
     TResult Function(_CoachRequest value)? coachRequest,
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +143,8 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     required TResult Function(String searchText) searchCoach,
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
   }) {
     return getCoachInfo();
   }
@@ -139,6 +156,8 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult? Function(String searchText)? searchCoach,
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
   }) {
     return getCoachInfo?.call();
   }
@@ -150,6 +169,8 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult Function(String searchText)? searchCoach,
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
     required TResult orElse(),
   }) {
     if (getCoachInfo != null) {
@@ -165,6 +186,9 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     required TResult Function(_SearchCoach value) searchCoach,
     required TResult Function(_CoachRequest value) coachRequest,
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
   }) {
     return getCoachInfo(this);
   }
@@ -176,6 +200,9 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult? Function(_SearchCoach value)? searchCoach,
     TResult? Function(_CoachRequest value)? coachRequest,
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
   }) {
     return getCoachInfo?.call(this);
   }
@@ -187,6 +214,9 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult Function(_SearchCoach value)? searchCoach,
     TResult Function(_CoachRequest value)? coachRequest,
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
     required TResult orElse(),
   }) {
     if (getCoachInfo != null) {
@@ -269,6 +299,8 @@ class _$SearchCoachImpl implements _SearchCoach {
     required TResult Function(String searchText) searchCoach,
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
   }) {
     return searchCoach(searchText);
   }
@@ -280,6 +312,8 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult? Function(String searchText)? searchCoach,
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
   }) {
     return searchCoach?.call(searchText);
   }
@@ -291,6 +325,8 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult Function(String searchText)? searchCoach,
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
     required TResult orElse(),
   }) {
     if (searchCoach != null) {
@@ -306,6 +342,9 @@ class _$SearchCoachImpl implements _SearchCoach {
     required TResult Function(_SearchCoach value) searchCoach,
     required TResult Function(_CoachRequest value) coachRequest,
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
   }) {
     return searchCoach(this);
   }
@@ -317,6 +356,9 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult? Function(_SearchCoach value)? searchCoach,
     TResult? Function(_CoachRequest value)? coachRequest,
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
   }) {
     return searchCoach?.call(this);
   }
@@ -328,6 +370,9 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult Function(_SearchCoach value)? searchCoach,
     TResult Function(_CoachRequest value)? coachRequest,
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
     required TResult orElse(),
   }) {
     if (searchCoach != null) {
@@ -415,6 +460,8 @@ class _$CoachRequestImpl implements _CoachRequest {
     required TResult Function(String searchText) searchCoach,
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
   }) {
     return coachRequest(coach);
   }
@@ -426,6 +473,8 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult? Function(String searchText)? searchCoach,
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
   }) {
     return coachRequest?.call(coach);
   }
@@ -437,6 +486,8 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult Function(String searchText)? searchCoach,
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
     required TResult orElse(),
   }) {
     if (coachRequest != null) {
@@ -452,6 +503,9 @@ class _$CoachRequestImpl implements _CoachRequest {
     required TResult Function(_SearchCoach value) searchCoach,
     required TResult Function(_CoachRequest value) coachRequest,
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
   }) {
     return coachRequest(this);
   }
@@ -463,6 +517,9 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult? Function(_SearchCoach value)? searchCoach,
     TResult? Function(_CoachRequest value)? coachRequest,
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
   }) {
     return coachRequest?.call(this);
   }
@@ -474,6 +531,9 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult Function(_SearchCoach value)? searchCoach,
     TResult Function(_CoachRequest value)? coachRequest,
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
     required TResult orElse(),
   }) {
     if (coachRequest != null) {
@@ -536,6 +596,8 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     required TResult Function(String searchText) searchCoach,
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
   }) {
     return updateLocalUserInfo();
   }
@@ -547,6 +609,8 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult? Function(String searchText)? searchCoach,
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
   }) {
     return updateLocalUserInfo?.call();
   }
@@ -558,6 +622,8 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult Function(String searchText)? searchCoach,
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
     required TResult orElse(),
   }) {
     if (updateLocalUserInfo != null) {
@@ -573,6 +639,9 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     required TResult Function(_SearchCoach value) searchCoach,
     required TResult Function(_CoachRequest value) coachRequest,
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
   }) {
     return updateLocalUserInfo(this);
   }
@@ -584,6 +653,9 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult? Function(_SearchCoach value)? searchCoach,
     TResult? Function(_CoachRequest value)? coachRequest,
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
   }) {
     return updateLocalUserInfo?.call(this);
   }
@@ -595,6 +667,9 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult Function(_SearchCoach value)? searchCoach,
     TResult Function(_CoachRequest value)? coachRequest,
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
     required TResult orElse(),
   }) {
     if (updateLocalUserInfo != null) {
@@ -609,6 +684,268 @@ abstract class _UpdateLocalUserInfo implements CoachEvent {
 }
 
 /// @nodoc
+abstract class _$$GetCoachCollectionViewListImplCopyWith<$Res> {
+  factory _$$GetCoachCollectionViewListImplCopyWith(
+          _$GetCoachCollectionViewListImpl value,
+          $Res Function(_$GetCoachCollectionViewListImpl) then) =
+      __$$GetCoachCollectionViewListImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetCoachCollectionViewListImplCopyWithImpl<$Res>
+    extends _$CoachEventCopyWithImpl<$Res, _$GetCoachCollectionViewListImpl>
+    implements _$$GetCoachCollectionViewListImplCopyWith<$Res> {
+  __$$GetCoachCollectionViewListImplCopyWithImpl(
+      _$GetCoachCollectionViewListImpl _value,
+      $Res Function(_$GetCoachCollectionViewListImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
+  const _$GetCoachCollectionViewListImpl();
+
+  @override
+  String toString() {
+    return 'CoachEvent.getCoachCollectionViewList()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCoachCollectionViewListImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCoachInfo,
+    required TResult Function(String searchText) searchCoach,
+    required TResult Function(AppUser coach) coachRequest,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
+  }) {
+    return getCoachCollectionViewList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCoachInfo,
+    TResult? Function(String searchText)? searchCoach,
+    TResult? Function(AppUser coach)? coachRequest,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
+  }) {
+    return getCoachCollectionViewList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCoachInfo,
+    TResult Function(String searchText)? searchCoach,
+    TResult Function(AppUser coach)? coachRequest,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
+    required TResult orElse(),
+  }) {
+    if (getCoachCollectionViewList != null) {
+      return getCoachCollectionViewList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCoachInfo value) getCoachInfo,
+    required TResult Function(_SearchCoach value) searchCoach,
+    required TResult Function(_CoachRequest value) coachRequest,
+    required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
+  }) {
+    return getCoachCollectionViewList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCoachInfo value)? getCoachInfo,
+    TResult? Function(_SearchCoach value)? searchCoach,
+    TResult? Function(_CoachRequest value)? coachRequest,
+    TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
+  }) {
+    return getCoachCollectionViewList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCoachInfo value)? getCoachInfo,
+    TResult Function(_SearchCoach value)? searchCoach,
+    TResult Function(_CoachRequest value)? coachRequest,
+    TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
+    required TResult orElse(),
+  }) {
+    if (getCoachCollectionViewList != null) {
+      return getCoachCollectionViewList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCoachCollectionViewList implements CoachEvent {
+  const factory _GetCoachCollectionViewList() =
+      _$GetCoachCollectionViewListImpl;
+}
+
+/// @nodoc
+abstract class _$$RemoveCoachImplCopyWith<$Res> {
+  factory _$$RemoveCoachImplCopyWith(
+          _$RemoveCoachImpl value, $Res Function(_$RemoveCoachImpl) then) =
+      __$$RemoveCoachImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemoveCoachImplCopyWithImpl<$Res>
+    extends _$CoachEventCopyWithImpl<$Res, _$RemoveCoachImpl>
+    implements _$$RemoveCoachImplCopyWith<$Res> {
+  __$$RemoveCoachImplCopyWithImpl(
+      _$RemoveCoachImpl _value, $Res Function(_$RemoveCoachImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RemoveCoachImpl implements _RemoveCoach {
+  const _$RemoveCoachImpl();
+
+  @override
+  String toString() {
+    return 'CoachEvent.removeCoach()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RemoveCoachImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCoachInfo,
+    required TResult Function(String searchText) searchCoach,
+    required TResult Function(AppUser coach) coachRequest,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() removeCoach,
+  }) {
+    return removeCoach();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCoachInfo,
+    TResult? Function(String searchText)? searchCoach,
+    TResult? Function(AppUser coach)? coachRequest,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? removeCoach,
+  }) {
+    return removeCoach?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCoachInfo,
+    TResult Function(String searchText)? searchCoach,
+    TResult Function(AppUser coach)? coachRequest,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? removeCoach,
+    required TResult orElse(),
+  }) {
+    if (removeCoach != null) {
+      return removeCoach();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCoachInfo value) getCoachInfo,
+    required TResult Function(_SearchCoach value) searchCoach,
+    required TResult Function(_CoachRequest value) coachRequest,
+    required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_RemoveCoach value) removeCoach,
+  }) {
+    return removeCoach(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCoachInfo value)? getCoachInfo,
+    TResult? Function(_SearchCoach value)? searchCoach,
+    TResult? Function(_CoachRequest value)? coachRequest,
+    TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_RemoveCoach value)? removeCoach,
+  }) {
+    return removeCoach?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCoachInfo value)? getCoachInfo,
+    TResult Function(_SearchCoach value)? searchCoach,
+    TResult Function(_CoachRequest value)? coachRequest,
+    TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_RemoveCoach value)? removeCoach,
+    required TResult orElse(),
+  }) {
+    if (removeCoach != null) {
+      return removeCoach(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveCoach implements CoachEvent {
+  const factory _RemoveCoach() = _$RemoveCoachImpl;
+}
+
+/// @nodoc
 mixin _$CoachState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -616,6 +953,7 @@ mixin _$CoachState {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) =>
@@ -626,6 +964,7 @@ mixin _$CoachState {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) =>
@@ -636,6 +975,7 @@ mixin _$CoachState {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -647,6 +987,7 @@ mixin _$CoachState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) =>
@@ -657,6 +998,7 @@ mixin _$CoachState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) =>
@@ -667,6 +1009,7 @@ mixin _$CoachState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),
@@ -734,6 +1077,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) {
@@ -747,6 +1091,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) {
@@ -760,6 +1105,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -777,6 +1123,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) {
@@ -790,6 +1137,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) {
@@ -803,6 +1151,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),
@@ -860,6 +1209,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) {
@@ -873,6 +1223,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) {
@@ -886,6 +1237,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -903,6 +1255,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) {
@@ -916,6 +1269,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) {
@@ -929,6 +1283,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),
@@ -1013,6 +1368,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) {
@@ -1026,6 +1382,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) {
@@ -1039,6 +1396,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -1056,6 +1414,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) {
@@ -1069,6 +1428,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) {
@@ -1082,6 +1442,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),
@@ -1144,6 +1505,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) {
@@ -1157,6 +1519,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) {
@@ -1170,6 +1533,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -1187,6 +1551,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) {
@@ -1200,6 +1565,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) {
@@ -1213,6 +1579,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),
@@ -1226,6 +1593,138 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements CoachState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$RemoveSuccessImplCopyWith<$Res> {
+  factory _$$RemoveSuccessImplCopyWith(
+          _$RemoveSuccessImpl value, $Res Function(_$RemoveSuccessImpl) then) =
+      __$$RemoveSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemoveSuccessImplCopyWithImpl<$Res>
+    extends _$CoachStateCopyWithImpl<$Res, _$RemoveSuccessImpl>
+    implements _$$RemoveSuccessImplCopyWith<$Res> {
+  __$$RemoveSuccessImplCopyWithImpl(
+      _$RemoveSuccessImpl _value, $Res Function(_$RemoveSuccessImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RemoveSuccessImpl implements _RemoveSuccess {
+  const _$RemoveSuccessImpl();
+
+  @override
+  String toString() {
+    return 'CoachState.removeSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RemoveSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) error,
+    required TResult Function() success,
+    required TResult Function() removeSuccess,
+    required TResult Function(List<AppUser> coachSearchList) coachSearchList,
+    required TResult Function() coachIsNull,
+  }) {
+    return removeSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function()? success,
+    TResult? Function()? removeSuccess,
+    TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
+    TResult? Function()? coachIsNull,
+  }) {
+    return removeSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? error,
+    TResult Function()? success,
+    TResult Function()? removeSuccess,
+    TResult Function(List<AppUser> coachSearchList)? coachSearchList,
+    TResult Function()? coachIsNull,
+    required TResult orElse(),
+  }) {
+    if (removeSuccess != null) {
+      return removeSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
+    required TResult Function(_CoachSearchList value) coachSearchList,
+    required TResult Function(_CoachIsNull value) coachIsNull,
+  }) {
+    return removeSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
+    TResult? Function(_CoachSearchList value)? coachSearchList,
+    TResult? Function(_CoachIsNull value)? coachIsNull,
+  }) {
+    return removeSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
+    TResult Function(_CoachSearchList value)? coachSearchList,
+    TResult Function(_CoachIsNull value)? coachIsNull,
+    required TResult orElse(),
+  }) {
+    if (removeSuccess != null) {
+      return removeSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveSuccess implements CoachState {
+  const factory _RemoveSuccess() = _$RemoveSuccessImpl;
 }
 
 /// @nodoc
@@ -1305,6 +1804,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) {
@@ -1318,6 +1818,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) {
@@ -1331,6 +1832,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -1348,6 +1850,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) {
@@ -1361,6 +1864,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) {
@@ -1374,6 +1878,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),
@@ -1437,6 +1942,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
   }) {
@@ -1450,6 +1956,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
   }) {
@@ -1463,6 +1970,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
     required TResult orElse(),
@@ -1480,6 +1988,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
   }) {
@@ -1493,6 +2002,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
   }) {
@@ -1506,6 +2016,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
     required TResult orElse(),

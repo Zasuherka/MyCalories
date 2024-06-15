@@ -81,7 +81,6 @@ class CollectionRepository implements ICollectionRepository {
     }
     try{
       final list = await _database.collectionData.getUserListCollection(
-          localUser.email,
           localUser.listCollectionsId
       );
       localUser.listCollection = list;
@@ -139,6 +138,8 @@ class CollectionRepository implements ICollectionRepository {
       final collection = await _database
           .collectionData
           .getCollectionById(collectionId);
+      print(localUser.listCollectionView);
+
       if(localUser.email == collection.authorEmail){
         for(CollectionView collectionView in localUser.listCollectionView){
           if(collectionView.id == collection.id){

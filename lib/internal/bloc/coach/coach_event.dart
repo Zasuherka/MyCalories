@@ -6,4 +6,6 @@ class CoachEvent with _$CoachEvent{
   const factory CoachEvent.searchCoach({required String searchText}) = _SearchCoach;
   const factory CoachEvent.coachRequest({required AppUser coach}) = _CoachRequest;
   const factory CoachEvent.updateLocalUserInfo() = _UpdateLocalUserInfo;
+  const factory CoachEvent.getCoachCollectionViewList() = _GetCoachCollectionViewList;
+  const factory CoachEvent.removeCoach() = _RemoveCoach;
 }

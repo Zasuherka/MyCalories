@@ -21,6 +21,8 @@ class _UserData{
     final Map<String, dynamic> json = Map<String, dynamic>
         .from(userData.value as Map);
 
+    json['userId'] = userId;
+
     return AppUserDto.fromFirebase(json);
   }
 

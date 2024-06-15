@@ -33,6 +33,7 @@ class _CollectionPageState extends State<CollectionPage> {
   @override
   void initState() {
     super.initState();
+    print(widget.collectionId);
     BlocProvider.of<CollectionFoodBloc>(context)
         .add(CollectionFoodEvent.getCollection(collectionId: widget.collectionId));
   }
@@ -63,88 +64,91 @@ class _CollectionPageState extends State<CollectionPage> {
           physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
-            pinned: true,
-            toolbarHeight: MediaQuery.of(context).padding.top + 20,
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                  gradient: AppColors.greenGradient
-              ),),
-            title: Text(!isLoading ? title : ''),
-            centerTitle: true,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: GestureDetector(
-                onTap: () {
-                  context.router.popForced();
-                },
-                child: SvgPicture.asset(
-                  'images/arrow.svg',
-                  width: 33,
-                  height: 33,
-                  colorFilter:
-                  const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
+              pinned: true,
+              toolbarHeight: MediaQuery.of(context).padding.top + 20,
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(gradient: AppColors.greenGradient),
+              ),
+              title: Text(!isLoading ? title : ''),
+              centerTitle: true,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    context.router.popForced();
+                  },
+                  child: SvgPicture.asset(
+                    'images/arrow.svg',
+                    width: 33,
+                    height: 33,
+                    colorFilter:
+                        const ColorFilter.mode(AppColors.primaryButtonColor, BlendMode.srcIn),
+                  ),
                 ),
               ),
+              actions: state.maybeMap(
+                  loading: (_) => [],
+                  orElse: () => [
+                        if (isUserCollection)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: GestureDetector(
+                              onTap: () => context.router
+                                  .push(UpdateCollectionRoute(collection: collection!)),
+                              child: SvgPicture.asset(
+                                'images/editing.svg',
+                                height: 33,
+                                width: 33,
+                                colorFilter: const ColorFilter.mode(
+                                    AppColors.primaryButtonColor, BlendMode.srcIn),
+                              ),
+                            ),
+                          ),
+                        userHaveThisCollection
+                            ? Padding(
+                                padding: const EdgeInsets.only(right: 23),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.read<CollectionFoodBloc>().add(
+                                        CollectionFoodEvent.deleteCollection(
+                                            collectionId: collection!.id));
+                                    context
+                                        .read<CollectionBloc>()
+                                        .add(const CollectionEvent.getUserListCollection());
+                                    context.router.popForced();
+                                  },
+                                  child: SvgPicture.asset(
+                                    'images/delete.svg',
+                                    height: 33,
+                                    width: 33,
+                                    colorFilter: const ColorFilter.mode(
+                                        AppColors.primaryButtonColor, BlendMode.srcIn),
+                                  ),
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(right: 23),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.read<CollectionFoodBloc>().add(
+                                        CollectionFoodEvent.addCollectionInUserListCollection(
+                                            collection: collection!));
+                                    context
+                                        .read<CollectionBloc>()
+                                        .add(const CollectionEvent.getUserListCollection());
+                                  },
+                                  child: SvgPicture.asset(
+                                    'images/add.svg',
+                                    height: 33,
+                                    width: 33,
+                                    colorFilter: const ColorFilter.mode(
+                                        AppColors.primaryButtonColor, BlendMode.srcIn),
+                                  ),
+                                ),
+                              ),
+                      ]),
             ),
-            actions: state.maybeMap(
-                loading: (_) => [],
-                orElse: () => [
-                  if (isUserCollection)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: GestureDetector(
-                        onTap: () => context.router
-                            .push(UpdateCollectionRoute(collection: collection!)),
-                        child: SvgPicture.asset(
-                          'images/editing.svg',
-                          height: 33,
-                          width: 33,
-                          colorFilter: const ColorFilter.mode(
-                              AppColors.primaryButtonColor, BlendMode.srcIn),
-                        ),
-                      ),
-                    ),
-                  userHaveThisCollection
-                      ? Padding(
-                    padding: const EdgeInsets.only(right: 23),
-                    child: GestureDetector(
-                      onTap: () {
-                        context.read<CollectionFoodBloc>().add(
-                            CollectionFoodEvent.deleteCollection(
-                                collectionId: collection!.id));
-                        context.read<CollectionBloc>().add(const CollectionEvent.getUserListCollection());
-                        context.router.popForced();
-                      },
-                      child: SvgPicture.asset(
-                        'images/delete.svg',
-                        height: 33,
-                        width: 33,
-                        colorFilter: const ColorFilter.mode(
-                            AppColors.primaryButtonColor, BlendMode.srcIn),
-                      ),
-                    ),
-                  )
-                      : Padding(
-                    padding: const EdgeInsets.only(right: 23),
-                    child: GestureDetector(
-                      onTap: () {
-                        context.read<CollectionFoodBloc>()
-                            .add(CollectionFoodEvent
-                            .addCollectionInUserListCollection(collection: collection!));
-                        context.read<CollectionBloc>().add(const CollectionEvent.getUserListCollection());
-                      },
-                      child: SvgPicture.asset(
-                        'images/add.svg',
-                        height: 33,
-                        width: 33,
-                        colorFilter: const ColorFilter.mode(
-                            AppColors.primaryButtonColor, BlendMode.srcIn),
-                      ),
-                    ),
-                  ),
-            ]),
-          ),
-          !isLoading ? SliverList.builder(
+            !isLoading ? SliverList.builder(
               itemCount: listFood.length,
               itemBuilder: (BuildContext context, int index){
                 index = listFood.length - 1 - index;

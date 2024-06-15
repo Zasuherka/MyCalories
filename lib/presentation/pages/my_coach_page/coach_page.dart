@@ -1,5 +1,7 @@
 import 'package:app1/internal/bloc/coach/coach_bloc.dart';
+import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
 import 'package:app1/presentation/constants.dart';
+import 'package:app1/presentation/pages/my_coach_page/widgets/remove_coach_dialog.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
 import 'package:auto_route/auto_route.dart';
@@ -7,20 +9,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-@RoutePage()
 class CoachPage extends StatelessWidget {
   const CoachPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CollectionBloc>(context).add(const CollectionEvent.getUserListCollection());
     const Widget verticalOffset = SliverToBoxAdapter(
       child: SizedBox(height: 10),
     );
     final coachBloc = context.read<CoachBloc>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: BlocBuilder<CoachBloc, CoachState>(
+        body: BlocConsumer<CoachBloc, CoachState>(
+          listener: (BuildContext context, CoachState state){
+            state.whenOrNull(
+              removeSuccess: (){
+                context.router.popForced();
+              }
+            );
+          },
           builder: (BuildContext context, CoachState state) {
+            state.whenOrNull(
+                loading: () => Center(
+                      child: Image.asset(
+                        'images/bouncing-circles.gif',
+                        height: 100,
+                      ),
+                    ));
             return CustomScrollView(
               physics: const RangeMaintainingScrollPhysics(),
               slivers: <Widget>[
@@ -58,6 +74,35 @@ class CoachPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Positioned(
+                        top: 37,
+                        left: 20,
+                        child: GestureDetector(
+                          onTap: () {
+                            context.router.popForced();
+                          },
+                          child: SvgPicture.asset(
+                            'images/arrow.svg',
+                            width: 32,
+                            height: 32,
+                            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 37,
+                        right: 20,
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(context: context, builder: (context) => const RemoveCoachDialog());
+                          },
+                          child: const Icon(
+                            Icons.settings,
+                            size: 32,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -196,7 +241,7 @@ class CoachPage extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: PrimaryAppButton(
                     onTap: () {
-                      
+                      context.router.push(CoachCollectionsRoute(isAddEatingFood: false));
                     },
                     margin: const EdgeInsets.symmetric(horizontal: 12.5),
                     padding: const EdgeInsets.symmetric(vertical: 5),
