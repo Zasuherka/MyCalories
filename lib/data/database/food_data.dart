@@ -64,7 +64,7 @@ class _FoodData{
         findGlobalFoodList.add(findFood);
       }
     } catch (error) {
-      print('error: ' + error.toString());
+      print('error: $error');
     }
     return findGlobalFoodList;
   }
@@ -86,7 +86,7 @@ class _FoodData{
         await _usersRef.child(userId).update({"myFoods": newListFood});
       }
     } catch (error) {
-      print('error: ' + error.toString());
+      print('error: $error');
     }
   }
 

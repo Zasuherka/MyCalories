@@ -5,7 +5,6 @@ import 'package:app1/presentation/validation/profile.dart';
 import 'package:app1/presentation/widgets/custom_buttons/custom_drop_down_button.dart';
 import 'package:app1/presentation/widgets/custom_buttons/switch.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

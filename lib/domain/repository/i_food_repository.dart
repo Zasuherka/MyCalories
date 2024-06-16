@@ -1,5 +1,6 @@
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/model/food.dart';
+import 'package:app1/domain/model/user.dart';
 
 abstract class IFoodRepository {
 
@@ -38,7 +39,7 @@ abstract class IFoodRepository {
   (List<EatingFood>, String) getEatingList(String nameEating);
 
   Future<(List<EatingFood>, List<EatingFood>, List<EatingFood>, List<EatingFood>)>
-  getEatingFoodInfoInFirebase([DateTime? dateTime, bool saveUserInfo]);
+  getEatingFoodInfoInFirebase([DateTime? dateTime, bool saveUserInfo, String? userId]);
 
   String getCaloriesString(List<EatingFood> listEatingFood);
 

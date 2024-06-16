@@ -2,9 +2,7 @@ import 'package:app1/internal/bloc/coach/coach_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/custom_app_bar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -54,6 +52,7 @@ class _SearchCoachPageState extends State<SearchCoachPage> {
             appBar: CustomAppBar(
               leftOnTap: (){
                 coachBloc.add(const CoachEvent.searchCoach(searchText: ''));
+                print('object');
                 context.router.popForced();
               },
               title: 'Поиск тренера',
@@ -175,9 +174,12 @@ class _SearchCoachPageState extends State<SearchCoachPage> {
                                     width: 10,
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 6,
                                     child: Text(
                                       user.name,
+                                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                          overflow: TextOverflow.ellipsis
+                                      ),
                                     ),
                                   ),
                                   Expanded(

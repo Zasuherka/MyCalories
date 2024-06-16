@@ -4,7 +4,6 @@ import 'package:app1/data/repository/image_repository.dart';
 import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/repository/i_image_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_image_event.dart';

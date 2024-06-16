@@ -15,6 +15,6 @@ class WardsState with _$WardsState {
   }) = _GetWardsList;
 
   const factory WardsState.getWardRequestsList({
-    required List<AppUser> wardsList,
+    required List<AppUser> wardRequestsList,
   }) = _GetWardRequestsList;
 }

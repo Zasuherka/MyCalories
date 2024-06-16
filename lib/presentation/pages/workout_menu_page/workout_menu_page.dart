@@ -33,7 +33,7 @@ class WorkoutMenuPage extends StatelessWidget {
             PrimaryAppButton(
               onTap: (){
                 if(userIsCoach){
-
+                  context.router.push(const WardsListRoute());
                 } else{
                   context.router.push(const MyCoachRoute());
                 }
@@ -48,6 +48,23 @@ class WorkoutMenuPage extends StatelessWidget {
                 ),
               ),
             ),
+            if(userIsCoach) ...[
+              verticalOffset,
+              PrimaryAppButton(
+                onTap: (){
+                  context.router.push(const WardsRequestsRoute());
+                },
+                withColor: true,
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                alignment: Alignment.center,
+                child: Text(
+                  'Заявки на тренерство',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: AppColors.secondaryTextColor
+                  ),
+                ),
+              ),
+            ],
             verticalOffset,
             PrimaryAppButton(
               onTap: (){

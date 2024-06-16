@@ -1,8 +1,6 @@
 import 'dart:io';
-import 'package:app1/domain/model/collection.dart';
 import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/food.dart';
-import 'package:app1/domain/model/result.dart';
 import 'package:app1/domain/enums/sex.dart';
 import 'eating_food.dart';
 
@@ -80,9 +78,9 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
   ///Подгружаем из FireBase
   List<EatingFood> eatingAnother = [];
 
-  List<AppUser> wardRequests = [];
+  List<String> wardRequests = [];
 
-  List<AppUser> wards = [];
+  List<String> wards = [];
 
   ///Считаем с помощью [await getCount()]
   Map<String, double> eatingValues = {
@@ -116,12 +114,12 @@ class AppUser /// Назвал не User, а AppUser чтобы не было п
         this.carbohydratesGoal,
         this.sex,
         this.requestCoachId,
-        List<AppUser>? wardRequests,
-        List<AppUser>? wards,
+        List<String>? wardRequests,
+        List<String>? wards,
       })
   {
     if(wardRequests != null) this.wardRequests = wardRequests;
-    if(wardRequests != null) this.wardRequests = wardRequests;
+    if(wards != null) this.wards = wards;
     countAge();
   }
 

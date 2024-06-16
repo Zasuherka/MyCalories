@@ -7,7 +7,6 @@ import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'food_event.dart';
 part 'food_state.dart';

@@ -160,6 +160,30 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    WardFoodDiaryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WardFoodDiaryPage(),
+      );
+    },
+    WardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WardPage(),
+      );
+    },
+    WardsListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WardsListPage(),
+      );
+    },
+    WardsRequestsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WardsRequestsPage(),
+      );
+    },
   };
 }
 
@@ -589,4 +613,60 @@ class UpdateCollectionRouteArgs {
   String toString() {
     return 'UpdateCollectionRouteArgs{key: $key, collection: $collection}';
   }
+}
+
+/// generated route for
+/// [WardFoodDiaryPage]
+class WardFoodDiaryRoute extends PageRouteInfo<void> {
+  const WardFoodDiaryRoute({List<PageRouteInfo>? children})
+      : super(
+          WardFoodDiaryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WardFoodDiaryRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WardPage]
+class WardRoute extends PageRouteInfo<void> {
+  const WardRoute({List<PageRouteInfo>? children})
+      : super(
+          WardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WardsListPage]
+class WardsListRoute extends PageRouteInfo<void> {
+  const WardsListRoute({List<PageRouteInfo>? children})
+      : super(
+          WardsListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WardsListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WardsRequestsPage]
+class WardsRequestsRoute extends PageRouteInfo<void> {
+  const WardsRequestsRoute({List<PageRouteInfo>? children})
+      : super(
+          WardsRequestsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WardsRequestsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

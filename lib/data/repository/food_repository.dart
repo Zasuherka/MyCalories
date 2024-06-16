@@ -44,7 +44,7 @@ class FoodRepository implements IFoodRepository {
       _userRepository.setFoodList(listFood);
       return listFood;
     } catch (e) {
-      print("Ошибка" + e.toString());
+      print("Ошибка$e");
     }
     return null;
   }
@@ -506,19 +506,19 @@ class FoodRepository implements IFoodRepository {
 
   @override
   Future<(List<EatingFood>, List<EatingFood>, List<EatingFood>, List<EatingFood>)>
-  getEatingFoodInfoInFirebase([DateTime? dateTime, bool saveUserInfo = true]) async {
+  getEatingFoodInfoInFirebase([DateTime? dateTime, bool saveUserInfo = true, String? userId]) async {
 
     final localUser = _userRepository.localUser;
 
-    if (localUser == null) {
-      throw 'localUser is null';
+    if (localUser == null && userId == null) {
+      throw 'user is null';
     }
 
     final String dateFormat = dateTime != null
         ? DateFormat('yyyyMMdd').format(dateTime)
         : _dateNow;
 
-    final response = await _database.foodData.getEatingFoodInfoInFirebase(localUser.userId, dateFormat);
+    final response = await _database.foodData.getEatingFoodInfoInFirebase(userId ?? localUser!.userId, dateFormat);
 
     List<EatingFood> breakfast = response.$1;
     List<EatingFood> lunch = response.$2;

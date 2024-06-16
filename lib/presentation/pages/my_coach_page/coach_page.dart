@@ -59,18 +59,30 @@ class CoachPage extends StatelessWidget {
                         child: SizedBox(
                           height: 145,
                           width: 145,
-                          child: ClipOval(
-                            child: coachBloc.coach?.urlAvatar?.contains('http') ?? false
-                                ? Image.network(
-                                    coachBloc.coach!.urlAvatar!,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Image.asset(
-                                    'images/icon.jpg',
-                                    height: 145,
-                                    width: 145,
-                                    fit: BoxFit.cover,
-                                  ),
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.17),
+                                    spreadRadius: 4,
+                                    blurRadius: 10,
+                                    offset: const Offset(0, -5),
+                                  )],
+                                shape: BoxShape.circle
+                            ),
+                            child: ClipOval(
+                              child: coachBloc.coach?.urlAvatar?.contains('http') ?? false
+                                  ? Image.network(
+                                coachBloc.coach!.urlAvatar!,
+                                fit: BoxFit.cover,
+                              )
+                                  : Image.asset(
+                                'images/icon.jpg',
+                                height: 145,
+                                width: 145,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -121,120 +133,117 @@ class CoachPage extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleSmall)),
                 verticalOffset,
                 SliverToBoxAdapter(
-                  child: GestureDetector(
-                    onTap: () => context.router.push(const EditingProfileRoute()),
-                    child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 12.5),
-                        height: 170,
-                        decoration: BoxDecoration(
-                          boxShadow: boxShadow,
-                          color: AppColors.elementColor,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const Spacer(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Spacer(flex: 2),
-                                SizedBox(
-                                  child: SvgPicture.asset(
-                                    'images/weight.svg',
-                                    width: 45,
-                                    colorFilter: const ColorFilter.mode(
-                                        AppColors.secondaryTextColor, BlendMode.srcIn),
-                                  ),
-                                ),
-                                const Spacer(flex: 3),
-                                SizedBox(
-                                  width: 100,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(coachBloc.coach?.weightNow?.toString() ?? '—',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge),
-                                      Text('Сейчас',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(flex: 3),
-                                SizedBox(
-                                  width: 100,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(coachBloc.coach?.weightGoal?.toString() ?? '—',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge),
-                                      Text('Цель',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(flex: 2),
-                              ],
-                            ),
-                            const Spacer(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Spacer(flex: 2),
-                                SvgPicture.asset(
-                                  'images/people.svg',
+                  child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 12.5),
+                      height: 170,
+                      decoration: BoxDecoration(
+                        boxShadow: boxShadow,
+                        color: AppColors.elementColor,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Spacer(flex: 2),
+                              SizedBox(
+                                child: SvgPicture.asset(
+                                  'images/weight.svg',
                                   width: 45,
                                   colorFilter: const ColorFilter.mode(
                                       AppColors.secondaryTextColor, BlendMode.srcIn),
                                 ),
-                                const Spacer(flex: 3),
-                                SizedBox(
-                                  width: 100,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(coachBloc.coach?.height?.toString() ?? '—',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleLarge),
-                                      Text('Рост',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(flex: 3),
-                                SizedBox(
-                                  width: 100,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        coachBloc.coach?.age?.toString() ?? '—',
+                              ),
+                              const Spacer(flex: 3),
+                              SizedBox(
+                                width: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(coachBloc.coach?.weightNow?.toString() ?? '—',
                                         overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context).textTheme.titleLarge,
-                                      ),
-                                      Text('Возраст',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleSmall),
-                                    ],
-                                  ),
+                                        style: Theme.of(context).textTheme.titleLarge),
+                                    Text('Сейчас',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleSmall),
+                                  ],
                                 ),
-                                const Spacer(flex: 2),
-                              ],
-                            ),
-                            const Spacer()
-                          ],
-                        )),
-                  ),
+                              ),
+                              const Spacer(flex: 3),
+                              SizedBox(
+                                width: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(coachBloc.coach?.weightGoal?.toString() ?? '—',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleLarge),
+                                    Text('Цель',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleSmall),
+                                  ],
+                                ),
+                              ),
+                              const Spacer(flex: 2),
+                            ],
+                          ),
+                          const Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Spacer(flex: 2),
+                              SvgPicture.asset(
+                                'images/people.svg',
+                                width: 45,
+                                colorFilter: const ColorFilter.mode(
+                                    AppColors.secondaryTextColor, BlendMode.srcIn),
+                              ),
+                              const Spacer(flex: 3),
+                              SizedBox(
+                                width: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(coachBloc.coach?.height?.toString() ?? '—',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleLarge),
+                                    Text('Рост',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleSmall),
+                                  ],
+                                ),
+                              ),
+                              const Spacer(flex: 3),
+                              SizedBox(
+                                width: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      coachBloc.coach?.age?.toString() ?? '—',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context).textTheme.titleLarge,
+                                    ),
+                                    Text('Возраст',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleSmall),
+                                  ],
+                                ),
+                              ),
+                              const Spacer(flex: 2),
+                            ],
+                          ),
+                          const Spacer()
+                        ],
+                      )),
                 ),
                 verticalOffset,
                 verticalOffset,

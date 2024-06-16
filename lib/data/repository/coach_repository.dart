@@ -44,8 +44,8 @@ class CoachRepository {
       return;
     }
 
-    coach.wardRequests.removeWhere((element) => element.userId == localUser.userId);
-    coach.wardRequests.add(localUser);
+    coach.wardRequests.removeWhere((element) => element == localUser.userId);
+    coach.wardRequests.add(localUser.userId);
 
     try {
       if(localUser.requestCoachId != null){
@@ -69,7 +69,7 @@ class CoachRepository {
     }
 
     try{
-      coach.wards.removeWhere((element) => element.userId == localUser.userId);
+      coach.wards.removeWhere((element) => element == localUser.userId);
       await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(coach));
       localUser.requestCoachId = null;
       localUser.coachId = null;

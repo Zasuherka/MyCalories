@@ -8,6 +8,7 @@ import 'package:app1/internal/bloc/food_bloc/food_bloc.dart';
 import 'package:app1/internal/bloc/registration/registration_bloc.dart';
 import 'package:app1/internal/bloc/user_image_bloc/user_image_bloc.dart';
 import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
+import 'package:app1/internal/bloc/wards/wards_bloc.dart';
 import 'package:app1/internal/cubit/warning/warning_cubit.dart';
 import 'package:app1/internal/cubit/food_diary/food_diary_cubit.dart';
 import 'package:app1/internal/cubit/workout/workout_cubit.dart';
@@ -70,6 +71,9 @@ class MyFitnessApp extends StatelessWidget {
           ),
           BlocProvider<CoachBloc>(
               create: (BuildContext context) => CoachBloc()
+          ),
+          BlocProvider<WardsBloc>(
+              create: (BuildContext context) => WardsBloc()
           ),
           BlocProvider<WorkoutCubit>(
               create: (BuildContext context) => WorkoutCubit()

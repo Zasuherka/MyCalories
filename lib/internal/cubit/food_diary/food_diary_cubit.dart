@@ -63,6 +63,8 @@ class FoodDiaryCubit extends Cubit<FoodDiaryState> {
      dinner = [];
      another = [];
 
+     selectedDate = null;
+
      calories = 0;
      protein = 0;
      fats = 0;

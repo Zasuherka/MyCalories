@@ -34,7 +34,7 @@ class CompletedWorkoutPage extends StatelessWidget {
               ),
               orElse: (){
                 final List<Workout> list = workoutCubit.completedWorkoutsList;
-                return Column(
+                return const Column(
                   children: [
 
                   ],

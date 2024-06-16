@@ -113,7 +113,7 @@ class _UserData{
     try {
       _usersRef.child(user.uid).set({"name": name, "email": user.email});
     } catch (e) {
-      print("Ошибка регистрации" + e.toString());
+      print("Ошибка регистрации$e");
     }
   }
 

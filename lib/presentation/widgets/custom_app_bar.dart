@@ -59,9 +59,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: GestureDetector(
-                  onTap: () {
-                    leftOnTap?.call ?? context.router.popForced();
-                  },
+                  onTap: leftOnTap ?? () => context.router.popForced(),
                   child: SvgPicture.asset(
                     'images/arrow.svg',
                     width: 33,

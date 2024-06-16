@@ -1,8 +1,5 @@
 import 'package:app1/presentation/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class WarningSnackBar extends StatelessWidget {
   final String title;

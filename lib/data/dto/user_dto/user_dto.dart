@@ -139,8 +139,8 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
         listCollectionsId: appUser.listCollectionsId,
         sex: appUser.sex,
         requestCoachId: appUser.requestCoachId,
-        wardRequests: appUser.wardRequests.map((e) => e.userId).toList(),
-        wards: appUser.wards.map((e) => e.userId).toList(),
+        wardRequests: appUser.wardRequests,
+        wards: appUser.wards,
     );
   }
 
@@ -150,7 +150,6 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
     return {
       'name' : name,
       'email': email,
-      'userId': userId,
       'isCoach': isCoach,
       'coachId': coachId,
       'urlAvatar': urlAvatar,
@@ -189,5 +188,7 @@ class AppUserDto /// Назвал не User, а AppUser чтобы не было
         urlAvatar: urlAvatar,
         listCollectionsId: listCollectionsId,
         requestCoachId: requestCoachId,
+        wardRequests: wardRequests,
+        wards: wards
       );
 }
