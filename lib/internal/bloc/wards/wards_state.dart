@@ -10,6 +10,8 @@ class WardsState with _$WardsState {
 
   const factory WardsState.success() = _Success;
 
+  const factory WardsState.successRemoveWard() = _SuccessRemoveWard;
+
   const factory WardsState.successUpdateExercise() = SuccessUpdateExercise;
 
   const factory WardsState.successWorkoutEnd() = _SuccessWorkoutEnd;

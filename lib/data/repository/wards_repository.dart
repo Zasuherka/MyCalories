@@ -71,6 +71,7 @@ class WardRepository{
         _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(localUser)),
         _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(ward)),
       ]);
+      _userRepository.setUserInfo(localUser);
     }
     catch(error){
       rethrow;
@@ -90,6 +91,25 @@ class WardRepository{
       ]);
     }
     catch(error){
+      rethrow;
+    }
+  }
+
+  Future<void> removeWard(AppUser ward) async{
+    final localUser = _userRepository.localUser;
+
+    if (localUser == null) {
+      return;
+    }
+
+    try{
+      ward.coachId = null;
+      await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(ward));
+      localUser.wards.removeWhere((element) => element == ward.userId);
+      await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(localUser));
+      _userRepository.setUserInfo(localUser);
+    }
+    catch(_){
       rethrow;
     }
   }

@@ -256,7 +256,7 @@ class CoachPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     withColor: true,
                     child: Text(
-                      'Наборы',
+                      'Наборы еды',
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),

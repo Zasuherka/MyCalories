@@ -48,9 +48,7 @@ class WardsEvent with _$WardsEvent{
     required DateTime dateTime,
   }) = GetInfoAboutFoodDiaryWard;
 
-  const factory WardsEvent.removeWards({
-    required AppUser appUser,
-  }) = RemoveWards;
+  const factory WardsEvent.removeWards() = RemoveWards;
 
   const factory WardsEvent.replyWards({
     required AppUser appUser,

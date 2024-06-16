@@ -33,7 +33,7 @@ mixin _$WardsEvent {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ mixin _$WardsEvent {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) =>
       throw _privateConstructorUsedError;
@@ -75,7 +75,7 @@ mixin _$WardsEvent {
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) =>
@@ -222,7 +222,7 @@ class _$GetWardsListEventImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return getWardsListEvent();
@@ -246,7 +246,7 @@ class _$GetWardsListEventImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return getWardsListEvent?.call();
@@ -270,7 +270,7 @@ class _$GetWardsListEventImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -423,7 +423,7 @@ class _$GetWardRequestsListEventImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return getWardRequestsListEvent();
@@ -447,7 +447,7 @@ class _$GetWardRequestsListEventImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return getWardRequestsListEvent?.call();
@@ -471,7 +471,7 @@ class _$GetWardRequestsListEventImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -622,7 +622,7 @@ class _$UpdateLocalUserInfoImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return updateLocalUserInfo();
@@ -646,7 +646,7 @@ class _$UpdateLocalUserInfoImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return updateLocalUserInfo?.call();
@@ -670,7 +670,7 @@ class _$UpdateLocalUserInfoImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -848,7 +848,7 @@ class _$GetInfoAboutWardImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return getInfoAboutWard(userId);
@@ -872,7 +872,7 @@ class _$GetInfoAboutWardImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return getInfoAboutWard?.call(userId);
@@ -896,7 +896,7 @@ class _$GetInfoAboutWardImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -1082,7 +1082,7 @@ class _$SetCurrentExerciseIndexImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return setCurrentExerciseIndex(index);
@@ -1106,7 +1106,7 @@ class _$SetCurrentExerciseIndexImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return setCurrentExerciseIndex?.call(index);
@@ -1130,7 +1130,7 @@ class _$SetCurrentExerciseIndexImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -1325,7 +1325,7 @@ class _$SetWorkoutListExerciseImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return setWorkoutListExercise(list);
@@ -1349,7 +1349,7 @@ class _$SetWorkoutListExerciseImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return setWorkoutListExercise?.call(list);
@@ -1373,7 +1373,7 @@ class _$SetWorkoutListExerciseImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -1528,7 +1528,7 @@ class _$CurrentWorkoutEndImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return currentWorkoutEnd();
@@ -1552,7 +1552,7 @@ class _$CurrentWorkoutEndImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return currentWorkoutEnd?.call();
@@ -1576,7 +1576,7 @@ class _$CurrentWorkoutEndImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -1762,7 +1762,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return onReorder(oldIndex, newIndex);
@@ -1786,7 +1786,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return onReorder?.call(oldIndex, newIndex);
@@ -1810,7 +1810,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -1996,7 +1996,7 @@ class _$DeleteExerciseImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return deleteExercise(index);
@@ -2020,7 +2020,7 @@ class _$DeleteExerciseImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return deleteExercise?.call(index);
@@ -2044,7 +2044,7 @@ class _$DeleteExerciseImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -2247,7 +2247,7 @@ class _$AddNewExerciseSetImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return addNewExerciseSet(list, exerciseCase);
@@ -2271,7 +2271,7 @@ class _$AddNewExerciseSetImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return addNewExerciseSet?.call(list, exerciseCase);
@@ -2295,7 +2295,7 @@ class _$AddNewExerciseSetImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -2544,7 +2544,7 @@ class _$SetCurrentRoundSetImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return setCurrentRoundSet(
@@ -2569,7 +2569,7 @@ class _$SetCurrentRoundSetImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return setCurrentRoundSet?.call(
@@ -2594,7 +2594,7 @@ class _$SetCurrentRoundSetImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -2790,7 +2790,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return getInfoAboutFoodDiaryWard(dateTime);
@@ -2814,7 +2814,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return getInfoAboutFoodDiaryWard?.call(dateTime);
@@ -2838,7 +2838,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -2937,8 +2937,6 @@ abstract class _$$RemoveWardsImplCopyWith<$Res> {
   factory _$$RemoveWardsImplCopyWith(
           _$RemoveWardsImpl value, $Res Function(_$RemoveWardsImpl) then) =
       __$$RemoveWardsImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AppUser appUser});
 }
 
 /// @nodoc
@@ -2948,58 +2946,32 @@ class __$$RemoveWardsImplCopyWithImpl<$Res>
   __$$RemoveWardsImplCopyWithImpl(
       _$RemoveWardsImpl _value, $Res Function(_$RemoveWardsImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? appUser = null,
-  }) {
-    return _then(_$RemoveWardsImpl(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
-  const _$RemoveWardsImpl({required this.appUser});
-
-  @override
-  final AppUser appUser;
+  const _$RemoveWardsImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WardsEvent.removeWards(appUser: $appUser)';
+    return 'WardsEvent.removeWards()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'WardsEvent.removeWards'))
-      ..add(DiagnosticsProperty('appUser', appUser));
+    properties.add(DiagnosticsProperty('type', 'WardsEvent.removeWards'));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RemoveWardsImpl &&
-            (identical(other.appUser, appUser) || other.appUser == appUser));
+        (other.runtimeType == runtimeType && other is _$RemoveWardsImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appUser);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoveWardsImplCopyWith<_$RemoveWardsImpl> get copyWith =>
-      __$$RemoveWardsImplCopyWithImpl<_$RemoveWardsImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -3019,10 +2991,10 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
-    return removeWards(appUser);
+    return removeWards();
   }
 
   @override
@@ -3043,10 +3015,10 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
-    return removeWards?.call(appUser);
+    return removeWards?.call();
   }
 
   @override
@@ -3067,12 +3039,12 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
     if (removeWards != null) {
-      return removeWards(appUser);
+      return removeWards();
     }
     return orElse();
   }
@@ -3152,13 +3124,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
 }
 
 abstract class RemoveWards implements WardsEvent {
-  const factory RemoveWards({required final AppUser appUser}) =
-      _$RemoveWardsImpl;
-
-  AppUser get appUser;
-  @JsonKey(ignore: true)
-  _$$RemoveWardsImplCopyWith<_$RemoveWardsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory RemoveWards() = _$RemoveWardsImpl;
 }
 
 /// @nodoc
@@ -3257,7 +3223,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)
         setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
-    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function() removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
   }) {
     return replyWards(appUser, reply);
@@ -3281,7 +3247,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
             String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function()? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
   }) {
     return replyWards?.call(appUser, reply);
@@ -3305,7 +3271,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
             bool? addNewPhysicalActivity, int? removeIndex)?
         setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
-    TResult Function(AppUser appUser)? removeWards,
+    TResult Function()? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
     required TResult orElse(),
   }) {
@@ -3409,6 +3375,7 @@ mixin _$WardsState {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -3423,6 +3390,7 @@ mixin _$WardsState {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -3436,6 +3404,7 @@ mixin _$WardsState {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -3450,6 +3419,7 @@ mixin _$WardsState {
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -3464,6 +3434,7 @@ mixin _$WardsState {
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3477,6 +3448,7 @@ mixin _$WardsState {
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3553,6 +3525,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -3570,6 +3543,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -3586,6 +3560,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -3606,6 +3581,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -3623,6 +3599,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3639,6 +3616,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3705,6 +3683,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -3722,6 +3701,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -3738,6 +3718,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -3758,6 +3739,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -3775,6 +3757,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3791,6 +3774,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3886,6 +3870,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -3903,6 +3888,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -3919,6 +3905,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -3939,6 +3926,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -3956,6 +3944,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -3972,6 +3961,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4043,6 +4033,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -4060,6 +4051,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -4076,6 +4068,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -4096,6 +4089,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -4113,6 +4107,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4129,6 +4124,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4145,6 +4141,166 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
 
 abstract class _Success implements WardsState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessRemoveWardImplCopyWith<$Res> {
+  factory _$$SuccessRemoveWardImplCopyWith(_$SuccessRemoveWardImpl value,
+          $Res Function(_$SuccessRemoveWardImpl) then) =
+      __$$SuccessRemoveWardImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SuccessRemoveWardImplCopyWithImpl<$Res>
+    extends _$WardsStateCopyWithImpl<$Res, _$SuccessRemoveWardImpl>
+    implements _$$SuccessRemoveWardImplCopyWith<$Res> {
+  __$$SuccessRemoveWardImplCopyWithImpl(_$SuccessRemoveWardImpl _value,
+      $Res Function(_$SuccessRemoveWardImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SuccessRemoveWardImpl
+    with DiagnosticableTreeMixin
+    implements _SuccessRemoveWard {
+  const _$SuccessRemoveWardImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsState.successRemoveWard()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsState.successRemoveWard'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SuccessRemoveWardImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) error,
+    required TResult Function() success,
+    required TResult Function() successRemoveWard,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
+    required TResult Function(List<AppUser> wardsList) getWardsList,
+    required TResult Function(List<AppUser> wardRequestsList)
+        getWardRequestsList,
+  }) {
+    return successRemoveWard();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
+    TResult? Function(List<AppUser> wardsList)? getWardsList,
+    TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+  }) {
+    return successRemoveWard?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? error,
+    TResult Function()? success,
+    TResult Function()? successRemoveWard,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
+    TResult Function(List<AppUser> wardsList)? getWardsList,
+    TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (successRemoveWard != null) {
+      return successRemoveWard();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
+    required TResult Function(_GetWardsList value) getWardsList,
+    required TResult Function(_GetWardRequestsList value) getWardRequestsList,
+  }) {
+    return successRemoveWard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult? Function(_GetWardsList value)? getWardsList,
+    TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
+  }) {
+    return successRemoveWard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult Function(_GetWardsList value)? getWardsList,
+    TResult Function(_GetWardRequestsList value)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (successRemoveWard != null) {
+      return successRemoveWard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessRemoveWard implements WardsState {
+  const factory _SuccessRemoveWard() = _$SuccessRemoveWardImpl;
 }
 
 /// @nodoc
@@ -4200,6 +4356,7 @@ class _$SuccessUpdateExerciseImpl
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -4217,6 +4374,7 @@ class _$SuccessUpdateExerciseImpl
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -4233,6 +4391,7 @@ class _$SuccessUpdateExerciseImpl
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -4253,6 +4412,7 @@ class _$SuccessUpdateExerciseImpl
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -4270,6 +4430,7 @@ class _$SuccessUpdateExerciseImpl
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4286,6 +4447,7 @@ class _$SuccessUpdateExerciseImpl
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4354,6 +4516,7 @@ class _$SuccessWorkoutEndImpl
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -4371,6 +4534,7 @@ class _$SuccessWorkoutEndImpl
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -4387,6 +4551,7 @@ class _$SuccessWorkoutEndImpl
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -4407,6 +4572,7 @@ class _$SuccessWorkoutEndImpl
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -4424,6 +4590,7 @@ class _$SuccessWorkoutEndImpl
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4440,6 +4607,7 @@ class _$SuccessWorkoutEndImpl
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4537,6 +4705,7 @@ class _$EmptyValueIndexImpl
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -4554,6 +4723,7 @@ class _$EmptyValueIndexImpl
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -4570,6 +4740,7 @@ class _$EmptyValueIndexImpl
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -4590,6 +4761,7 @@ class _$EmptyValueIndexImpl
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -4607,6 +4779,7 @@ class _$EmptyValueIndexImpl
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4623,6 +4796,7 @@ class _$EmptyValueIndexImpl
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4731,6 +4905,7 @@ class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -4748,6 +4923,7 @@ class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -4764,6 +4940,7 @@ class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -4784,6 +4961,7 @@ class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -4801,6 +4979,7 @@ class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4817,6 +4996,7 @@ class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -4930,6 +5110,7 @@ class _$GetWardRequestsListImpl
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successRemoveWard,
     required TResult Function() successUpdateExercise,
     required TResult Function() successWorkoutEnd,
     required TResult Function(int index) emptyValueIndex,
@@ -4947,6 +5128,7 @@ class _$GetWardRequestsListImpl
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successRemoveWard,
     TResult? Function()? successUpdateExercise,
     TResult? Function()? successWorkoutEnd,
     TResult? Function(int index)? emptyValueIndex,
@@ -4963,6 +5145,7 @@ class _$GetWardRequestsListImpl
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successRemoveWard,
     TResult Function()? successUpdateExercise,
     TResult Function()? successWorkoutEnd,
     TResult Function(int index)? emptyValueIndex,
@@ -4983,6 +5166,7 @@ class _$GetWardRequestsListImpl
     required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_SuccessRemoveWard value) successRemoveWard,
     required TResult Function(SuccessUpdateExercise value)
         successUpdateExercise,
     required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
@@ -5000,6 +5184,7 @@ class _$GetWardRequestsListImpl
     TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
@@ -5016,6 +5201,7 @@ class _$GetWardRequestsListImpl
     TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_SuccessRemoveWard value)? successRemoveWard,
     TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
     TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
     TResult Function(_EmptyValueIndex value)? emptyValueIndex,

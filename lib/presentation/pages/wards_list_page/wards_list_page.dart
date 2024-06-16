@@ -61,7 +61,6 @@ class WardsListPage extends StatelessWidget {
                             width: 10,
                           ),
                           Expanded(
-                            flex: 6,
                             child: Text(
                               user.name,
                               style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -69,25 +68,6 @@ class WardsListPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    //wardsBloc.add(WardsEvent.replyWards(appUser: user, reply: false));
-                                  },
-                                  child: SvgPicture.asset(
-                                    'images/delete.svg',
-                                    height: 32,
-                                    width: 32,
-                                    colorFilter: const ColorFilter.mode(
-                                      AppColors.red,
-                                      BlendMode.srcIn,
-                                    ),
-                                  )
-                              ),
-                            ),
-                          )
                         ],
                       ),
                     ),

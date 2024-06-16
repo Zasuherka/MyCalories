@@ -63,7 +63,7 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
         getWardRequestsListEvent: (_) async => await _getWardRequestsList(emit),
         updateLocalUserInfo: (_) {},
         getInfoAboutWard: (_) {},
-        removeWards: (_) {},
+        removeWards: (_) async => _removeWard(emit),
         setCurrentRoundSet: (value) async => _setCurrentRoundSet(
           emit,
           List.of(value.list),
@@ -188,6 +188,20 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
       emitter(const WardsState.success());
     } catch (error) {
       emitter(const WardsState.error(errorMessage: 'Не удалось отправить ответ пользователю'));
+    }
+  }
+
+  Future<void> _removeWard(Emitter<WardsState> emitter) async{
+    if(selectedWard == null) return;
+    emitter(const WardsState.loading());
+    try{
+      await _wardRepository.removeWard(selectedWard!);
+      wardsList.removeWhere((element) => element.userId == selectedWard!.userId);
+      selectedWard = null;
+      emitter(const WardsState.successRemoveWard());
+    }
+    catch(_){
+      emitter(const WardsState.error(errorMessage: 'Не удалось удалить подопечного'));
     }
   }
 
