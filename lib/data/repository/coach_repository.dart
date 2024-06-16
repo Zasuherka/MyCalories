@@ -71,7 +71,8 @@ class CoachRepository {
     try{
       coach.wards.removeWhere((element) => element.userId == localUser.userId);
       await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(coach));
-      localUser.requestCoachId = coach.userId;
+      localUser.requestCoachId = null;
+      localUser.coachId = null;
       await _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(localUser));
       _userRepository.setUserInfo(localUser);
     }
