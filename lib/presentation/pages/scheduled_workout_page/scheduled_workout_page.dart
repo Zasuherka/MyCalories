@@ -27,6 +27,20 @@ class ScheduledWorkoutPage extends StatelessWidget {
             );
           },
           builder: (context, state) {
+
+            if(coachBloc.scheduledWorkout == null){
+              return Center(
+                child: Text(
+                  'Нет запланированных тренировок\n\nНа данном экране будут отображаться программы тренировок, '
+                      'отправленные тренером',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: AppColors.grey
+                  ),
+                ),
+              );
+            }
+
             return state.maybeMap(
               loading: (_) => Center(
                 child: Image.asset(
