@@ -36,6 +36,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   Future<void> setWorkoutListExercise([List<Exercise>? list]) async {
     if(list != null) currentWorkout.listExercise = list;
+    emit(const WorkoutState.success());
     await setCurrentWorkout();
   }
 
@@ -93,7 +94,6 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   }
 
   Future<void> setCurrentWorkout() async {
-    await _workoutRepository.setCurrentWorkout(currentWorkout);
     await _workoutRepository.setCurrentWorkout(currentWorkout);
     emit(const WorkoutState.success());
   }

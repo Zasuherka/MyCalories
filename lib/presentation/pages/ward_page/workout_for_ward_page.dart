@@ -59,7 +59,7 @@ class _WorkoutForWardPageState extends State<WorkoutForWardPage> {
           },
           child: Scaffold(
             appBar: CustomAppBar(
-              title: 'Текущая тренировка',
+              title: 'Тренировка',
               withoutRightIcon: wardsBloc.workout.listExercise.isEmpty,
               rightOnTap: (){
                 wardsBloc.add(const WardsEvent.setWorkoutListExercise());
@@ -380,7 +380,14 @@ class _WorkoutForWardPageState extends State<WorkoutForWardPage> {
                                 return const SizedBox();
                               },
                               onReorder: (int oldIndex, int newIndex) {
-                                wardsBloc.add(WardsEvent.onReorder(oldIndex: oldIndex, newIndex: newIndex));
+                                setState(() {
+                                  if (oldIndex < newIndex) {
+                                    newIndex -= 1;
+                                  }
+                                  final item = training.removeAt(oldIndex);
+                                  training.insert(newIndex, item);
+                                });
+                                wardsBloc.add(WardsEvent.setWorkoutListExercise(list: training));
                               },
                             ),
                             const SizedBox(

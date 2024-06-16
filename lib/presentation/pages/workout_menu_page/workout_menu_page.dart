@@ -83,7 +83,9 @@ class WorkoutMenuPage extends StatelessWidget {
             if(!userIsCoach) ...[
               verticalOffset,
               PrimaryAppButton(
-                onTap: (){},
+                onTap: (){
+                  context.router.push(const ScheduledWorkoutRoute());
+                },
                 withColor: true,
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 alignment: Alignment.center,

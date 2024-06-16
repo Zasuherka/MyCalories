@@ -82,25 +82,59 @@ class ProfilePage extends StatelessWidget {
                               showModalBottomSheet(context: context, builder:
                                   (BuildContext context) => AvatarWrap(avatarIsNotNull: avatarIsNotNull));
                             },
-                            child: Container(
-                              height: 145,
-                              width: 145,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(360),
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: avatar.image
+                            child: SizedBox(
+                              child: SizedBox(
+                                height: 145,
+                                width: 145,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.17),
+                                          spreadRadius: 4,
+                                          blurRadius: 10,
+                                          offset: const Offset(0, -5),
+                                        )],
+                                      shape: BoxShape.circle
                                   ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.17),
-                                      spreadRadius: 4,
-                                      blurRadius: 10,
-                                      offset: const Offset(0, -5),
+                                  child: ClipOval(
+                                    child: localUser?.urlAvatar?.contains('http') ?? false
+                                        ? Image.network(
+                                      localUser!.urlAvatar!,
+                                      fit: BoxFit.cover,
                                     )
-                                  ]
+                                        : Image.asset(
+                                      'images/icon.jpg',
+                                      height: 145,
+                                      width: 145,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
+
+
+                            //
+                            // Container(
+                            //   height: 145,
+                            //   width: 145,
+                            //   decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(360),
+                            //       image: DecorationImage(
+                            //           fit: BoxFit.cover,
+                            //           image: avatar.image
+                            //       ),
+                            //       boxShadow: [
+                            //         BoxShadow(
+                            //           color: Colors.black.withOpacity(0.17),
+                            //           spreadRadius: 4,
+                            //           blurRadius: 10,
+                            //           offset: const Offset(0, -5),
+                            //         )
+                            //       ]
+                            //   ),
+                            // ),
                           );
                         })
                 ),

@@ -1,8 +1,10 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/user_dto/user_dto.dart';
+import 'package:app1/data/dto/workout_dto/workout_dto.dart';
 import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/user.dart';
+import 'package:app1/domain/model/workout/workout.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 
 class CoachRepository {
@@ -90,5 +92,38 @@ class CoachRepository {
     catch(_){
       return [];
     }
+  }
+
+  Future<Workout?> getInfoAboutScheduledWorkout() async{
+    final localUser = _userRepository.localUser;
+
+    if (localUser == null) {
+      return null;
+    }
+
+    try{
+      final WorkoutDto? workoutDto = await _database.workout.getInfoAboutScheduledWorkout(localUser.userId);
+      if(workoutDto == null) return null;
+      return workoutDto.toWorkout();
+    }
+    catch(error){
+      return null;
+    }
+  }
+
+  Future<void> startScheduledWorkout(Workout workout) async{
+    final localUser = _userRepository.localUser;
+
+    if (localUser == null) {
+      return;
+    }
+
+    try{
+      await Future.wait([
+        _database.workout.setCurrentWorkout(WorkoutDto.fromWorkout(workout), localUser.userId),
+        _database.workout.addScheduledWorkout(null, localUser.userId),
+      ]);
+    }
+    catch(_){}
   }
 }

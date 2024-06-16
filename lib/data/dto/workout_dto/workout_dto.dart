@@ -14,7 +14,7 @@ class WorkoutDto {
     this.saveAt,
   });
 
-  factory WorkoutDto.fromJson(Map<String, dynamic> json){
+  factory WorkoutDto.fromFirebase(Map<String, dynamic> json){
     return WorkoutDto(
         workoutId: json['workoutId'],
         title: json['title'],

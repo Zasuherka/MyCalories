@@ -23,7 +23,9 @@ mixin _$CoachEvent {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +35,9 @@ mixin _$CoachEvent {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +47,9 @@ mixin _$CoachEvent {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,7 +61,10 @@ mixin _$CoachEvent {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,7 +75,10 @@ mixin _$CoachEvent {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,7 +89,10 @@ mixin _$CoachEvent {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,7 +159,9 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) {
     return getCoachInfo();
   }
@@ -157,7 +174,9 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) {
     return getCoachInfo?.call();
   }
@@ -170,7 +189,9 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (getCoachInfo != null) {
@@ -188,7 +209,10 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) {
     return getCoachInfo(this);
   }
@@ -202,7 +226,10 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) {
     return getCoachInfo?.call(this);
   }
@@ -216,7 +243,10 @@ class _$GetCoachInfoImpl implements _GetCoachInfo {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (getCoachInfo != null) {
@@ -300,7 +330,9 @@ class _$SearchCoachImpl implements _SearchCoach {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) {
     return searchCoach(searchText);
   }
@@ -313,7 +345,9 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) {
     return searchCoach?.call(searchText);
   }
@@ -326,7 +360,9 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (searchCoach != null) {
@@ -344,7 +380,10 @@ class _$SearchCoachImpl implements _SearchCoach {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) {
     return searchCoach(this);
   }
@@ -358,7 +397,10 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) {
     return searchCoach?.call(this);
   }
@@ -372,7 +414,10 @@ class _$SearchCoachImpl implements _SearchCoach {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (searchCoach != null) {
@@ -461,7 +506,9 @@ class _$CoachRequestImpl implements _CoachRequest {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) {
     return coachRequest(coach);
   }
@@ -474,7 +521,9 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) {
     return coachRequest?.call(coach);
   }
@@ -487,7 +536,9 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (coachRequest != null) {
@@ -505,7 +556,10 @@ class _$CoachRequestImpl implements _CoachRequest {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) {
     return coachRequest(this);
   }
@@ -519,7 +573,10 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) {
     return coachRequest?.call(this);
   }
@@ -533,7 +590,10 @@ class _$CoachRequestImpl implements _CoachRequest {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (coachRequest != null) {
@@ -597,7 +657,9 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) {
     return updateLocalUserInfo();
   }
@@ -610,7 +672,9 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) {
     return updateLocalUserInfo?.call();
   }
@@ -623,7 +687,9 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (updateLocalUserInfo != null) {
@@ -641,7 +707,10 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) {
     return updateLocalUserInfo(this);
   }
@@ -655,7 +724,10 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) {
     return updateLocalUserInfo?.call(this);
   }
@@ -669,7 +741,10 @@ class _$UpdateLocalUserInfoImpl implements _UpdateLocalUserInfo {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (updateLocalUserInfo != null) {
@@ -729,7 +804,9 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) {
     return getCoachCollectionViewList();
   }
@@ -742,7 +819,9 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) {
     return getCoachCollectionViewList?.call();
   }
@@ -755,7 +834,9 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (getCoachCollectionViewList != null) {
@@ -773,7 +854,10 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) {
     return getCoachCollectionViewList(this);
   }
@@ -787,7 +871,10 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) {
     return getCoachCollectionViewList?.call(this);
   }
@@ -801,7 +888,10 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (getCoachCollectionViewList != null) {
@@ -814,6 +904,151 @@ class _$GetCoachCollectionViewListImpl implements _GetCoachCollectionViewList {
 abstract class _GetCoachCollectionViewList implements CoachEvent {
   const factory _GetCoachCollectionViewList() =
       _$GetCoachCollectionViewListImpl;
+}
+
+/// @nodoc
+abstract class _$$GetScheduledWorkoutImplCopyWith<$Res> {
+  factory _$$GetScheduledWorkoutImplCopyWith(_$GetScheduledWorkoutImpl value,
+          $Res Function(_$GetScheduledWorkoutImpl) then) =
+      __$$GetScheduledWorkoutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetScheduledWorkoutImplCopyWithImpl<$Res>
+    extends _$CoachEventCopyWithImpl<$Res, _$GetScheduledWorkoutImpl>
+    implements _$$GetScheduledWorkoutImplCopyWith<$Res> {
+  __$$GetScheduledWorkoutImplCopyWithImpl(_$GetScheduledWorkoutImpl _value,
+      $Res Function(_$GetScheduledWorkoutImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetScheduledWorkoutImpl implements _GetScheduledWorkout {
+  const _$GetScheduledWorkoutImpl();
+
+  @override
+  String toString() {
+    return 'CoachEvent.getScheduledWorkout()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetScheduledWorkoutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCoachInfo,
+    required TResult Function(String searchText) searchCoach,
+    required TResult Function(AppUser coach) coachRequest,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
+    required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
+  }) {
+    return getScheduledWorkout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCoachInfo,
+    TResult? Function(String searchText)? searchCoach,
+    TResult? Function(AppUser coach)? coachRequest,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
+    TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
+  }) {
+    return getScheduledWorkout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCoachInfo,
+    TResult Function(String searchText)? searchCoach,
+    TResult Function(AppUser coach)? coachRequest,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
+    TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
+    required TResult orElse(),
+  }) {
+    if (getScheduledWorkout != null) {
+      return getScheduledWorkout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCoachInfo value) getCoachInfo,
+    required TResult Function(_SearchCoach value) searchCoach,
+    required TResult Function(_CoachRequest value) coachRequest,
+    required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
+    required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
+  }) {
+    return getScheduledWorkout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCoachInfo value)? getCoachInfo,
+    TResult? Function(_SearchCoach value)? searchCoach,
+    TResult? Function(_CoachRequest value)? coachRequest,
+    TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
+    TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
+  }) {
+    return getScheduledWorkout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCoachInfo value)? getCoachInfo,
+    TResult Function(_SearchCoach value)? searchCoach,
+    TResult Function(_CoachRequest value)? coachRequest,
+    TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
+    TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
+    required TResult orElse(),
+  }) {
+    if (getScheduledWorkout != null) {
+      return getScheduledWorkout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetScheduledWorkout implements CoachEvent {
+  const factory _GetScheduledWorkout() = _$GetScheduledWorkoutImpl;
 }
 
 /// @nodoc
@@ -859,7 +1094,9 @@ class _$RemoveCoachImpl implements _RemoveCoach {
     required TResult Function(AppUser coach) coachRequest,
     required TResult Function() updateLocalUserInfo,
     required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
     required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
   }) {
     return removeCoach();
   }
@@ -872,7 +1109,9 @@ class _$RemoveCoachImpl implements _RemoveCoach {
     TResult? Function(AppUser coach)? coachRequest,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
     TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
   }) {
     return removeCoach?.call();
   }
@@ -885,7 +1124,9 @@ class _$RemoveCoachImpl implements _RemoveCoach {
     TResult Function(AppUser coach)? coachRequest,
     TResult Function()? updateLocalUserInfo,
     TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
     TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (removeCoach != null) {
@@ -903,7 +1144,10 @@ class _$RemoveCoachImpl implements _RemoveCoach {
     required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(_GetCoachCollectionViewList value)
         getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
     required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
   }) {
     return removeCoach(this);
   }
@@ -917,7 +1161,10 @@ class _$RemoveCoachImpl implements _RemoveCoach {
     TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
   }) {
     return removeCoach?.call(this);
   }
@@ -931,7 +1178,10 @@ class _$RemoveCoachImpl implements _RemoveCoach {
     TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(_GetCoachCollectionViewList value)?
         getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
     TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
     required TResult orElse(),
   }) {
     if (removeCoach != null) {
@@ -946,6 +1196,154 @@ abstract class _RemoveCoach implements CoachEvent {
 }
 
 /// @nodoc
+abstract class _$$StartScheduledWorkoutEventImplCopyWith<$Res> {
+  factory _$$StartScheduledWorkoutEventImplCopyWith(
+          _$StartScheduledWorkoutEventImpl value,
+          $Res Function(_$StartScheduledWorkoutEventImpl) then) =
+      __$$StartScheduledWorkoutEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartScheduledWorkoutEventImplCopyWithImpl<$Res>
+    extends _$CoachEventCopyWithImpl<$Res, _$StartScheduledWorkoutEventImpl>
+    implements _$$StartScheduledWorkoutEventImplCopyWith<$Res> {
+  __$$StartScheduledWorkoutEventImplCopyWithImpl(
+      _$StartScheduledWorkoutEventImpl _value,
+      $Res Function(_$StartScheduledWorkoutEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StartScheduledWorkoutEventImpl implements _StartScheduledWorkoutEvent {
+  const _$StartScheduledWorkoutEventImpl();
+
+  @override
+  String toString() {
+    return 'CoachEvent.startScheduledWorkoutEvent()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StartScheduledWorkoutEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCoachInfo,
+    required TResult Function(String searchText) searchCoach,
+    required TResult Function(AppUser coach) coachRequest,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function() getCoachCollectionViewList,
+    required TResult Function() getScheduledWorkout,
+    required TResult Function() removeCoach,
+    required TResult Function() startScheduledWorkoutEvent,
+  }) {
+    return startScheduledWorkoutEvent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCoachInfo,
+    TResult? Function(String searchText)? searchCoach,
+    TResult? Function(AppUser coach)? coachRequest,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function()? getCoachCollectionViewList,
+    TResult? Function()? getScheduledWorkout,
+    TResult? Function()? removeCoach,
+    TResult? Function()? startScheduledWorkoutEvent,
+  }) {
+    return startScheduledWorkoutEvent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCoachInfo,
+    TResult Function(String searchText)? searchCoach,
+    TResult Function(AppUser coach)? coachRequest,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function()? getCoachCollectionViewList,
+    TResult Function()? getScheduledWorkout,
+    TResult Function()? removeCoach,
+    TResult Function()? startScheduledWorkoutEvent,
+    required TResult orElse(),
+  }) {
+    if (startScheduledWorkoutEvent != null) {
+      return startScheduledWorkoutEvent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCoachInfo value) getCoachInfo,
+    required TResult Function(_SearchCoach value) searchCoach,
+    required TResult Function(_CoachRequest value) coachRequest,
+    required TResult Function(_UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(_GetCoachCollectionViewList value)
+        getCoachCollectionViewList,
+    required TResult Function(_GetScheduledWorkout value) getScheduledWorkout,
+    required TResult Function(_RemoveCoach value) removeCoach,
+    required TResult Function(_StartScheduledWorkoutEvent value)
+        startScheduledWorkoutEvent,
+  }) {
+    return startScheduledWorkoutEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCoachInfo value)? getCoachInfo,
+    TResult? Function(_SearchCoach value)? searchCoach,
+    TResult? Function(_CoachRequest value)? coachRequest,
+    TResult? Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult? Function(_GetScheduledWorkout value)? getScheduledWorkout,
+    TResult? Function(_RemoveCoach value)? removeCoach,
+    TResult? Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
+  }) {
+    return startScheduledWorkoutEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCoachInfo value)? getCoachInfo,
+    TResult Function(_SearchCoach value)? searchCoach,
+    TResult Function(_CoachRequest value)? coachRequest,
+    TResult Function(_UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(_GetCoachCollectionViewList value)?
+        getCoachCollectionViewList,
+    TResult Function(_GetScheduledWorkout value)? getScheduledWorkout,
+    TResult Function(_RemoveCoach value)? removeCoach,
+    TResult Function(_StartScheduledWorkoutEvent value)?
+        startScheduledWorkoutEvent,
+    required TResult orElse(),
+  }) {
+    if (startScheduledWorkoutEvent != null) {
+      return startScheduledWorkoutEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartScheduledWorkoutEvent implements CoachEvent {
+  const factory _StartScheduledWorkoutEvent() =
+      _$StartScheduledWorkoutEventImpl;
+}
+
+/// @nodoc
 mixin _$CoachState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -956,6 +1354,7 @@ mixin _$CoachState {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -967,6 +1366,7 @@ mixin _$CoachState {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -978,6 +1378,7 @@ mixin _$CoachState {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -990,6 +1391,8 @@ mixin _$CoachState {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1001,6 +1404,7 @@ mixin _$CoachState {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1012,6 +1416,7 @@ mixin _$CoachState {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1080,6 +1485,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return initial();
   }
@@ -1094,6 +1500,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return initial?.call();
   }
@@ -1108,6 +1515,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1126,6 +1534,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return initial(this);
   }
@@ -1140,6 +1550,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return initial?.call(this);
   }
@@ -1154,6 +1565,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1212,6 +1624,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return loading();
   }
@@ -1226,6 +1639,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return loading?.call();
   }
@@ -1240,6 +1654,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1258,6 +1673,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return loading(this);
   }
@@ -1272,6 +1689,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return loading?.call(this);
   }
@@ -1286,6 +1704,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1371,6 +1790,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return error(errorMessage);
   }
@@ -1385,6 +1805,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return error?.call(errorMessage);
   }
@@ -1399,6 +1820,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1417,6 +1839,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return error(this);
   }
@@ -1431,6 +1855,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return error?.call(this);
   }
@@ -1445,6 +1870,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1508,6 +1934,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return success();
   }
@@ -1522,6 +1949,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return success?.call();
   }
@@ -1536,6 +1964,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1554,6 +1983,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return success(this);
   }
@@ -1568,6 +1999,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return success?.call(this);
   }
@@ -1582,6 +2014,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1640,6 +2073,7 @@ class _$RemoveSuccessImpl implements _RemoveSuccess {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return removeSuccess();
   }
@@ -1654,6 +2088,7 @@ class _$RemoveSuccessImpl implements _RemoveSuccess {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return removeSuccess?.call();
   }
@@ -1668,6 +2103,7 @@ class _$RemoveSuccessImpl implements _RemoveSuccess {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (removeSuccess != null) {
@@ -1686,6 +2122,8 @@ class _$RemoveSuccessImpl implements _RemoveSuccess {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return removeSuccess(this);
   }
@@ -1700,6 +2138,7 @@ class _$RemoveSuccessImpl implements _RemoveSuccess {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return removeSuccess?.call(this);
   }
@@ -1714,6 +2153,7 @@ class _$RemoveSuccessImpl implements _RemoveSuccess {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (removeSuccess != null) {
@@ -1807,6 +2247,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return coachSearchList(this.coachSearchList);
   }
@@ -1821,6 +2262,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return coachSearchList?.call(this.coachSearchList);
   }
@@ -1835,6 +2277,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (coachSearchList != null) {
@@ -1853,6 +2296,8 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return coachSearchList(this);
   }
@@ -1867,6 +2312,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return coachSearchList?.call(this);
   }
@@ -1881,6 +2327,7 @@ class _$CoachSearchListImpl implements _CoachSearchList {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (coachSearchList != null) {
@@ -1945,6 +2392,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     required TResult Function() removeSuccess,
     required TResult Function(List<AppUser> coachSearchList) coachSearchList,
     required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
   }) {
     return coachIsNull();
   }
@@ -1959,6 +2407,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult? Function()? removeSuccess,
     TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
   }) {
     return coachIsNull?.call();
   }
@@ -1973,6 +2422,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult Function()? removeSuccess,
     TResult Function(List<AppUser> coachSearchList)? coachSearchList,
     TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (coachIsNull != null) {
@@ -1991,6 +2441,8 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     required TResult Function(_RemoveSuccess value) removeSuccess,
     required TResult Function(_CoachSearchList value) coachSearchList,
     required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
   }) {
     return coachIsNull(this);
   }
@@ -2005,6 +2457,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult? Function(_RemoveSuccess value)? removeSuccess,
     TResult? Function(_CoachSearchList value)? coachSearchList,
     TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
   }) {
     return coachIsNull?.call(this);
   }
@@ -2019,6 +2472,7 @@ class _$CoachIsNullImpl implements _CoachIsNull {
     TResult Function(_RemoveSuccess value)? removeSuccess,
     TResult Function(_CoachSearchList value)? coachSearchList,
     TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
     required TResult orElse(),
   }) {
     if (coachIsNull != null) {
@@ -2030,4 +2484,145 @@ class _$CoachIsNullImpl implements _CoachIsNull {
 
 abstract class _CoachIsNull implements CoachState {
   const factory _CoachIsNull() = _$CoachIsNullImpl;
+}
+
+/// @nodoc
+abstract class _$$StartScheduledWorkoutImplCopyWith<$Res> {
+  factory _$$StartScheduledWorkoutImplCopyWith(
+          _$StartScheduledWorkoutImpl value,
+          $Res Function(_$StartScheduledWorkoutImpl) then) =
+      __$$StartScheduledWorkoutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartScheduledWorkoutImplCopyWithImpl<$Res>
+    extends _$CoachStateCopyWithImpl<$Res, _$StartScheduledWorkoutImpl>
+    implements _$$StartScheduledWorkoutImplCopyWith<$Res> {
+  __$$StartScheduledWorkoutImplCopyWithImpl(_$StartScheduledWorkoutImpl _value,
+      $Res Function(_$StartScheduledWorkoutImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StartScheduledWorkoutImpl implements _StartScheduledWorkout {
+  const _$StartScheduledWorkoutImpl();
+
+  @override
+  String toString() {
+    return 'CoachState.startScheduledWorkout()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StartScheduledWorkoutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) error,
+    required TResult Function() success,
+    required TResult Function() removeSuccess,
+    required TResult Function(List<AppUser> coachSearchList) coachSearchList,
+    required TResult Function() coachIsNull,
+    required TResult Function() startScheduledWorkout,
+  }) {
+    return startScheduledWorkout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function()? success,
+    TResult? Function()? removeSuccess,
+    TResult? Function(List<AppUser> coachSearchList)? coachSearchList,
+    TResult? Function()? coachIsNull,
+    TResult? Function()? startScheduledWorkout,
+  }) {
+    return startScheduledWorkout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? error,
+    TResult Function()? success,
+    TResult Function()? removeSuccess,
+    TResult Function(List<AppUser> coachSearchList)? coachSearchList,
+    TResult Function()? coachIsNull,
+    TResult Function()? startScheduledWorkout,
+    required TResult orElse(),
+  }) {
+    if (startScheduledWorkout != null) {
+      return startScheduledWorkout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(_RemoveSuccess value) removeSuccess,
+    required TResult Function(_CoachSearchList value) coachSearchList,
+    required TResult Function(_CoachIsNull value) coachIsNull,
+    required TResult Function(_StartScheduledWorkout value)
+        startScheduledWorkout,
+  }) {
+    return startScheduledWorkout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_RemoveSuccess value)? removeSuccess,
+    TResult? Function(_CoachSearchList value)? coachSearchList,
+    TResult? Function(_CoachIsNull value)? coachIsNull,
+    TResult? Function(_StartScheduledWorkout value)? startScheduledWorkout,
+  }) {
+    return startScheduledWorkout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(_RemoveSuccess value)? removeSuccess,
+    TResult Function(_CoachSearchList value)? coachSearchList,
+    TResult Function(_CoachIsNull value)? coachIsNull,
+    TResult Function(_StartScheduledWorkout value)? startScheduledWorkout,
+    required TResult orElse(),
+  }) {
+    if (startScheduledWorkout != null) {
+      return startScheduledWorkout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartScheduledWorkout implements CoachState {
+  const factory _StartScheduledWorkout() = _$StartScheduledWorkoutImpl;
 }

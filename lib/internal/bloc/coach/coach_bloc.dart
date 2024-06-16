@@ -2,6 +2,7 @@ import 'package:app1/data/repository/coach_repository.dart';
 import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/user.dart';
+import 'package:app1/domain/model/workout/workout.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
@@ -21,15 +22,19 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
   List<CollectionView> collectionViewList = [];
   AppUser? localUser;
 
+  Workout? scheduledWorkout;
+
   CoachBloc() : super(const CoachState.initial()) {
     on<CoachEvent>((event, emit) async {
       await event.map(
+        getScheduledWorkout: (_) async => await _getInfoAboutScheduledWorkout(emit),
         getCoachInfo: (_) async => await _getCoachInfo(emit),
         searchCoach: (value) async => await _searchCoach(emit, value.searchText),
         coachRequest: (value) async => await _coachRequest(emit, value.coach),
         updateLocalUserInfo: (_) async => await _updateLocalUserInfo(emit),
         getCoachCollectionViewList: (_) async => _getCoachCollectionViewList(emit),
         removeCoach: (_) async => _removeCoach(emit),
+        startScheduledWorkoutEvent: (_) async => await _startScheduledWorkout(emit)
       );
     }, transformer: restartable());
     localUser = _userRepository.localUser;
@@ -108,5 +113,18 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
     catch(error){
       emitter(const CoachState.error(errorMessage: 'Не удалось отказаться от тренера'));
     }
+  }
+
+  Future<void> _getInfoAboutScheduledWorkout(Emitter<CoachState> emitter) async{
+    emitter(const CoachState.loading());
+    scheduledWorkout = await _coachRepository.getInfoAboutScheduledWorkout();
+    emitter(const CoachState.success());
+  }
+
+  Future<void> _startScheduledWorkout(Emitter<CoachState> emitter) async{
+    if(scheduledWorkout == null) return;
+    emitter(const CoachState.loading());
+    await _coachRepository.startScheduledWorkout(scheduledWorkout!);
+    emitter(const CoachState.startScheduledWorkout());
   }
 }

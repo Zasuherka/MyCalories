@@ -144,6 +144,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ScheduledWorkoutRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ScheduledWorkoutPage(),
+      );
+    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -567,6 +573,20 @@ class SaveCollectionRouteArgs {
   String toString() {
     return 'SaveCollectionRouteArgs{key: $key, listFood: $listFood, collection: $collection}';
   }
+}
+
+/// generated route for
+/// [ScheduledWorkoutPage]
+class ScheduledWorkoutRoute extends PageRouteInfo<void> {
+  const ScheduledWorkoutRoute({List<PageRouteInfo>? children})
+      : super(
+          ScheduledWorkoutRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ScheduledWorkoutRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

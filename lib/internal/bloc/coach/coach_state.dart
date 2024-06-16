@@ -17,4 +17,5 @@ class CoachState with _$CoachState {
   }) = _CoachSearchList;
 
   const factory CoachState.coachIsNull() = _CoachIsNull;
+  const factory CoachState.startScheduledWorkout() = _StartScheduledWorkout;
 }
