@@ -1,8 +1,11 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/user_dto/user_dto.dart';
+import 'package:app1/data/dto/workout_dto/workout_dto.dart';
 import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/user.dart';
+import 'package:app1/domain/model/workout/workout.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:intl/intl.dart';
 
 class WardRepository{
   final IUserRepository _userRepository = UserRepository();
@@ -67,6 +70,23 @@ class WardRepository{
       await Future.wait([
         _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(localUser)),
         _database.userData.updateUserInfo(appUserDto: AppUserDto.fromAppUser(ward)),
+      ]);
+    }
+    catch(error){
+      rethrow;
+    }
+  }
+
+  Future<void> sendWorkout(Workout workout, AppUser ward) async{
+    try{
+      final String formattedDate = DateFormat('dd.MM.yyyy').format(DateTime.now());
+      workout.saveAt = formattedDate;
+
+      await Future.wait([
+        _database.workout.addScheduledWorkout(
+          WorkoutDto.fromWorkout(workout),
+          ward.userId,
+        ),
       ]);
     }
     catch(error){

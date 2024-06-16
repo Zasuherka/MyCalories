@@ -12,6 +12,38 @@ class WardsEvent with _$WardsEvent{
     required String userId,
   }) = GetInfoAboutWard;
 
+  const factory WardsEvent.setCurrentExerciseIndex({
+    required int index,
+  }) = SetCurrentExerciseIndex;
+
+  const factory WardsEvent.setWorkoutListExercise({
+    List<Exercise>? list,
+  }) = SetWorkoutListExercise;
+
+  const factory WardsEvent.currentWorkoutEnd() = CurrentWorkoutEnd;
+
+  const factory WardsEvent.onReorder({
+    required int oldIndex,
+    required int newIndex,
+  }) = OnReorder;
+
+  const factory WardsEvent.deleteExercise({
+    required int index,
+  }) = DeleteExercise;
+
+  const factory WardsEvent.addNewExerciseSet({
+    required List<Exercise> list,
+    required ExerciseCase exerciseCase,
+  }) = AddNewExerciseSet;
+
+  const factory WardsEvent.setCurrentRoundSet({
+    required List<PhysicalActivity> list,
+    required String title,
+    required String setCount,
+    bool? addNewPhysicalActivity,
+    int? removeIndex,
+  }) = SetCurrentRoundSet;
+
   const factory WardsEvent.getInfoAboutFoodDiaryWard({
     required DateTime dateTime,
   }) = GetInfoAboutFoodDiaryWard;

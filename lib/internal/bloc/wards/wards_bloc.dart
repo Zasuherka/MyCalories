@@ -2,10 +2,17 @@ import 'package:app1/data/dto/user_dto/user_dto.dart';
 import 'package:app1/data/repository/food_repository.dart';
 import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/data/repository/wards_repository.dart';
+import 'package:app1/domain/enums/exercise_case.dart';
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/model/user.dart';
+import 'package:app1/domain/model/workout/exercise.dart';
+import 'package:app1/domain/model/workout/exercise_cardio.dart';
+import 'package:app1/domain/model/workout/exercise_round_set.dart';
+import 'package:app1/domain/model/workout/exercise_set.dart';
+import 'package:app1/domain/model/workout/workout.dart';
 import 'package:app1/domain/repository/i_food_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -45,6 +52,10 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
 
   AppUser? localUser;
 
+  Workout workout = Workout(title: '', listExercise: []);
+
+  int? currentExerciseIndex;
+
   WardsBloc() : super(const WardsState.initial()) {
     on<WardsEvent>((event, emit) async {
       await event.map(
@@ -53,8 +64,21 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
         updateLocalUserInfo: (_) {},
         getInfoAboutWard: (_) {},
         removeWards: (_) {},
-        getInfoAboutFoodDiaryWard: (value) => _getEatingByData(emit, value.dateTime),
-        replyWards: (value) => _replyWards(emit, value.appUser, value.reply),
+        setCurrentRoundSet: (value) async => _setCurrentRoundSet(
+          emit,
+          List.of(value.list),
+          value.title,
+          value.setCount,
+        ),
+        addNewExerciseSet: (value) async =>
+            _addNewExerciseSet(emit, List.of(value.list), value.exerciseCase),
+        deleteExercise: (value) async => _deleteExercise(emit, value.index),
+        onReorder: (value) async => _onReorder(emit, value.oldIndex, value.newIndex),
+        currentWorkoutEnd: (_) async => await _currentWorkoutEnd(emit),
+        setWorkoutListExercise: (value) async => _setWorkoutListExercise(emit, value.list!= null ? List.of(value.list!) : null),
+        setCurrentExerciseIndex: (value) async => _setCurrentExerciseIndex(emit, value.index),
+        getInfoAboutFoodDiaryWard: (value) async => await _getEatingByData(emit, value.dateTime),
+        replyWards: (value) async => await _replyWards(emit, value.appUser, value.reply),
       );
     });
 
@@ -67,6 +91,82 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
   void getInfoAboutWard(AppUser ward) {
     selectedWard = ward;
   }
+
+  /// ///////////////////////////////// workout functional
+
+  void _setCurrentExerciseIndex(Emitter<WardsState> emitter, int index) {
+    emitter(const WardsState.loading());
+    currentExerciseIndex = index;
+    emitter(const WardsState.success());
+  }
+
+  void _setWorkoutListExercise(Emitter<WardsState> emitter, [List<Exercise>? list]) {
+    emitter(const WardsState.loading());
+    if (list != null) workout.listExercise = list;
+    emitter(const WardsState.success());
+  }
+
+  Future<void> _currentWorkoutEnd(Emitter<WardsState> emitter) async {
+    if(selectedWard == null) return;
+    emitter(const WardsState.loading());
+    await _wardRepository.sendWorkout(workout, selectedWard!);
+    workout = Workout(title: '', listExercise: []);
+    emitter(const WardsState.successWorkoutEnd());
+  }
+
+  void _onReorder(Emitter<WardsState> emitter, int oldIndex, int newIndex) {
+    emitter(const WardsState.loading());
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final item = workout.listExercise.removeAt(oldIndex);
+    workout.listExercise.insert(newIndex, item);
+    emitter(const WardsState.success());
+  }
+
+  Future<void> _deleteExercise(Emitter<WardsState> emitter, int index) async {
+    emitter(const WardsState.loading());
+    workout.listExercise.removeAt(index);
+    emitter(const WardsState.success());
+  }
+
+  Future<void> _addNewExerciseSet(
+      Emitter<WardsState> emitter, List<Exercise> list, ExerciseCase exerciseCase) async {
+    emitter(const WardsState.loading());
+    final List<Exercise> newList = [];
+    for (int i = 0; i < list.length; i++) {
+      newList.add(list[i]);
+      if (list[i].isNotValid) {
+        currentExerciseIndex = i;
+        emitter(WardsState.emptyValueIndex(index: i));
+        return;
+      }
+    }
+    workout.listExercise = newList;
+    switch (exerciseCase) {
+      case ExerciseCase.set:
+        workout.listExercise.add(ExerciseSet());
+      case ExerciseCase.roundSet:
+        workout.listExercise.add(ExerciseRoundSet(physicalActivityList: []));
+      case ExerciseCase.cardio:
+        workout.listExercise.add(ExerciseCardio());
+    }
+    emitter(const WardsState.success());
+  }
+
+  Future<void> _setCurrentRoundSet(Emitter<WardsState> emitter, List<PhysicalActivity> list, String title, String setCount) async {
+    if(currentExerciseIndex == null) return;
+    emitter(const WardsState.loading());
+    final ExerciseRoundSet exerciseRoundSet = workout.listExercise[currentExerciseIndex!] as ExerciseRoundSet;
+    if(list.length < exerciseRoundSet.physicalActivityList.length) await Future.delayed(Duration(milliseconds: 1000));
+    exerciseRoundSet.physicalActivityList = list;
+    exerciseRoundSet.title = title;
+    exerciseRoundSet.setCount = setCount;
+    workout.listExercise[currentExerciseIndex!] = exerciseRoundSet;
+    emitter(const WardsState.successUpdateExercise());
+  }
+
+  /// ///////////////////////////////// workout functional
 
   Future<void> _getWardRequestsList(Emitter<WardsState> emitter) async {
     emitter(const WardsState.loading());
@@ -129,6 +229,11 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
     emitter(const WardsState.success());
   }
 
+  void resetWorkoutData() {
+    workout = Workout(title: '', listExercise: []);
+    currentExerciseIndex = null;
+  }
+
   void resetData() {
     breakfast = [];
     lunch = [];
@@ -136,7 +241,6 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
     another = [];
 
     selectedDate = null;
-
 
     calories = 0;
     protein = 0;

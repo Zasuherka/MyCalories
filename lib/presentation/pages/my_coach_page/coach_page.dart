@@ -253,7 +253,7 @@ class CoachPage extends StatelessWidget {
                       context.router.push(CoachCollectionsRoute(isAddEatingFood: false));
                     },
                     margin: const EdgeInsets.symmetric(horizontal: 12.5),
-                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     withColor: true,
                     child: Text(
                       'Наборы',

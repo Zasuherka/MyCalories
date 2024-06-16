@@ -184,6 +184,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const WardsRequestsPage(),
       );
     },
+    WorkoutForWardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WorkoutForWardPage(),
+      );
+    },
   };
 }
 
@@ -667,6 +673,20 @@ class WardsRequestsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'WardsRequestsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WorkoutForWardPage]
+class WorkoutForWardRoute extends PageRouteInfo<void> {
+  const WorkoutForWardRoute({List<PageRouteInfo>? children})
+      : super(
+          WorkoutForWardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WorkoutForWardRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

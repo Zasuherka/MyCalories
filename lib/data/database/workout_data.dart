@@ -34,6 +34,21 @@ class _WorkoutData{
     }
   }
 
+  Future<WorkoutDto> addScheduledWorkout(WorkoutDto workoutDto, String userId) async{
+    try{
+      final DatabaseReference workoutRef = _usersRef.child(userId);
+      workoutDto.workoutId = null;
+      await workoutRef.update({
+        'scheduledWorkout': workoutDto.toJson(),
+      });
+      workoutDto.workoutId = workoutRef.key;
+      return workoutDto;
+    }
+    catch(error){
+      throw Exception(error);
+    }
+  }
+
   Future<List<WorkoutDto>> getCompletedWorkoutsList(String userId) async{
     try{
       List<WorkoutDto> listWorkout = [];

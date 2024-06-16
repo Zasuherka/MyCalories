@@ -32,7 +32,7 @@ class WardsListPage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: (){
                     wardsBloc.getInfoAboutWard(user);
-                    context.router.push(const WardRoute());
+                    context.router.replace(const WardRoute());
                   },
                   child: DecoratedBox(
                     decoration: BoxDecoration(

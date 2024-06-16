@@ -1,0 +1,402 @@
+import 'package:app1/domain/model/workout/exercise.dart';
+import 'package:app1/domain/model/workout/exercise_cardio.dart';
+import 'package:app1/domain/model/workout/exercise_round_set.dart';
+import 'package:app1/domain/model/workout/exercise_set.dart';
+import 'package:app1/internal/bloc/wards/wards_bloc.dart';
+import 'package:app1/presentation/constants.dart';
+import 'package:app1/presentation/pages/ward_page/widgets/plus_exercise_widget.dart';
+import 'package:app1/presentation/pages/ward_page/widgets/workout_cardio_active.dart';
+import 'package:app1/presentation/pages/ward_page/widgets/workout_end_dialog.dart';
+import 'package:app1/presentation/pages/ward_page/widgets/workout_round_set_active.dart';
+import 'package:app1/presentation/pages/ward_page/widgets/workout_set_active.dart';
+import 'package:app1/presentation/widgets/custom_app_bar.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+@RoutePage()
+class WorkoutForWardPage extends StatefulWidget {
+  const WorkoutForWardPage({super.key});
+
+  @override
+  State<WorkoutForWardPage> createState() => _WorkoutForWardPageState();
+}
+
+class _WorkoutForWardPageState extends State<WorkoutForWardPage> {
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  int activeIndex = -1;
+
+  final TextEditingController _titleTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final WardsBloc wardsBloc = context.read<WardsBloc>();
+    return BlocConsumer<WardsBloc, WardsState>(
+      listener: (context, state){
+        state.whenOrNull(
+          successWorkoutEnd: (){
+            context.router.popForced();
+          },
+        );
+      },
+      builder: (context, state){
+        state.whenOrNull(
+          emptyValueIndex: (index){
+            activeIndex = index;
+          },
+        );
+        final List<Exercise> training = [];
+        training.addAll(wardsBloc.workout.listExercise);
+        return GestureDetector(
+          onTap: () {
+            wardsBloc.add(const WardsEvent.setWorkoutListExercise());
+          },
+          child: Scaffold(
+            appBar: CustomAppBar(
+              title: 'Текущая тренировка',
+              withoutRightIcon: wardsBloc.workout.listExercise.isEmpty,
+              rightOnTap: (){
+                wardsBloc.add(const WardsEvent.setWorkoutListExercise());
+                showDialog(context: context, builder: (context) => const WorkoutEndDialog());
+              },
+            ),
+            body: Form(
+                key: _formKey,
+                child: state.maybeMap(
+                    loading: (_) => Center(
+                      child: Image.asset(
+                        'images/bouncing-circles.gif',
+                        height: 100,
+                      ),
+                    ),
+                    orElse: (){
+
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(7),
+                              child: TextField(
+                                controller: _titleTextController,
+                                onEditingComplete: (){
+                                },
+                                onChanged: (text){
+                                  wardsBloc.workout.title = text;
+                                },
+                                onTap: (){
+                                  setState(() {
+                                    activeIndex = -1;
+                                  });
+                                },
+                                onTapOutside: (_){
+                                  FocusScope.of(context).unfocus();
+                                },
+                                maxLength: 20,
+                                decoration: InputDecoration(
+                                    counterText: '',
+                                    suffixIcon: GestureDetector(
+                                      onTap: () => _titleTextController.text = '',
+                                      child: const Icon(
+                                        Icons.close,
+                                        color: AppColors.colorForHintText,
+                                      ),
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 20
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                            width: 1,
+                                            color: AppColors.turquoise
+                                        ),
+                                        borderRadius: BorderRadius.circular(30)
+                                    ),
+                                    border: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                            width: 1,
+                                            color: AppColors.turquoise
+                                        ),
+                                        borderRadius: BorderRadius.circular(30)
+                                    ),
+                                    hintText: 'Название',
+                                    hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                        color: AppColors.colorForHintText
+                                    )
+                                ),
+                              ),
+                            ),
+                            ReorderableListView.builder(
+                              shrinkWrap: true,
+                              physics: const ScrollPhysics(),
+                              itemCount: training.length,
+                              padding: const EdgeInsets.symmetric(horizontal: 7),
+                              onReorderStart: (_){
+                                setState(() {
+                                  activeIndex = -1;
+                                });
+                              },
+                              proxyDecorator: (child, index, animation){
+                                return Material(
+                                  color: Colors.transparent,
+                                  child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                                color: AppColors.dark.withOpacity(0.35),
+                                                blurRadius: 10,
+                                                spreadRadius: 2
+                                            )
+                                          ]
+                                      ),
+                                      child: child
+                                  ),
+                                );
+                              },
+                              itemBuilder: (context, index) {
+                                final exercise = training[index];
+                                if (exercise is ExerciseSet) {
+                                  return Dismissible(
+                                    key: Key(exercise.hashCode.toString()),
+                                    direction: DismissDirection.endToStart,
+                                    onDismissed: (_){
+                                      training.removeAt(index);
+                                      wardsBloc.add(WardsEvent.deleteExercise(index: index));
+                                    },
+                                    background: Container(
+                                      alignment: Alignment.centerRight,
+                                      padding: const EdgeInsets.only(right: 20),
+                                      height: 77,
+                                      child: const Icon(
+                                        size: 35,
+                                        Icons.delete,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        _formKey.currentState!.validate();
+                                        setState(() {
+                                          if(activeIndex == -1){
+                                            wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                            activeIndex = index;
+                                          } else{
+                                            if(!training[activeIndex].isNotValid){
+                                              if(activeIndex == index){
+                                                activeIndex = -1;
+                                              }
+                                              else{
+                                                wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                                activeIndex = index;
+                                              }
+                                              wardsBloc.add(WardsEvent.setWorkoutListExercise(list: training));
+                                            }
+                                          }
+                                        });
+                                      },
+                                      child: (activeIndex == index)
+                                          ? WorkoutSetActive(
+                                        title: exercise.title,
+                                        setCount: exercise.setCount,
+                                        repetitionsCount: exercise.repetitionsCount,
+                                        onChanged: (title, set, repetition) {
+                                          exercise.title = title;
+                                          exercise.setCount = set;
+                                          exercise.repetitionsCount = repetition;
+                                          training[index] = exercise;
+                                        },
+                                      )
+                                          : Container(
+                                        alignment: Alignment.center,
+                                        margin: const EdgeInsets.symmetric(vertical: 5),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(25),
+                                            boxShadow: boxShadow,
+                                            color: AppColors.primaryButtonColor),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(exercise.title),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text('Подходов: ${exercise.setCount}'),
+                                                Text(
+                                                    'Повторений: ${exercise.repetitionsCount}'),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                } else
+                                if(exercise is ExerciseRoundSet){
+                                  return Dismissible(
+                                    key: Key(exercise.hashCode.toString()),
+                                    direction: DismissDirection.endToStart,
+                                    onDismissed: (_) {
+                                      training.removeAt(index);
+                                      wardsBloc.add(WardsEvent.deleteExercise(index: index));
+                                    },
+                                    background: Container(
+                                      alignment: Alignment.centerRight,
+                                      padding: const EdgeInsets.only(right: 20),
+                                      height: 77,
+                                      child: const Icon(
+                                        size: 35,
+                                        Icons.delete,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _formKey.currentState!.validate();
+                                        setState(() {
+                                          if (activeIndex == -1) {
+                                            wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                            activeIndex = index;
+                                          } else {
+                                            if (!training[activeIndex].isNotValid) {
+                                              if (activeIndex == index) {
+                                                activeIndex = -1;
+                                              } else {
+                                                wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                                activeIndex = index;
+                                              }
+                                              wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+
+                                            }
+                                          }
+                                        });
+                                      },
+                                      child: (activeIndex == index)
+                                          ? WorkoutRoundSetActive(
+                                        indexExercise: index,
+                                        onValidate: () =>
+                                        _formKey.currentState?.validate() ?? false,
+                                        onChanged: (title, set, list) {
+                                          exercise.title = title;
+                                          exercise.setCount = set;
+                                          training[index] = exercise;
+                                        },
+                                      )
+                                          : Container(
+                                        alignment: Alignment.center,
+                                        margin: const EdgeInsets.symmetric(vertical: 5),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(25),
+                                            boxShadow: boxShadow,
+                                            color: AppColors.primaryButtonColor),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(exercise.title),
+                                            Text('Кругов: ${exercise.setCount}'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                } else
+                                if(exercise is ExerciseCardio){
+                                  return Dismissible(
+                                    key: Key(exercise.hashCode.toString()),
+                                    direction: DismissDirection.endToStart,
+                                    onDismissed: (_) {
+                                      training.removeAt(index);
+                                      wardsBloc.add(WardsEvent.deleteExercise(index: index));
+                                    },
+                                    background: Container(
+                                      alignment: Alignment.centerRight,
+                                      padding: const EdgeInsets.only(right: 20),
+                                      height: 77,
+                                      child: const Icon(
+                                        size: 35,
+                                        Icons.delete,
+                                        color: AppColors.red,
+                                      ),
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _formKey.currentState!.validate();
+                                        setState(() {
+                                          if (activeIndex == -1) {
+                                            wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                            activeIndex = index;
+                                          } else {
+                                            if (!training[activeIndex].isNotValid) {
+                                              if (activeIndex == index) {
+                                                activeIndex = -1;
+                                              } else {
+                                                wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                                activeIndex = index;
+                                              }
+                                              wardsBloc.add(WardsEvent.setCurrentExerciseIndex(index: index));
+                                            }
+                                          }
+                                        });
+                                      },
+                                      child: (activeIndex == index)
+                                          ? WorkoutCardioActive(
+                                        title: exercise.title,
+                                        count: exercise.count,
+                                        onChanged: (title, count) {
+                                          exercise.title = title;
+                                          exercise.count = count;
+                                          training[index] = exercise;
+                                        },
+                                      )
+                                          : Container(
+                                        alignment: Alignment.center,
+                                        margin: const EdgeInsets.symmetric(vertical: 5),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(25),
+                                            boxShadow: boxShadow,
+                                            color: AppColors.primaryButtonColor),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(exercise.title),
+                                            Text('Минут/раз: ${exercise.count}'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return const SizedBox();
+                              },
+                              onReorder: (int oldIndex, int newIndex) {
+                                wardsBloc.add(WardsEvent.onReorder(oldIndex: oldIndex, newIndex: newIndex));
+                              },
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            PlusExerciseWidget(
+                                isActive: () => _formKey.currentState?.validate() ?? false,
+                                training: training)
+                          ],
+                        ),
+                      );
+                    })
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

@@ -22,6 +22,7 @@ import 'package:app1/presentation/pages/splash_page.dart';
 import 'package:app1/presentation/pages/profile_page/profile_page.dart';
 import 'package:app1/presentation/pages/ward_page/food_diary_page.dart';
 import 'package:app1/presentation/pages/ward_page/ward_page.dart';
+import 'package:app1/presentation/pages/ward_page/workout_for_ward_page.dart';
 import 'package:app1/presentation/pages/ward_requests_page/ward_requests_page.dart';
 import 'package:app1/presentation/pages/wards_list_page/wards_list_page.dart';
 import 'package:auto_route/auto_route.dart';
@@ -133,6 +134,11 @@ class AppRouter extends _$AppRouter{
     MaterialRoute(
         page: WardFoodDiaryRoute.page,
         path: '/ward_food_diary_page',
+        initial: false
+    ),
+    MaterialRoute(
+        page: WorkoutForWardRoute.page,
+        path: '/workout_for_ward_page',
         initial: false
     ),
     MaterialRoute(

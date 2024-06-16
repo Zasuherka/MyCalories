@@ -22,6 +22,16 @@ mixin _$WardsEvent {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -33,6 +43,16 @@ mixin _$WardsEvent {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -44,6 +64,16 @@ mixin _$WardsEvent {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -57,6 +87,15 @@ mixin _$WardsEvent {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -69,6 +108,13 @@ mixin _$WardsEvent {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -81,6 +127,13 @@ mixin _$WardsEvent {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -126,12 +179,20 @@ class __$$GetWardsListEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetWardsListEventImpl implements GetWardsListEvent {
+class _$GetWardsListEventImpl
+    with DiagnosticableTreeMixin
+    implements GetWardsListEvent {
   const _$GetWardsListEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.getWardsListEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsEvent.getWardsListEvent'));
   }
 
   @override
@@ -150,6 +211,16 @@ class _$GetWardsListEventImpl implements GetWardsListEvent {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -164,6 +235,16 @@ class _$GetWardsListEventImpl implements GetWardsListEvent {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -178,6 +259,16 @@ class _$GetWardsListEventImpl implements GetWardsListEvent {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -197,6 +288,15 @@ class _$GetWardsListEventImpl implements GetWardsListEvent {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -212,6 +312,13 @@ class _$GetWardsListEventImpl implements GetWardsListEvent {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -227,6 +334,13 @@ class _$GetWardsListEventImpl implements GetWardsListEvent {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -264,12 +378,21 @@ class __$$GetWardRequestsListEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
+class _$GetWardRequestsListEventImpl
+    with DiagnosticableTreeMixin
+    implements GetWardRequestsListEvent {
   const _$GetWardRequestsListEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.getWardRequestsListEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+        DiagnosticsProperty('type', 'WardsEvent.getWardRequestsListEvent'));
   }
 
   @override
@@ -289,6 +412,16 @@ class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -303,6 +436,16 @@ class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -317,6 +460,16 @@ class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -336,6 +489,15 @@ class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -351,6 +513,13 @@ class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -366,6 +535,13 @@ class _$GetWardRequestsListEventImpl implements GetWardRequestsListEvent {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -401,12 +577,21 @@ class __$$UpdateLocalUserInfoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
+class _$UpdateLocalUserInfoImpl
+    with DiagnosticableTreeMixin
+    implements UpdateLocalUserInfo {
   const _$UpdateLocalUserInfoImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.updateLocalUserInfo()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'WardsEvent.updateLocalUserInfo'));
   }
 
   @override
@@ -426,6 +611,16 @@ class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -440,6 +635,16 @@ class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -454,6 +659,16 @@ class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -473,6 +688,15 @@ class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -488,6 +712,13 @@ class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -503,6 +734,13 @@ class _$UpdateLocalUserInfoImpl implements UpdateLocalUserInfo {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -553,15 +791,25 @@ class __$$GetInfoAboutWardImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
+class _$GetInfoAboutWardImpl
+    with DiagnosticableTreeMixin
+    implements GetInfoAboutWard {
   const _$GetInfoAboutWardImpl({required this.userId});
 
   @override
   final String userId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.getInfoAboutWard(userId: $userId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.getInfoAboutWard'))
+      ..add(DiagnosticsProperty('userId', userId));
   }
 
   @override
@@ -589,6 +837,16 @@ class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -603,6 +861,16 @@ class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -617,6 +885,16 @@ class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -636,6 +914,15 @@ class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -651,6 +938,13 @@ class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -666,6 +960,13 @@ class _$GetInfoAboutWardImpl implements GetInfoAboutWard {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -686,6 +987,1713 @@ abstract class GetInfoAboutWard implements WardsEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$GetInfoAboutWardImplCopyWith<_$GetInfoAboutWardImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetCurrentExerciseIndexImplCopyWith<$Res> {
+  factory _$$SetCurrentExerciseIndexImplCopyWith(
+          _$SetCurrentExerciseIndexImpl value,
+          $Res Function(_$SetCurrentExerciseIndexImpl) then) =
+      __$$SetCurrentExerciseIndexImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$SetCurrentExerciseIndexImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$SetCurrentExerciseIndexImpl>
+    implements _$$SetCurrentExerciseIndexImplCopyWith<$Res> {
+  __$$SetCurrentExerciseIndexImplCopyWithImpl(
+      _$SetCurrentExerciseIndexImpl _value,
+      $Res Function(_$SetCurrentExerciseIndexImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$SetCurrentExerciseIndexImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetCurrentExerciseIndexImpl
+    with DiagnosticableTreeMixin
+    implements SetCurrentExerciseIndex {
+  const _$SetCurrentExerciseIndexImpl({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.setCurrentExerciseIndex(index: $index)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.setCurrentExerciseIndex'))
+      ..add(DiagnosticsProperty('index', index));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetCurrentExerciseIndexImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetCurrentExerciseIndexImplCopyWith<_$SetCurrentExerciseIndexImpl>
+      get copyWith => __$$SetCurrentExerciseIndexImplCopyWithImpl<
+          _$SetCurrentExerciseIndexImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return setCurrentExerciseIndex(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return setCurrentExerciseIndex?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (setCurrentExerciseIndex != null) {
+      return setCurrentExerciseIndex(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return setCurrentExerciseIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return setCurrentExerciseIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (setCurrentExerciseIndex != null) {
+      return setCurrentExerciseIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetCurrentExerciseIndex implements WardsEvent {
+  const factory SetCurrentExerciseIndex({required final int index}) =
+      _$SetCurrentExerciseIndexImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$SetCurrentExerciseIndexImplCopyWith<_$SetCurrentExerciseIndexImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetWorkoutListExerciseImplCopyWith<$Res> {
+  factory _$$SetWorkoutListExerciseImplCopyWith(
+          _$SetWorkoutListExerciseImpl value,
+          $Res Function(_$SetWorkoutListExerciseImpl) then) =
+      __$$SetWorkoutListExerciseImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Exercise>? list});
+}
+
+/// @nodoc
+class __$$SetWorkoutListExerciseImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$SetWorkoutListExerciseImpl>
+    implements _$$SetWorkoutListExerciseImplCopyWith<$Res> {
+  __$$SetWorkoutListExerciseImplCopyWithImpl(
+      _$SetWorkoutListExerciseImpl _value,
+      $Res Function(_$SetWorkoutListExerciseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = freezed,
+  }) {
+    return _then(_$SetWorkoutListExerciseImpl(
+      list: freezed == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<Exercise>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetWorkoutListExerciseImpl
+    with DiagnosticableTreeMixin
+    implements SetWorkoutListExercise {
+  const _$SetWorkoutListExerciseImpl({final List<Exercise>? list})
+      : _list = list;
+
+  final List<Exercise>? _list;
+  @override
+  List<Exercise>? get list {
+    final value = _list;
+    if (value == null) return null;
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.setWorkoutListExercise(list: $list)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.setWorkoutListExercise'))
+      ..add(DiagnosticsProperty('list', list));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetWorkoutListExerciseImpl &&
+            const DeepCollectionEquality().equals(other._list, _list));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetWorkoutListExerciseImplCopyWith<_$SetWorkoutListExerciseImpl>
+      get copyWith => __$$SetWorkoutListExerciseImplCopyWithImpl<
+          _$SetWorkoutListExerciseImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return setWorkoutListExercise(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return setWorkoutListExercise?.call(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (setWorkoutListExercise != null) {
+      return setWorkoutListExercise(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return setWorkoutListExercise(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return setWorkoutListExercise?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (setWorkoutListExercise != null) {
+      return setWorkoutListExercise(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetWorkoutListExercise implements WardsEvent {
+  const factory SetWorkoutListExercise({final List<Exercise>? list}) =
+      _$SetWorkoutListExerciseImpl;
+
+  List<Exercise>? get list;
+  @JsonKey(ignore: true)
+  _$$SetWorkoutListExerciseImplCopyWith<_$SetWorkoutListExerciseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CurrentWorkoutEndImplCopyWith<$Res> {
+  factory _$$CurrentWorkoutEndImplCopyWith(_$CurrentWorkoutEndImpl value,
+          $Res Function(_$CurrentWorkoutEndImpl) then) =
+      __$$CurrentWorkoutEndImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CurrentWorkoutEndImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$CurrentWorkoutEndImpl>
+    implements _$$CurrentWorkoutEndImplCopyWith<$Res> {
+  __$$CurrentWorkoutEndImplCopyWithImpl(_$CurrentWorkoutEndImpl _value,
+      $Res Function(_$CurrentWorkoutEndImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CurrentWorkoutEndImpl
+    with DiagnosticableTreeMixin
+    implements CurrentWorkoutEnd {
+  const _$CurrentWorkoutEndImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.currentWorkoutEnd()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsEvent.currentWorkoutEnd'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CurrentWorkoutEndImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return currentWorkoutEnd();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return currentWorkoutEnd?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (currentWorkoutEnd != null) {
+      return currentWorkoutEnd();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return currentWorkoutEnd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return currentWorkoutEnd?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (currentWorkoutEnd != null) {
+      return currentWorkoutEnd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CurrentWorkoutEnd implements WardsEvent {
+  const factory CurrentWorkoutEnd() = _$CurrentWorkoutEndImpl;
+}
+
+/// @nodoc
+abstract class _$$OnReorderImplCopyWith<$Res> {
+  factory _$$OnReorderImplCopyWith(
+          _$OnReorderImpl value, $Res Function(_$OnReorderImpl) then) =
+      __$$OnReorderImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int oldIndex, int newIndex});
+}
+
+/// @nodoc
+class __$$OnReorderImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$OnReorderImpl>
+    implements _$$OnReorderImplCopyWith<$Res> {
+  __$$OnReorderImplCopyWithImpl(
+      _$OnReorderImpl _value, $Res Function(_$OnReorderImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? oldIndex = null,
+    Object? newIndex = null,
+  }) {
+    return _then(_$OnReorderImpl(
+      oldIndex: null == oldIndex
+          ? _value.oldIndex
+          : oldIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      newIndex: null == newIndex
+          ? _value.newIndex
+          : newIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
+  const _$OnReorderImpl({required this.oldIndex, required this.newIndex});
+
+  @override
+  final int oldIndex;
+  @override
+  final int newIndex;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.onReorder(oldIndex: $oldIndex, newIndex: $newIndex)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.onReorder'))
+      ..add(DiagnosticsProperty('oldIndex', oldIndex))
+      ..add(DiagnosticsProperty('newIndex', newIndex));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnReorderImpl &&
+            (identical(other.oldIndex, oldIndex) ||
+                other.oldIndex == oldIndex) &&
+            (identical(other.newIndex, newIndex) ||
+                other.newIndex == newIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnReorderImplCopyWith<_$OnReorderImpl> get copyWith =>
+      __$$OnReorderImplCopyWithImpl<_$OnReorderImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return onReorder(oldIndex, newIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return onReorder?.call(oldIndex, newIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (onReorder != null) {
+      return onReorder(oldIndex, newIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return onReorder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return onReorder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (onReorder != null) {
+      return onReorder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnReorder implements WardsEvent {
+  const factory OnReorder(
+      {required final int oldIndex,
+      required final int newIndex}) = _$OnReorderImpl;
+
+  int get oldIndex;
+  int get newIndex;
+  @JsonKey(ignore: true)
+  _$$OnReorderImplCopyWith<_$OnReorderImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteExerciseImplCopyWith<$Res> {
+  factory _$$DeleteExerciseImplCopyWith(_$DeleteExerciseImpl value,
+          $Res Function(_$DeleteExerciseImpl) then) =
+      __$$DeleteExerciseImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$DeleteExerciseImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$DeleteExerciseImpl>
+    implements _$$DeleteExerciseImplCopyWith<$Res> {
+  __$$DeleteExerciseImplCopyWithImpl(
+      _$DeleteExerciseImpl _value, $Res Function(_$DeleteExerciseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$DeleteExerciseImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteExerciseImpl
+    with DiagnosticableTreeMixin
+    implements DeleteExercise {
+  const _$DeleteExerciseImpl({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.deleteExercise(index: $index)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.deleteExercise'))
+      ..add(DiagnosticsProperty('index', index));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteExerciseImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteExerciseImplCopyWith<_$DeleteExerciseImpl> get copyWith =>
+      __$$DeleteExerciseImplCopyWithImpl<_$DeleteExerciseImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return deleteExercise(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return deleteExercise?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (deleteExercise != null) {
+      return deleteExercise(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return deleteExercise(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return deleteExercise?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (deleteExercise != null) {
+      return deleteExercise(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteExercise implements WardsEvent {
+  const factory DeleteExercise({required final int index}) =
+      _$DeleteExerciseImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$DeleteExerciseImplCopyWith<_$DeleteExerciseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddNewExerciseSetImplCopyWith<$Res> {
+  factory _$$AddNewExerciseSetImplCopyWith(_$AddNewExerciseSetImpl value,
+          $Res Function(_$AddNewExerciseSetImpl) then) =
+      __$$AddNewExerciseSetImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Exercise> list, ExerciseCase exerciseCase});
+}
+
+/// @nodoc
+class __$$AddNewExerciseSetImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$AddNewExerciseSetImpl>
+    implements _$$AddNewExerciseSetImplCopyWith<$Res> {
+  __$$AddNewExerciseSetImplCopyWithImpl(_$AddNewExerciseSetImpl _value,
+      $Res Function(_$AddNewExerciseSetImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+    Object? exerciseCase = null,
+  }) {
+    return _then(_$AddNewExerciseSetImpl(
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<Exercise>,
+      exerciseCase: null == exerciseCase
+          ? _value.exerciseCase
+          : exerciseCase // ignore: cast_nullable_to_non_nullable
+              as ExerciseCase,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddNewExerciseSetImpl
+    with DiagnosticableTreeMixin
+    implements AddNewExerciseSet {
+  const _$AddNewExerciseSetImpl(
+      {required final List<Exercise> list, required this.exerciseCase})
+      : _list = list;
+
+  final List<Exercise> _list;
+  @override
+  List<Exercise> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
+
+  @override
+  final ExerciseCase exerciseCase;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.addNewExerciseSet(list: $list, exerciseCase: $exerciseCase)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.addNewExerciseSet'))
+      ..add(DiagnosticsProperty('list', list))
+      ..add(DiagnosticsProperty('exerciseCase', exerciseCase));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddNewExerciseSetImpl &&
+            const DeepCollectionEquality().equals(other._list, _list) &&
+            (identical(other.exerciseCase, exerciseCase) ||
+                other.exerciseCase == exerciseCase));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_list), exerciseCase);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddNewExerciseSetImplCopyWith<_$AddNewExerciseSetImpl> get copyWith =>
+      __$$AddNewExerciseSetImplCopyWithImpl<_$AddNewExerciseSetImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return addNewExerciseSet(list, exerciseCase);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return addNewExerciseSet?.call(list, exerciseCase);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (addNewExerciseSet != null) {
+      return addNewExerciseSet(list, exerciseCase);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return addNewExerciseSet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return addNewExerciseSet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (addNewExerciseSet != null) {
+      return addNewExerciseSet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddNewExerciseSet implements WardsEvent {
+  const factory AddNewExerciseSet(
+      {required final List<Exercise> list,
+      required final ExerciseCase exerciseCase}) = _$AddNewExerciseSetImpl;
+
+  List<Exercise> get list;
+  ExerciseCase get exerciseCase;
+  @JsonKey(ignore: true)
+  _$$AddNewExerciseSetImplCopyWith<_$AddNewExerciseSetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetCurrentRoundSetImplCopyWith<$Res> {
+  factory _$$SetCurrentRoundSetImplCopyWith(_$SetCurrentRoundSetImpl value,
+          $Res Function(_$SetCurrentRoundSetImpl) then) =
+      __$$SetCurrentRoundSetImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {List<PhysicalActivity> list,
+      String title,
+      String setCount,
+      bool? addNewPhysicalActivity,
+      int? removeIndex});
+}
+
+/// @nodoc
+class __$$SetCurrentRoundSetImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$SetCurrentRoundSetImpl>
+    implements _$$SetCurrentRoundSetImplCopyWith<$Res> {
+  __$$SetCurrentRoundSetImplCopyWithImpl(_$SetCurrentRoundSetImpl _value,
+      $Res Function(_$SetCurrentRoundSetImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+    Object? title = null,
+    Object? setCount = null,
+    Object? addNewPhysicalActivity = freezed,
+    Object? removeIndex = freezed,
+  }) {
+    return _then(_$SetCurrentRoundSetImpl(
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<PhysicalActivity>,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      setCount: null == setCount
+          ? _value.setCount
+          : setCount // ignore: cast_nullable_to_non_nullable
+              as String,
+      addNewPhysicalActivity: freezed == addNewPhysicalActivity
+          ? _value.addNewPhysicalActivity
+          : addNewPhysicalActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      removeIndex: freezed == removeIndex
+          ? _value.removeIndex
+          : removeIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetCurrentRoundSetImpl
+    with DiagnosticableTreeMixin
+    implements SetCurrentRoundSet {
+  const _$SetCurrentRoundSetImpl(
+      {required final List<PhysicalActivity> list,
+      required this.title,
+      required this.setCount,
+      this.addNewPhysicalActivity,
+      this.removeIndex})
+      : _list = list;
+
+  final List<PhysicalActivity> _list;
+  @override
+  List<PhysicalActivity> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
+
+  @override
+  final String title;
+  @override
+  final String setCount;
+  @override
+  final bool? addNewPhysicalActivity;
+  @override
+  final int? removeIndex;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.setCurrentRoundSet(list: $list, title: $title, setCount: $setCount, addNewPhysicalActivity: $addNewPhysicalActivity, removeIndex: $removeIndex)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.setCurrentRoundSet'))
+      ..add(DiagnosticsProperty('list', list))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('setCount', setCount))
+      ..add(
+          DiagnosticsProperty('addNewPhysicalActivity', addNewPhysicalActivity))
+      ..add(DiagnosticsProperty('removeIndex', removeIndex));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetCurrentRoundSetImpl &&
+            const DeepCollectionEquality().equals(other._list, _list) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.setCount, setCount) ||
+                other.setCount == setCount) &&
+            (identical(other.addNewPhysicalActivity, addNewPhysicalActivity) ||
+                other.addNewPhysicalActivity == addNewPhysicalActivity) &&
+            (identical(other.removeIndex, removeIndex) ||
+                other.removeIndex == removeIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_list),
+      title,
+      setCount,
+      addNewPhysicalActivity,
+      removeIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetCurrentRoundSetImplCopyWith<_$SetCurrentRoundSetImpl> get copyWith =>
+      __$$SetCurrentRoundSetImplCopyWithImpl<_$SetCurrentRoundSetImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function(AppUser appUser) removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return setCurrentRoundSet(
+        list, title, setCount, addNewPhysicalActivity, removeIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function(AppUser appUser)? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return setCurrentRoundSet?.call(
+        list, title, setCount, addNewPhysicalActivity, removeIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function(AppUser appUser)? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (setCurrentRoundSet != null) {
+      return setCurrentRoundSet(
+          list, title, setCount, addNewPhysicalActivity, removeIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return setCurrentRoundSet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return setCurrentRoundSet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (setCurrentRoundSet != null) {
+      return setCurrentRoundSet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetCurrentRoundSet implements WardsEvent {
+  const factory SetCurrentRoundSet(
+      {required final List<PhysicalActivity> list,
+      required final String title,
+      required final String setCount,
+      final bool? addNewPhysicalActivity,
+      final int? removeIndex}) = _$SetCurrentRoundSetImpl;
+
+  List<PhysicalActivity> get list;
+  String get title;
+  String get setCount;
+  bool? get addNewPhysicalActivity;
+  int? get removeIndex;
+  @JsonKey(ignore: true)
+  _$$SetCurrentRoundSetImplCopyWith<_$SetCurrentRoundSetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -724,15 +2732,25 @@ class __$$GetInfoAboutFoodDiaryWardImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
+class _$GetInfoAboutFoodDiaryWardImpl
+    with DiagnosticableTreeMixin
+    implements GetInfoAboutFoodDiaryWard {
   const _$GetInfoAboutFoodDiaryWardImpl({required this.dateTime});
 
   @override
   final DateTime dateTime;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.getInfoAboutFoodDiaryWard(dateTime: $dateTime)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.getInfoAboutFoodDiaryWard'))
+      ..add(DiagnosticsProperty('dateTime', dateTime));
   }
 
   @override
@@ -761,6 +2779,16 @@ class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -775,6 +2803,16 @@ class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -789,6 +2827,16 @@ class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -808,6 +2856,15 @@ class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -823,6 +2880,13 @@ class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -838,6 +2902,13 @@ class _$GetInfoAboutFoodDiaryWardImpl implements GetInfoAboutFoodDiaryWard {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -894,15 +2965,23 @@ class __$$RemoveWardsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RemoveWardsImpl implements RemoveWards {
+class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
   const _$RemoveWardsImpl({required this.appUser});
 
   @override
   final AppUser appUser;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.removeWards(appUser: $appUser)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.removeWards'))
+      ..add(DiagnosticsProperty('appUser', appUser));
   }
 
   @override
@@ -929,6 +3008,16 @@ class _$RemoveWardsImpl implements RemoveWards {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -943,6 +3032,16 @@ class _$RemoveWardsImpl implements RemoveWards {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -957,6 +3056,16 @@ class _$RemoveWardsImpl implements RemoveWards {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -976,6 +3085,15 @@ class _$RemoveWardsImpl implements RemoveWards {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -991,6 +3109,13 @@ class _$RemoveWardsImpl implements RemoveWards {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -1006,6 +3131,13 @@ class _$RemoveWardsImpl implements RemoveWards {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -1067,7 +3199,7 @@ class __$$ReplyWardsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ReplyWardsImpl implements ReplyWards {
+class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
   const _$ReplyWardsImpl({required this.appUser, required this.reply});
 
   @override
@@ -1076,8 +3208,17 @@ class _$ReplyWardsImpl implements ReplyWards {
   final bool reply;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsEvent.replyWards(appUser: $appUser, reply: $reply)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsEvent.replyWards'))
+      ..add(DiagnosticsProperty('appUser', appUser))
+      ..add(DiagnosticsProperty('reply', reply));
   }
 
   @override
@@ -1105,6 +3246,16 @@ class _$ReplyWardsImpl implements ReplyWards {
     required TResult Function() getWardRequestsListEvent,
     required TResult Function() updateLocalUserInfo,
     required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
     required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
     required TResult Function(AppUser appUser) removeWards,
     required TResult Function(AppUser appUser, bool reply) replyWards,
@@ -1119,6 +3270,16 @@ class _$ReplyWardsImpl implements ReplyWards {
     TResult? Function()? getWardRequestsListEvent,
     TResult? Function()? updateLocalUserInfo,
     TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult? Function(AppUser appUser)? removeWards,
     TResult? Function(AppUser appUser, bool reply)? replyWards,
@@ -1133,6 +3294,16 @@ class _$ReplyWardsImpl implements ReplyWards {
     TResult Function()? getWardRequestsListEvent,
     TResult Function()? updateLocalUserInfo,
     TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
     TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
     TResult Function(AppUser appUser)? removeWards,
     TResult Function(AppUser appUser, bool reply)? replyWards,
@@ -1152,6 +3323,15 @@ class _$ReplyWardsImpl implements ReplyWards {
         getWardRequestsListEvent,
     required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
     required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
     required TResult Function(GetInfoAboutFoodDiaryWard value)
         getInfoAboutFoodDiaryWard,
     required TResult Function(RemoveWards value) removeWards,
@@ -1167,6 +3347,13 @@ class _$ReplyWardsImpl implements ReplyWards {
     TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult? Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult? Function(RemoveWards value)? removeWards,
@@ -1182,6 +3369,13 @@ class _$ReplyWardsImpl implements ReplyWards {
     TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
     TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
     TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
     TResult Function(GetInfoAboutFoodDiaryWard value)?
         getInfoAboutFoodDiaryWard,
     TResult Function(RemoveWards value)? removeWards,
@@ -1215,6 +3409,9 @@ mixin _$WardsState {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -1226,6 +3423,9 @@ mixin _$WardsState {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) =>
@@ -1236,6 +3436,9 @@ mixin _$WardsState {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -1244,9 +3447,13 @@ mixin _$WardsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) =>
@@ -1254,9 +3461,12 @@ mixin _$WardsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) =>
@@ -1264,9 +3474,12 @@ mixin _$WardsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
@@ -1310,12 +3523,18 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsState.initial'));
   }
 
   @override
@@ -1334,6 +3553,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -1348,6 +3570,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) {
@@ -1361,6 +3586,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -1375,9 +3603,13 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) {
@@ -1388,9 +3620,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) {
@@ -1401,9 +3636,12 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
@@ -1437,12 +3675,18 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
+class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   const _$LoadingImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsState.loading'));
   }
 
   @override
@@ -1461,6 +3705,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -1475,6 +3722,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) {
@@ -1488,6 +3738,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -1502,9 +3755,13 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) {
@@ -1515,9 +3772,12 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) {
@@ -1528,9 +3788,12 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
@@ -1542,8 +3805,8 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements WardsState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class Loading implements WardsState {
+  const factory Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -1579,15 +3842,23 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
+class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   const _$ErrorImpl({required this.errorMessage});
 
   @override
   final String errorMessage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsState.error(errorMessage: $errorMessage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsState.error'))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override
@@ -1615,6 +3886,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -1629,6 +3903,9 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) {
@@ -1642,6 +3919,9 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -1656,9 +3936,13 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) {
@@ -1669,9 +3953,12 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) {
@@ -1682,9 +3969,12 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
@@ -1723,12 +4013,18 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
+class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
   const _$SuccessImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsState.success()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsState.success'));
   }
 
   @override
@@ -1747,6 +4043,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -1761,6 +4060,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) {
@@ -1774,6 +4076,9 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -1788,9 +4093,13 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) {
@@ -1801,9 +4110,12 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) {
@@ -1814,9 +4126,12 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
@@ -1830,6 +4145,506 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements WardsState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessUpdateExerciseImplCopyWith<$Res> {
+  factory _$$SuccessUpdateExerciseImplCopyWith(
+          _$SuccessUpdateExerciseImpl value,
+          $Res Function(_$SuccessUpdateExerciseImpl) then) =
+      __$$SuccessUpdateExerciseImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SuccessUpdateExerciseImplCopyWithImpl<$Res>
+    extends _$WardsStateCopyWithImpl<$Res, _$SuccessUpdateExerciseImpl>
+    implements _$$SuccessUpdateExerciseImplCopyWith<$Res> {
+  __$$SuccessUpdateExerciseImplCopyWithImpl(_$SuccessUpdateExerciseImpl _value,
+      $Res Function(_$SuccessUpdateExerciseImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SuccessUpdateExerciseImpl
+    with DiagnosticableTreeMixin
+    implements SuccessUpdateExercise {
+  const _$SuccessUpdateExerciseImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsState.successUpdateExercise()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'WardsState.successUpdateExercise'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessUpdateExerciseImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) error,
+    required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
+    required TResult Function(List<AppUser> wardsList) getWardsList,
+    required TResult Function(List<AppUser> wardRequestsList)
+        getWardRequestsList,
+  }) {
+    return successUpdateExercise();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
+    TResult? Function(List<AppUser> wardsList)? getWardsList,
+    TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+  }) {
+    return successUpdateExercise?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? error,
+    TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
+    TResult Function(List<AppUser> wardsList)? getWardsList,
+    TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (successUpdateExercise != null) {
+      return successUpdateExercise();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
+    required TResult Function(_GetWardsList value) getWardsList,
+    required TResult Function(_GetWardRequestsList value) getWardRequestsList,
+  }) {
+    return successUpdateExercise(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult? Function(_GetWardsList value)? getWardsList,
+    TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
+  }) {
+    return successUpdateExercise?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult Function(_GetWardsList value)? getWardsList,
+    TResult Function(_GetWardRequestsList value)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (successUpdateExercise != null) {
+      return successUpdateExercise(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SuccessUpdateExercise implements WardsState {
+  const factory SuccessUpdateExercise() = _$SuccessUpdateExerciseImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessWorkoutEndImplCopyWith<$Res> {
+  factory _$$SuccessWorkoutEndImplCopyWith(_$SuccessWorkoutEndImpl value,
+          $Res Function(_$SuccessWorkoutEndImpl) then) =
+      __$$SuccessWorkoutEndImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SuccessWorkoutEndImplCopyWithImpl<$Res>
+    extends _$WardsStateCopyWithImpl<$Res, _$SuccessWorkoutEndImpl>
+    implements _$$SuccessWorkoutEndImplCopyWith<$Res> {
+  __$$SuccessWorkoutEndImplCopyWithImpl(_$SuccessWorkoutEndImpl _value,
+      $Res Function(_$SuccessWorkoutEndImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SuccessWorkoutEndImpl
+    with DiagnosticableTreeMixin
+    implements _SuccessWorkoutEnd {
+  const _$SuccessWorkoutEndImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsState.successWorkoutEnd()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WardsState.successWorkoutEnd'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SuccessWorkoutEndImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) error,
+    required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
+    required TResult Function(List<AppUser> wardsList) getWardsList,
+    required TResult Function(List<AppUser> wardRequestsList)
+        getWardRequestsList,
+  }) {
+    return successWorkoutEnd();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
+    TResult? Function(List<AppUser> wardsList)? getWardsList,
+    TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+  }) {
+    return successWorkoutEnd?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? error,
+    TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
+    TResult Function(List<AppUser> wardsList)? getWardsList,
+    TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (successWorkoutEnd != null) {
+      return successWorkoutEnd();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
+    required TResult Function(_GetWardsList value) getWardsList,
+    required TResult Function(_GetWardRequestsList value) getWardRequestsList,
+  }) {
+    return successWorkoutEnd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult? Function(_GetWardsList value)? getWardsList,
+    TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
+  }) {
+    return successWorkoutEnd?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult Function(_GetWardsList value)? getWardsList,
+    TResult Function(_GetWardRequestsList value)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (successWorkoutEnd != null) {
+      return successWorkoutEnd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessWorkoutEnd implements WardsState {
+  const factory _SuccessWorkoutEnd() = _$SuccessWorkoutEndImpl;
+}
+
+/// @nodoc
+abstract class _$$EmptyValueIndexImplCopyWith<$Res> {
+  factory _$$EmptyValueIndexImplCopyWith(_$EmptyValueIndexImpl value,
+          $Res Function(_$EmptyValueIndexImpl) then) =
+      __$$EmptyValueIndexImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$EmptyValueIndexImplCopyWithImpl<$Res>
+    extends _$WardsStateCopyWithImpl<$Res, _$EmptyValueIndexImpl>
+    implements _$$EmptyValueIndexImplCopyWith<$Res> {
+  __$$EmptyValueIndexImplCopyWithImpl(
+      _$EmptyValueIndexImpl _value, $Res Function(_$EmptyValueIndexImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$EmptyValueIndexImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EmptyValueIndexImpl
+    with DiagnosticableTreeMixin
+    implements _EmptyValueIndex {
+  const _$EmptyValueIndexImpl({required this.index});
+
+  @override
+  final int index;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsState.emptyValueIndex(index: $index)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsState.emptyValueIndex'))
+      ..add(DiagnosticsProperty('index', index));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmptyValueIndexImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmptyValueIndexImplCopyWith<_$EmptyValueIndexImpl> get copyWith =>
+      __$$EmptyValueIndexImplCopyWithImpl<_$EmptyValueIndexImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) error,
+    required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
+    required TResult Function(List<AppUser> wardsList) getWardsList,
+    required TResult Function(List<AppUser> wardRequestsList)
+        getWardRequestsList,
+  }) {
+    return emptyValueIndex(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
+    TResult? Function(List<AppUser> wardsList)? getWardsList,
+    TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+  }) {
+    return emptyValueIndex?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? error,
+    TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
+    TResult Function(List<AppUser> wardsList)? getWardsList,
+    TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (emptyValueIndex != null) {
+      return emptyValueIndex(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
+    required TResult Function(_GetWardsList value) getWardsList,
+    required TResult Function(_GetWardRequestsList value) getWardRequestsList,
+  }) {
+    return emptyValueIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult? Function(_GetWardsList value)? getWardsList,
+    TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
+  }) {
+    return emptyValueIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
+    TResult Function(_GetWardsList value)? getWardsList,
+    TResult Function(_GetWardRequestsList value)? getWardRequestsList,
+    required TResult orElse(),
+  }) {
+    if (emptyValueIndex != null) {
+      return emptyValueIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmptyValueIndex implements WardsState {
+  const factory _EmptyValueIndex({required final int index}) =
+      _$EmptyValueIndexImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$EmptyValueIndexImplCopyWith<_$EmptyValueIndexImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1865,7 +4680,7 @@ class __$$GetWardsListImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetWardsListImpl implements _GetWardsList {
+class _$GetWardsListImpl with DiagnosticableTreeMixin implements _GetWardsList {
   const _$GetWardsListImpl({required final List<AppUser> wardsList})
       : _wardsList = wardsList;
 
@@ -1878,8 +4693,16 @@ class _$GetWardsListImpl implements _GetWardsList {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsState.getWardsList(wardsList: $wardsList)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsState.getWardsList'))
+      ..add(DiagnosticsProperty('wardsList', wardsList));
   }
 
   @override
@@ -1908,6 +4731,9 @@ class _$GetWardsListImpl implements _GetWardsList {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -1922,6 +4748,9 @@ class _$GetWardsListImpl implements _GetWardsList {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) {
@@ -1935,6 +4764,9 @@ class _$GetWardsListImpl implements _GetWardsList {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -1949,9 +4781,13 @@ class _$GetWardsListImpl implements _GetWardsList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) {
@@ -1962,9 +4798,12 @@ class _$GetWardsListImpl implements _GetWardsList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) {
@@ -1975,9 +4814,12 @@ class _$GetWardsListImpl implements _GetWardsList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
@@ -2032,7 +4874,9 @@ class __$$GetWardRequestsListImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetWardRequestsListImpl implements _GetWardRequestsList {
+class _$GetWardRequestsListImpl
+    with DiagnosticableTreeMixin
+    implements _GetWardRequestsList {
   const _$GetWardRequestsListImpl(
       {required final List<AppUser> wardRequestsList})
       : _wardRequestsList = wardRequestsList;
@@ -2047,8 +4891,16 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WardsState.getWardRequestsList(wardRequestsList: $wardRequestsList)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WardsState.getWardRequestsList'))
+      ..add(DiagnosticsProperty('wardRequestsList', wardRequestsList));
   }
 
   @override
@@ -2078,6 +4930,9 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
     required TResult Function() loading,
     required TResult Function(String errorMessage) error,
     required TResult Function() success,
+    required TResult Function() successUpdateExercise,
+    required TResult Function() successWorkoutEnd,
+    required TResult Function(int index) emptyValueIndex,
     required TResult Function(List<AppUser> wardsList) getWardsList,
     required TResult Function(List<AppUser> wardRequestsList)
         getWardRequestsList,
@@ -2092,6 +4947,9 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
     TResult? Function()? loading,
     TResult? Function(String errorMessage)? error,
     TResult? Function()? success,
+    TResult? Function()? successUpdateExercise,
+    TResult? Function()? successWorkoutEnd,
+    TResult? Function(int index)? emptyValueIndex,
     TResult? Function(List<AppUser> wardsList)? getWardsList,
     TResult? Function(List<AppUser> wardRequestsList)? getWardRequestsList,
   }) {
@@ -2105,6 +4963,9 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
     TResult Function()? loading,
     TResult Function(String errorMessage)? error,
     TResult Function()? success,
+    TResult Function()? successUpdateExercise,
+    TResult Function()? successWorkoutEnd,
+    TResult Function(int index)? emptyValueIndex,
     TResult Function(List<AppUser> wardsList)? getWardsList,
     TResult Function(List<AppUser> wardRequestsList)? getWardRequestsList,
     required TResult orElse(),
@@ -2119,9 +4980,13 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(SuccessUpdateExercise value)
+        successUpdateExercise,
+    required TResult Function(_SuccessWorkoutEnd value) successWorkoutEnd,
+    required TResult Function(_EmptyValueIndex value) emptyValueIndex,
     required TResult Function(_GetWardsList value) getWardsList,
     required TResult Function(_GetWardRequestsList value) getWardRequestsList,
   }) {
@@ -2132,9 +4997,12 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult? Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult? Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult? Function(_GetWardsList value)? getWardsList,
     TResult? Function(_GetWardRequestsList value)? getWardRequestsList,
   }) {
@@ -2145,9 +5013,12 @@ class _$GetWardRequestsListImpl implements _GetWardRequestsList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(SuccessUpdateExercise value)? successUpdateExercise,
+    TResult Function(_SuccessWorkoutEnd value)? successWorkoutEnd,
+    TResult Function(_EmptyValueIndex value)? emptyValueIndex,
     TResult Function(_GetWardsList value)? getWardsList,
     TResult Function(_GetWardRequestsList value)? getWardRequestsList,
     required TResult orElse(),
