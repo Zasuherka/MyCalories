@@ -72,7 +72,7 @@ class CollectionBloc extends Bloc<CollectionEvent, CollectionState> {
 
   Future _createCollection(List<Food> listFood, String title, Emitter<CollectionState> emitter) async {
     emitter(const CollectionState.loading());
-    await _collectionService.createCollection(listFood: listFood, title: title);
+    listCollectionView = await _collectionService.createCollection(listFood: listFood, title: title);
     emitter(CollectionState.listCollection(listCollection: listCollectionView));
   }
 }

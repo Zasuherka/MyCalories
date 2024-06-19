@@ -12,7 +12,8 @@ class CollectionFoodEvent with _$CollectionFoodEvent {
 
   const factory CollectionFoodEvent.updateCollection({
     required List<Food> updateListFood,
-    required Collection collection
+    required Collection collection,
+    required String title,
   }) = _UpdateCollection;
 
   const factory CollectionFoodEvent.addCollectionInUserListCollection({

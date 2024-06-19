@@ -71,6 +71,9 @@ class _UserData{
           email: email,
           password: password1
       );
+
+      print(email);
+
       User? user = userCredential.user;
 
       if (user != null) {

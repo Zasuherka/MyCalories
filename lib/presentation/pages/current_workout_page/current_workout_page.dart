@@ -62,7 +62,7 @@ class _CurrentWorkoutPageState extends State<CurrentWorkoutPage> {
           },
           child: Scaffold(
             appBar: CustomAppBar(
-              title: 'Текущая тренировка',
+              title: 'Тренировка',
               withoutRightIcon: currentWorkoutCubit.currentWorkoutIsNull,
               rightOnTap: (){
                 currentWorkoutCubit.setWorkoutListExercise();

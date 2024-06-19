@@ -259,6 +259,22 @@ class WardPage extends StatelessWidget {
               SliverToBoxAdapter(
                 child: PrimaryAppButton(
                   onTap: () {
+                    wardsBloc.add(const WardsEvent.completedWorkoutList());
+                    context.router.push(const WardCompletedWorkoutsRoute());
+                  },
+                  margin: const EdgeInsets.symmetric(horizontal: 12.5),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  withColor: true,
+                  child: Text(
+                    'Выполненные тренировки',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+              ),
+              verticalOffset,
+              SliverToBoxAdapter(
+                child: PrimaryAppButton(
+                  onTap: () {
                     context.router.push(const WorkoutForWardRoute());
                   },
                   margin: const EdgeInsets.symmetric(horizontal: 12.5),
@@ -270,7 +286,6 @@ class WardPage extends StatelessWidget {
                   ),
                 ),
               ),
-              //const SliverToBoxAdapter(child: News())
             ],
           ),
         ),

@@ -22,6 +22,8 @@ class WardsEvent with _$WardsEvent{
 
   const factory WardsEvent.currentWorkoutEnd() = CurrentWorkoutEnd;
 
+  const factory WardsEvent.completedWorkoutList() = CompletedWorkoutList;
+
   const factory WardsEvent.onReorder({
     required int oldIndex,
     required int newIndex,

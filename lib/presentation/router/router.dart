@@ -22,6 +22,8 @@ import 'package:app1/presentation/pages/save_collection_page/save_collection_pag
 import 'package:app1/presentation/pages/splash_page.dart';
 import 'package:app1/presentation/pages/profile_page/profile_page.dart';
 import 'package:app1/presentation/pages/ward_page/food_diary_page.dart';
+import 'package:app1/presentation/pages/ward_page/ward_completed_wordkouts_page.dart';
+import 'package:app1/presentation/pages/ward_page/ward_completed_workout_page.dart';
 import 'package:app1/presentation/pages/ward_page/ward_page.dart';
 import 'package:app1/presentation/pages/ward_page/workout_for_ward_page.dart';
 import 'package:app1/presentation/pages/ward_requests_page/ward_requests_page.dart';
@@ -145,6 +147,16 @@ class AppRouter extends _$AppRouter{
     MaterialRoute(
         page: ScheduledWorkoutRoute.page,
         path: '/scheduled_workout_page',
+        initial: false
+    ),
+    MaterialRoute(
+        page: WardCompletedWorkoutRoute.page,
+        path: '/scheduled_workout_page',
+        initial: false
+    ),
+    MaterialRoute(
+        page: WardCompletedWorkoutsRoute.page,
+        path: '/scheduled_workouts_page',
         initial: false
     ),
     MaterialRoute(

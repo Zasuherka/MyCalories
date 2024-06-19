@@ -65,6 +65,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
       String carbohydrates, 
       String calories, 
       Emitter<FoodState> emitter) async{
+    emitter(const FoodState.loading());
     final List<Food>? listFood = await _foodRepository.createFood(
         title, protein, fats, carbohydrates, calories);
     if(listFood == null){

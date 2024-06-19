@@ -113,4 +113,15 @@ class WardRepository{
       rethrow;
     }
   }
+
+  Future<List<Workout>> getCompletedWorkouts(String userId) async{
+    try{
+      final List<WorkoutDto> listWorkoutDto = await _database.workout.getCompletedWorkoutsList(userId);
+      final List<Workout> listWorkout = listWorkoutDto.map((e) => e.toWorkout()).toList();
+      return listWorkout.reversed.toList();
+    }
+    catch(error){
+      return [];
+    }
+  }
 }

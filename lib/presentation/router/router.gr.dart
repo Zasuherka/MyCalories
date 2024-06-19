@@ -166,6 +166,18 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    WardCompletedWorkoutRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WardCompletedWorkoutPage(),
+      );
+    },
+    WardCompletedWorkoutsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const WardCompletedWorkoutsPage(),
+      );
+    },
     WardFoodDiaryRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -639,6 +651,34 @@ class UpdateCollectionRouteArgs {
   String toString() {
     return 'UpdateCollectionRouteArgs{key: $key, collection: $collection}';
   }
+}
+
+/// generated route for
+/// [WardCompletedWorkoutPage]
+class WardCompletedWorkoutRoute extends PageRouteInfo<void> {
+  const WardCompletedWorkoutRoute({List<PageRouteInfo>? children})
+      : super(
+          WardCompletedWorkoutRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WardCompletedWorkoutRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WardCompletedWorkoutsPage]
+class WardCompletedWorkoutsRoute extends PageRouteInfo<void> {
+  const WardCompletedWorkoutsRoute({List<PageRouteInfo>? children})
+      : super(
+          WardCompletedWorkoutsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WardCompletedWorkoutsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

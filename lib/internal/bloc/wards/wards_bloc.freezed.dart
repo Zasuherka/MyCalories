@@ -25,6 +25,7 @@ mixin _$WardsEvent {
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -46,6 +47,7 @@ mixin _$WardsEvent {
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -67,6 +69,7 @@ mixin _$WardsEvent {
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -92,6 +95,7 @@ mixin _$WardsEvent {
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -111,6 +115,7 @@ mixin _$WardsEvent {
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -130,6 +135,7 @@ mixin _$WardsEvent {
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -214,6 +220,7 @@ class _$GetWardsListEventImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -238,6 +245,7 @@ class _$GetWardsListEventImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -262,6 +270,7 @@ class _$GetWardsListEventImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -293,6 +302,7 @@ class _$GetWardsListEventImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -315,6 +325,7 @@ class _$GetWardsListEventImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -337,6 +348,7 @@ class _$GetWardsListEventImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -415,6 +427,7 @@ class _$GetWardRequestsListEventImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -439,6 +452,7 @@ class _$GetWardRequestsListEventImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -463,6 +477,7 @@ class _$GetWardRequestsListEventImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -494,6 +509,7 @@ class _$GetWardRequestsListEventImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -516,6 +532,7 @@ class _$GetWardRequestsListEventImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -538,6 +555,7 @@ class _$GetWardRequestsListEventImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -614,6 +632,7 @@ class _$UpdateLocalUserInfoImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -638,6 +657,7 @@ class _$UpdateLocalUserInfoImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -662,6 +682,7 @@ class _$UpdateLocalUserInfoImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -693,6 +714,7 @@ class _$UpdateLocalUserInfoImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -715,6 +737,7 @@ class _$UpdateLocalUserInfoImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -737,6 +760,7 @@ class _$UpdateLocalUserInfoImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -840,6 +864,7 @@ class _$GetInfoAboutWardImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -864,6 +889,7 @@ class _$GetInfoAboutWardImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -888,6 +914,7 @@ class _$GetInfoAboutWardImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -919,6 +946,7 @@ class _$GetInfoAboutWardImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -941,6 +969,7 @@ class _$GetInfoAboutWardImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -963,6 +992,7 @@ class _$GetInfoAboutWardImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1074,6 +1104,7 @@ class _$SetCurrentExerciseIndexImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -1098,6 +1129,7 @@ class _$SetCurrentExerciseIndexImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1122,6 +1154,7 @@ class _$SetCurrentExerciseIndexImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1153,6 +1186,7 @@ class _$SetCurrentExerciseIndexImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -1175,6 +1209,7 @@ class _$SetCurrentExerciseIndexImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1197,6 +1232,7 @@ class _$SetCurrentExerciseIndexImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1317,6 +1353,7 @@ class _$SetWorkoutListExerciseImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -1341,6 +1378,7 @@ class _$SetWorkoutListExerciseImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1365,6 +1403,7 @@ class _$SetWorkoutListExerciseImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1396,6 +1435,7 @@ class _$SetWorkoutListExerciseImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -1418,6 +1458,7 @@ class _$SetWorkoutListExerciseImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1440,6 +1481,7 @@ class _$SetWorkoutListExerciseImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1520,6 +1562,7 @@ class _$CurrentWorkoutEndImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -1544,6 +1587,7 @@ class _$CurrentWorkoutEndImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1568,6 +1612,7 @@ class _$CurrentWorkoutEndImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1599,6 +1644,7 @@ class _$CurrentWorkoutEndImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -1621,6 +1667,7 @@ class _$CurrentWorkoutEndImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1643,6 +1690,7 @@ class _$CurrentWorkoutEndImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1662,6 +1710,211 @@ class _$CurrentWorkoutEndImpl
 
 abstract class CurrentWorkoutEnd implements WardsEvent {
   const factory CurrentWorkoutEnd() = _$CurrentWorkoutEndImpl;
+}
+
+/// @nodoc
+abstract class _$$CompletedWorkoutListImplCopyWith<$Res> {
+  factory _$$CompletedWorkoutListImplCopyWith(_$CompletedWorkoutListImpl value,
+          $Res Function(_$CompletedWorkoutListImpl) then) =
+      __$$CompletedWorkoutListImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CompletedWorkoutListImplCopyWithImpl<$Res>
+    extends _$WardsEventCopyWithImpl<$Res, _$CompletedWorkoutListImpl>
+    implements _$$CompletedWorkoutListImplCopyWith<$Res> {
+  __$$CompletedWorkoutListImplCopyWithImpl(_$CompletedWorkoutListImpl _value,
+      $Res Function(_$CompletedWorkoutListImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CompletedWorkoutListImpl
+    with DiagnosticableTreeMixin
+    implements CompletedWorkoutList {
+  const _$CompletedWorkoutListImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WardsEvent.completedWorkoutList()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'WardsEvent.completedWorkoutList'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CompletedWorkoutListImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getWardsListEvent,
+    required TResult Function() getWardRequestsListEvent,
+    required TResult Function() updateLocalUserInfo,
+    required TResult Function(String userId) getInfoAboutWard,
+    required TResult Function(int index) setCurrentExerciseIndex,
+    required TResult Function(List<Exercise>? list) setWorkoutListExercise,
+    required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(int index) deleteExercise,
+    required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
+        addNewExerciseSet,
+    required TResult Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)
+        setCurrentRoundSet,
+    required TResult Function(DateTime dateTime) getInfoAboutFoodDiaryWard,
+    required TResult Function() removeWards,
+    required TResult Function(AppUser appUser, bool reply) replyWards,
+  }) {
+    return completedWorkoutList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getWardsListEvent,
+    TResult? Function()? getWardRequestsListEvent,
+    TResult? Function()? updateLocalUserInfo,
+    TResult? Function(String userId)? getInfoAboutWard,
+    TResult? Function(int index)? setCurrentExerciseIndex,
+    TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
+    TResult? Function(int oldIndex, int newIndex)? onReorder,
+    TResult? Function(int index)? deleteExercise,
+    TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult? Function(List<PhysicalActivity> list, String title,
+            String setCount, bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult? Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult? Function()? removeWards,
+    TResult? Function(AppUser appUser, bool reply)? replyWards,
+  }) {
+    return completedWorkoutList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getWardsListEvent,
+    TResult Function()? getWardRequestsListEvent,
+    TResult Function()? updateLocalUserInfo,
+    TResult Function(String userId)? getInfoAboutWard,
+    TResult Function(int index)? setCurrentExerciseIndex,
+    TResult Function(List<Exercise>? list)? setWorkoutListExercise,
+    TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(int index)? deleteExercise,
+    TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
+        addNewExerciseSet,
+    TResult Function(List<PhysicalActivity> list, String title, String setCount,
+            bool? addNewPhysicalActivity, int? removeIndex)?
+        setCurrentRoundSet,
+    TResult Function(DateTime dateTime)? getInfoAboutFoodDiaryWard,
+    TResult Function()? removeWards,
+    TResult Function(AppUser appUser, bool reply)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (completedWorkoutList != null) {
+      return completedWorkoutList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetWardsListEvent value) getWardsListEvent,
+    required TResult Function(GetWardRequestsListEvent value)
+        getWardRequestsListEvent,
+    required TResult Function(UpdateLocalUserInfo value) updateLocalUserInfo,
+    required TResult Function(GetInfoAboutWard value) getInfoAboutWard,
+    required TResult Function(SetCurrentExerciseIndex value)
+        setCurrentExerciseIndex,
+    required TResult Function(SetWorkoutListExercise value)
+        setWorkoutListExercise,
+    required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(DeleteExercise value) deleteExercise,
+    required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
+    required TResult Function(SetCurrentRoundSet value) setCurrentRoundSet,
+    required TResult Function(GetInfoAboutFoodDiaryWard value)
+        getInfoAboutFoodDiaryWard,
+    required TResult Function(RemoveWards value) removeWards,
+    required TResult Function(ReplyWards value) replyWards,
+  }) {
+    return completedWorkoutList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult? Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult? Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult? Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
+    TResult? Function(OnReorder value)? onReorder,
+    TResult? Function(DeleteExercise value)? deleteExercise,
+    TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult? Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult? Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult? Function(RemoveWards value)? removeWards,
+    TResult? Function(ReplyWards value)? replyWards,
+  }) {
+    return completedWorkoutList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetWardsListEvent value)? getWardsListEvent,
+    TResult Function(GetWardRequestsListEvent value)? getWardRequestsListEvent,
+    TResult Function(UpdateLocalUserInfo value)? updateLocalUserInfo,
+    TResult Function(GetInfoAboutWard value)? getInfoAboutWard,
+    TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
+    TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
+    TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(DeleteExercise value)? deleteExercise,
+    TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
+    TResult Function(SetCurrentRoundSet value)? setCurrentRoundSet,
+    TResult Function(GetInfoAboutFoodDiaryWard value)?
+        getInfoAboutFoodDiaryWard,
+    TResult Function(RemoveWards value)? removeWards,
+    TResult Function(ReplyWards value)? replyWards,
+    required TResult orElse(),
+  }) {
+    if (completedWorkoutList != null) {
+      return completedWorkoutList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CompletedWorkoutList implements WardsEvent {
+  const factory CompletedWorkoutList() = _$CompletedWorkoutListImpl;
 }
 
 /// @nodoc
@@ -1754,6 +2007,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -1778,6 +2032,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1802,6 +2057,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -1833,6 +2089,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -1855,6 +2112,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1877,6 +2135,7 @@ class _$OnReorderImpl with DiagnosticableTreeMixin implements OnReorder {
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -1988,6 +2247,7 @@ class _$DeleteExerciseImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -2012,6 +2272,7 @@ class _$DeleteExerciseImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2036,6 +2297,7 @@ class _$DeleteExerciseImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2067,6 +2329,7 @@ class _$DeleteExerciseImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -2089,6 +2352,7 @@ class _$DeleteExerciseImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2111,6 +2375,7 @@ class _$DeleteExerciseImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2239,6 +2504,7 @@ class _$AddNewExerciseSetImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -2263,6 +2529,7 @@ class _$AddNewExerciseSetImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2287,6 +2554,7 @@ class _$AddNewExerciseSetImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2318,6 +2586,7 @@ class _$AddNewExerciseSetImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -2340,6 +2609,7 @@ class _$AddNewExerciseSetImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2362,6 +2632,7 @@ class _$AddNewExerciseSetImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2536,6 +2807,7 @@ class _$SetCurrentRoundSetImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -2561,6 +2833,7 @@ class _$SetCurrentRoundSetImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2586,6 +2859,7 @@ class _$SetCurrentRoundSetImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2618,6 +2892,7 @@ class _$SetCurrentRoundSetImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -2640,6 +2915,7 @@ class _$SetCurrentRoundSetImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2662,6 +2938,7 @@ class _$SetCurrentRoundSetImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2782,6 +3059,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -2806,6 +3084,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2830,6 +3109,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -2861,6 +3141,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -2883,6 +3164,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2905,6 +3187,7 @@ class _$GetInfoAboutFoodDiaryWardImpl
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -2983,6 +3266,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -3007,6 +3291,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -3031,6 +3316,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -3062,6 +3348,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -3084,6 +3371,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -3106,6 +3394,7 @@ class _$RemoveWardsImpl with DiagnosticableTreeMixin implements RemoveWards {
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -3215,6 +3504,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
     required TResult Function(int index) setCurrentExerciseIndex,
     required TResult Function(List<Exercise>? list) setWorkoutListExercise,
     required TResult Function() currentWorkoutEnd,
+    required TResult Function() completedWorkoutList,
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(int index) deleteExercise,
     required TResult Function(List<Exercise> list, ExerciseCase exerciseCase)
@@ -3239,6 +3529,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
     TResult? Function(int index)? setCurrentExerciseIndex,
     TResult? Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult? Function()? currentWorkoutEnd,
+    TResult? Function()? completedWorkoutList,
     TResult? Function(int oldIndex, int newIndex)? onReorder,
     TResult? Function(int index)? deleteExercise,
     TResult? Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -3263,6 +3554,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
     TResult Function(int index)? setCurrentExerciseIndex,
     TResult Function(List<Exercise>? list)? setWorkoutListExercise,
     TResult Function()? currentWorkoutEnd,
+    TResult Function()? completedWorkoutList,
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(int index)? deleteExercise,
     TResult Function(List<Exercise> list, ExerciseCase exerciseCase)?
@@ -3294,6 +3586,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
     required TResult Function(SetWorkoutListExercise value)
         setWorkoutListExercise,
     required TResult Function(CurrentWorkoutEnd value) currentWorkoutEnd,
+    required TResult Function(CompletedWorkoutList value) completedWorkoutList,
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(DeleteExercise value) deleteExercise,
     required TResult Function(AddNewExerciseSet value) addNewExerciseSet,
@@ -3316,6 +3609,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
     TResult? Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult? Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult? Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult? Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult? Function(OnReorder value)? onReorder,
     TResult? Function(DeleteExercise value)? deleteExercise,
     TResult? Function(AddNewExerciseSet value)? addNewExerciseSet,
@@ -3338,6 +3632,7 @@ class _$ReplyWardsImpl with DiagnosticableTreeMixin implements ReplyWards {
     TResult Function(SetCurrentExerciseIndex value)? setCurrentExerciseIndex,
     TResult Function(SetWorkoutListExercise value)? setWorkoutListExercise,
     TResult Function(CurrentWorkoutEnd value)? currentWorkoutEnd,
+    TResult Function(CompletedWorkoutList value)? completedWorkoutList,
     TResult Function(OnReorder value)? onReorder,
     TResult Function(DeleteExercise value)? deleteExercise,
     TResult Function(AddNewExerciseSet value)? addNewExerciseSet,

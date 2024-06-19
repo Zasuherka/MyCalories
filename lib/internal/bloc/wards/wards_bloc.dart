@@ -28,6 +28,10 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
 
   final IFoodRepository _foodRepository = FoodRepository();
 
+  List<Workout> completedWorkoutsList = [];
+
+  late Workout completedWorkout;
+
   List<EatingFood> breakfast = [];
   List<EatingFood> lunch = [];
   List<EatingFood> dinner = [];
@@ -59,7 +63,8 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
   WardsBloc() : super(const WardsState.initial()) {
     on<WardsEvent>((event, emit) async {
       await event.map(
-        getWardsListEvent: (_) => _getWardsList(emit),
+        getWardsListEvent: (_) async => await _getWardsList(emit),
+        completedWorkoutList: (_) async => _getCompletedWorkoutList(emit),
         getWardRequestsListEvent: (_) async => await _getWardRequestsList(emit),
         updateLocalUserInfo: (_) {},
         getInfoAboutWard: (_) {},
@@ -90,6 +95,11 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
 
   void getInfoAboutWard(AppUser ward) {
     selectedWard = ward;
+  }
+
+  void setCompletedWorkout(Workout workout){
+    completedWorkout = workout;
+
   }
 
   /// ///////////////////////////////// workout functional
@@ -164,6 +174,13 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
     exerciseRoundSet.setCount = setCount;
     workout.listExercise[currentExerciseIndex!] = exerciseRoundSet;
     emitter(const WardsState.successUpdateExercise());
+  }
+
+  Future<void> _getCompletedWorkoutList(Emitter<WardsState> emitter) async{
+    if(selectedWard == null) return;
+    emitter(const WardsState.loading());
+    completedWorkoutsList =  await _wardRepository.getCompletedWorkouts(selectedWard!.userId);
+    emitter(const WardsState.success());
   }
 
   /// ///////////////////////////////// workout functional

@@ -20,7 +20,7 @@ class CollectionFoodBloc extends Bloc<CollectionFoodEvent, CollectionFoodState> 
           getCollection: (value) =>
               _getCollection(value.collectionId, emit),
           updateCollection: (value) =>
-              _updateCollection(value.updateListFood, value.collection , emit),
+              _updateCollection(value.updateListFood, value.collection, value.title , emit),
           deleteCollection: (value) =>
               _deleteCollectionFromList(value.collectionId, emit),
           addCollectionInUserListCollection: (value) =>
@@ -69,9 +69,10 @@ class CollectionFoodBloc extends Bloc<CollectionFoodEvent, CollectionFoodState> 
   Future<void> _updateCollection(
       List<Food> updateListFood,
       Collection collection,
+      String title,
       Emitter<CollectionFoodState> emitter
       ) async {
     await _collectionRepository
-        .updateCollection(updateListFood: updateListFood, collection: collection);
+        .updateCollection(updateListFood: updateListFood, collection: collection, title: title);
   }
 }

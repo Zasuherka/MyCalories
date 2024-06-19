@@ -58,6 +58,7 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Collection? collection = widget.collection;
     return Scaffold(
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -99,11 +100,11 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        if(title == ''){
+                        if(_titleTextController.text == ''){
                           _errorText = 'Выберите название';
                         }
                         else{
-                          if(widget.collection == null){
+                          if(collection == null){
                             BlocProvider.of<CollectionBloc>(context)
                                 .add(CollectionEvent.createCollection(
                                 title: title,
@@ -115,9 +116,12 @@ class _SaveCollectionPageState extends State<SaveCollectionPage> {
                                 .add(CollectionFoodEvent
                                 .updateCollection(
                                   updateListFood: listFood,
-                                  collection: widget.collection!
+                                  collection: collection,
+                                  title: _titleTextController.text,
                             ));
                           }
+                          context.read<CollectionBloc>()
+                              .add(const CollectionEvent.getUserListCollection());
                           context.router.popUntilRouteWithName(CollectionsRoute.name);
                         }
                       });

@@ -4,14 +4,15 @@ import 'package:app1/domain/model/food.dart';
 
 abstract class ICollectionRepository {
 
-  Future<void> createCollection({
+  Future<List<CollectionView>> createCollection({
     required List<Food> listFood,
     required String title
   });
 
   Future<void> updateCollection({
     required List<Food> updateListFood,
-    required Collection collection
+    required Collection collection,
+    required String title,
   });
 
   Future<void> getUserListCollection();

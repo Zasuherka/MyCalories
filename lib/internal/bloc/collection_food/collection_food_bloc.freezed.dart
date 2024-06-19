@@ -20,7 +20,8 @@ mixin _$CollectionFoodEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String collectionId) getCollection,
     required TResult Function(String collectionId) deleteCollection,
-    required TResult Function(List<Food> updateListFood, Collection collection)
+    required TResult Function(
+            List<Food> updateListFood, Collection collection, String title)
         updateCollection,
     required TResult Function(Collection collection)
         addCollectionInUserListCollection,
@@ -30,7 +31,8 @@ mixin _$CollectionFoodEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String collectionId)? getCollection,
     TResult? Function(String collectionId)? deleteCollection,
-    TResult? Function(List<Food> updateListFood, Collection collection)?
+    TResult? Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult? Function(Collection collection)? addCollectionInUserListCollection,
   }) =>
@@ -39,7 +41,8 @@ mixin _$CollectionFoodEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String collectionId)? getCollection,
     TResult Function(String collectionId)? deleteCollection,
-    TResult Function(List<Food> updateListFood, Collection collection)?
+    TResult Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult Function(Collection collection)? addCollectionInUserListCollection,
     required TResult orElse(),
@@ -160,7 +163,8 @@ class _$GetCollectionImpl implements _GetCollection {
   TResult when<TResult extends Object?>({
     required TResult Function(String collectionId) getCollection,
     required TResult Function(String collectionId) deleteCollection,
-    required TResult Function(List<Food> updateListFood, Collection collection)
+    required TResult Function(
+            List<Food> updateListFood, Collection collection, String title)
         updateCollection,
     required TResult Function(Collection collection)
         addCollectionInUserListCollection,
@@ -173,7 +177,8 @@ class _$GetCollectionImpl implements _GetCollection {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String collectionId)? getCollection,
     TResult? Function(String collectionId)? deleteCollection,
-    TResult? Function(List<Food> updateListFood, Collection collection)?
+    TResult? Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult? Function(Collection collection)? addCollectionInUserListCollection,
   }) {
@@ -185,7 +190,8 @@ class _$GetCollectionImpl implements _GetCollection {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String collectionId)? getCollection,
     TResult Function(String collectionId)? deleteCollection,
-    TResult Function(List<Food> updateListFood, Collection collection)?
+    TResult Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult Function(Collection collection)? addCollectionInUserListCollection,
     required TResult orElse(),
@@ -315,7 +321,8 @@ class _$DeleteCollectionImpl implements _DeleteCollection {
   TResult when<TResult extends Object?>({
     required TResult Function(String collectionId) getCollection,
     required TResult Function(String collectionId) deleteCollection,
-    required TResult Function(List<Food> updateListFood, Collection collection)
+    required TResult Function(
+            List<Food> updateListFood, Collection collection, String title)
         updateCollection,
     required TResult Function(Collection collection)
         addCollectionInUserListCollection,
@@ -328,7 +335,8 @@ class _$DeleteCollectionImpl implements _DeleteCollection {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String collectionId)? getCollection,
     TResult? Function(String collectionId)? deleteCollection,
-    TResult? Function(List<Food> updateListFood, Collection collection)?
+    TResult? Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult? Function(Collection collection)? addCollectionInUserListCollection,
   }) {
@@ -340,7 +348,8 @@ class _$DeleteCollectionImpl implements _DeleteCollection {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String collectionId)? getCollection,
     TResult Function(String collectionId)? deleteCollection,
-    TResult Function(List<Food> updateListFood, Collection collection)?
+    TResult Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult Function(Collection collection)? addCollectionInUserListCollection,
     required TResult orElse(),
@@ -408,7 +417,7 @@ abstract class _$$UpdateCollectionImplCopyWith<$Res> {
           $Res Function(_$UpdateCollectionImpl) then) =
       __$$UpdateCollectionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Food> updateListFood, Collection collection});
+  $Res call({List<Food> updateListFood, Collection collection, String title});
 }
 
 /// @nodoc
@@ -424,6 +433,7 @@ class __$$UpdateCollectionImplCopyWithImpl<$Res>
   $Res call({
     Object? updateListFood = null,
     Object? collection = null,
+    Object? title = null,
   }) {
     return _then(_$UpdateCollectionImpl(
       updateListFood: null == updateListFood
@@ -434,6 +444,10 @@ class __$$UpdateCollectionImplCopyWithImpl<$Res>
           ? _value.collection
           : collection // ignore: cast_nullable_to_non_nullable
               as Collection,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -442,7 +456,9 @@ class __$$UpdateCollectionImplCopyWithImpl<$Res>
 
 class _$UpdateCollectionImpl implements _UpdateCollection {
   const _$UpdateCollectionImpl(
-      {required final List<Food> updateListFood, required this.collection})
+      {required final List<Food> updateListFood,
+      required this.collection,
+      required this.title})
       : _updateListFood = updateListFood;
 
   final List<Food> _updateListFood;
@@ -455,10 +471,12 @@ class _$UpdateCollectionImpl implements _UpdateCollection {
 
   @override
   final Collection collection;
+  @override
+  final String title;
 
   @override
   String toString() {
-    return 'CollectionFoodEvent.updateCollection(updateListFood: $updateListFood, collection: $collection)';
+    return 'CollectionFoodEvent.updateCollection(updateListFood: $updateListFood, collection: $collection, title: $title)';
   }
 
   @override
@@ -469,12 +487,13 @@ class _$UpdateCollectionImpl implements _UpdateCollection {
             const DeepCollectionEquality()
                 .equals(other._updateListFood, _updateListFood) &&
             (identical(other.collection, collection) ||
-                other.collection == collection));
+                other.collection == collection) &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_updateListFood), collection);
+      const DeepCollectionEquality().hash(_updateListFood), collection, title);
 
   @JsonKey(ignore: true)
   @override
@@ -488,12 +507,13 @@ class _$UpdateCollectionImpl implements _UpdateCollection {
   TResult when<TResult extends Object?>({
     required TResult Function(String collectionId) getCollection,
     required TResult Function(String collectionId) deleteCollection,
-    required TResult Function(List<Food> updateListFood, Collection collection)
+    required TResult Function(
+            List<Food> updateListFood, Collection collection, String title)
         updateCollection,
     required TResult Function(Collection collection)
         addCollectionInUserListCollection,
   }) {
-    return updateCollection(updateListFood, collection);
+    return updateCollection(updateListFood, collection, title);
   }
 
   @override
@@ -501,11 +521,12 @@ class _$UpdateCollectionImpl implements _UpdateCollection {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String collectionId)? getCollection,
     TResult? Function(String collectionId)? deleteCollection,
-    TResult? Function(List<Food> updateListFood, Collection collection)?
+    TResult? Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult? Function(Collection collection)? addCollectionInUserListCollection,
   }) {
-    return updateCollection?.call(updateListFood, collection);
+    return updateCollection?.call(updateListFood, collection, title);
   }
 
   @override
@@ -513,13 +534,14 @@ class _$UpdateCollectionImpl implements _UpdateCollection {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String collectionId)? getCollection,
     TResult Function(String collectionId)? deleteCollection,
-    TResult Function(List<Food> updateListFood, Collection collection)?
+    TResult Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult Function(Collection collection)? addCollectionInUserListCollection,
     required TResult orElse(),
   }) {
     if (updateCollection != null) {
-      return updateCollection(updateListFood, collection);
+      return updateCollection(updateListFood, collection, title);
     }
     return orElse();
   }
@@ -568,10 +590,12 @@ class _$UpdateCollectionImpl implements _UpdateCollection {
 abstract class _UpdateCollection implements CollectionFoodEvent {
   const factory _UpdateCollection(
       {required final List<Food> updateListFood,
-      required final Collection collection}) = _$UpdateCollectionImpl;
+      required final Collection collection,
+      required final String title}) = _$UpdateCollectionImpl;
 
   List<Food> get updateListFood;
   Collection get collection;
+  String get title;
   @JsonKey(ignore: true)
   _$$UpdateCollectionImplCopyWith<_$UpdateCollectionImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -650,7 +674,8 @@ class _$AddCollectionInUserListCollectionImpl
   TResult when<TResult extends Object?>({
     required TResult Function(String collectionId) getCollection,
     required TResult Function(String collectionId) deleteCollection,
-    required TResult Function(List<Food> updateListFood, Collection collection)
+    required TResult Function(
+            List<Food> updateListFood, Collection collection, String title)
         updateCollection,
     required TResult Function(Collection collection)
         addCollectionInUserListCollection,
@@ -663,7 +688,8 @@ class _$AddCollectionInUserListCollectionImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String collectionId)? getCollection,
     TResult? Function(String collectionId)? deleteCollection,
-    TResult? Function(List<Food> updateListFood, Collection collection)?
+    TResult? Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult? Function(Collection collection)? addCollectionInUserListCollection,
   }) {
@@ -675,7 +701,8 @@ class _$AddCollectionInUserListCollectionImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String collectionId)? getCollection,
     TResult Function(String collectionId)? deleteCollection,
-    TResult Function(List<Food> updateListFood, Collection collection)?
+    TResult Function(
+            List<Food> updateListFood, Collection collection, String title)?
         updateCollection,
     TResult Function(Collection collection)? addCollectionInUserListCollection,
     required TResult orElse(),
