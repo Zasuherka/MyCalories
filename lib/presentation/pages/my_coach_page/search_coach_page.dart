@@ -1,4 +1,4 @@
-import 'package:app1/internal/bloc/coach/coach_bloc.dart';
+import 'package:app1/internal/bloc/coach_bloc/coach_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/custom_app_bar.dart';
 import 'package:auto_route/auto_route.dart';
@@ -52,7 +52,6 @@ class _SearchCoachPageState extends State<SearchCoachPage> {
             appBar: CustomAppBar(
               leftOnTap: (){
                 coachBloc.add(const CoachEvent.searchCoach(searchText: ''));
-                print('object');
                 context.router.popForced();
               },
               title: 'Поиск тренера',

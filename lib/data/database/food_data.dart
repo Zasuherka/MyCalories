@@ -63,9 +63,7 @@ class _FoodData{
             double.parse(snapshotFood.child('calories').value.toString()));
         findGlobalFoodList.add(findFood);
       }
-    } catch (error) {
-      print('error: $error');
-    }
+    } catch (error) {}
     return findGlobalFoodList;
   }
 
@@ -85,9 +83,7 @@ class _FoodData{
         newListFood.add(foodId);
         await _usersRef.child(userId).update({"myFoods": newListFood});
       }
-    } catch (error) {
-      print('error: $error');
-    }
+    } catch (error) {}
   }
 
   Future<List<Food>> getUserFoods(String userId, String email) async {

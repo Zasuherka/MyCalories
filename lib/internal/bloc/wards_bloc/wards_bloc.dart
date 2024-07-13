@@ -1,7 +1,3 @@
-import 'package:app1/data/dto/user_dto/user_dto.dart';
-import 'package:app1/data/repository/food_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/data/repository/wards_repository.dart';
 import 'package:app1/domain/enums/exercise_case.dart';
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/model/user.dart';
@@ -10,6 +6,7 @@ import 'package:app1/domain/model/workout/exercise_cardio.dart';
 import 'package:app1/domain/model/workout/exercise_round_set.dart';
 import 'package:app1/domain/model/workout/exercise_set.dart';
 import 'package:app1/domain/model/workout/workout.dart';
+import 'package:app1/domain/repository/I_wards_repository.dart';
 import 'package:app1/domain/repository/i_food_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -23,10 +20,50 @@ part 'wards_state.dart';
 part 'wards_bloc.freezed.dart';
 
 class WardsBloc extends Bloc<WardsEvent, WardsState> {
-  final WardRepository _wardRepository = WardRepository();
-  final IUserRepository _userRepository = UserRepository();
+  final IWardRepository _wardRepository;
+  final IUserRepository _userRepository;
+  final IFoodRepository _foodRepository;
 
-  final IFoodRepository _foodRepository = FoodRepository();
+  WardsBloc({
+    required IWardRepository wardRepository,
+    required IUserRepository userRepository,
+    required IFoodRepository foodRepository,
+  })  : _wardRepository = wardRepository,
+        _userRepository = userRepository,
+        _foodRepository = foodRepository,
+        super(const WardsState.initial()) {
+    on<WardsEvent>((event, emit) async {
+      await event.map(
+        getWardsListEvent: (_) async => await _getWardsList(emit),
+        completedWorkoutList: (_) async => _getCompletedWorkoutList(emit),
+        getWardRequestsListEvent: (_) async => await _getWardRequestsList(emit),
+        updateLocalUserInfo: (_) {},
+        getInfoAboutWard: (_) {},
+        removeWards: (_) async => _removeWard(emit),
+        setCurrentRoundSet: (value) async => _setCurrentRoundSet(
+          emit,
+          List.of(value.list),
+          value.title,
+          value.setCount,
+        ),
+        addNewExerciseSet: (value) async =>
+            _addNewExerciseSet(emit, List.of(value.list), value.exerciseCase),
+        deleteExercise: (value) async => _deleteExercise(emit, value.index),
+        onReorder: (value) async => _onReorder(emit, value.oldIndex, value.newIndex),
+        currentWorkoutEnd: (_) async => await _currentWorkoutEnd(emit),
+        setWorkoutListExercise: (value) async =>
+            _setWorkoutListExercise(emit, value.list != null ? List.of(value.list!) : null),
+        setCurrentExerciseIndex: (value) async => _setCurrentExerciseIndex(emit, value.index),
+        getInfoAboutFoodDiaryWard: (value) async => await _getEatingByData(emit, value.dateTime),
+        replyWards: (value) async => await _replyWards(emit, value.appUser, value.reply),
+      );
+    });
+
+    localUser = _userRepository.localUser;
+    _userRepository.controller.stream.listen((event) {
+      localUser = event;
+    });
+  }
 
   List<Workout> completedWorkoutsList = [];
 
@@ -59,39 +96,6 @@ class WardsBloc extends Bloc<WardsEvent, WardsState> {
   Workout workout = Workout(title: '', listExercise: []);
 
   int? currentExerciseIndex;
-
-  WardsBloc() : super(const WardsState.initial()) {
-    on<WardsEvent>((event, emit) async {
-      await event.map(
-        getWardsListEvent: (_) async => await _getWardsList(emit),
-        completedWorkoutList: (_) async => _getCompletedWorkoutList(emit),
-        getWardRequestsListEvent: (_) async => await _getWardRequestsList(emit),
-        updateLocalUserInfo: (_) {},
-        getInfoAboutWard: (_) {},
-        removeWards: (_) async => _removeWard(emit),
-        setCurrentRoundSet: (value) async => _setCurrentRoundSet(
-          emit,
-          List.of(value.list),
-          value.title,
-          value.setCount,
-        ),
-        addNewExerciseSet: (value) async =>
-            _addNewExerciseSet(emit, List.of(value.list), value.exerciseCase),
-        deleteExercise: (value) async => _deleteExercise(emit, value.index),
-        onReorder: (value) async => _onReorder(emit, value.oldIndex, value.newIndex),
-        currentWorkoutEnd: (_) async => await _currentWorkoutEnd(emit),
-        setWorkoutListExercise: (value) async => _setWorkoutListExercise(emit, value.list!= null ? List.of(value.list!) : null),
-        setCurrentExerciseIndex: (value) async => _setCurrentExerciseIndex(emit, value.index),
-        getInfoAboutFoodDiaryWard: (value) async => await _getEatingByData(emit, value.dateTime),
-        replyWards: (value) async => await _replyWards(emit, value.appUser, value.reply),
-      );
-    });
-
-    localUser = _userRepository.localUser;
-    UserRepository.controller.stream.listen((event) {
-      localUser = event;
-    });
-  }
 
   void getInfoAboutWard(AppUser ward) {
     selectedWard = ward;

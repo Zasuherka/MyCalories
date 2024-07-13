@@ -76,13 +76,11 @@ class _CollectionData{
   
   Future<void> editUserListCollection(List<String> newUserListCollectionId, String userId) async {
     try{
-      print(newUserListCollectionId);
       await _usersRef.child(userId).update({
         'collections': newUserListCollectionId
       });
     }
     catch(error){
-      print(error);
       throw Exception('Ошибка при добавлении коллекции в список коллекий пользователя');
     }
   }

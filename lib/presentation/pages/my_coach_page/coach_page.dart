@@ -1,5 +1,5 @@
-import 'package:app1/internal/bloc/coach/coach_bloc.dart';
-import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
+import 'package:app1/internal/bloc/coach_bloc/coach_bloc.dart';
+import 'package:app1/internal/bloc/colletion_bloc/collection_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/my_coach_page/widgets/remove_coach_dialog.dart';
 import 'package:app1/presentation/router/router.dart';

@@ -1,6 +1,5 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/workout_dto/workout_dto.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/model/workout/workout.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
@@ -9,8 +8,12 @@ import 'package:intl/intl.dart';
 
 class WorkoutRepository extends IWorkoutRepository{
 
-  final IUserRepository _userRepository = UserRepository();
-  final Database _database = Database();
+  final IUserRepository _userRepository;
+  final Database _database;
+
+  WorkoutRepository({required IUserRepository userRepository, required Database database})
+      : _userRepository = userRepository,
+        _database = database;
 
   @override
   Stream<Workout?> getCurrentWorkout() {

@@ -1,6 +1,5 @@
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/model/food.dart';
-import 'package:app1/domain/model/user.dart';
 
 abstract class IFoodRepository {
 

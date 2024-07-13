@@ -2,7 +2,7 @@ import 'package:app1/domain/model/workout/exercise.dart';
 import 'package:app1/domain/model/workout/exercise_cardio.dart';
 import 'package:app1/domain/model/workout/exercise_round_set.dart';
 import 'package:app1/domain/model/workout/exercise_set.dart';
-import 'package:app1/internal/cubit/workout/workout_cubit.dart';
+import 'package:app1/internal/cubit/workout_cubit/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/current_workout_page/widgets/current_workout_end_dialog.dart';
 import 'package:app1/presentation/widgets/custom_app_bar.dart';

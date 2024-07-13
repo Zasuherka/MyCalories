@@ -1,16 +1,21 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/user_dto/user_dto.dart';
 import 'package:app1/data/dto/workout_dto/workout_dto.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/model/workout/workout.dart';
+import 'package:app1/domain/repository/I_wards_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:intl/intl.dart';
 
-class WardRepository{
-  final IUserRepository _userRepository = UserRepository();
-  final Database _database = Database();
+class WardRepository implements IWardRepository{
+  final IUserRepository _userRepository;
+  final Database _database;
 
+  WardRepository({required IUserRepository userRepository, required Database database})
+      : _userRepository = userRepository,
+        _database = database;
+
+  @override
   Future<List<AppUser>> getWardRequestsList() async{
     final localUser = _userRepository.localUser;
 
@@ -21,6 +26,7 @@ class WardRepository{
     return _getUsersList(localUser.wardRequests);
   }
 
+  @override
   Future<List<AppUser>> getWardsList() async{
     final localUser = _userRepository.localUser;
 
@@ -49,6 +55,7 @@ class WardRepository{
     return wardRequestsList;
   }
 
+  @override
   Future<void> replyWard(AppUser ward, bool reply) async{
     final localUser = _userRepository.localUser;
 
@@ -78,6 +85,7 @@ class WardRepository{
     }
   }
 
+  @override
   Future<void> sendWorkout(Workout workout, AppUser ward) async{
     try{
       final String formattedDate = DateFormat('dd.MM.yyyy').format(DateTime.now());
@@ -95,6 +103,7 @@ class WardRepository{
     }
   }
 
+  @override
   Future<void> removeWard(AppUser ward) async{
     final localUser = _userRepository.localUser;
 
@@ -114,6 +123,7 @@ class WardRepository{
     }
   }
 
+  @override
   Future<List<Workout>> getCompletedWorkouts(String userId) async{
     try{
       final List<WorkoutDto> listWorkoutDto = await _database.workout.getCompletedWorkoutsList(userId);

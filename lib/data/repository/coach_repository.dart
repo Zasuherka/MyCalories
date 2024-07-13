@@ -1,16 +1,21 @@
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/user_dto/user_dto.dart';
 import 'package:app1/data/dto/workout_dto/workout_dto.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/model/workout/workout.dart';
+import 'package:app1/domain/repository/i_coach_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 
-class CoachRepository {
-  final IUserRepository _userRepository = UserRepository();
-  final Database _database = Database();
+class CoachRepository implements ICoachRepository{
+  final IUserRepository _userRepository;
+  final Database _database;
 
+  CoachRepository({required IUserRepository userRepository, required Database database})
+      : _userRepository = userRepository,
+        _database = database;
+
+  @override
   Future<List<AppUser>> searchCoach(String searchText) async {
     final localUser = _userRepository.localUser;
 
@@ -26,6 +31,7 @@ class CoachRepository {
     return userList;
   }
 
+  @override
   Future<AppUser> getCoachInfo(String coachId) async{
     try{
       final AppUserDto? appUserDto = await _database.userData.getAllInfoAboutUser(userId: coachId);
@@ -39,6 +45,7 @@ class CoachRepository {
     }
   }
 
+  @override
   Future<void> requestCoach(AppUser coach) async {
     final localUser = _userRepository.localUser;
 
@@ -63,6 +70,7 @@ class CoachRepository {
     }
   }
 
+  @override
   Future<void> removeCoach(AppUser coach) async{
     final localUser = _userRepository.localUser;
 
@@ -83,6 +91,7 @@ class CoachRepository {
     }
   }
 
+  @override
   Future<List<CollectionView>> getCoachCollectionViewList(List<String> listCollectionsId) async{
     try{
       return await _database.collectionData.getUserListCollection(
@@ -94,6 +103,7 @@ class CoachRepository {
     }
   }
 
+  @override
   Future<Workout?> getInfoAboutScheduledWorkout() async{
     final localUser = _userRepository.localUser;
 
@@ -111,6 +121,7 @@ class CoachRepository {
     }
   }
 
+  @override
   Future<void> startScheduledWorkout(Workout workout) async{
     final localUser = _userRepository.localUser;
 

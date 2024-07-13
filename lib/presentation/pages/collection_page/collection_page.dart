@@ -2,9 +2,9 @@ import 'package:app1/domain/model/collection.dart';
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/model/food.dart';
 import 'package:app1/internal/bloc/collection_food/collection_food_bloc.dart';
-import 'package:app1/internal/bloc/colletion/collection_bloc.dart';
+import 'package:app1/internal/bloc/colletion_bloc/collection_bloc.dart';
 import 'package:app1/internal/bloc/eating_food_bloc/eating_food_bloc.dart';
-import 'package:app1/internal/cubit/warning/warning_cubit.dart';
+import 'package:app1/internal/cubit/warning_cubit/warning_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/collection_page/widgets/collection_wrap.dart';
 import 'package:app1/presentation/router/router.dart';
@@ -33,7 +33,6 @@ class _CollectionPageState extends State<CollectionPage> {
   @override
   void initState() {
     super.initState();
-    print(widget.collectionId);
     BlocProvider.of<CollectionFoodBloc>(context)
         .add(CollectionFoodEvent.getCollection(collectionId: widget.collectionId));
   }

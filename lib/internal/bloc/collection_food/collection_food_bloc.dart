@@ -1,6 +1,5 @@
 import 'package:app1/domain/model/collection.dart';
 import 'package:app1/domain/model/food.dart';
-import 'package:app1/data/repository/collection_repository.dart';
 import 'package:app1/domain/repository/i_collection_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
@@ -12,20 +11,19 @@ part 'collection_food_bloc.freezed.dart';
 
 class CollectionFoodBloc extends Bloc<CollectionFoodEvent, CollectionFoodState> {
 
-  final ICollectionRepository _collectionRepository = CollectionRepository();
+  final ICollectionRepository _collectionRepository;
 
-  CollectionFoodBloc() : super(const CollectionFoodState.initial()) {
+  CollectionFoodBloc({required ICollectionRepository collectionRepository})
+      : _collectionRepository = collectionRepository,
+        super(const CollectionFoodState.initial()) {
     on<CollectionFoodEvent>(transformer: restartable(), (event, emit) async {
       await event.map(
-          getCollection: (value) =>
-              _getCollection(value.collectionId, emit),
+          getCollection: (value) => _getCollection(value.collectionId, emit),
           updateCollection: (value) =>
-              _updateCollection(value.updateListFood, value.collection, value.title , emit),
-          deleteCollection: (value) =>
-              _deleteCollectionFromList(value.collectionId, emit),
+              _updateCollection(value.updateListFood, value.collection, value.title, emit),
+          deleteCollection: (value) => _deleteCollectionFromList(value.collectionId, emit),
           addCollectionInUserListCollection: (value) =>
-              _addCollectionInUserListCollection(value.collection, emit)
-      );
+              _addCollectionInUserListCollection(value.collection, emit));
     });
   }
 

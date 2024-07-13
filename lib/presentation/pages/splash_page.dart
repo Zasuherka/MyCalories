@@ -1,5 +1,5 @@
-import 'package:app1/internal/cubit/warning/warning_cubit.dart';
-import 'package:app1/internal/cubit/get_page/get_page_cubit.dart';
+import 'package:app1/internal/cubit/warning_cubit/warning_cubit.dart';
+import 'package:app1/internal/cubit/get_page_cubit/get_page_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/auth_page/auth_page.dart';
 import 'package:app1/presentation/pages/main_page.dart';
@@ -36,7 +36,6 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return BlocListener<WarningCubit, WarningCubitState>(
       listener: (BuildContext context, WarningCubitState state) {
-        print(state);
         if (state is Disconnected) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

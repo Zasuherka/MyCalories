@@ -1,12 +1,11 @@
-import 'package:app1/data/repository/coach_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/collection_view.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/model/workout/workout.dart';
+import 'package:app1/domain/repository/i_coach_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
-import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:bloc/bloc.dart';
 
 part 'coach_event.dart';
 part 'coach_state.dart';
@@ -14,8 +13,31 @@ part 'coach_bloc.freezed.dart';
 
 class CoachBloc extends Bloc<CoachEvent, CoachState> {
 
-  final IUserRepository _userRepository = UserRepository();
-  final CoachRepository _coachRepository = CoachRepository();
+  CoachBloc({required IUserRepository userRepository, required ICoachRepository coachRepository})
+      : _userRepository = userRepository,
+        _coachRepository = coachRepository,
+        super(const CoachState.initial()) {
+    on<CoachEvent>((event, emit) async {
+      await event.map(
+          getScheduledWorkout: (_) async => await _getInfoAboutScheduledWorkout(emit),
+          getCoachInfo: (_) async => await _getCoachInfo(emit),
+          searchCoach: (value) async => await _searchCoach(emit, value.searchText),
+          coachRequest: (value) async => await _coachRequest(emit, value.coach),
+          updateLocalUserInfo: (_) async => await _updateLocalUserInfo(emit),
+          getCoachCollectionViewList: (_) async => _getCoachCollectionViewList(emit),
+          removeCoach: (_) async => _removeCoach(emit),
+          startScheduledWorkoutEvent: (_) async => await _startScheduledWorkout(emit));
+    }, transformer: restartable());
+    localUser = _userRepository.localUser;
+    coachId = localUser?.coachId;
+    _userRepository.controller.stream.listen((event) {
+      localUser = event;
+      coachId = event?.coachId;
+    });
+  }
+
+  final IUserRepository _userRepository;
+  final ICoachRepository _coachRepository;
   AppUser? coach;
   String? coachId;
   List<AppUser> appUserList = [];
@@ -23,27 +45,6 @@ class CoachBloc extends Bloc<CoachEvent, CoachState> {
   AppUser? localUser;
 
   Workout? scheduledWorkout;
-
-  CoachBloc() : super(const CoachState.initial()) {
-    on<CoachEvent>((event, emit) async {
-      await event.map(
-        getScheduledWorkout: (_) async => await _getInfoAboutScheduledWorkout(emit),
-        getCoachInfo: (_) async => await _getCoachInfo(emit),
-        searchCoach: (value) async => await _searchCoach(emit, value.searchText),
-        coachRequest: (value) async => await _coachRequest(emit, value.coach),
-        updateLocalUserInfo: (_) async => await _updateLocalUserInfo(emit),
-        getCoachCollectionViewList: (_) async => _getCoachCollectionViewList(emit),
-        removeCoach: (_) async => _removeCoach(emit),
-        startScheduledWorkoutEvent: (_) async => await _startScheduledWorkout(emit)
-      );
-    }, transformer: restartable());
-    localUser = _userRepository.localUser;
-    coachId = localUser?.coachId;
-    UserRepository.controller.stream.listen((event) {
-      localUser = event;
-      coachId = event?.coachId;
-    });
-  }
 
   Future<void> _updateLocalUserInfo(Emitter<CoachState> emitter) async{
     emitter(const CoachState.loading());

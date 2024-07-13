@@ -60,9 +60,9 @@ ThemeData createTheme() {
     ),
     menuTheme: const MenuThemeData(
       style: MenuStyle(
-          backgroundColor: MaterialStatePropertyAll<Color>(AppColors.primaryButtonColor),
-          shape: MaterialStatePropertyAll<OutlinedBorder?>(RoundedRectangleBorder ()),
-          side: MaterialStatePropertyAll<BorderSide?>(BorderSide(
+          backgroundColor: WidgetStatePropertyAll<Color>(AppColors.primaryButtonColor),
+          shape: WidgetStatePropertyAll<OutlinedBorder?>(RoundedRectangleBorder ()),
+          side: WidgetStatePropertyAll<BorderSide?>(BorderSide(
               width: 2
           ))
       )

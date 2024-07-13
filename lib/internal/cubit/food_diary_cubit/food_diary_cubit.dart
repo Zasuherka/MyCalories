@@ -1,4 +1,3 @@
-import 'package:app1/data/repository/food_repository.dart';
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/repository/i_food_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -7,8 +6,11 @@ part 'food_diary_state.dart';
 part 'food_diary_cubit.freezed.dart';
 
 class FoodDiaryCubit extends Cubit<FoodDiaryState> {
+  FoodDiaryCubit({required IFoodRepository foodRepository}) :
+        _foodRepository = foodRepository,
+        super(const FoodDiaryState.initial());
 
-  final IFoodRepository _foodRepository = FoodRepository();
+  final IFoodRepository _foodRepository;
 
   List<EatingFood> breakfast = [];
   List<EatingFood> lunch = [];
@@ -26,8 +28,6 @@ class FoodDiaryCubit extends Cubit<FoodDiaryState> {
   double anotherCalories = 0;
 
   DateTime? selectedDate;
-
-  FoodDiaryCubit() : super(const FoodDiaryState.initial());
 
   Future<void> getEatingByData(DateTime dateTime) async{
     emit(const FoodDiaryState.loading());

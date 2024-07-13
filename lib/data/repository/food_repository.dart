@@ -2,17 +2,23 @@ import 'dart:async';
 import 'package:app1/data/database/database.dart';
 import 'package:app1/data/dto/create_food/food_dto.dart';
 import 'package:app1/domain/model/food.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/model/eating_food.dart';
 import 'package:app1/domain/repository/i_food_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:intl/intl.dart';
 
 class FoodRepository implements IFoodRepository {
-  final IUserRepository _userRepository = UserRepository();
+
+  FoodRepository({required IUserRepository userRepository, required Database database})
+      : _userRepository = userRepository,
+        _database = database;
+
+  final IUserRepository _userRepository;
+
+  final Database _database;
+
   static String _dateNow = DateFormat('yyyyMMdd').format(DateTime.now());
 
-  final Database _database = Database();
 
   ///Создание Еды, запись в БД, запись в список еды пользователя
   @override
@@ -43,9 +49,7 @@ class FoodRepository implements IFoodRepository {
       listFood.add(newFood);
       _userRepository.setFoodList(listFood);
       return listFood;
-    } catch (e) {
-      print("Ошибка$e");
-    }
+    } catch (e) {}
     return null;
   }
 
@@ -90,9 +94,7 @@ class FoodRepository implements IFoodRepository {
       _userRepository.setFoodList(listFood);
       return listFood;
     }
-    catch(e){
-      print('Ошибка обновления $e');
-    }
+    catch(e){}
     return null;
   }
 
@@ -260,7 +262,6 @@ class FoodRepository implements IFoodRepository {
   //           await _getEatingFoodListsByDate(DateTime.now()));
   //       return;
   //     } on Exception catch (_) {
-  //       print('Ошибка получения списков приёмов пищи с БД');
   //     }
   //   }
   //

@@ -1,4 +1,4 @@
-import 'package:app1/internal/cubit/food_diary/food_diary_cubit.dart';
+import 'package:app1/internal/cubit/food_diary_cubit/food_diary_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/food_diary_page/widgets/eating_charts.dart';
 import 'package:app1/presentation/pages/food_diary_page/widgets/eating_widget.dart';

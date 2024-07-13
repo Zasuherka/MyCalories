@@ -1,7 +1,5 @@
 import 'package:app1/domain/model/food.dart';
 import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/user_repository.dart';
-import 'package:app1/data/repository/food_repository.dart';
 import 'package:app1/domain/repository/i_food_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
@@ -13,45 +11,32 @@ part 'food_state.dart';
 part 'food_bloc.freezed.dart';
 class FoodBloc extends Bloc<FoodEvent, FoodState> {
 
-  final IUserRepository _userRepository = UserRepository();
-  final IFoodRepository _foodRepository = FoodRepository();
+  final IUserRepository _userRepository;
+  final IFoodRepository _foodRepository;
 
   AppUser? localUser;
 
-  FoodBloc() : super(const FoodState.initial()) {
-    on<FoodEvent>(
-        transformer: restartable(),
-        (event, emit) async {
-          await event.map(
-              getFoodList: (_) => _getFoodList(emit),
-              findFood: (value) => _findFood(value.searchText, emit),
-              addingFood: (value) => _addingFood(value.food, emit),
-              createFood: (value) =>
-                  _createFood(
-                      value.title, 
-                      value.protein, 
-                      value.fats,
-                      value.carbohydrates,
-                      value.calories,
-                      emit
-                  ), 
-              updateFood: (value) => _updateFood(
-                  value.food,
-                  value.title,
-                  value.protein,
-                  value.fats,
-                  value.carbohydrates,
-                  value.calories,
-                  emit
-              ), 
-              deleteFood: (value) => _deleteFood(value.food, emit),
-              infoAboutFood: (value) => _getFoodInfo(value.food, emit)
-          );
-        }
-    );
+  FoodBloc({
+    required IUserRepository userRepository,
+    required IFoodRepository foodRepository,
+  })  : _userRepository = userRepository,
+        _foodRepository = foodRepository,
+        super(const FoodState.initial()) {
+    on<FoodEvent>(transformer: restartable(), (event, emit) async {
+      await event.map(
+          getFoodList: (_) => _getFoodList(emit),
+          findFood: (value) => _findFood(value.searchText, emit),
+          addingFood: (value) => _addingFood(value.food, emit),
+          createFood: (value) => _createFood(
+              value.title, value.protein, value.fats, value.carbohydrates, value.calories, emit),
+          updateFood: (value) => _updateFood(value.food, value.title, value.protein, value.fats,
+              value.carbohydrates, value.calories, emit),
+          deleteFood: (value) => _deleteFood(value.food, emit),
+          infoAboutFood: (value) => _getFoodInfo(value.food, emit));
+    });
 
     localUser = _userRepository.localUser;
-    UserRepository.controller.stream.listen((event) {
+    _userRepository.controller.stream.listen((event) {
       localUser = event;
     });
   }

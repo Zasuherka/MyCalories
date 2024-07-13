@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:app1/data/repository/workout_repository.dart';
 import 'package:app1/domain/enums/exercise_case.dart';
 import 'package:app1/domain/model/workout/exercise.dart';
 import 'package:app1/domain/model/workout/exercise_cardio.dart';
@@ -14,8 +13,11 @@ part 'workout_state.dart';
 part 'workout_cubit.freezed.dart';
 
 class WorkoutCubit extends Cubit<WorkoutState> {
+  WorkoutCubit({required IWorkoutRepository workoutRepository})
+      : _workoutRepository = workoutRepository,
+        super(const WorkoutState.initial());
 
-  final IWorkoutRepository _workoutRepository = WorkoutRepository();
+  final IWorkoutRepository _workoutRepository;
 
   Workout currentWorkout = Workout(title: '', listExercise: []);
 
@@ -26,8 +28,6 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   int? currentExerciseIndex;
 
   bool currentWorkoutIsNull = false;
-
-  WorkoutCubit() : super(const WorkoutState.initial());
 
   void setCurrentExerciseIndex(int index){
     currentExerciseIndex = index;

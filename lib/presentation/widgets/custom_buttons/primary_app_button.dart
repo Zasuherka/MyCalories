@@ -66,7 +66,7 @@ class PrimaryAppButton extends StatelessWidget {
                 height: height,
                 width: width,
                 child: Align(
-                  alignment: alignment ?? Alignment.center,
+                  alignment: alignment,
                   child: child,
                 ),
             ),

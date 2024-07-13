@@ -1,5 +1,5 @@
 import 'package:app1/domain/model/workout/workout.dart';
-import 'package:app1/internal/cubit/workout/workout_cubit.dart';
+import 'package:app1/internal/cubit/workout_cubit/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_app_bar.dart';

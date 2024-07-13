@@ -1,4 +1,4 @@
-import 'package:app1/internal/bloc/coach/coach_bloc.dart';
+import 'package:app1/internal/bloc/coach_bloc/coach_bloc.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';

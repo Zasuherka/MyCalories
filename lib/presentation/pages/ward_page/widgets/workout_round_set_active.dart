@@ -1,5 +1,5 @@
 import 'package:app1/domain/model/workout/exercise_round_set.dart';
-import 'package:app1/internal/bloc/wards/wards_bloc.dart';
+import 'package:app1/internal/bloc/wards_bloc/wards_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/active_number_circles.dart';
 import 'package:app1/presentation/widgets/workout/text_fields/active_workout_title.dart';

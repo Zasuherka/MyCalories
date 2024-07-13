@@ -72,8 +72,6 @@ class _UserData{
           password: password1
       );
 
-      print(email);
-
       User? user = userCredential.user;
 
       if (user != null) {
@@ -115,9 +113,7 @@ class _UserData{
   Future<void> _newUser(User user, String name) async {
     try {
       _usersRef.child(user.uid).set({"name": name, "email": user.email});
-    } catch (e) {
-      print("Ошибка регистрации$e");
-    }
+    } catch (e) {}
   }
 
   Future<void> logOutUser() async {

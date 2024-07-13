@@ -1,6 +1,6 @@
-import 'package:app1/internal/bloc/coach/coach_bloc.dart';
+import 'package:app1/internal/bloc/coach_bloc/coach_bloc.dart';
 import 'package:app1/internal/bloc/user_info_bloc/user_info_bloc.dart';
-import 'package:app1/internal/cubit/workout/workout_cubit.dart';
+import 'package:app1/internal/cubit/workout_cubit/workout_cubit.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';

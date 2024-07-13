@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:app1/data/repository/image_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/repository/i_image_repository.dart';
+import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,19 +14,24 @@ part 'user_image_bloc.freezed.dart';
 ///TODO Сделать, чтобы не было кнопки удаления изображения, когда у юзера не аватарки
 class UserImageBloc extends Bloc<UserImageEvent, UserImageState> {
 
-  final IImageRepository _imageRepository = ImageRepository();
+  final IImageRepository _imageRepository;
+  final IUserRepository _userRepository;
 
   File? avatar;
 
-  UserImageBloc() : super(const UserImageState.initial()) {
+  UserImageBloc({
+    required IImageRepository imageRepository,
+    required IUserRepository userRepository,
+  })  : _imageRepository = imageRepository,
+        _userRepository = userRepository,
+        super(const UserImageState.initial()) {
     on<UserImageEvent>((event, emit) async {
       await event.when(
           selectAndUploadImage: () => _selectAndUploadImage(emit),
           loadImage: () => _loadImage(emit),
-          deleteImage: () => _deleteImage(emit)
-      );
+          deleteImage: () => _deleteImage(emit));
     });
-    UserRepository.controller.stream.listen((event) {
+    _userRepository.controller.stream.listen((event) {
       if(event == null){
         avatar = null;
       }

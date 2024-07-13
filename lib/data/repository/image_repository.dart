@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:app1/data/database/database.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/repository/i_image_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -14,8 +13,12 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class ImageRepository implements IImageRepository {
 
-  final IUserRepository _userRepository = UserRepository();
-  final Database _database = Database();
+  final IUserRepository _userRepository;
+  final Database _database;
+
+  ImageRepository({required IUserRepository userRepository, required Database database})
+      : _userRepository = userRepository,
+        _database = database;
 
   ///Выгрузка фотографии в FireBase + обращение к [downloadImage]
   ///В слуае ошибки, а она может проозийти исключительно при остутствии интернета, мы будем использовать уже имеющуюся фотографию
@@ -45,9 +48,7 @@ class ImageRepository implements IImageRepository {
         _saveChanges();
       }
     }
-    catch(e){
-      print('Error: ${e.toString()}');
-    }
+    catch(e){}
     return localUser.avatar;
   }
 
@@ -166,7 +167,6 @@ class ImageRepository implements IImageRepository {
 
   @override
   Future<void> signOut() async{
-    final localUser = _userRepository.localUser;
     final documentDirectory = await getApplicationDocumentsDirectory();
     File file = File('${documentDirectory.path}/avatar.jpg');
     if(await file.exists()) await file.delete();

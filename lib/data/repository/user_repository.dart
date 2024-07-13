@@ -13,16 +13,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class UserRepository implements IUserRepository {
+  UserRepository({required Database database}) : _database = database;
+
+  final Database _database;
+
   static AppUser? _localUser;
 
-  static final StreamController<AppUser?> controller = StreamController<AppUser?>.broadcast();
+  @override
+  final StreamController<AppUser?> controller = StreamController<AppUser?>.broadcast();
 
   late bool isUserConnected = true;
 
   @override
   AppUser? get localUser => _localUser;
-
-  final Database _database = Database();
 
   @override
   void setFoodList(List<Food> listFood) {
@@ -182,11 +185,9 @@ class UserRepository implements IUserRepository {
   // Future<AppUser?> getUserInfo() async {
   //   final Box<AppUser> userBox = Hive.box<AppUser>('appUser');
   //   if (!userBox.isNotEmpty) {
-  //     print('НУЛЯРА');
   //     return null;
   //   }
   //   final AppUser? appUser = userBox.get('appUser');
-  //   print('конкретно $appUser');
   //   return appUser;
   // }
 

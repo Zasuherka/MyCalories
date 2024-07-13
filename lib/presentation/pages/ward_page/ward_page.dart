@@ -1,4 +1,4 @@
-import 'package:app1/internal/bloc/wards/wards_bloc.dart';
+import 'package:app1/internal/bloc/wards_bloc/wards_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/pages/ward_page/widgets/remove_ward_dialog.dart';
 import 'package:app1/presentation/router/router.dart';

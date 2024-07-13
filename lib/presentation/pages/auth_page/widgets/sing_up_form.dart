@@ -15,7 +15,6 @@ class SingUpForm extends StatelessWidget {
     String password1 = '';
     String password2 = '';
     bool buttonIsActive = true;
-    final RegistrationBloc bloc = RegistrationBloc();
     String title = 'Для регистрации заполните все поля';
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -23,7 +22,6 @@ class SingUpForm extends StatelessWidget {
       ),
       child: Form(
           child: BlocBuilder<RegistrationBloc, RegistrationState>(
-            bloc: bloc,
             builder: (context, state){
               state.whenOrNull(
                   initial: () => buttonIsActive = true,
@@ -183,7 +181,8 @@ class SingUpForm extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       if (buttonIsActive){
-                        bloc.add(RegistrationEvent(name,email,password1,password2));
+                        context.read<RegistrationBloc>()
+                            .add(RegistrationEvent(name,email,password1,password2));
                       }
                     },
                     child: Container(
@@ -191,7 +190,8 @@ class SingUpForm extends StatelessWidget {
                       height: screenHeight * 0.05,
                       width: screenWidth * 0.76,
                       decoration: BoxDecoration(
-                          color: AppColors.primaryButtonColor.withOpacity(buttonIsActive ? 1 : 0.65),
+                          color: AppColors
+                              .primaryButtonColor.withOpacity(buttonIsActive ? 1 : 0.65),
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
@@ -209,17 +209,7 @@ class SingUpForm extends StatelessWidget {
                           )
                       ),
                     )
-                  )
-                  // BlocBuilder<RegistrationBloc, RegistrationState>(
-                  //     bloc: bloc,
-                  //     builder: (context, state) {
-                  //       Color color = AppColors.white;;
-                  //       state.whenOrNull(
-                  //         loading: () => color = AppColors.white.withOpacity(0.65),
-                  //         successful: () => color = AppColors.white.withOpacity(0.65)
-                  //       );
-                  //       return
-                  //     }),
+                  ),
                 ],
               );
             },

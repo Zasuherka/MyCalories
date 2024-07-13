@@ -1,4 +1,4 @@
-import 'package:app1/internal/bloc/authorization/authorization_bloc.dart';
+import 'package:app1/internal/bloc/authorization_bloc/authorization_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

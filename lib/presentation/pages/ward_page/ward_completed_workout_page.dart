@@ -1,7 +1,7 @@
 import 'package:app1/domain/model/workout/exercise_cardio.dart';
 import 'package:app1/domain/model/workout/exercise_round_set.dart';
 import 'package:app1/domain/model/workout/exercise_set.dart';
-import 'package:app1/internal/bloc/wards/wards_bloc.dart';
+import 'package:app1/internal/bloc/wards_bloc/wards_bloc.dart';
 import 'package:app1/presentation/pages/ward_page/widgets/workout_cardio_inactive.dart';
 import 'package:app1/presentation/pages/ward_page/widgets/workout_round_set_inactive.dart';
 import 'package:app1/presentation/pages/ward_page/widgets/workout_set_inactive.dart';
@@ -16,7 +16,6 @@ class WardCompletedWorkoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('object');
     final WardsBloc wardsBloc = context.read<WardsBloc>();
     return BlocConsumer<WardsBloc, WardsState>(
       listener: (context, state){},

@@ -1,7 +1,7 @@
 import 'package:app1/domain/model/workout/exercise_cardio.dart';
 import 'package:app1/domain/model/workout/exercise_round_set.dart';
 import 'package:app1/domain/model/workout/exercise_set.dart';
-import 'package:app1/internal/cubit/workout/workout_cubit.dart';
+import 'package:app1/internal/cubit/workout_cubit/workout_cubit.dart';
 import 'package:app1/presentation/widgets/custom_app_bar.dart';
 import 'package:app1/presentation/widgets/workout/workout_cardio_inactive.dart';
 import 'package:app1/presentation/widgets/workout/workout_round_set_inactive.dart';

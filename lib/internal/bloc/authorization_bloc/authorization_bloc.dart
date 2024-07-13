@@ -4,7 +4,6 @@ import 'package:app1/domain/enums/local_yser_status.dart';
 import 'package:app1/domain/model/user.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authorization_event.dart';
@@ -15,18 +14,18 @@ part 'authorization_bloc.freezed.dart';
 
 class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
 
-  final IUserRepository _userRepository = UserRepository();
-  AppUser? localUser;
-  LocalUserStatus localUserStatus = LocalUserStatus.load;
+  final IUserRepository _userRepository;
 
-  AuthorizationBloc() : super(const AuthorizationState.initial()) {
+  AuthorizationBloc({required IUserRepository userRepository})
+      : _userRepository = userRepository,
+        super(const AuthorizationState.initial()) {
     on<AuthorizationEvent>((event, emit) async {
-      await event.when(
-          auth: (email, password) => _authorization(email, password, emit)
-      );
+      await event.when(auth: (email, password) => _authorization(email, password, emit));
     });
   }
 
+  AppUser? localUser;
+  LocalUserStatus localUserStatus = LocalUserStatus.load;
 
   Future<void> _authorization(String email, String password, Emitter<AuthorizationState> emitter) async{
     emitter(const AuthorizationState.loading());

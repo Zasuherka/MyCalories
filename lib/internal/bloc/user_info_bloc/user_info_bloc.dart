@@ -1,6 +1,4 @@
 import 'package:app1/domain/model/user.dart';
-import 'package:app1/data/repository/image_repository.dart';
-import 'package:app1/data/repository/user_repository.dart';
 import 'package:app1/domain/repository/i_image_repository.dart';
 import 'package:app1/domain/repository/i_user_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -12,12 +10,15 @@ part 'user_info_bloc.freezed.dart';
 
 class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
-  static final IUserRepository _userRepository = UserRepository();
-  static final IImageRepository _imageRepository = ImageRepository();
+  final IUserRepository _userRepository;
+  final IImageRepository _imageRepository;
 
   AppUser? localUser;
 
-  UserInfoBloc() : super(const UserInfoState.initial()) {
+  UserInfoBloc({required IUserRepository userRepository, required IImageRepository imageRepository}) :
+        _userRepository = userRepository,
+        _imageRepository = imageRepository,
+        super(const UserInfoState.initial()) {
     on<UserInfoEvent>((event, emit) async {
       await event.map(
           singOut: (_) => _signOut(emit),
@@ -28,7 +29,7 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
     });
 
     localUser = _userRepository.localUser;
-    UserRepository.controller.stream.listen((event) {
+    _userRepository.controller.stream.listen((event) {
       localUser = event;
     });
   }

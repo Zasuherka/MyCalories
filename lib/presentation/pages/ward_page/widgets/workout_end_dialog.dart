@@ -1,4 +1,4 @@
-import 'package:app1/internal/bloc/wards/wards_bloc.dart';
+import 'package:app1/internal/bloc/wards_bloc/wards_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/widgets/custom_buttons/primary_app_button.dart';
 import 'package:auto_route/auto_route.dart';

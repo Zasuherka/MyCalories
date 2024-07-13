@@ -34,7 +34,6 @@ class ProfilePage extends StatelessWidget {
     }
 
     late bool avatarIsNotNull = false;
-    Image avatar = Image.asset('images/icon.jpg');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
@@ -64,17 +63,14 @@ class ProfilePage extends StatelessWidget {
                             //   BlocProvider.of<UserImageBloc>(context).add(LoadImageEvent());
                             // },
                               loadImage: (image) {
-                                avatar = Image.file(image);
                                 avatarIsNotNull = true;
                               },
                               error: (error) {
                                 avatarIsNotNull = false;
-                                avatar = Image.asset('images/icon.jpg');
                               },
                               deleteImage: () {
                                 {
                                   avatarIsNotNull = false;
-                                  avatar = Image.asset('images/icon.jpg');
                                 }
                               });
                           return GestureDetector(

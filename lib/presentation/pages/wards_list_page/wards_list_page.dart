@@ -1,12 +1,10 @@
-import 'package:app1/internal/bloc/wards/wards_bloc.dart';
+import 'package:app1/internal/bloc/wards_bloc/wards_bloc.dart';
 import 'package:app1/presentation/constants.dart';
 import 'package:app1/presentation/router/router.dart';
 import 'package:app1/presentation/widgets/custom_app_bar.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class WardsListPage extends StatelessWidget {
